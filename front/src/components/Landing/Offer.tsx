@@ -1,6 +1,11 @@
+import { SliderText } from "../../pre-components/SliderText"
+
 const Offer = () => {
   return (
-    <div>Offer</div>
+    <>
+      <div>Offer</div>
+      <SliderText />
+    </>
   )
 }
 
