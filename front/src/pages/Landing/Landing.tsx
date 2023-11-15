@@ -1,4 +1,3 @@
-import React from 'react'
 import AboutUs from '../../components/Landing/AboutUs'
 import Services from '../../components/Landing/Services'
 import Offer from '../../components/Landing/Offer'

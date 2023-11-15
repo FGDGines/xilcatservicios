@@ -1,5 +1,3 @@
-import React from 'react'
-
 type TOptions = {
   icon: string;
   title: string;
