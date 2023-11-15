@@ -1,44 +1,55 @@
 const Contact = () => {
   return (
-    <div>
-      <p className='text-center text-2xl mb-8'>Contactanos</p>
+    <div className="mt-8">
+      <p className='text-center text-2xl mb-8 font-bold '>Contáctanos</p>
       <form className="max-w-md mx-auto">
         <div className="mb-4">
-          <label className="block mb-2 text-lg font-bold text-gray-700" htmlFor="name">
-            Name
+          <label className="block mb-2 font-bold text-gray-700" htmlFor="name">
+            Nombre
           </label>
           <input
-            className="border-b-2 border-blue-500 outline-none focus:border-blue-600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
+            className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
             id="name"
             type="text"
-            placeholder="Enter your name"
+            placeholder="Jack Sullivan"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-lg font-bold text-gray-700" htmlFor="email">
+          <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
             Email
           </label>
           <input
-            className="border-b-2 border-blue-500 outline-none focus:border-blue-600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
+            className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
             id="email"
             type="email"
-            placeholder="Enter your email"
+            placeholder="jacksullivan@gmail.com"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-lg font-bold text-gray-700" htmlFor="message">
-            Message
+          <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
+            Asunto o tema
+          </label>
+          <input
+            className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
+            id="email"
+            type="email"
+            placeholder="Asesoría jurídica"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block mb-2 font-bold text-gray-700" htmlFor="message">
+            Mensaje
           </label>
           <textarea
-            className="border-b-2 border-blue-500 outline-none focus:border-blue-600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight resize-none"
+            className="outline-none focus:border-blue-600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight resize-none"
             id="message"
             rows={4}
-            placeholder="Enter your message"
+            placeholder="Escribe un mensaje "
           ></textarea>
         </div>
         <div className="text-center">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-            Submit
+          <button className="bg-[#2C2949] hover:bg-gray-600 text-white py-4 px-8 rounded rounded-xl">
+            Enviar mensaje
           </button>
         </div>
       </form>

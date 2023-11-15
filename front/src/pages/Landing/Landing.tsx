@@ -7,14 +7,16 @@ import Footer from '../../components/Footer'
 
 const Landing = () => {
   return (
-    <div className='flex flex-col px-2'>
+    <>
+    <div className='flex flex-col px-4'>
       <AboutUs />
       <Services />
       <Offer />
       <OurTeam />
       <Contact />
-      <Footer />
     </div>
+      <Footer />
+    </>
   )
 }
 

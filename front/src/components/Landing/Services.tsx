@@ -12,12 +12,12 @@ type TOptions = {
 const options: TOptions[] = [
   {
     icon: <FaHeartbeat className="text-2xl" />,
-    title: 'Multigestion',
+    title: 'Multigestió n',
     text: 'Gestión y manejo integral de tus necesidades administrativas, simplificando cada proceso para ti'
   },
   {
     icon: <MdAirplanemodeActive className="text-2xl"/>,
-    title: 'Extranjeria',
+    title: 'Extranjería',
     text: 'Ofrecemos soluciones claras y efectivas para regularizar y comprender tu situación migratoria en España"'
   },
   {
@@ -27,23 +27,23 @@ const options: TOptions[] = [
   },
   {
     icon: <FaBalanceScale className="text-2xl"/>,
-    title: 'Servicio Juridico',
+    title: 'Servicio Jurídico',
     text: 'Brindamos representación legal y asesoría especializada en cada paso de tus trámites y desafíos legales'
   }
 ]
 
 const Services = () => {
   return (
-    <div className='min-h-[20vh] p-2'>
-      <p className='text-center text-2xl mb-8'>Nuestros servicios</p>
+    <div className='min-h-[20vh] p-2 mt-4'>
+      <p className='text-center text-2xl mb-8 font-semibold'>Nuestros servicios</p>
       <p className='text-center'>Ofrecemos un rango completo de soluciones para gestionar tus trámites de nacionalidad y extranjería, adaptándonos a tus necesidades particulare</p>
-      <div className='mt-4 md:grid md:grid-cols-2 md:gap-4'>
+      <div className='mt-8 md:grid md:grid-cols-2 md:gap-4'>
         {
           options.map((option, idx) => (
-            <div className={`flex flex-col mb-2 gap-2 ${idx % 2 === 0 && 'items-end text-end md:text-center'} md:text-center`}>
+            <div className={`flex flex-col mt-4 gap-2 ${idx % 2 === 1 && 'items-end text-end md:text-center'} md:text-center`}>
               <p>{option.icon}</p>
-              <p className='text-xl font-bold'>{option.title}</p>
-              <p className='text-sm'>{option.text}</p>
+              <p className='text-xl font-bold mb-4'>{option.title}</p>
+              <p className='text-sm w-[60%]'>{option.text}</p>
             </div>
           ))
         }
