@@ -1,29 +1,32 @@
 import React from 'react'
+import { FaHeartbeat, FaFlag, FaBalanceScale } from "react-icons/fa";
+import { MdAirplanemodeActive } from "react-icons/md";
+
 
 type TOptions = {
-  icon: string;
+  icon: JSX.Element;
   title: string;
   text: string;
 }
 
 const options: TOptions[] = [
   {
-    icon: 'ICONO',
+    icon: <FaHeartbeat className="text-2xl" />,
     title: 'Multigestion',
     text: 'Gestión y manejo integral de tus necesidades administrativas, simplificando cada proceso para ti'
   },
   {
-    icon: 'ICONO',
+    icon: <MdAirplanemodeActive className="text-2xl"/>,
     title: 'Extranjeria',
     text: 'Ofrecemos soluciones claras y efectivas para regularizar y comprender tu situación migratoria en España"'
   },
   {
-    icon: 'ICONO',
+    icon: <FaFlag className="text-2xl" />,
     title: 'Nacionalidad',
     text: 'Facilitamos el camino hacia la ciudadanía, acompañándote en cada etapa del proceso'
   },
   {
-    icon: 'ICONO',
+    icon: <FaBalanceScale className="text-2xl"/>,
     title: 'Servicio Juridico',
     text: 'Brindamos representación legal y asesoría especializada en cada paso de tus trámites y desafíos legales'
   }
