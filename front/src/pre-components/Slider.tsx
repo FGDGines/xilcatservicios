@@ -4,6 +4,7 @@ import Image2 from './../assets/imgs/carrusel-img-2.jpeg';
 import Image3 from './../assets/imgs/carrusel-img-3.jpeg';
 import { Adviser } from "../pre-types/Adviser";
 import { useDeviceSize } from "../hooks/Responsive";
+import { motion } from "framer-motion"
 
 export const Slider = () => {
     const { isDesktop, isMobileOrTablet } = useDeviceSize();
@@ -33,10 +34,10 @@ export const Slider = () => {
 
                 {asesor.map((item, index) => (
                     <div key={index}>
-                        <div style={{ position: 'relative' }} onClick={() => setCurrentSlide(index)} >
-                            <img
-                                style={{
-                                    minWidth: index === currentSlide ? 585 : 192,
+                        <div style={{ position: 'relative', cursor: "pointer" }} onClick={() => setCurrentSlide(index)} >
+                            <motion.img
+                                animate={{
+                                    width: index === currentSlide ? 585 : 192,
                                     height: 605,
                                     borderRadius: 17,
                                     objectFit: 'cover',
@@ -46,9 +47,9 @@ export const Slider = () => {
                                 alt={`Slide ${index + 1}`}
                                 className="w-full h-full object-cover"
                             />
-                            <div
+                            <motion.div
                                 className="absolute bottom-0 left-0 w-full px-5 py-5 text-white text-left"
-                                style={{
+                                animate={{
                                     borderBottomLeftRadius: '17px',
                                     borderBottomRightRadius: '17px',
                                     /* Aplica estilos solo a la imagen seleccionada */
@@ -64,7 +65,7 @@ export const Slider = () => {
                             >
                                 <span style={{ fontSize: 44, fontWeight: 600 }}>{index === currentSlide ? item.nombre : null}</span>  <br />
                                 <span style={{ fontSize: 23, fontWeight: 400 }}>{item.profesion}</span>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 ))}
@@ -72,7 +73,7 @@ export const Slider = () => {
 
             <div className="flex gap-1 justify-center my-4">
                 {asesor.map((_, index) => (
-                    <div key={index} className="cursor-pointer" style={{ width: index === currentSlide ? 94 : 42, height: 14, backgroundColor: index === currentSlide ? "#2C2949" : "rgba(37, 35, 35, 0.10)", borderRadius: 18 }} onClick={() => setCurrentSlide(index)}></div>
+                    <motion.div key={index} className="cursor-pointer" animate={{ width: index === currentSlide ? 94 : 42, height: 14, backgroundColor: index === currentSlide ? "#2C2949" : "rgba(37, 35, 35, 0.10)", borderRadius: 18 }} onClick={() => setCurrentSlide(index)}></motion.div>
                 ))}
             </div>
             {isMobileOrTablet &&
