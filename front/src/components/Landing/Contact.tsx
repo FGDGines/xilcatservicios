@@ -5,10 +5,11 @@ import { FaFacebook } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io";
 
 const Contact = () => {
-  const { isMobile, isTablet, isDesktop } = useDeviceSize();
+  const { isDesktop, isMobileOrTablet } = useDeviceSize();
 
   return <>
-    {(isTablet || isMobile) && (
+    {isMobileOrTablet && <h1 style={{ fontSize: 40, fontWeight: 700 }} className="text-center my-5">Contáctanos</h1>}
+    {isMobileOrTablet && (
       <form className="mx-7 md:grid md:grid-cols-2 md:gap-4">
         <div className="mb-4">
           <label className="block mb-2 font-bold text-gray-700" htmlFor="name">
