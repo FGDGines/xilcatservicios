@@ -1,8 +1,8 @@
 const Contact = () => {
   return (
-    <div className="mt-8">
+    <div className="mt-8 px-6">
       <p className='text-center text-2xl mb-8 font-bold '>Contáctanos</p>
-      <form className="max-w-md mx-auto">
+      <form className="max-w-md mx-auto md:grid md:grid-cols-2 md:gap-4">
         <div className="mb-4">
           <label className="block mb-2 font-bold text-gray-700" htmlFor="name">
             Nombre
@@ -25,7 +25,7 @@ const Contact = () => {
             placeholder="jacksullivan@gmail.com"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 md:col-span-2">
           <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
             Asunto o tema
           </label>
@@ -36,7 +36,7 @@ const Contact = () => {
             placeholder="Asesoría jurídica"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-4 md:col-span-2">
           <label className="block mb-2 font-bold text-gray-700" htmlFor="message">
             Mensaje
           </label>
@@ -47,7 +47,7 @@ const Contact = () => {
             placeholder="Escribe un mensaje "
           ></textarea>
         </div>
-        <div className="text-center">
+        <div className="text-center flex items-center justify-center md:col-span-2">
           <button className="bg-[#2C2949] hover:bg-gray-600 text-white py-4 px-8 rounded rounded-xl">
             Enviar mensaje
           </button>

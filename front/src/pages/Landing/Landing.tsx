@@ -4,11 +4,15 @@ import Offer from '../../components/Landing/Offer'
 import OurTeam from '../../components/Landing/OurTeam'
 import Contact from '../../components/Landing/Contact'
 import Footer from '../../components/Footer'
+import HeaderMenu from '../../components/HeaderMenu'
+import Intro from '../../components/Landing/Intro'
 
 const Landing = () => {
   return (
     <>
-    <div className='flex flex-col px-4'>
+    <HeaderMenu />
+    <div className='flex flex-col'>
+      <Intro />
       <AboutUs />
       <Services />
       <Offer />

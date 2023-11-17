@@ -12,7 +12,7 @@ type TOptions = {
 const options: TOptions[] = [
   {
     icon: <FaHeartbeat className="text-2xl" />,
-    title: 'Multigestió n',
+    title: 'Multigestión',
     text: 'Gestión y manejo integral de tus necesidades administrativas, simplificando cada proceso para ti'
   },
   {
@@ -34,13 +34,13 @@ const options: TOptions[] = [
 
 const Services = () => {
   return (
-    <div className='min-h-[20vh] p-2 mt-4'>
+    <div className='min-h-[20vh] px-6 py-2 mt-4'>
       <p className='text-center text-2xl mb-8 font-semibold'>Nuestros servicios</p>
-      <p className='text-center'>Ofrecemos un rango completo de soluciones para gestionar tus trámites de nacionalidad y extranjería, adaptándonos a tus necesidades particulare</p>
-      <div className='mt-8 md:grid md:grid-cols-2 md:gap-4'>
+      <p className='text-center md:px-20'>Ofrecemos un rango completo de soluciones para gestionar tus trámites de nacionalidad y extranjería, adaptándonos a tus necesidades particulare</p>
+      <div className='mt-8 md:px-20 lg:grid lg:grid-cols-2 lg:gap-4'>
         {
           options.map((option, idx) => (
-            <div className={`flex flex-col mt-4 gap-2 ${idx % 2 === 1 && 'items-end text-end md:text-center'} md:text-center`}>
+            <div className={`flex flex-col mt-4 gap-2 ${idx % 2 === 1 && 'items-end text-end md:text-center'} lg:text-center`}>
               <p>{option.icon}</p>
               <p className='text-xl font-bold mb-4'>{option.title}</p>
               <p className='text-sm w-[60%]'>{option.text}</p>
