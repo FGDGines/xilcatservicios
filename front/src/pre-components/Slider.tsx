@@ -3,8 +3,10 @@ import Image from './../assets/imgs/carrusel-img-1.jpeg';
 import Image2 from './../assets/imgs/carrusel-img-2.jpeg';
 import Image3 from './../assets/imgs/carrusel-img-3.jpeg';
 import { Adviser } from "../pre-types/Adviser";
+import { useDeviceSize } from "../hooks/Responsive";
 
 export const Slider = () => {
+    const { isDesktop, isMobileOrTablet } = useDeviceSize();
     const [asesor,] = useState<Adviser[]>([
         // {},
         { nombre: 'Maria Torres', profesion: "Especialista en Juridicción", imagen: Image },
@@ -13,61 +15,29 @@ export const Slider = () => {
     ])
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
-    const nextSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide === asesor.length - 1 ? 0 : prevSlide + 1));
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide === 0 ? asesor.length - 1 : prevSlide - 1));
-    };
-
-    const prevAsesor = asesor[currentSlide === 0 ? asesor.length - 1 : currentSlide - 1]
-    const nextAsesor = asesor[currentSlide === asesor.length - 1 ? 0 : currentSlide + 1]
-
     return (
-        <div className="relative w-full max-w-md mx-auto">
-            <h1 className="text-center">NUESTRO EQUIPO</h1>
-            <h3 className="text-center">Encuentra tu asesor</h3>
-            <div className="flex gap-1 relative overflow-hidden rounded-lg my-7 ">
-                <div className="relative">
-                    <img
-                        src={prevAsesor.imagen}
-                        style={{
-                            width: 98, height: 268, borderRadius: 17, objectFit: 'cover',
-                            objectPosition: 'top',
-                        }}
-                        onClick={prevSlide}
-                        alt={`Previous Slide`}
-                        className="top-0 left-0 w-full h-full object-cover opacity-100 cursor-pointer"
-                    />
-                    <div
-                        className="absolute bottom-0 left-0 w-full px-4 py-2 text-white text-left"
-                        style={{
-                            backgroundColor: "transparent",
-                            borderBottomLeftRadius: '17px',
-                            borderBottomRightRadius: '17px',
-                            transform: ' translateY(50%) rotate(180deg)',
-                            transformOrigin: 'center center',
-                            writingMode: 'vertical-rl', /* Para navegadores que soporten writing-mode */
-                            whiteSpace: 'nowrap',
-                            width: 'max-content',
-                            bottom: '50%',
-                            left: '50%',
-                        }}
-                    >
-                        {prevAsesor.profesion}
-                    </div>
-                </div>
+        <div className="relative w-full px-5 text-center">
+            {isMobileOrTablet && <div className="flex flex-col justify-center items-center text-center">
+                <h1 style={{ fontSize: 64, fontWeight: 700 }}>NUESTRO EQUIPO</h1>
+
+                <h3 style={{ fontSize: 24, fontWeight: 400, marginBottom: '20px' }}>Encuentra tu asesor</h3>
+            </div>}
+            <div className="flex gap-3 relative overflow-hidden rounded-lg my-7 ">
+                {isDesktop && <div className="h-screen flex flex-col justify-center items-center text-center">
+                    <h1 style={{ fontSize: 64, fontWeight: 700 }}>NUESTRO EQUIPO</h1>
+
+                    <h3 style={{ fontSize: 24, fontWeight: 400, marginBottom: '20px' }}>Encuentra tu asesor</h3>
+
+                    <button style={{ width: 202, padding: 17, borderRadius: 17, color: "white", background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)", boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}>Agendar Cita</button>
+                </div>}
+
                 {asesor.map((item, index) => (
-                    <div
-                        key={index}
-                        className={`relative ${index === currentSlide ? 'block' : 'hidden'}`}
-                    >
-                        <div style={{ position: 'relative' }} >
+                    <div key={index}>
+                        <div style={{ position: 'relative' }} onClick={() => setCurrentSlide(index)} >
                             <img
                                 style={{
-                                    width: 259,
-                                    height: 268,
+                                    minWidth: index === currentSlide ? 585 : 192,
+                                    height: 605,
                                     borderRadius: 17,
                                     objectFit: 'cover',
                                     objectPosition: 'top',
@@ -75,58 +45,39 @@ export const Slider = () => {
                                 src={item.imagen}
                                 alt={`Slide ${index + 1}`}
                                 className="w-full h-full object-cover"
-
                             />
                             <div
-                                className="absolute bottom-0 left-0 w-full px-4 py-2 text-white text-left"
+                                className="absolute bottom-0 left-0 w-full px-5 py-5 text-white text-left"
                                 style={{
                                     borderBottomLeftRadius: '17px',
                                     borderBottomRightRadius: '17px',
+                                    /* Aplica estilos solo a la imagen seleccionada */
+                                    ...(index !== currentSlide && {
+                                        transform: 'translateY(50%) rotate(180deg)',
+                                        transformOrigin: 'center center',
+                                        writingMode: 'vertical-rl',
+                                        whiteSpace: 'nowrap',
+                                        width: 'max-content',
+                                        bottom: '50%',
+                                    })
                                 }}
                             >
-                                {item.nombre}<br />
-                                {item.profesion}
+                                <span style={{ fontSize: 44, fontWeight: 600 }}>{index === currentSlide ? item.nombre : null}</span>  <br />
+                                <span style={{ fontSize: 23, fontWeight: 400 }}>{item.profesion}</span>
                             </div>
                         </div>
                     </div>
                 ))}
-                <div className="relative">
-                    <img
-                        style={{
-                            width: 98, height: 268, borderRadius: 17, objectFit: 'cover',
-                            objectPosition: 'top',
-                        }}
-                        src={nextAsesor.imagen}
-                        alt={`Next Slide`}
-                        className="top-0 left-0 w-full h-full object-cover opacity-100 cursor-pointer"
-                        onClick={nextSlide}
-                    />
-                    <div
-                        className="absolute bottom-0 left-0 w-full px-4 py-2 text-white text-left"
-                        style={{
-                            backgroundColor: "transparent",
-                            borderBottomLeftRadius: '17px',
-                            borderBottomRightRadius: '17px',
-                            transform: ' translateY(50%) rotate(180deg)',
-                            transformOrigin: 'center center',
-                            writingMode: 'vertical-rl', /* Para navegadores que soporten writing-mode */
-                            whiteSpace: 'nowrap',
-                            width: 'max-content',
-                            bottom: '50%',
-
-                        }}
-                    >
-                        {nextAsesor.profesion}
-                    </div>
-                </div>
-
             </div>
+
             <div className="flex gap-1 justify-center my-4">
                 {asesor.map((_, index) => (
-                    <div key={index} className="cursor-pointer" style={{ width: 42, height: 14, backgroundColor: index === currentSlide ? "#2C2949" : "rgba(37, 35, 35, 0.10)", borderRadius: 18 }} onClick={() => setCurrentSlide(index)}></div>
+                    <div key={index} className="cursor-pointer" style={{ width: index === currentSlide ? 94 : 42, height: 14, backgroundColor: index === currentSlide ? "#2C2949" : "rgba(37, 35, 35, 0.10)", borderRadius: 18 }} onClick={() => setCurrentSlide(index)}></div>
                 ))}
             </div>
-
+            {isMobileOrTablet &&
+                <button className="my-10" style={{ width: 202, padding: 17, borderRadius: 17, color: "white", background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)", boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}>Agendar Cita</button>
+            }
         </div >
     );
 }
