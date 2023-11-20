@@ -1,6 +1,8 @@
+import { Slider } from "../../pre-components/Slider"
+
 const OurTeam = () => {
   return (
-    <div>OurTeam</div>
+    <Slider />
   )
 }
 
