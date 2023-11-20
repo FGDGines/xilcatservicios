@@ -33,7 +33,7 @@ const options: TOptions[] = [
 
 const Footer = () => {
   return (
-    <div className="bg-[#252323] w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center">
+    <div className="bg-[#252323] w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center lg:flex-row">
       <div className="flex flex-col items-center">
         <img src={Logo} className="mt-12 w-32" />
         <p className="text-center mb-8 w-[70%] text-white">Trabajamos al 101% en tu tramite para ofrecerte la mejor solucion</p>
