@@ -7,7 +7,7 @@ import { IoLogoInstagram } from "react-icons/io";
 const Contact = () => {
   const { isDesktop, isMobileOrTablet } = useDeviceSize();
 
-  return <>
+  return <section id="Contact">
     {isMobileOrTablet && <h1 style={{ fontSize: 40, fontWeight: 700 }} className="text-center my-5">Contáctanos</h1>}
     {isMobileOrTablet && (
       <form className="mx-7 md:grid md:grid-cols-2 md:gap-4">
@@ -157,7 +157,7 @@ const Contact = () => {
       </form>
     </div>}
 
-  </>
+  </section>
 }
 
 export default Contact

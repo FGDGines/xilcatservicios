@@ -17,7 +17,7 @@ export const Slider = () => {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
     return (
-        <div className="relative w-full px-5 text-center">
+        <div id="Team" className="relative w-full px-5 text-center">
             {isMobileOrTablet && <div className="flex flex-col justify-center items-center text-center">
                 <h1 style={{ fontSize: 64, fontWeight: 700 }}>NUESTRO EQUIPO</h1>
 

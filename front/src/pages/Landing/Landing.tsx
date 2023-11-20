@@ -6,6 +6,7 @@ import Contact from '../../components/Landing/Contact'
 import Footer from '../../components/Footer'
 import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
+import { Chatbot } from '../../pre-components/Chatbot'
 
 const Landing = () => {
   return (
@@ -20,6 +21,7 @@ const Landing = () => {
       <Contact />
     </div>
       <Footer />
+      <Chatbot />
     </>
   )
 }
