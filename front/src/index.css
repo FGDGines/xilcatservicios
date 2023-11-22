@@ -16,3 +16,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@layer utilities {
+  .clip-bg {
+    clip-path: circle(90% at 22% 0%)
+  }
+  .clip-bg-md {
+    /* clip-path: circle(90% at 30% -140%) */
+    clip-path: ellipse(75% 100% at 30% 0%);
+  }
+  .clip-bg-lg {
+    clip-path: circle(90% at 10% 17%);
+  }
+}

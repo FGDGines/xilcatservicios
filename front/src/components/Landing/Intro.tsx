@@ -3,7 +3,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 
 const Intro = () => {
   return (
-    <>
+    <div className='lg:grid lg:grid-cols-[60%_1fr]'>
     <div
         className="min-h-[50vh] bg-[#2C2949] text-white flex flex-col items-center lg:flex-row lg:justify-evenly"
     >
@@ -23,14 +23,12 @@ const Intro = () => {
         </div>
     </div>
         <div
-            className=' relative flex items-center justify-center mb-6 after:content-[] after:rounded-tl-[50% 100%] after:rounded-tr-[50% 100%] after:absolute after:bottom-0 after:height-20 after:w-full after:bg-[#2C2949]'
+            className=' relative flex items-center justify-center mb-6 lg:mb-0'
             >
             <img src={GroupImg} className='z-10' />
-            <div className='absolute top-0 left-0 bg-[#2C2949] h-full w-full -z-1' style={{
-                clipPath: 'circle(90% at 22% 0%)'
-            }}></div>
+            <div className='absolute top-0 left-0 bg-[#2C2949] h-full md:h-[30%] lg:h-full w-full -z-1 clip-bg md:clip-bg-md lg:clip-bg-lg' ></div>
         </div>
-    </>
+    </div>
 
   )
 }
