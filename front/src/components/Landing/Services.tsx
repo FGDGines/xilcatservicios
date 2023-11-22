@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaHeartbeat, FaFlag, FaBalanceScale } from "react-icons/fa";
 import { MdAirplanemodeActive } from "react-icons/md";
-
+import { IoChevronDown } from "react-icons/io5";
 
 type TOptions = {
   icon: JSX.Element;
@@ -40,14 +40,27 @@ const Services = () => {
       <div className='mt-8 md:px-20 lg:grid lg:grid-cols-2 lg:gap-4'>
         {
           options.map((option, idx) => (
-            <div className={`flex flex-col mt-4 gap-2 ${idx % 2 === 1 && 'items-end text-end md:text-center'} lg:text-center`}>
-              <p>{option.icon}</p>
-              <p className='text-xl font-bold mb-4'>{option.title}</p>
+            <div className={`flex flex-col mt-4 gap-2 ${idx % 2 === 1 && 'items-end text-end md:text-center lg:items-start lg:text-start'} lg:items-end lg:text-end`}>
+              <p className='text-3xl'>{option.icon}</p>
+              <p className='text-2xl font-bold mb-4'>{option.title}</p>
               <p className='text-sm w-[60%]'>{option.text}</p>
             </div>
           ))
         }
 
+      <div className='grid-cols-2 w-full h-20 flex justify-center items-center my-8'>
+      <button className="text-center px-6 py-4 rounded-lg text-white shadow flex items-center gap-2" style={{
+                        // justifyContent: "center",
+                        background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)",
+                        // padding: 11,
+                    }}>
+                      <span>
+                        Quieres saber mas
+
+                      </span>
+                      <IoChevronDown />
+                    </button>
+      </div>
       </div>
     </div>
   )
