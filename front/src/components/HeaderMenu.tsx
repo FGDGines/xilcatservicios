@@ -6,19 +6,19 @@ import { useDeviceSize } from '../hooks/Responsive';
 const links = [
   {
     text: 'Nosotros',
-    link: '#'
+    link: '#Us'
   },
   {
     text: 'Nuestros Servicios',
-    link: '#'
+    link: '#Actions'
   },
   {
     text: 'Ofrecemos',
-    link: '#'
+    link: '#Services'
   },
   {
     text: 'Contacto',
-    link: '#'
+    link: '#Contact'
   },
   {
     text: 'Blog',

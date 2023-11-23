@@ -10,19 +10,19 @@ type TOptions = {
 
 const options: TOptions[] = [
   {
-    url: '',
+    url: '#Us',
     text: 'Nosotros'
   },
   {
-    url: '',
+    url: '#Actions',
     text: 'Nuestros Servicios'
   },
   {
-    url: '',
+    url: '#Services',
     text: 'Ofrecemos'
   },
   {
-    url: '',
+    url: '#Contact',
     text: 'Contactanos'
   },
   {
@@ -33,7 +33,7 @@ const options: TOptions[] = [
 
 const Footer = () => {
   return (
-    <div className="bg-[#252323] w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center lg:flex-row">
+    <div className="bg-[#252323] w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center lg:flex-row lg:pb-28">
       <div className="flex flex-col items-center">
         <img src={Logo} className="mt-12 w-32" />
         <p className="text-center mb-8 w-[70%] text-white">Trabajamos al 101% en tu tramite para ofrecerte la mejor solucion</p>
@@ -44,7 +44,7 @@ const Footer = () => {
           <FaYoutube />
         </div>
       </div>
-      <div className="text-center text-white my-12 w-[70%] md:w-[50%] flex items-center flex-col justify-center">
+      <div className="text-center text-white my-12 w-[70%] md:w-[50%] flex items-center flex-col justify-center lg:order-3 lg:basis-1/3 lg:mx-4">
         <p className="text-bold">NEWS LETTER</p>
         <p className="my-4">Suscribete a nuestra newsletter para obtener las ultimas noticias</p>
         <div className="relative flex items-center justify-center w-full">
@@ -59,7 +59,7 @@ const Footer = () => {
         </div> 
       </div>
 
-      <div className="text-xs flex items-center justify-between gap-2 mb-12">
+      <div className="text-xs flex items-center justify-between gap-2 mb-12 lg:flex-col lg:basis-1/3 lg:order-2 lg:justify-around lg:mb-0">
         {
           options.map(option => (
             <a href={option.url} className="text-white border-b hover:text-gray-200">{option.text}</a>

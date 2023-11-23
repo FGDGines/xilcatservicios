@@ -12,7 +12,7 @@ const Landing = () => {
   return (
     <>
     <HeaderMenu />
-    <div className='flex flex-col'>
+    <div className='flex flex-col scroll-smooth'>
       <Intro />
       <AboutUs />
       <Services />

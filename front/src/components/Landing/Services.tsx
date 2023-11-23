@@ -34,7 +34,7 @@ const options: TOptions[] = [
 
 const Services = () => {
   return (
-    <div className='min-h-[20vh] px-6 py-2 mt-4'>
+    <div className='min-h-[20vh] px-6 py-2 mt-4' id="Actions">
       <p className='text-center text-3xl mb-8 font-semibold'>NUESTROS SERVICIOS</p>
       <p className='text-center md:px-20'>Ofrecemos un rango completo de soluciones para gestionar tus trámites de nacionalidad y extranjería, adaptándonos a tus necesidades particulare</p>
       <div className='mt-8 md:px-20 lg:grid lg:grid-cols-2 lg:gap-20'>
