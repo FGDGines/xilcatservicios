@@ -2,6 +2,8 @@ import { IoMdSend } from "react-icons/io";
 import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 import { RiInstagramFill } from "react-icons/ri";
 import Logo from '../assets/logo.png';
+import { useState } from "react";
+import axios from "axios";
 
 type TOptions = {
   url: string;
@@ -32,6 +34,17 @@ const options: TOptions[] = [
 ]
 
 const Footer = () => {
+  const [email, setEmail] = useState('')
+
+  const handleSubmit = async () => {
+    // console.log('backend', import.meta.env.VITE_BACKEND_URL)
+    await axios.post(import.meta.env.VITE_BACKEND_URL + "/newsletter", {
+      title: 'newsletter',
+      content: email
+    })
+
+    setEmail('')
+  }
   return (
     <div className="bg-[#252323] w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center lg:flex-row lg:pb-28">
       <div className="flex flex-col items-center">
@@ -52,8 +65,10 @@ const Footer = () => {
             type="text"
             className="pl-4 pr-2 py-2 rounded-md border-gray-300 text-red-500 focus:ring-blue-500 focus:border-blue-500 w-full placeholder:text-gray-400"
             placeholder="Correo Electronico"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          <div className="absolute right-1 top-1 bg-[#2C2949] text-white p-2 rounded text" onClick={() => console.log('sending frm')}>
+          <div className="absolute right-1 top-1 bg-[#2C2949] text-white p-2 rounded text" onClick={handleSubmit}>
               <IoMdSend className="" />
           </div>
         </div> 
