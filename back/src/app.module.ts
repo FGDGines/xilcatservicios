@@ -14,7 +14,7 @@ import { join } from 'path';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      renderPath: join(__dirname,'../../','front/dist')
+      rootPath: join(__dirname, '../../', 'front/dist'),
     }),
     ConfigModule.forRoot({
       isGlobal: true, // Hace que las variables de entorno estén disponibles globalmente

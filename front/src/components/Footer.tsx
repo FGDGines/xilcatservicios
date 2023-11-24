@@ -68,7 +68,7 @@ const Footer = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <div className="absolute right-1 top-1 bg-[#2C2949] text-white p-2 rounded text" onClick={handleSubmit}>
+          <div className="absolute right-1 top-1 bg-[#2C2949] text-white p-2 rounded text cursor-pointer" onClick={handleSubmit}>
               <IoMdSend className="" />
           </div>
         </div> 
