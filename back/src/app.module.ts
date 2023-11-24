@@ -8,9 +8,14 @@ import { NewsletterModule } from './newsletter/newsletter.module';
 import { ConfigModule } from '@nestjs/config';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { SubscriptionModule } from './subscription/subscription.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      renderPath: join(__dirname,'../../','front/dist')
+    }),
     ConfigModule.forRoot({
       isGlobal: true, // Hace que las variables de entorno estén disponibles globalmente
     }),
