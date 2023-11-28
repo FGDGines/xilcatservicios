@@ -1,0 +1,33 @@
+{
+  "name": "xilcatservicios",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "18.17.1"
+  },
+  "packageManager": "pnpm@8.11.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "start": "node back/dist/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FGDGines/xilcatservicios.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "back",
+    "front"
+  ],
+  "bugs": {
+    "url": "https://github.com/FGDGines/xilcatservicios/issues"
+  },
+  "homepage": "https://github.com/FGDGines/xilcatservicios#readme",
+  "devDependencies": {
+    "turbo": "^1.10.16"
+  }
+}

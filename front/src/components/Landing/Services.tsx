@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaHeartbeat, FaFlag, FaBalanceScale } from "react-icons/fa";
 import { MdAirplanemodeActive } from "react-icons/md";
 import { IoChevronDown } from "react-icons/io5";

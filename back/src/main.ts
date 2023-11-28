@@ -5,6 +5,7 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('/api');
 
   const corsOptions: CorsOptions = {
     origin: true, // Permite solicitudes desde todas las fuentes
@@ -22,7 +23,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('doc', app, document);
 
   app.enableCors(corsOptions); // Habilitar CORS con las opciones especificadas
 
