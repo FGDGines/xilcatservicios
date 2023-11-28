@@ -23,7 +23,7 @@ code {
 
 @layer utilities {
   .clip-bg {
-    clip-path: circle(90% at 22% 0%)
+    clip-path: circle(100% at 18% -20%)
   }
   .clip-bg-md {
     /* clip-path: circle(90% at 30% -140%) */

@@ -29,7 +29,8 @@ const links = [
 const HeaderMenu = () => {
   const { isDesktop } = useDeviceSize()
     return (
-      <div className='sticky w-full h-16 bg-[#2C2949] left-0 top-0 flex justify-between items-center px-4 z-50'>
+      <div className='w-full h-30 bg-[#2C2949] flex justify-between items-center px-4 z-50'>
+      {/* <div className='sticky w-full h-30 bg-[#2C2949] left-0 top-0 flex justify-between items-center px-4 z-50'> */}
         <div>
             <img src={Logo}/>
         </div>
@@ -48,7 +49,7 @@ const HeaderMenu = () => {
         }
         {
           !isDesktop && (
-            <IoMenu className="text-3xl text-white" />
+            <IoMenu className="text-6xl text-white" />
           )
         }
 

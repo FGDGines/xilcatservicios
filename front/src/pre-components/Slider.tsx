@@ -19,9 +19,9 @@ export const Slider = () => {
     return (
         <div id="Team" className="relative w-full px-5 text-center">
             {isMobileOrTablet && <div className="flex flex-col justify-center items-center text-center">
-                <h1 style={{ fontSize: 64, fontWeight: 700 }}>NUESTRO EQUIPO</h1>
+                <h1 style={{ fontSize: 42, fontWeight: 700 }}>NUESTRO EQUIPO</h1>
 
-                <h3 style={{ fontSize: 24, fontWeight: 400, marginBottom: '20px' }}>Encuentra tu asesor</h3>
+                <h3 style={{ fontSize: 18, fontWeight: 400, marginBottom: '20px' }}>Encuentra tu asesor</h3>
             </div>}
             <div className="flex gap-3 relative overflow-hidden rounded-lg my-7 ">
                 {isDesktop && <div className="h-screen flex flex-col justify-center items-center text-center">
@@ -38,7 +38,8 @@ export const Slider = () => {
                             <motion.img
                                 animate={{
                                     width: index === currentSlide ? 585 : 192,
-                                    height: 605,
+                                    // height: 605,
+                                    height: 400,
                                     borderRadius: 17,
                                     objectFit: 'cover',
                                     objectPosition: 'top',

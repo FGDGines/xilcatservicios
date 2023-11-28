@@ -24,8 +24,8 @@ export const SliderText = () => {
     };
 
     return <>
-        <h1 id="Services" style={{ fontSize: 40, fontWeight: 700 }} className="text-center my-3">QUE OFRECEMOS</h1>
-        <h2 style={{ fontSize: 21, fontWeight: 300 }} className="text-center my-3">Selecciona tu categoria de interes y conoce mas sobre los diferentes servicios que proponemos</h2>
+        <h1 id="Services" style={{ fontSize: 30, fontWeight: 700 }} className="text-center my-3">QUE OFRECEMOS</h1>
+        <h2 style={{ fontSize: 16, fontWeight: 300 }} className="text-center my-3">Selecciona tu categoria de interes y conoce mas sobre los diferentes servicios que proponemos</h2>
         <div className="flex w-full mx-auto ">
             {service.map((item, index) => (
                 <div
@@ -37,13 +37,14 @@ export const SliderText = () => {
 
                     }}
                 >
-                    <button className="absolute text-center top-0 left-1/2 transform -translate-x-1/2 -mt-6" style={{
-                        borderRadius: 23,
+                    <button className="absolute text-center top-0 left-1/2 transform -translate-x-1/2 -mt-6 px-4 py-2" style={{
+                        borderRadius: 14,
                         color: "white",
                         justifyContent: "center",
                         background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)",
-                        padding: 11,
+                        // padding: '10 20',
                         marginTop: -20,
+                        fontSize: 14
                     }}>Seleccionar la categoria</button>
 
                     <div
@@ -61,13 +62,13 @@ export const SliderText = () => {
                             boxShadow: "0px 8px 24px 0px rgba(0, 0, 0, 0.25)",
                         }}
                     >
-                        <h2 style={{ fontSize: 33, fontWeight: 700 }}>{item.name}</h2> <br />
-                        <p style={{ fontSize: 16, fontWeight: 300 }}>{item.description}</p>
+                        <h2 style={{ fontSize: 26, fontWeight: 700 }}>{item.name}</h2> <br />
+                        <p style={{ fontSize: 12, fontWeight: 300 }}>{item.description}</p>
                     </div>
-                    <button onClick={prevSlide} className="rounded-full absolute top-1/2 transform -translate-y-1/2 left-0 z-10 p-3 bg-gray-800 text-white">
+                    <button onClick={prevSlide} className="rounded-full absolute top-1/2 transform -translate-y-1/2 left-0 z-10 py-1 px-2 bg-gray-800 text-white">
                         {"<"}
                     </button>
-                    <button onClick={nextSlide} className="rounded-full absolute top-1/2 transform -translate-y-1/2 right-0 z-10 p-3 bg-gray-800 text-white focus:outline-none">
+                    <button onClick={nextSlide} className="rounded-full absolute top-1/2 transform -translate-y-1/2 right-0 z-10 py-1 px-2 bg-gray-800 text-white focus:outline-none">
                         {">"}
                     </button>
                     <div className="flex gap-4 justify-center absolute bottom-4 left-0 right-0">
