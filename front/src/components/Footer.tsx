@@ -38,7 +38,11 @@ const Footer = () => {
 
   const handleSubmit = async () => {
     // console.log('backend', import.meta.env.VITE_BACKEND_URL)
-    await axios.post(import.meta.env.VITE_BACKEND_URL + "/newsletter", {
+    // await axios.post(import.meta.env.VITE_BACKEND_URL + "/newsletter", {
+    // await axios.post(import.meta.env.VITE_BACKEND_URL + "/subscription/subscribe", {
+    await axios.post(import.meta.env.VITE_BACKEND_URL + "/subscription/send", {
+
+
       title: 'newsletter',
       content: email
     })

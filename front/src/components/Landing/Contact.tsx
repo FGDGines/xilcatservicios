@@ -3,19 +3,34 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { IoLogoInstagram } from "react-icons/io";
+import { useForm, SubmitHandler } from "react-hook-form"
+
+type Inputs = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
 
 const Contact = () => {
   const { isDesktop, isMobileOrTablet } = useDeviceSize();
+  const {
+    register,
+    handleSubmit,
+  } = useForm<Inputs>()
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
 
   return <section id="Contact">
     {isMobileOrTablet && <h1 style={{ fontSize: 40, fontWeight: 700 }} className="text-center my-5">Contáctanos</h1>}
     {isMobileOrTablet && (
-      <form className="mx-7 md:grid md:grid-cols-2 md:gap-4">
+      <form className="mx-7 md:grid md:grid-cols-2 md:gap-4" onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label className="block mb-2 font-bold text-gray-700" htmlFor="name">
             Nombre
           </label>
           <input
+            {...register('name')}
             className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
             id="name"
             type="text"
@@ -27,6 +42,7 @@ const Contact = () => {
             Email
           </label>
           <input
+            {...register('email')}
             className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
             id="email"
             type="email"
@@ -34,13 +50,14 @@ const Contact = () => {
           />
         </div>
         <div className="mb-4 md:col-span-2">
-          <label className="block mb-2 font-bold text-gray-700" htmlFor="email">
+          <label className="block mb-2 font-bold text-gray-700" htmlFor="subject">
             Asunto o tema
           </label>
           <input
+            {...register('subject')}
             className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
-            id="email"
-            type="email"
+            id="subject"
+            type="text"
             placeholder="Asesoría jurídica"
           />
         </div>
@@ -49,6 +66,7 @@ const Contact = () => {
             Mensaje
           </label>
           <textarea
+            {...register('message')}
             className="outline-none focus:border-blue-600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight resize-none"
             id="message"
             rows={4}
