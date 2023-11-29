@@ -31,7 +31,7 @@ const Contact = () => {
           </label>
           <input
             {...register('name')}
-            className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
+            className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight md:bg-gray-100"
             id="name"
             type="text"
             placeholder="Jack Sullivan"
@@ -43,7 +43,7 @@ const Contact = () => {
           </label>
           <input
             {...register('email')}
-            className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
+            className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight md:bg-gray-100"
             id="email"
             type="email"
             placeholder="jacksullivan@gmail.com"
@@ -55,7 +55,7 @@ const Contact = () => {
           </label>
           <input
             {...register('subject')}
-            className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight"
+            className="border-b border-gray-500 outline-none focus:border-gray -600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight md:bg-gray-100"
             id="subject"
             type="text"
             placeholder="Asesoría jurídica"
@@ -67,14 +67,14 @@ const Contact = () => {
           </label>
           <textarea
             {...register('message')}
-            className="outline-none focus:border-blue-600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight resize-none"
+            className="outline-none focus:border-blue-600 bg-transparent py-2 px-4 w-full text-gray-700 leading-tight resize-none md:bg-gray-100"
             id="message"
             rows={4}
             placeholder="Escribe un mensaje "
           ></textarea>
         </div>
         <div className="text-center justify-center flex md:col-span-2">
-          <button className="bg-[#2C2949] hover:bg-gray-600 text-white py-4 px-8 rounded rounded-xl">
+          <button className="bg-[#2C2949] hover:bg-gray-600 text-white py-4 px-8 rounded-xl md:text-[21px] md:rounded-[20px] md:px-12">
             Enviar mensaje
           </button>
         </div>

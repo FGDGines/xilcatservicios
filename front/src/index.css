@@ -27,7 +27,7 @@ code {
   }
   .clip-bg-md {
     /* clip-path: circle(90% at 30% -140%) */
-    clip-path: ellipse(75% 100% at 30% 0%);
+    clip-path: ellipse(75% 100% at 30% 15%);
   }
   .clip-bg-lg {
     clip-path: circle(90% at 10% 17%);
