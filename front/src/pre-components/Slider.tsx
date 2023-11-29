@@ -78,7 +78,10 @@ export const Slider = () => {
                 ))}
             </div>
             {isMobileOrTablet &&
-                <button className="my-10" style={{ width: 202, padding: 17, borderRadius: 17, color: "white", background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)", boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}>Agendar Cita</button>
+                <button className="my-10" style={{ width: 202, padding: 17, borderRadius: 17, color: "white", background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)", boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}>
+                    <a></a>
+                    Agendar Cita
+                </button>
             }
         </div >
     );

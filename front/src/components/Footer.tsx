@@ -85,8 +85,8 @@ const Footer = () => {
           }
         </div>
       </div>
-      <div className="text-center text-white my-12 w-[70%] md:w-[50%] flex items-center flex-col justify-center lg:order-3 lg:basis-1/3 lg:mx-4">
-        <p className="text-bold text-[20px]">NEWS LETTER</p>
+      <div className="text-center text-white mt-12 mb-20 w-[70%] md:w-[50%] flex items-center flex-col justify-center lg:order-3 lg:basis-1/3 lg:mx-4">
+        <p className="text-bold text-[22px]">NEWS LETTER</p>
         <p className="my-4 text-sm">Suscribete a nuestra newsletter para obtener las ultimas noticias</p>
         <div className="relative flex items-center justify-center w-full">
           <input

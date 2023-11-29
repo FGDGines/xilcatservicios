@@ -49,9 +49,7 @@ const Services = () => {
 
       <div className='col-span-2 w-full h-20 flex justify-center items-center my-8'>
       <a
-        href="https://booking.setmore.com/scheduleappointment/1c90759b-74db-40e5-a7e6-dbb7a9d8ceb3"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="#Contact"
         className="text-center px-6 py-4 rounded-[20px] text-white shadow flex items-center gap-2" style={{
                         // justifyContent: "center",
                         background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)",

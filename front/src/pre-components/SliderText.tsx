@@ -25,7 +25,7 @@ export const SliderText = () => {
 
     return <>
         <h1 id="Services" style={{ fontSize: 30, fontWeight: 700 }} className="text-center my-3">QUE OFRECEMOS</h1>
-        <h2 style={{ fontSize: 16, fontWeight: 300 }} className="text-center my-3">Selecciona tu categoria de interes y conoce mas sobre los diferentes servicios que proponemos</h2>
+        <h2 style={{ fontSize: 16, fontWeight: 300 }} className="text-center mt-3 mb-8">Selecciona tu categoria de interes y conoce mas sobre los diferentes servicios que proponemos</h2>
         <div className="flex w-full mx-auto ">
             {service.map((item, index) => (
                 <div
