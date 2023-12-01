@@ -27,7 +27,7 @@ export const SliderText = () => {
     return <>
         <h1 id="Services" style={{ fontWeight: 700 }} className="text-center my-3 text-[30px] md:text-[40px]">QUE OFRECEMOS</h1>
         <h2 style={{  fontWeight: 300 }} className="text-center mt-3 mb-8 text-[16px] md:text-[21px] md:px-24">Selecciona tu categoria de interes y conoce mas sobre los diferentes servicios que proponemos</h2>
-        <div className="flex w-full mx-auto ">
+        <div className="flex w-full mx-auto xl:w-[90%]">
             {service.map((item, index) => (
                 <div
                     key={index}
@@ -80,7 +80,7 @@ export const SliderText = () => {
                 </div>
             ))}
 
-            {isDesktop && <img src={Image} className="-mb-56 z-30" alt="Icono" />}
+            {isDesktop && <img src={Image} className="-mb-56 z-30 xl:ml-12" alt="Icono" />}
 
         </div>
         {isDesktop && <div style={{ height: 322, background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)" }} className="w-full mb-16" />}

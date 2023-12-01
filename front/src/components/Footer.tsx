@@ -73,7 +73,7 @@ const Footer = () => {
   return (
     <div className="bg-[#252323] w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center lg:flex-row lg:justify-evenly lg:items-start lg:px-12 lg:pt-20">
       <div className="flex flex-col items-center mb-14 lg:items-start">
-        <img src={Logo} className="mt-12 w-32" />
+        <img src={Logo} className="mt-12 w-32 xl:mt-0" />
         <p className="text-center mb-8 w-[70%] text-white text-sm md:text-[18px] lg:text-[17px] lg:text-start">Trabajamos al 101% en tu tramite para ofrecerte la mejor solucion</p>
         <div className="flex w-[70%] justify-center text-2xl text-white lg:justify-start">
           {
