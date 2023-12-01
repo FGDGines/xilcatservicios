@@ -16,10 +16,9 @@ async function bootstrap() {
   };
 
   const config = new DocumentBuilder()
-    .setTitle('Nombre de tu API')
+    .setTitle('Xilcat servicios API')
     .setDescription('Descripción de tu API')
     .setVersion('1.0')
-    .addTag('Nombre del tag')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);

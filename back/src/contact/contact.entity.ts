@@ -3,16 +3,22 @@ import { IsEmail } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class SubscriptionEntity {
+export class ContactEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ unique: true })
+  @Column()
+  name: string;
+
+  @Column()
   @IsEmail({}, { message: 'El formato del correo electrónico es inválido' })
   email: string;
 
-  @Column({ default: false }) 
-  verified: boolean;
+  @Column()
+  subject: string;
+
+  @Column({ length: 1 })
+  message: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
@@ -21,6 +27,6 @@ export class SubscriptionEntity {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',
-  }) 
+  })
   updated_at: Date;
 }

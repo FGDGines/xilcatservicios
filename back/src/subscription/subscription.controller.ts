@@ -25,8 +25,6 @@ export class SubscriptionController {
     },
   })
   async subscribeToNews(@Body('email') email: string) {
-    // Lógica para suscribir al usuario (guardar el correo en la base de datos, por ejemplo)
-
     // Enviar correo de notificación de suscripción
     await this.mailerService.sendMail({
       to: email,
