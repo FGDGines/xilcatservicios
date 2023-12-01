@@ -4,6 +4,7 @@ import { RiInstagramFill } from "react-icons/ri";
 import Logo from '../assets/Logo_white.png';
 import { useState } from "react";
 import axios from "axios";
+import { useDeviceSize } from "../hooks/Responsive";
 
 type TOptions = {
   url: string;
@@ -42,17 +43,18 @@ const icons = [
     url: "https://www.instagram.com/xilcat_gestion?igshid=YmMyMTA2M2Y%3D",
     icon: <RiInstagramFill />
   },
-  {
-    url: "",
-    icon: <FaTwitter />
-  },
-  {
-    url: "",
-    icon: <FaYoutube />
-  },
+  // {
+  //   url: "",
+  //   icon: <FaTwitter />
+  // },
+  // {
+  //   url: "",
+  //   icon: <FaYoutube />
+  // },
 ]
 
 const Footer = () => {
+  const { isDesktop } = useDeviceSize()
   const [email, setEmail] = useState('')
 
   const handleSubmit = async () => {
@@ -69,14 +71,14 @@ const Footer = () => {
     setEmail('')
   }
   return (
-    <div className="bg-[#252323] w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center lg:flex-row lg:pb-28">
-      <div className="flex flex-col items-center mb-14">
+    <div className="bg-[#252323] w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center lg:flex-row lg:justify-evenly lg:items-start lg:px-12 lg:pt-20">
+      <div className="flex flex-col items-center mb-14 lg:items-start">
         <img src={Logo} className="mt-12 w-32" />
-        <p className="text-center mb-8 w-[70%] text-white text-sm md:text-[18px]">Trabajamos al 101% en tu tramite para ofrecerte la mejor solucion</p>
-        <div className="flex w-[70%] justify-center text-2xl text-white">
+        <p className="text-center mb-8 w-[70%] text-white text-sm md:text-[18px] lg:text-[17px] lg:text-start">Trabajamos al 101% en tu tramite para ofrecerte la mejor solucion</p>
+        <div className="flex w-[70%] justify-center text-2xl text-white lg:justify-start">
           {
             icons.map((icon, idx) => (
-              <div className={`${idx !== icons.length -1 ? "border-r-2 border-white" : ''} px-6 text-[16px] md:text-[30px] md:px-10`}>
+              <div className={`${idx !== icons.length -1 ? "border-r-2 border-white" : ''} ${idx === 0 ? "lg:pl-0" : ''} px-6 text-[16px] md:text-[30px] md:px-10 lg:text-[19px]`}>
                 <a href={icon.url} target="_blank" rel="noopener noreferrer">
                   {icon.icon}
                 </a>
@@ -85,9 +87,9 @@ const Footer = () => {
           }
         </div>
       </div>
-      <div className="text-center text-white mt-12 mb-20 w-[70%] md:w-[50%] flex items-center flex-col justify-center lg:order-3 lg:basis-1/3 lg:mx-4">
+      <div className="text-center text-white mt-12 mb-20 w-[70%] md:w-[50%] flex flex-col items-center justify-center lg:justify-start lg:order-3 lg:gap-6 lg:basis-1/3 lg:mx-4 lg:items-start lg:text-start lg:my-0 ">
         <p className="text-bold text-[22px] md:text-[25px]">NEWS LETTER</p>
-        <p className="my-4 text-sm md:text-[18px]">Suscribete a nuestra newsletter para obtener las ultimas noticias</p>
+        <p className="my-4 text-sm md:text-[18px] lg:text-[16px] lg:my-0">Suscribete a nuestra newsletter para obtener las ultimas noticias</p>
         <div className="relative flex items-center justify-center w-full">
           <input
             type="text"
@@ -102,10 +104,13 @@ const Footer = () => {
         </div> 
       </div>
 
-      <div className="text-xs flex items-center justify-between gap-4 mb-20 md:text-[19px] md:gap-12 lg:flex-col lg:basis-1/3 lg:order-2 lg:justify-around lg:mb-0">
+      <div className="text-xs text-white flex items-center justify-between gap-4 mb-20 md:text-[19px] md:gap-12 lg:flex-col lg:order-2 lg:justify-around lg:mb-0 lg:gap-4 lg:items-start">
+        {
+          isDesktop && <p className="text-[29px] leading-tight ">LINK DE INTERESES</p>
+        }
         {
           options.map(option => (
-            <a href={option.url} className="text-white border-b hover:text-gray-200 pb-1">{option.text}</a>
+            <a href={option.url} className="border-b hover:text-gray-200 pb-1 lg:border-none">{option.text}</a>
           ))
         }
       </div>

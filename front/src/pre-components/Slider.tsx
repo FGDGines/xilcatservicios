@@ -15,19 +15,23 @@ export const Slider = () => {
         { nombre: 'Martha Ventanilla', profesion: "Especialista en Juridicción", imagen: Image3 }
     ])
     const [currentSlide, setCurrentSlide] = useState<number>(0);
+    const getWidth = (idx: number) => {
+        if (isDesktop) return idx === currentSlide ? 650 : 250
+        else return idx === currentSlide ? 585 : 192
+    }
 
     return (
         <div id="Team" className="relative w-full px-5 text-center">
             {isMobileOrTablet && <div className="flex flex-col justify-center items-center text-center">
                 <h1 style={{ fontSize: 42, fontWeight: 700 }}>NUESTRO EQUIPO</h1>
 
-                <h3 style={{ fontSize: 18, fontWeight: 400, marginBottom: '20px' }}>Encuentra tu asesor</h3>
+                <h3  className="text-[18px] font-semibold mb-[10px]">Encuentra tu asesor</h3>
             </div>}
-            <div className="flex gap-3 relative overflow-hidden rounded-lg my-7 ">
-                {isDesktop && <div className="h-screen flex flex-col justify-center items-center text-center">
-                    <h1 style={{ fontSize: 64, fontWeight: 700 }}>NUESTRO EQUIPO</h1>
+            <div className="flex gap-3 relative overflow-hidden rounded-lg my-7 lg:justify-center">
+                {isDesktop && <div className="h-screen flex flex-col justify-center items-center text-center lg:h-full">
+                    <h1 style={{ fontSize: 64, fontWeight: 700, textAlign:'left' }}>NUESTRO EQUIPO</h1>
 
-                    <h3 style={{ fontSize: 24, fontWeight: 400, marginBottom: '20px' }}>Encuentra tu asesor</h3>
+                    <h3 style={{ fontSize: 24, fontWeight: 400, marginBottom: '20px', marginTop: '22px' }}>Encuentra tu asesor</h3>
 
                     <button style={{ width: 202, padding: 17, borderRadius: 17, color: "white", background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)", boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}>Agendar Cita</button>
                 </div>}
@@ -37,7 +41,7 @@ export const Slider = () => {
                         <div style={{ position: 'relative', cursor: "pointer" }} onClick={() => setCurrentSlide(index)} >
                             <motion.img
                                 animate={{
-                                    width: index === currentSlide ? 585 : 192,
+                                    width: getWidth(index),
                                     // height: 605,
                                     height: isMobileOrTablet ? 450 : 600,
                                     borderRadius: 17,

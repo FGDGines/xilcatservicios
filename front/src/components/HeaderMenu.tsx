@@ -1,5 +1,5 @@
 
-import Logo from '../assets/logo.png'
+import Logo from '../assets/logo_white.png'
 import { IoMenu } from "react-icons/io5";
 import { useDeviceSize } from '../hooks/Responsive';
 import { useState } from 'react';
@@ -35,13 +35,13 @@ const HeaderMenu = () => {
     setIsOpen(!isOpen);
   };
     return (
-      <div className='w-full h-30 bg-[#2C2949] flex justify-between items-center px-4 z-50'>
-        <div>
-            <img src={Logo}/>
+      <div className='w-full h-[100px] bg-[#2C2949] flex justify-between items-center px-4 z-50 lg:h-[150px] lg:justify-around lg:pt-[24px]'>
+        <div className='h-full'>
+            <img src={Logo} style={{ height: '100%'}}/>
         </div>
         {
           isDesktop && (
-            <div className='flex gap-2 justify-around basis-1/2 text-white'>
+            <div className='flex gap-2 justify-around basis-1/2 text-white text-[18px] xl:basis-1/3'>
             {
               links.map(link => (
                 <a href={link.link}>

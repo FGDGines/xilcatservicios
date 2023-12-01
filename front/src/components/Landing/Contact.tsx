@@ -85,7 +85,7 @@ const Contact = () => {
 
     {isDesktop && <div
       style={{ borderRadius: 32, background: "#EBEBEB", boxShadow: "0px 8.61667px 25.85px 0px rgba(0, 0, 0, 0.25)" }}
-      className="mt-8 mx-8 px-6 py-8 flex -mb-20">
+      className="mt-24 mx-8 px-6 py-8 flex -mb-20 gap-6 xl:mx-20">
       <section className="p-8 rounded" style={{ color: 'white', maxWidth: '435px', background: 'linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)', borderRadius: 21 }}>
         <h1 style={{ fontSize: 25, fontWeight: 700 }} className="mb-4">Información de Contacto</h1>
         <p style={{ fontSize: 15, fontWeight: 400 }} className="mb-4">Trabajamos al 101% en tu trámite para ofrecerte la mejor solución.</p>
@@ -120,7 +120,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <form className="max-w-md mx-auto md:grid md:grid-cols-2 md:gap-4">
+      <form className="max-w-5xl md:grid md:grid-cols-2 md:gap-4 flex-1 xl:ml-40">
         <div className="mb-4">
           <label className="block mb-2 font-bold text-gray-700" htmlFor="name">
             Nombre

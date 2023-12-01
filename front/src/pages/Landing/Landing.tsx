@@ -6,11 +6,11 @@ import Contact from '../../components/Landing/Contact'
 import Footer from '../../components/Footer'
 import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
-import { Chatbot } from '../../pre-components/Chatbot'
+// import { Chatbot } from '../../pre-components/Chatbot'
 import { useDeviceSize } from '../../hooks/Responsive'
 
 const Landing = () => {
-  const { isDesktop } = useDeviceSize()
+  // const { isDesktop } = useDeviceSize()
   return (
     <>
     <HeaderMenu />
@@ -23,9 +23,9 @@ const Landing = () => {
       <Contact />
     </div>
       <Footer />
-      {
+      {/* {
         isDesktop && <Chatbot />
-      }
+      } */}
       
     </>
   )

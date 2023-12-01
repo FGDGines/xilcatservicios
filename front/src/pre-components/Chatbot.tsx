@@ -11,18 +11,91 @@ export const Chatbot = () => {
     ])
     const [mostrarPreguntas, setMostrarPreguntas] = useState<boolean>(false);
 
+    // return (
+    //     // <div className="fixed bottom-8 right-8 z-50">
+    //     <div className="relative top-0 right-0 flex justify-end gap-8">
+    //         {mostrarPreguntas ? (
+    //             <motion.div
+    //                 className="flex flex-col gap-3"
+    //                 initial={{
+    //                     width: 410,
+    //                 }}
+    //                 animate={{
+    //                     // position: "absolute",
+    //                     bottom: "calc(25%)",
+    //                     right: "10%", // Ajusta la posición izquierda según tu diseño
+    //                 }}> {ask.map(_ => <motion.a
+    //                     href={"#" + _.redirect}
+    //                     initial={{
+    //                         fontSize: 23,
+    //                         fontWeight: 400,
+    //                     }}
+    //                     animate={{
+    //                         height: 83,
+    //                         borderRadius: 27,
+    //                         borderBottomRightRadius: 0,
+    //                         backgroundColor: "#DEDEDE",
+    //                         display: "flex",
+    //                         alignItems: "center",
+    //                         justifyContent: "center",
+    //                     }}>
+    //                     {_.question}
+    //                 </motion.a>)}
+    //             </motion.div>
+    //         ) : <motion.div
+    //             className="flex flex-col gap-3"
+    //             initial={{
+    //                 width: 410,
+    //             }}
+    //             animate={{
+    //                 // position: "absolute",
+    //                 bottom: "calc(25%)",
+    //                 right: "10%", // Ajusta la posición izquierda según tu diseño
+    //             }}> <motion.div
+    //                 initial={{
+    //                     fontSize: 23,
+    //                     fontWeight: 400,
+    //                 }}
+    //                 onClick={() => setMostrarPreguntas(!mostrarPreguntas)}
+    //                 animate={{
+    //                     height: 83,
+    //                     borderRadius: 27,
+    //                     borderBottomRightRadius: 0,
+    //                     backgroundColor: "#DEDEDE",
+    //                     display: "flex",
+    //                     alignItems: "center",
+    //                     justifyContent: "center",
+    //                 }}>
+    //                 Hola ¿Como podemos ayudarte?
+    //             </motion.div>
+    //         </motion.div>
+    //         }
+
+    //         <button
+    //             className="rounded-full bg-white text-white flex items-center justify-center shadow-md"
+    //             style={{
+    //                 width: 134,
+    //                 height: 134,
+    //                 boxShadow: "0px 14px 44px 0px rgba(0, 0, 0, 0.25)",
+    //             }}
+    //             onClick={() => setMostrarPreguntas(!mostrarPreguntas)}>
+    //             <img src={Image} className={mostrarPreguntas ? "animate-bounce" : ""} alt="Icono" />
+    //         </button>
+    //     </div >
+    // );
     return (
-        <div className="fixed bottom-8 right-8 z-50">
+        // <div className="fixed bottom-8 right-8 z-50">
+        <div className="relative top-0 right-0 flex justify-end gap-8 w-full">
             {mostrarPreguntas ? (
                 <motion.div
-                    className="flex flex-col gap-3"
-                    initial={{
-                        width: 410,
-                    }}
+                    className="flex gap-3"
+                    // initial={{
+                    //     width: 700,
+                    // }}
                     animate={{
-                        position: "absolute",
+                        // position: "absolute",
                         bottom: "calc(25%)",
-                        left: "-450px", // Ajusta la posición izquierda según tu diseño
+                        right: "10%", // Ajusta la posición izquierda según tu diseño
                     }}> {ask.map(_ => <motion.a
                         href={"#" + _.redirect}
                         initial={{
@@ -37,19 +110,22 @@ export const Chatbot = () => {
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
+                            paddingLeft: '10px',
+                            paddingRight: '10px',
+                            // width: '260px'
                         }}>
                         {_.question}
                     </motion.a>)}
                 </motion.div>
             ) : <motion.div
                 className="flex flex-col gap-3"
-                initial={{
-                    width: 410,
-                }}
+                // initial={{
+                //     width: 400,
+                // }}
                 animate={{
-                    position: "absolute",
+                    // position: "absolute",
                     bottom: "calc(25%)",
-                    left: "-450px", // Ajusta la posición izquierda según tu diseño
+                    right: "10%", // Ajusta la posición izquierda según tu diseño
                 }}> <motion.div
                     initial={{
                         fontSize: 23,
@@ -64,6 +140,8 @@ export const Chatbot = () => {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
+                        paddingLeft: '10px',
+                        paddingRight: '10px',
                     }}>
                     Hola ¿Como podemos ayudarte?
                 </motion.div>
