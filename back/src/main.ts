@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -25,7 +26,7 @@ async function bootstrap() {
   SwaggerModule.setup('doc', app, document);
 
   app.enableCors(corsOptions); // Habilitar CORS con las opciones especificadas
-
+  app.use(cookieParser());
   await app.listen(3000);
 }
 bootstrap();

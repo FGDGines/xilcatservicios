@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { NewsletterEntity } from './newsletter/newsletter.entity';
 import { NewsletterModule } from './newsletter/newsletter.module';
@@ -10,6 +10,8 @@ import { join } from 'path';
 import { SubscriptionEntity } from './subscription/subscription.entity';
 import { ContactModule } from './contact/contact.module';
 import { ContactEntity } from './contact/contact.entity';
+import { CookiesModule } from './cookies/cookies.module';
+import { CookiesMiddleware } from './cookies/cookies.middleware';
 
 @Module({
   imports: [
@@ -42,7 +44,12 @@ import { ContactEntity } from './contact/contact.entity';
     }),
     NewsletterModule,
     SubscriptionModule,
-    ContactModule, // Agrega aquí también tus entidades si las necesitas en otros módulos
+    ContactModule,
+    CookiesModule, // Agrega aquí también tus entidades si las necesitas en otros módulos
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(CookiesMiddleware).forRoutes('*');
+  }
+}
