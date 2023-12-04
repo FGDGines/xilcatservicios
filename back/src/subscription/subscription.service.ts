@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { SubscriptionEntity } from './subscription.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { validate } from 'class-validator';
 
 @Injectable()
 export class SubscriptionService {
@@ -16,6 +17,9 @@ export class SubscriptionService {
 
   async sendEmail(mailData: { [key: string]: string }) {
     try {
+      if (!mailData.body || !mailData.reciver || !mailData.topic) {
+        return { message: 'Los campos body, reciver y topic son obligatorios' };
+      }
       const bag = new FormData();
       bag.set('req', 'gmail_send');
       bag.set('topic', '');
@@ -27,16 +31,23 @@ export class SubscriptionService {
       });
 
       await this.subscriptionRepository.save({
-        email: 'colcapedro@gmail.com',
+        email: mailData.reciver,
       });
 
-      const response = await fetch(String(process.env.API_MAIL), {
+      const form = new SubscriptionEntity();
+      form.email = mailData.reciver;
+      const errors = await validate(form);
+
+      if (errors.length > 0) {
+        return errors;
+      }
+
+      const response = await fetch(process.env.API_MAIL, {
         method: 'POST',
         body: bag,
       });
 
-      const data = await response.json();
-      return data;
+      return await response.json();
     } catch (error) {
       return error;
     }

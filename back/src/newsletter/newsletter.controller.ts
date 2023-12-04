@@ -6,6 +6,7 @@ import {
   Put,
   Param,
   Delete,
+  ValidationError,
 } from '@nestjs/common';
 import {
   ApiTags,
@@ -56,7 +57,7 @@ export class NewsletterController {
   })
   async create(
     @Body() newsletter: NewsletterEntity,
-  ): Promise<NewsletterEntity> {
+  ): Promise<NewsletterEntity | ValidationError[]> {
     return await this.newsletterService.create(newsletter);
   }
 

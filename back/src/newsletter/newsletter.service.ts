@@ -1,7 +1,8 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, ValidationError } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NewsletterEntity } from 'src/newsletter/newsletter.entity';
+import { validate } from 'class-validator';
 
 @Injectable()
 export class NewsletterService {
@@ -18,8 +19,19 @@ export class NewsletterService {
     return await this.newsletterRepository.findOne({ where: { id } });
   }
 
-  async create(newsletter: NewsletterEntity): Promise<NewsletterEntity> {
-    return await this.newsletterRepository.save(newsletter);
+  async create(
+    newsletter: NewsletterEntity,
+  ): Promise<NewsletterEntity | ValidationError[]> {
+    const form = new NewsletterEntity();
+    form.title = newsletter.title;
+    form.content = newsletter.content;
+    const errors = await validate(form);
+
+    if (errors.length > 0) {
+      return errors;
+    }
+
+    return await this.newsletterRepository.save(form);
   }
 
   async update(

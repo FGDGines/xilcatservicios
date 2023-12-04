@@ -40,14 +40,39 @@ export class SubscriptionController {
 
   @Post('send')
   @ApiBody({
-    description: 'Ejemplo de datos para enviar correo',
+    description: 'Ejemplo de datos para enviar correo HTML',
     schema: {
       type: 'object',
       properties: {
         // subject: { type: 'string', example: 'Asunto del correo' },
-        body: { type: 'string', example: 'Te subscribiste felicidades' },
+        body: {
+          type: 'string',
+          example: `<!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <title>Confirmación de Suscripción</title>
+          </head>
+          <body style="font-family: Arial, sans-serif;">
+          
+            <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+              <h2 style="text-align: center; color: #333;">¡Se ha suscrito correctamente!</h2>
+              <p style="text-align: center; color: #666;">
+                Gracias por suscribirte a nuestro boletín. Estás a punto de recibir noticias y actualizaciones emocionantes.
+              </p>
+              <p style="text-align: center; color: #666;">
+                ¡Estamos emocionados de tenerte como parte de nuestra comunidad!
+              </p>
+              <p style="text-align: center; color: #666;">
+                Atentamente,<br>
+                XILCAT
+              </p>
+            </div>
+          </body>
+          </html>`,
+        },
         reciver: { type: 'string', example: 'destinatario@example.com' },
-        topic: { type: 'string', example: 'Subscription XILCAT NEWSLETTER' },
+        topic: { type: 'string', example: 'Suscripción XILCAT NEWSLETTER' },
       },
     },
   })
@@ -58,7 +83,6 @@ export class SubscriptionController {
   })
   async sendMail(@Body() mailData: { [key: string]: string }) {
     try {
-      // Aquí llamamos al servicio que enviará el correo
       const result = await this.subscriptionService.sendEmail(mailData);
       return { message: 'Correo enviado correctamente', result };
     } catch (error) {

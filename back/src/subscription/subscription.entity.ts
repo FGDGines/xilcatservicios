@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsEmail } from 'class-validator';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
@@ -8,6 +8,7 @@ export class SubscriptionEntity {
   id: number;
 
   @Column({ unique: true })
+  @IsNotEmpty({ message: 'El correo no puede estar vacío' })
   @IsEmail({}, { message: 'El formato del correo electrónico es inválido' })
   email: string;
 
