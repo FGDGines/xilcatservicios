@@ -23,13 +23,18 @@ code {
 
 @layer utilities {
   .clip-bg {
-    clip-path: circle(90% at 22% 0%)
+    clip-path: circle(100% at 18% -20%)
   }
   .clip-bg-md {
     /* clip-path: circle(90% at 30% -140%) */
-    clip-path: ellipse(75% 100% at 30% 0%);
+    clip-path: ellipse(75% 100% at 30% 15%);
   }
   .clip-bg-lg {
-    clip-path: circle(90% at 10% 17%);
+    /* clip-path: circle(90% at 10% 17%); */
+    clip-path: ellipse(100% 100% at 0% 00%)
+  }
+  .clip-bg-xl {
+    clip-path: ellipse(110% 100% at 0% 0%);
+    /* clip-path: ellipse(73% 46% at 0% 46%); */
   }
 }
