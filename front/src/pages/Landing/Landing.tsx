@@ -8,25 +8,26 @@ import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
 // import { Chatbot } from '../../pre-components/Chatbot'
 import { useDeviceSize } from '../../hooks/Responsive'
+import { Cookie } from '../../pre-components/Cookie'
 
 const Landing = () => {
   // const { isDesktop } = useDeviceSize()
   return (
     <>
-    <HeaderMenu />
-    <div className='flex flex-col scroll-smooth'>
-      <Intro />
-      <AboutUs />
-      <Services />
-      <Offer />
-      <OurTeam />
-      <Contact />
-    </div>
+      <HeaderMenu />
+      <div className='flex flex-col scroll-smooth'>
+        <Intro />
+        <AboutUs />
+        <Services />
+        <Offer />
+        <OurTeam />
+        <Contact />
+      </div>
       <Footer />
       {/* {
         isDesktop && <Chatbot />
       } */}
-      
+      <Cookie />
     </>
   )
 }

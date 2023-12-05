@@ -12,6 +12,7 @@ import { ContactModule } from './contact/contact.module';
 import { ContactEntity } from './contact/contact.entity';
 import { CookiesModule } from './cookies/cookies.module';
 import { CookiesMiddleware } from './cookies/cookies.middleware';
+import { CookieEntity } from './cookies/cookies.entity';
 
 @Module({
   imports: [
@@ -28,7 +29,12 @@ import { CookiesMiddleware } from './cookies/cookies.middleware';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [NewsletterEntity, SubscriptionEntity, ContactEntity], // Agrega tus entidades aquí
+      entities: [
+        NewsletterEntity,
+        SubscriptionEntity,
+        ContactEntity,
+        CookieEntity,
+      ], // Agrega tus entidades aquí
       synchronize: true, // Opcional: sincroniza automáticamente las entidades con la base de datos (cuidado en producción)
     }),
     MailerModule.forRoot({

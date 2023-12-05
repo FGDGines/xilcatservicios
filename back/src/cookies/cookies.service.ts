@@ -1,9 +1,26 @@
 import { Injectable } from '@nestjs/common';
-import { Response, Request } from 'express'; // Importa los tipos de Express
+import { InjectRepository } from '@nestjs/typeorm';
+import { Response, Request, CookieOptions } from 'express'; // Importa los tipos de Express
+import { CookieEntity } from './cookies.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class CookiesService {
-  setCookie(res: Response, name: string, value: string, options?: any) {
+  constructor(
+    @InjectRepository(CookieEntity)
+    private readonly cookieRepository: Repository<CookieEntity>,
+  ) {}
+
+  async saveCookie(cookieLog: CookieEntity): Promise<CookieEntity> {
+    return await this.cookieRepository.save(cookieLog);
+  }
+
+  setCookie(
+    res: Response,
+    name: string,
+    value: string,
+    options?: CookieOptions,
+  ) {
     res.cookie(name, value, options); // Utiliza res.cookie para establecer la cookie
   }
 
