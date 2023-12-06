@@ -71,9 +71,9 @@ const Footer = () => {
     setEmail('')
   }
   return (
-    <div className="bg-[#252323] w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center lg:flex-row lg:justify-evenly lg:items-start lg:px-12 lg:pt-20">
+    <div className="bg-cs-gray w-full min-h-[30vh] mt-12 flex flex-col items-center justify-center lg:flex-row lg:justify-evenly lg:items-start lg:px-12 lg:pt-20">
       <div className="flex flex-col items-center mb-14 lg:items-start">
-        <img src={Logo} className="mt-12 w-32 xl:mt-0" />
+        <img src={Logo} className="mt-12 w-32 lg:mt-0" />
         <p className="text-center mb-8 w-[70%] text-white text-sm md:text-[18px] lg:text-[17px] lg:text-start">Trabajamos al 101% en tu tramite para ofrecerte la mejor solucion</p>
         <div className="flex w-[70%] justify-center text-2xl text-white lg:justify-start">
           {
@@ -106,11 +106,11 @@ const Footer = () => {
 
       <div className="text-xs text-white flex items-center justify-between gap-4 mb-20 md:text-[19px] md:gap-12 lg:flex-col lg:order-2 lg:justify-around lg:mb-0 lg:gap-4 lg:items-start">
         {
-          isDesktop && <p className="text-[29px] leading-tight ">LINK DE INTERESES</p>
+          isDesktop && <p className="text-[25px] xl:text-[29px] leading-tight ">LINK DE INTERESES</p>
         }
         {
           options.map(option => (
-            <a href={option.url} className="border-b hover:text-gray-200 pb-1 lg:border-none">{option.text}</a>
+            <a href={option.url} className="border-b hover:text-gray-200 pb-1 lg:border-none hover:drop-shadow-[4px_4px_2px_rgba(255,0,0,1)]">{option.text}</a>
           ))
         }
       </div>

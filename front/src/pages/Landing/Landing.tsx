@@ -7,15 +7,14 @@ import Footer from '../../components/Footer'
 import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
 // import { Chatbot } from '../../pre-components/Chatbot'
-import { useDeviceSize } from '../../hooks/Responsive'
-import { Cookie } from '../../pre-components/Cookie'
+import Politics from '../../components/Politics'
 
 const Landing = () => {
   // const { isDesktop } = useDeviceSize()
   return (
     <>
       <HeaderMenu />
-      <div className='flex flex-col scroll-smooth'>
+      <div className='flex flex-col scroll-smooth text-cs-purple'>
         <Intro />
         <AboutUs />
         <Services />
@@ -27,7 +26,7 @@ const Landing = () => {
       {/* {
         isDesktop && <Chatbot />
       } */}
-      <Cookie />
+      <Politics />
     </>
   )
 }

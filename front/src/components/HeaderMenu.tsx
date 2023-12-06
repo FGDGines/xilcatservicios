@@ -35,7 +35,7 @@ const HeaderMenu = () => {
     setIsOpen(!isOpen);
   };
     return (
-      <div className='w-full h-[100px] bg-[#2C2949] flex justify-between items-center px-4 z-50 lg:h-[150px] lg:justify-around lg:pt-[24px]'>
+      <div className='w-full h-[120px] bg-cs-purple flex justify-between items-center px-8 py-4 z-50 lg:h-[150px] lg:justify-around lg:pt-[24px]'>
         <div className='h-full'>
             <img src={Logo} style={{ height: '100%'}}/>
         </div>
@@ -60,7 +60,7 @@ const HeaderMenu = () => {
         className="text-gray-800 hover:text-gray-900 focus:outline-none focus:text-gray-900"
         onClick={toggleMenu}
       >
-        <IoMenu className="text-6xl text-white" />
+        <IoMenu className="text-5xl text-white md:text-6xl" />
       </button>
       {isOpen && (
         <div className="absolute z-10 right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">

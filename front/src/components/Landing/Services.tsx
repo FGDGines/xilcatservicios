@@ -55,10 +55,10 @@ const Services = () => {
           ))
         }
 
-      <div className='col-span-2 w-full h-20 flex justify-center items-center my-8 md:my-20 lg:col-span-3 lg:mt-0 lg:mb-16'>
+      <div className='col-span-2 w-full h-20 flex justify-center items-center  mt-20 mb-8 md:my-20 lg:col-span-3 lg:mt-0 lg:mb-16'>
       <a
         href="#Contact"
-        className="text-center px-6 py-4 rounded-[20px] text-white shadow flex items-center gap-2 md:text-[22px]" style={{
+        className="text-[14px] text-center px-6 py-4 rounded-[20px] text-white shadow flex items-center gap-2 md:text-[22px]" style={{
                         // justifyContent: "center",
                         background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)",
                         // padding: 11,

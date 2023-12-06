@@ -80,7 +80,7 @@ export const SliderText = () => {
                 </div>
             ))}
 
-            {isDesktop && <img src={Image} className="-mb-56 z-30 xl:ml-12" alt="Icono" />}
+            {isDesktop && <img src={Image} className="-mb-56 z-30 lg:w-[40%] xl:ml-12" alt="Icono" />}
 
         </div>
         {isDesktop && <div style={{ height: 322, background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)" }} className="w-full mb-16" />}

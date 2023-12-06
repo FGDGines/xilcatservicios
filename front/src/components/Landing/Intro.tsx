@@ -1,11 +1,12 @@
 import GroupImg from '../../assets/rafikigroup.png'
+import GroupSVG from '../../assets/group.svg'
 import { FaPhoneAlt } from "react-icons/fa";
 
 const Intro = () => {
   return (
     <div className='lg:grid lg:grid-cols-[60%_1fr] xl:grid-cols-[40%_1fr]'>
     <div
-        className="min-h-[50vh] bg-[#2C2949] text-white flex flex-col items-center lg:flex-row lg:justify-evenly"
+        className="min-h-[50vh] bg-[#2C2949] text-white flex flex-col items-center lg:flex-row lg:justify-evenly lg:min-h-[30vh]"
     >
         <div className='min-h-[30vh] flex flex-col text-center lg:flex-start items-center justify-center mt-20 mb-32 w-[85%] md:leading-8 md:w-[70%] xl:w-full xl:ml-[10%] gap-2'>
             <p className='text-3xl font-semibold mb-6 md:text-5xl md:leading-normal lg:text-[40px] lg:text-start lg:leading-[47px] lg:mb-[12px]'>Asesoría experta para tus gestiones de nacionalidad en Barcelona</p>
@@ -22,7 +23,13 @@ const Intro = () => {
         <div
             className=' relative flex items-center justify-center mb-6 lg:mb-0 py-5'
             >
-            <img src={GroupImg} className='z-10 md:w-[60%] lg:w-full xl:w-[50%]' />
+            {/* <GroupSVG /> */}
+            <div className='z-10 md:w-[60%] lg:w-full lg:h-full xl:w-[50%]'>
+                <img src={GroupSVG} style={{ height: '100%', width: '100%'}} />
+
+            </div>
+
+            {/* <img src={GroupImg} className='z-10 md:w-[60%] lg:w-full xl:w-[50%]' /> */}
             <div className='absolute -top-6 left-0 bg-[#2C2949] h-[90%] md:h-[35%] lg:h-full w-full -z-1 clip-bg md:clip-bg-md lg:clip-bg-lg lg:top-0 xl:clip-bg-xl' ></div>
         </div>
     </div>
