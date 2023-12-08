@@ -3,19 +3,19 @@ import React from 'react'
 const options = [
     {
         text: 'Politica de privacidad',
-        url: ''
+        url: '/politics'
     },
     {
         text: 'Aviso Legal',
-        url: ''
+        url: '/legal'
     },
     {
         text: 'Politica de Cookies',
-        url: ''
+        url: '/cookies'
     }
 ]
 
-const Politics = () => {
+const PoliticsBar = () => {
   return (
     <div className='min-h-[10vh] flex flex-col bg-cs-gray text-white'>
         <div className='h-[1px] bg-white  w-[80%] self-center'></div>
@@ -24,8 +24,8 @@ const Politics = () => {
                 XilcatServicios © 2023
                 {' '}
                 {
-                    options.map(option => (
-                        <a className='ml-2 pr-2 border-r border-r-white '>
+                    options.map((option, idx) => (
+                        <a className={`ml-2 pr-2 ${idx === options.length -1 ? '' : 'border-r border-r-white'}`} href={option.url}>
                             <span className='border-b border-b-white'>{option.text}</span>
                         </a>
                     ))
@@ -36,4 +36,4 @@ const Politics = () => {
   )
 }
 
-export default Politics
+export default PoliticsBar

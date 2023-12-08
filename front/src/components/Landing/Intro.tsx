@@ -25,7 +25,7 @@ const Intro = () => {
             >
             {/* <GroupSVG /> */}
             <div className='z-10 md:w-[60%] lg:w-full lg:h-full xl:w-[50%]'>
-                <img src={GroupSVG} style={{ height: '100%', width: '100%'}} />
+                <img src={GroupImg} className='min-h-[80%] min-w-full' />
 
             </div>
 

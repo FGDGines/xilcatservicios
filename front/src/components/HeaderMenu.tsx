@@ -7,23 +7,23 @@ import { useState } from 'react';
 const links = [
   {
     text: 'Nosotros',
-    link: '#Us'
+    link: '/#Us'
   },
   {
     text: 'Nuestros Servicios',
-    link: '#Actions'
+    link: '/#Actions'
   },
   {
     text: 'Ofrecemos',
-    link: '#Services'
+    link: '/#Services'
   },
   {
     text: 'Contacto',
-    link: '#Contact'
+    link: '/#Contact'
   },
   {
     text: 'Blog',
-    link: '#'
+    link: '/#'
   }
 ]
 
@@ -35,13 +35,13 @@ const HeaderMenu = () => {
     setIsOpen(!isOpen);
   };
     return (
-      <div className='w-full h-[120px] bg-cs-purple flex justify-between items-center px-8 py-4 z-50 lg:h-[150px] lg:justify-around lg:pt-[24px]'>
+      <div className='w-full h-[150px] bg-cs-purple flex justify-between items-center px-8 pt-12 pb-2 z-50 lg:px-20 lg:pt-[24px] xl:px-32'>
         <div className='h-full'>
             <img src={Logo} style={{ height: '100%'}}/>
         </div>
         {
           isDesktop && (
-            <div className='flex gap-2 justify-around basis-1/2 text-white text-[18px] xl:basis-1/3'>
+            <div className='flex gap-2 justify-around basis-2/3 text-white text-[18px] xl:basis-1/2'>
             {
               links.map(link => (
                 <a href={link.link}>

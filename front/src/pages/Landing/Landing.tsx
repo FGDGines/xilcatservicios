@@ -7,7 +7,7 @@ import Footer from '../../components/Footer'
 import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
 // import { Chatbot } from '../../pre-components/Chatbot'
-import Politics from '../../components/Politics'
+import PoliticsBar from '../../components/PoliticsBar'
 
 const Landing = () => {
   // const { isDesktop } = useDeviceSize()
@@ -26,7 +26,7 @@ const Landing = () => {
       {/* {
         isDesktop && <Chatbot />
       } */}
-      <Politics />
+      <PoliticsBar />
     </>
   )
 }

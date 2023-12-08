@@ -89,7 +89,7 @@ export const Cookie = () => {
         <div className='text-justify'>
             Este pagina web usa cookies para ayudarte a tener una mejor y mas admisible experiencia de navegacion en el sitio web
             {' '}
-            <a className='text-blue-500'>Leer mas ...</a>
+            <a className='text-blue-500' href='/cookies'>Leer mas ...</a>
         </div>
         <div className='flex gap-6 justify-center mt-4'>
             <button className='py-2 px-4 border rounded-md bg-cs-purple text-white' onClick={handleAcceptCookies}>Aceptar</button>

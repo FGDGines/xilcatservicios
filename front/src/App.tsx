@@ -2,6 +2,32 @@ import { useEffect } from "react";
 import Modal from "./components/Modal";
 import Landing from "./pages/Landing/Landing";
 import { useStore } from "./store";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
+import Politics from "./pages/Politics";
+import Legal from "./pages/Legal";
+import Cookies from "./pages/Cookies";
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Landing />
+  },
+  {
+    path: '/politics',
+    element: <Politics />
+  },
+  {
+    path: '/legal',
+    element: <Legal />
+  },
+  {
+    path: '/cookies',
+    element: <Cookies />
+  }
+])
 
 function App() {
   const { modal, setModal } = useStore()
@@ -18,7 +44,8 @@ function App() {
 
   return (
     <div className="relative">
-      <Landing />
+      <RouterProvider router={router} />
+      {/* <Landing /> */}
       {
         modal.state && <Modal />
       }
