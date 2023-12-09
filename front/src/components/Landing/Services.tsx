@@ -11,8 +11,6 @@ type TOptions = {
   text: string;
 }
 
-
-
 const Services = () => {
   const { t } = useTranslation<TranslationKeys>();
 
