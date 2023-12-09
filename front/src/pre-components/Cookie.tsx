@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface AcceptCookiesDto {
     accepted: boolean;
 }
 
 export const Cookie = () => {
+    const { t, i18n } = useTranslation();
+
     const [acceptedCookies, setAcceptedCookies] = useState<boolean>(false);
 
     const handleAcceptCookies = async () => {
@@ -36,9 +39,27 @@ export const Cookie = () => {
         }
     };
 
+    const changeLanguage = (lng: string) => {
+        i18n.changeLanguage(lng).catch((error) => {
+            console.error('Error al cambiar el idioma:', error);
+        });
+    };
+
     return (
         <div>
-            <h1>Cookie Example</h1>
+
+            <div className="language-selector">
+                <select
+                    onChange={(e) => changeLanguage(e.target.value)}
+                    value={i18n.language}
+                >
+
+                    <option value="ca">🇨🇦 Catalán</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇪n English</option>
+                </select>
+            </div>
+            <h1>{t('greeting')}</h1>
             {!acceptedCookies && (
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' onClick={handleAcceptCookies}>Aceptar Cookies</button>
             )}

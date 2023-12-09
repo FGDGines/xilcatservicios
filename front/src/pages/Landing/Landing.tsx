@@ -7,7 +7,6 @@ import Footer from '../../components/Footer'
 import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
 // import { Chatbot } from '../../pre-components/Chatbot'
-import { useDeviceSize } from '../../hooks/Responsive'
 import { Cookie } from '../../pre-components/Cookie'
 
 const Landing = () => {

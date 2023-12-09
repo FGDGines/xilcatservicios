@@ -3,17 +3,31 @@ import { Service } from "../pre-types/Service";
 import { useDeviceSize } from "../hooks/Responsive";
 import Image from "./amico.svg"
 import { IoIosArrowDroprightCircle, IoIosArrowDropleftCircle } from "react-icons/io";
+import { TranslationKeys } from "../language/type-i18n";
+import { useTranslation } from "react-i18next";
 
 export const SliderText = () => {
+    const { t } = useTranslation<TranslationKeys>();
     const { isDesktop } = useDeviceSize();
-    const [service,] = useState<Service[]>([
-        { name: "Poderes Notariales", description: "Es la autoridad que se da a una persona para realizar y ejecutar determinados actos jurídicos y materiales en nuestro nombre. El apoderado (persona que recibe la autoridad) no tiene que aceptar el poder, es una decisión unilateral del poderdante (persona que concede la autoridad)." },
-        { name: "Poderes 1", description: "Lorem Ipsum" },
+    // EL i18n NO FUNCIONA CON STATE EL CAMBIO DE IDIOMA :c 
+    // const [service,] = useState<Service[]>([
+    //     { name: t('powers.power.a.title' as TranslationKeys), description: t('powers.power.a.description' as TranslationKeys) },
+    //     { name: t('powers.power.b.title' as TranslationKeys), description: t('powers.power.b.description' as TranslationKeys) },
+    //     { name: "Poderes 2", description: "Lorem Ipsum2" },
+    //     { name: "Poderes 3", description: "Lorem Ipsum3" },
+    //     { name: "Poderes 4", description: "Lorem Ipsum4" },
+    //     { name: "Poderes 5", description: "Lorem Ipsum5" }
+    // ])
+
+    const service: Service[] = [
+        { name: t('powers.power.a.title' as TranslationKeys), description: t('powers.power.a.description' as TranslationKeys) },
+        { name: t('powers.power.b.title' as TranslationKeys), description: t('powers.power.b.description' as TranslationKeys) },
         { name: "Poderes 2", description: "Lorem Ipsum2" },
         { name: "Poderes 3", description: "Lorem Ipsum3" },
         { name: "Poderes 4", description: "Lorem Ipsum4" },
         { name: "Poderes 5", description: "Lorem Ipsum5" }
-    ])
+    ]
+
     const [currentSlide, setCurrentSlide] = useState<number>(0);
 
     const nextSlide = () => {
@@ -25,8 +39,8 @@ export const SliderText = () => {
     };
 
     return <>
-        <h1 id="Services" style={{ fontWeight: 700 }} className="text-center my-3 text-[30px] md:text-[40px]">QUE OFRECEMOS</h1>
-        <h2 style={{  fontWeight: 300 }} className="text-center mt-3 mb-8 text-[16px] md:text-[21px] md:px-24">Selecciona tu categoria de interes y conoce mas sobre los diferentes servicios que proponemos</h2>
+        <h1 id="Services" style={{ fontWeight: 700 }} className="text-center my-3 text-[30px] md:text-[40px]">{t('powers.title' as TranslationKeys)}</h1>
+        <h2 style={{ fontWeight: 300 }} className="text-center mt-3 mb-8 text-[16px] md:text-[21px] md:px-24">{t('powers.description' as TranslationKeys)}</h2>
         <div className="flex w-full mx-auto xl:w-[90%]">
             {service.map((item, index) => (
                 <div
@@ -35,7 +49,6 @@ export const SliderText = () => {
                     style={{
                         alignItems: 'center',
                         justifyContent: 'center',
-
                     }}
                 >
                     <button className="absolute text-center top-0 left-1/2 transform -translate-x-1/2 -mt-6 px-4 py-2 rounded-[14px] text-[14px] md:text-[22px] md:rounded-[20px]" style={{
@@ -46,7 +59,7 @@ export const SliderText = () => {
                         // padding: '10 20',
                         marginTop: -20,
                         // fontSize: 14
-                    }}>Selecciona la categoria</button>
+                    }}>{t('powers.buttonAction' as TranslationKeys)}</button>
 
                     <div
                         className="text-center h-[500px]"
