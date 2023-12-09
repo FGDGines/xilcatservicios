@@ -2,13 +2,23 @@ import { useState } from "react";
 import Image from "./chatbot-robot.svg";
 import { motion } from "framer-motion";
 import { Ask } from "../pre-types/Ask";
+import { TranslationKeys } from "../language/type-i18n";
+import { useTranslation } from "react-i18next";
 
 export const Chatbot = () => {
-    const [ask,] = useState<Ask[]>([
-        { question: "Quienes Somos?", redirect: "Team" },
-        { question: "Nuestro mejor servicio?", redirect: "Services" },
-        { question: "Como te contactas con nosotros?", redirect: "Contact" },
-    ])
+    const { t } = useTranslation<TranslationKeys>();
+    // NO FUNCIONA CON STATE i18n
+    // const [ask,] = useState<Ask[]>([
+    //     { question: "Quienes Somos?", redirect: "Team" },
+    //     { question: "Nuestro mejor servicio?", redirect: "Services" },
+    //     { question: "Como te contactas con nosotros?", redirect: "Contact" },
+    // ])
+    const ask: Ask[] = [
+        { question: t("bot.question.1" as TranslationKeys), redirect: "Team" },
+        { question: t("bot.question.2" as TranslationKeys), redirect: "Services" },
+        { question: t("bot.question.3" as TranslationKeys), redirect: "Contact" },
+    ]
+
     const [mostrarPreguntas, setMostrarPreguntas] = useState<boolean>(false);
 
     // return (
@@ -143,7 +153,7 @@ export const Chatbot = () => {
                         paddingLeft: '10px',
                         paddingRight: '10px',
                     }}>
-                    Hola ¿Como podemos ayudarte?
+                    {t("bot.welcome" as TranslationKeys)}
                 </motion.div>
             </motion.div>
             }

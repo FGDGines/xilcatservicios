@@ -3,33 +3,36 @@ import Logo from '../assets/logo_white.png'
 import { IoMenu } from "react-icons/io5";
 import { useDeviceSize } from '../hooks/Responsive';
 import { useState } from 'react';
-
-const links = [
-  {
-    text: 'Nosotros',
-    link: '/#Us'
-  },
-  {
-    text: 'Nuestros Servicios',
-    link: '/#Actions'
-  },
-  {
-    text: 'Ofrecemos',
-    link: '/#Services'
-  },
-  {
-    text: 'Contacto',
-    link: '/#Contact'
-  },
-  {
-    text: 'Blog',
-    link: '/#'
-  }
-]
+import { useTranslation } from 'react-i18next';
+import { TranslationKeys } from '../language/type-i18n';
 
 const HeaderMenu = () => {
+  const { t } = useTranslation<TranslationKeys>();
   const { isDesktop } = useDeviceSize()
   const [isOpen, setIsOpen] = useState(false);
+
+  const links = [
+    {
+      text: t('footer.newsletter.links.1' as TranslationKeys),
+      link: '/#Us'
+    },
+    {
+      text: t('footer.newsletter.links.2' as TranslationKeys),
+      link: '/#Actions'
+    },
+    {
+      text: t('footer.newsletter.links.3' as TranslationKeys),
+      link: '/#Services'
+    },
+    {
+      text: t('footer.newsletter.links.4' as TranslationKeys),
+      link: '/#Contact'
+    },
+    {
+      text: t('footer.newsletter.links.5' as TranslationKeys),
+      link: '/#'
+    }
+  ]
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -81,8 +84,8 @@ const HeaderMenu = () => {
           )
         }
 
-      </div>
-    )
-  }
-  
-  export default HeaderMenu
+    </div>
+  )
+}
+
+export default HeaderMenu

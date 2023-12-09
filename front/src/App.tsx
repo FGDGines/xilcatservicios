@@ -28,6 +28,8 @@ const router = createBrowserRouter([
     element: <Cookies />
   }
 ])
+import { I18nextProvider } from 'react-i18next';
+import i18n from './language/i18n';
 
 function App() {
   const { modal, setModal } = useStore()
