@@ -46,11 +46,12 @@ function App() {
 
   return (
     <div className="relative">
-      <RouterProvider router={router} />
-      {/* <Landing /> */}
-      {
-        modal.state && <Modal />
-      }
+      <I18nextProvider i18n={i18n}>
+        <RouterProvider router={router} />
+        {
+          modal.state && <Modal />
+        }
+      </I18nextProvider>
       
     </div>
   );

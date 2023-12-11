@@ -9,9 +9,11 @@ type TModal = {
 type ModalState = {
     modal: TModal
     setModal: (data: TModal) => void
+    closeModal: () => void
 }
 
 export const useStore = create<ModalState>((set) => ({
     modal: { state: false, type: ''}, 
-    setModal: (modal) => set({ modal })
+    setModal: (modal) => set({ modal }),
+    closeModal: () => ({ modal : { state: false, type: ''}})
 }))
