@@ -77,7 +77,7 @@ export class ContactController {
   })
   async update(
     @Param('id') id: number,
-    @Body() updatedNewsletter: ContactEntity,
+    @Body(new ValidationPipe()) updatedNewsletter: ContactEntity,
   ): Promise<ContactEntity> {
     return await this.contactService.update(id, updatedNewsletter);
   }
