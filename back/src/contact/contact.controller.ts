@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   ValidationError,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ContactService } from './contact.service';
 import { ContactEntity } from './contact.entity';
@@ -61,7 +62,7 @@ export class ContactController {
     description: 'The contact has been successfully created.',
   })
   async create(
-    @Body() newsletter: ContactEntity,
+    @Body(new ValidationPipe()) newsletter: ContactEntity,
   ): Promise<ContactEntity | ValidationError[]> {
     return await this.contactService.create(newsletter);
   }
