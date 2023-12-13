@@ -8,14 +8,6 @@ import { TranslationKeys } from '../language/type-i18n';
 import spanishIcon from '../assets/castellano.png';
 import catalaIcon from '../assets/catala.png'
 import inglesIcon from '../assets/ingles.png'
-import Select from 'react-select';
-
-
-const options = [
-  { value: 'ca', label: 'Catalán', image: catalaIcon },
-  { value: 'es', label: 'Español', image: spanishIcon },
-  { value: 'en', label: 'English', image: inglesIcon },
-];
 
 // const LanguageSelector = () => {
 //   const { i18n } = useTranslation<TranslationKeys>();
