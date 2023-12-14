@@ -98,6 +98,18 @@ export interface TranslationSchema {
       buttonAction: string
     }
   }
+  cookies: {
+    title: string,
+    description: string;
+    subtitle1: string,
+    subdescription1: string
+    subtitle2: string,
+    subdescription2: string
+    subtitle3: string,
+    subdescription3: string
+    subtitle4: string,
+    subdescription4: string
+  }
   footer: {
     description: string
     newsletter: {
