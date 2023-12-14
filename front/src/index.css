@@ -38,4 +38,8 @@ code {
     clip-path: ellipse(110% 100% at 0% 0%);
     /* clip-path: ellipse(73% 46% at 0% 46%); */
   }
+  .bg-gradient {
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(1,137,183,1) 14%, rgba(18,78,186,1) 73%, rgba(0,212,255,1) 100%);
+  }
 }

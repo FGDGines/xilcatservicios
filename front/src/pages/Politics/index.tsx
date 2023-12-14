@@ -10,9 +10,11 @@ const Politics = () => {
     <section className='py-6 px-12 md:px-20 lg:px-40 xl:px-60 lg:pt-24'>
     <div>
       
-    <h1 className='text-2xl mb-6'>AVISO LEGAL Y CONDICIONES GENERALES DE USO</h1>
+    <h1 className='text-4xl mb-6'>AVISO LEGAL Y CONDICIONES GENERALES DE USO</h1>
+    <div className='h-[2px] bg-cs-purple w-[5%] my-8 mx-auto'></div>
+
       <details className='text-justify leading-loose lg:mb-6'>
-        <summary className='text-lg mb-4'>I. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS</summary>
+        <summary className='text-3xl mb-6 font-semibold'>I. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS</summary>
         <p>En cumplimiento con el deber de información dispuesto en la Ley 34/2002 de Servicios
           de la Sociedad de la Información y el Comercio Electrónico (LSSI-CE) de 11 de julio,
             se facilitan a continuación los siguientes datos de información general de este sitio web:
@@ -28,8 +30,9 @@ const Politics = () => {
       </details>
 
       <details className='text-justify leading-loose lg:mb-6'>
-        <summary className='text-lg mb-6'>II. TÉRMINOS Y CONDICIONES GENERALES DE USO</summary>
-        <h6 className='font-bold'>El objeto de las condiciones: El Sitio Web</h6>
+
+        <summary className='text-lg mb-6 font-semibold'>II. TÉRMINOS Y CONDICIONES GENERALES DE USO</summary>
+        <h6 className='text-xl mt-6 mb-4 font-semibold'>El objeto de las condiciones: El Sitio Web</h6>
         <p>
           El objeto de las presentes Condiciones Generales de Uso (en adelante, Condiciones) es regular el acceso y la utilización
           del Sitio Web. A los efectos de las presentes Condiciones se entenderá como Sitio Web: la apariencia externa de los
@@ -46,7 +49,7 @@ const Politics = () => {
           La utilización de alguno de los Contenidos o Servicios del Sitio Web podrá hacerse mediante la suscripción o registro previo
           del Usuario.
         </p>       
-        <h4 className='font-bold mt-4'>El Usuario</h4>
+        <h4 className='text-xl mt-6 mb-4'>El Usuario</h4>
         <p>
           El acceso, la navegación y uso del Sitio Web, así como por los espacios habilitados para interactuar entre los Usuarios, y
           el Usuario y<span><strong> Gestoria xilcat servicios</strong></span>, como los comentarios
@@ -57,8 +60,8 @@ const Politics = () => {
           El Sitio Web de <span><strong> Gestoria xilcat servicios</strong></span> proporciona gran diversidad de información, servicios
           y datos. El Usuario asume su responsabilidad para realizar un uso correcto del Sitio Web. Esta responsabilidad se extenderá a:
         </p>
-        <ul>
-          <li>Un uso de la información, Contenidos y/o Servicios y datos ofrecidos por <span><strong> Gestoria xilcat servicios </strong></span> 
+        <ul className="list-disc ml-8 my-4">
+          <li className='mb-2'>Un uso de la información, Contenidos y/o Servicios y datos ofrecidos por <span><strong> Gestoria xilcat servicios </strong></span> 
           sin que sea contrario a lo dispuesto por las presentes Condiciones, la Ley, la moral o el orden público, o que de cualquier otro
           modo puedan suponer lesión de los derechos de terceros o del mismo funcionamiento del Sitio Web.</li>
           <li>La veracidad y licitud de las informaciones aportadas por el Usuario en los formularios extendidos por
@@ -88,7 +91,7 @@ const Politics = () => {
       </details>
 
       <details className='text-justify leading-loose lg:mb-6'>
-        <summary className='text-lg mb-6'>III. ACCESO Y NAVEGACIÓN EN EL SITIO WEB: EXCLUSIÓN DE GARANTÍAS Y RESPONSABILIDAD</summary>
+        <summary className='text-lg mb-6 font-semibold'>III. ACCESO Y NAVEGACIÓN EN EL SITIO WEB: EXCLUSIÓN DE GARANTÍAS Y RESPONSABILIDAD</summary>
         <p>
           <span><strong> Gestoria xilcat servicios</strong></span> no garantiza la continuidad, disponibilidad y utilidad del Sitio Web, ni de los
         Contenidos o Servicios. 
@@ -105,7 +108,7 @@ const Politics = () => {
       </details>
 
       <details className='text-justify leading-loose lg:mb-6'>
-        <summary className='text-lg mb-6'>IV. POLÍTICA DE ENLACES</summary>
+        <summary className='text-lg mb-6 font-semibold'>IV. POLÍTICA DE ENLACES</summary>
     <p>
        Se informa que el Sitio Web de 
        <span><strong> Gestoria xilcat servicios</strong></span> pone o puede poner a disposición de los Usuarios medios 
@@ -136,7 +139,7 @@ const Politics = () => {
       </details>
 
       <details className='text-justify leading-loose lg:mb-6'>
-          <summary className='text-lg mb-6'>V. PROPIEDAD INTELECTUAL E INDUSTRIAL</summary>
+          <summary className='text-lg mb-6 font-semibold'>V. PROPIEDAD INTELECTUAL E INDUSTRIAL</summary>
 
           <p>
           <span><strong> Gestoria xilcat servicios</strong></span> por sí o como parte cesionaria, es titular de todos los derechos de propiedad intelectual 
@@ -157,7 +160,7 @@ const Politics = () => {
           <span><strong> Gestoria xilcat servicios</strong></span> a través de los datos de contacto del  apartado de INFORMACIÓN GENERAL de este Aviso Legal y 
           Condiciones Generales de Uso.
           </p>         
-          <h4>BASE LEGAL PARA EL TRATAMIENTO DE LO SDATOS PERSONALES</h4>
+          <h4 className='text-lg my-6 font-semibold'>BASE LEGAL PARA EL TRATAMIENTO DE LO SDATOS PERSONALES</h4>
           <p>La base legal para el tratamiento de los datos personales es el consentimiento. Gestoría xilcat servicios se compromete a recabar el 
             consentimiento expreso y verificable del Usuario para el tratamiento de sus datos personales para uno o varios fines específicos.
             El Usuario tendrá derecho a retirar su consentimiento en cualquier momento. Será tan fácil retirar el consentimiento como darlo. 
@@ -168,8 +171,8 @@ const Politics = () => {
           </p> 
       </details>
 
-      <details className='text-justify leading-loose lg:mb-6'>
-    <summary>VI. ACCIONES LEGALES, LEGISLACIÓN APLICABLE Y JURISDICCIÓN</summary>
+      <details className='text-justify leading-loose mb-6'>
+    <summary className='text-lg mb-6 font-semibold'>VI. ACCIONES LEGALES, LEGISLACIÓN APLICABLE Y JURISDICCIÓN</summary>
 
     <p><span><strong> Gestoria xilcat servicios</strong></span> se reserva la facultad de presentar las acciones civiles o penales que considere 
         necesarias por la utilización indebida del Sitio Web y Contenidos, o por el incumplimiento de las presentes Condiciones.

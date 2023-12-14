@@ -8,6 +8,8 @@ import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
 // import { Chatbot } from '../../pre-components/Chatbot'
 import PoliticsBar from '../../components/PoliticsBar'
+// import { ToastContainer } from 'react-toastify'
+// import 'react-toastify/dist/ReactToastify.css';
 
 const Landing = () => {
   // const { isDesktop } = useDeviceSize()
