@@ -26,12 +26,17 @@ const router = createBrowserRouter([
   {
     path: '/cookies',
     element: <Cookies />
-  }
+  },
+  {
+    path: '/blog',
+    element: <Blog />
+  },
 ])
 import { I18nextProvider } from 'react-i18next';
 import i18n from './language/i18n';
 import Toast from "./components/Toast";
 import { ToastContainer } from "react-toastify";
+import Blog from "./pages/Blog";
 
 function App() {
   const { modal, setModal, toast } = useStore()

@@ -208,7 +208,40 @@ export interface TranslationSchema {
       title: string,
       description: string
     }
-
+  }
+  politics: {
+    title: string
+    section1: {
+      title: string
+      description: string
+    }
+    section2: {
+      title: string
+      subtitle1: string
+      description1: string
+      subtitle2: string
+      description2: string
+      item1: string
+      item2: string
+      description3: string
+      description4: string
+    }
+    section3: {
+      title: string
+      description: string
+    }
+    section4: {
+      title: string
+      description: string
+    }
+    section5: {
+      title: string
+      description: string
+    }
+    section6: {
+      title: string
+      description: string
+    }
   }
   footer: {
     description: string
