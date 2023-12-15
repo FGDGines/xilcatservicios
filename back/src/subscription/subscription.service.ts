@@ -3,7 +3,7 @@ import { SubscriptionEntity } from './subscription.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { validate } from 'class-validator';
-import { EmailDto } from './email.dto';
+import { EmailDto } from '../email/email.dto';
 
 @Injectable()
 export class SubscriptionService {

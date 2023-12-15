@@ -54,7 +54,7 @@ import { EmailModule } from './email/email.module';
         secure: true,
         auth: {
           user: 'pedro@fgddesarrolloweb.es',
-          pass: 'FGD*pedro/11/112023*',
+          pass: 'Contraseña',
         },
         tls: {
           // Puedes configurar opciones TLS aquí si es necesario

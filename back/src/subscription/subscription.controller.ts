@@ -9,7 +9,7 @@ import { MailerService } from '@nestjs-modules/mailer';
 import { ApiTags, ApiBody, ApiResponse } from '@nestjs/swagger';
 import { SubscriptionService } from './subscription.service';
 import { SubscriptionEntity } from './subscription.entity';
-import { EmailDto } from './email.dto';
+import { EmailDto } from '../email/email.dto';
 import { validate } from 'class-validator';
 
 @ApiTags('subscription')
