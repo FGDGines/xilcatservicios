@@ -13,6 +13,7 @@ import { ContactEntity } from './contact/contact.entity';
 import { CookiesModule } from './cookies/cookies.module';
 import { CookiesMiddleware } from './cookies/cookies.middleware';
 import { CookieEntity } from './cookies/cookies.entity';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -38,20 +39,34 @@ import { CookieEntity } from './cookies/cookies.entity';
       synchronize: true, // Opcional: sincroniza automáticamente las entidades con la base de datos (cuidado en producción)
     }),
     MailerModule.forRoot({
+      // transport: {
+      //   host: process.env.SMTP_HOST,
+      //   port: Number(process.env.SMTP_PORT),
+      //   secure: process.env.SMTP_SECURE === 'true',
+      //   auth: {
+      //     user: process.env.SMTP_USER,
+      //     pass: process.env.SMTP_PASS,
+      //   },
+      // },
       transport: {
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT),
-        secure: process.env.SMTP_SECURE === 'true',
+        host: 'imap.ionos.es',
+        port: 993,
+        secure: true,
         auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
+          user: 'pedro@fgddesarrolloweb.es',
+          pass: 'FGD*pedro/11/112023*',
+        },
+        tls: {
+          // Puedes configurar opciones TLS aquí si es necesario
+          // Consulta la documentación para las opciones disponibles
         },
       },
     }),
     NewsletterModule,
     SubscriptionModule,
     ContactModule,
-    CookiesModule, // Agrega aquí también tus entidades si las necesitas en otros módulos
+    CookiesModule,
+    EmailModule, // Agrega aquí también tus entidades si las necesitas en otros módulos
   ],
 })
 export class AppModule implements NestModule {

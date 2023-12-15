@@ -1,7 +1,16 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  ValidationPipe,
+  ValidationError,
+} from '@nestjs/common';
 import { MailerService } from '@nestjs-modules/mailer';
 import { ApiTags, ApiBody, ApiResponse } from '@nestjs/swagger';
 import { SubscriptionService } from './subscription.service';
+import { SubscriptionEntity } from './subscription.entity';
+import { EmailDto } from './email.dto';
+import { validate } from 'class-validator';
 
 @ApiTags('subscription')
 @Controller('subscription')
@@ -19,23 +28,26 @@ export class SubscriptionController {
       properties: {
         email: {
           type: 'string',
-          example: 'usuario@dominio.com',
+          example: 'colcapedro@gmail.com',
         },
       },
     },
   })
   async subscribeToNews(@Body('email') email: string) {
-    // Enviar correo de notificación de suscripción
-    await this.mailerService.sendMail({
-      to: email,
-      subject: '¡Te has suscrito a nuestras noticias!',
-      text: 'Gracias por suscribirte a nuestras noticias.',
-    });
+    try {
+      await this.mailerService.sendMail({
+        to: email,
+        subject: '¡Te has suscrito a nuestras noticias!',
+        text: 'Gracias por suscribirte a nuestras noticias.',
+      });
 
-    return {
-      message:
-        'Suscrito exitosamente. Se ha enviado un correo de confirmación.',
-    };
+      return {
+        message:
+          'Suscrito exitosamente. Se ha enviado un correo de confirmación.',
+      };
+    } catch (error) {
+      return error;
+    }
   }
 
   @Post('send')
@@ -71,7 +83,7 @@ export class SubscriptionController {
           </body>
           </html>`,
         },
-        reciver: { type: 'string', example: 'destinatario@example.com' },
+        reciver: { type: 'string', example: 'colcapedro@gmail.com' },
         topic: { type: 'string', example: 'Suscripción XILCAT NEWSLETTER' },
       },
     },
@@ -81,12 +93,18 @@ export class SubscriptionController {
     status: 500,
     description: 'Hubo un error al enviar el correo',
   })
-  async sendMail(@Body() mailData: { [key: string]: string }) {
+  async sendMail(
+    @Body(new ValidationPipe()) emailData: EmailDto,
+  ): Promise<SubscriptionEntity | ValidationError[]> {
     try {
-      const result = await this.subscriptionService.sendEmail(mailData);
-      return { message: 'Correo enviado correctamente', result };
+      const errors = await validate(emailData);
+      if (errors.length > 0) {
+        return errors;
+      }
+      const result = await this.subscriptionService.sendEmail(emailData);
+      return result;
     } catch (error) {
-      return { message: 'Hubo un error al enviar el correo', error };
+      return error;
     }
   }
 
