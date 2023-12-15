@@ -98,6 +98,151 @@ export interface TranslationSchema {
       buttonAction: string
     }
   }
+  cookies: {
+    title: string,
+    description: string;
+    subtitle1: string,
+    subdescription1: string
+    subtitle2: string,
+    subdescription2: string
+    subtitle3: string,
+    subdescription3: string
+    subtitle4: string,
+    subdescription4: string
+  }
+  legal: {
+    title: string,
+    section1: {
+      title: string,
+      description: string
+    }
+    section2: {
+      title: string,
+      description: string
+      item1:string
+      item2:string
+      item3:string
+      item4:string
+    }
+    section3: {
+      title: string,
+      description: string
+    }
+    section4: {
+      title: string,
+      description: string
+    }
+    section5: {
+      title: string,
+      description: string
+      item1:string
+      item2:string
+      item3:string
+      item4:string
+      item5:string
+      item6:string
+      item7:string
+    }
+    section6: {
+      title: string,
+      description: string
+    }
+    section7: {
+      title: string,
+      description: string
+    }
+    section8: {
+      title: string,
+      description: string
+    }
+    section9: {
+      title: string,
+      description: string
+    }
+    section10: {
+      title: string,
+      text1: string,
+      text2: string,
+      text3: string
+
+    }
+    section11: {
+      title: string,
+      description: string
+    }
+    section12: {
+      title: string,
+      description1: string
+      description2: string
+      description3: string
+    }
+    section13: {
+      title: string,
+      description1: string
+      item1:string
+      item2:string
+      item3:string
+      item4:string
+      item5:string
+      item6:string
+      item7:string
+      item8:string
+
+      description2: string
+      item9:string
+      item10:string
+      item11:string
+      item12:string
+      item13:string
+      description3: string;
+    }
+    section14: {
+      title: string,
+      description: string
+    }
+    section15: {
+      title: string,
+      description: string
+    }
+    section16: {
+      title: string,
+      description: string
+    }
+  }
+  politics: {
+    title: string
+    section1: {
+      title: string
+      description: string
+    }
+    section2: {
+      title: string
+      subtitle1: string
+      description1: string
+      subtitle2: string
+      description2: string
+      item1: string
+      item2: string
+      description3: string
+      description4: string
+    }
+    section3: {
+      title: string
+      description: string
+    }
+    section4: {
+      title: string
+      description: string
+    }
+    section5: {
+      title: string
+      description: string
+    }
+    section6: {
+      title: string
+      description: string
+    }
+  }
   footer: {
     description: string
     newsletter: {

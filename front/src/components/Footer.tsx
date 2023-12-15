@@ -7,6 +7,7 @@ import axios from "axios";
 import { useDeviceSize } from "../hooks/Responsive";
 import { TranslationKeys } from "../language/type-i18n";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 type TOptions = {
   url: string;
@@ -64,12 +65,14 @@ const Footer = () => {
     // console.log('backend', import.meta.env.VITE_BACKEND_URL)
     // await axios.post(import.meta.env.VITE_BACKEND_URL + "/newsletter", {
     // await axios.post(import.meta.env.VITE_BACKEND_URL + "/subscription/subscribe", {
-    await axios.post(import.meta.env.VITE_BACKEND_URL + "/subscription/send", {
-
-
-      title: 'newsletter',
-      content: email
+    const res = await axios.post(import.meta.env.VITE_BACKEND_URL + "/subscription/send", {
+      "body": "<!DOCTYPE html>\n          <html lang=\"en\">\n          <head>\n            <meta charset=\"UTF-8\">\n            <title>Confirmación de Suscripción</title>\n          </head>\n          <body style=\"font-family: Arial, sans-serif;\">\n          \n            <div style=\"max-width: 600px; margin: 0 auto; padding: 20px;\">\n              <h2 style=\"text-align: center; color: #333;\">¡Se ha suscrito correctamente!</h2>\n              <p style=\"text-align: center; color: #666;\">\n                Gracias por suscribirte a nuestro boletín. Estás a punto de recibir noticias y actualizaciones emocionantes.\n              </p>\n              <p style=\"text-align: center; color: #666;\">\n                ¡Estamos emocionados de tenerte como parte de nuestra comunidad!\n              </p>\n              <p style=\"text-align: center; color: #666;\">\n                Atentamente,<br>\n                XILCAT\n              </p>\n            </div>\n          </body>\n          </html>",
+      "topic": "Suscripción XILCAT NEWSLETTER",
+      "reciver": email
     })
+
+    console.log('res', res)
+    toast.success("Subcripcion Agregada")
 
     setEmail('')
   }

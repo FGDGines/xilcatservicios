@@ -1,19 +1,16 @@
 import { create } from 'zustand';
+import { devtools, persist } from 'zustand/middleware'
 
-type TModal = {
-    state: boolean,
-    type: string,
-    id?: number
-}
+import { modalSlice, ModalState} from './modalStore';
+import { toastSlice, ToastState} from './toast-store';
 
-type ModalState = {
-    modal: TModal
-    setModal: (data: TModal) => void
-    closeModal: () => void
-}
+type AppStore = ModalState & ToastState
 
-export const useStore = create<ModalState>((set) => ({
-    modal: { state: false, type: ''}, 
-    setModal: (modal) => set({ modal }),
-    closeModal: () => ({ modal : { state: false, type: ''}})
-}))
+export const useStore = create<AppStore>() (
+    devtools((...a) => ({
+        ...modalSlice(...a),
+        ...toastSlice(...a)
+    }))
+)
+
+
