@@ -11,39 +11,14 @@ import inglesIcon from '../assets/ingles.png'
 import Select from 'react-select';
 
 
-const options = [
-  { value: 'ca', label: 'Catalán', image: catalaIcon },
-  { value: 'es', label: 'Español', image: spanishIcon },
-  { value: 'en', label: 'English', image: inglesIcon },
-];
+type TOptions = {
+  [idx: string]: string
+}
 
-// const LanguageSelector = () => {
-//   const { i18n } = useTranslation<TranslationKeys>();
-
-//   const changeLanguage = (lng: string) => {
-//     i18n.changeLanguage(lng).catch((error) => {
-//         console.error('Error al cambiar el idioma:', error);
-//     });
-// };
-//   const customOption = ({ innerProps, label, data }: { innerProps: any, label: string, data: any}) => (
-//     <div {...innerProps} className='text-black flex gap-2'>
-//       <img src={data.image} alt={label} className="mr-2 w-4 h-4" />
-//       {label}
-//     </div>
-//   );
-
-//   return (
-//     <Select
-//       options={options}
-//       components={{ Option: customOption }}
-//       onChange={(selectedOption) => changeLanguage(selectedOption.value)}
-//     />
-//   );
-// };
 const LanguageSelector = () => {
   const { i18n } = useTranslation<TranslationKeys>();
 
-  const options = [
+  const options: TOptions[] = [
     { value: 'ca', label: 'Catalán', image: catalaIcon },
     { value: 'es', label: 'Español', image: spanishIcon },
     { value: 'en', label: 'English', image: inglesIcon },
@@ -56,7 +31,7 @@ const LanguageSelector = () => {
   return (
     <div className="relative inline-block">
       <select
-        className="appearance-none bg-transparent border-none text-gray-700 py-2 pr-8 pl-3 pr-10 leading-tight focus:outline-none"
+        className="appearance-none bg-transparent border-none text-center text-gray-700 py-2 px-4 leading-tight focus:outline-none opacity-0 w-1"
         onChange={(e) => changeLanguage(e.target.value)}
       >
         {options.map((option) => (
@@ -66,14 +41,15 @@ const LanguageSelector = () => {
         ))}
       </select>
       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-        {options.map((option) => (
+        {options.map((option) =>{
+          if (option.value === i18n.language) return(
           <img
             key={option.value}
             src={option.image}
             alt={option.label}
             className="w-4 h-4 mr-1"
           />
-        ))}
+        )})}
       </div>
     </div>
   );
@@ -104,7 +80,7 @@ const HeaderMenu = () => {
     },
     {
       text: t('footer.newsletter.links.5' as TranslationKeys),
-      link: '/#'
+      link: '/blog'
     }
   ]
 

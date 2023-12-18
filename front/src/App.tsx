@@ -4,11 +4,13 @@ import Landing from "./pages/Landing/Landing";
 import { useStore } from "./store";
 import {
   createBrowserRouter,
+  Outlet,
   RouterProvider,
 } from 'react-router-dom';
 import Politics from "./pages/Politics";
 import Legal from "./pages/Legal";
 import Cookies from "./pages/Cookies";
+import ProtectedLoader from './pages/Intranet/ProtectedLoader'
 
 const router = createBrowserRouter([
   {
@@ -31,12 +33,44 @@ const router = createBrowserRouter([
     path: '/blog',
     element: <Blog />
   },
+  {
+    path: '/intranet',
+    element:<>
+      <Outlet />
+    </> ,
+    children: [
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'main',
+        element: <Layout Component={Main}></Layout>,
+        // loader: ProtectedLoader
+      },
+      {
+        path: 'clients',
+        element: <>clients</>,
+        // loader: ProtectedLoader
+      },
+      {
+        path: 'client/:id',
+        element: <>client</>,
+        // loader: ProtectedLoader
+
+      }
+    ]
+  }
 ])
 import { I18nextProvider } from 'react-i18next';
 import i18n from './language/i18n';
 import Toast from "./components/Toast";
 import { ToastContainer } from "react-toastify";
 import Blog from "./pages/Blog";
+import Intranet from "./pages/Intranet";
+import Login from "./components/Intranet/Login";
+import Layout from "./components/CMR/Layout";
+import Main from "./components/Intranet/Main";
 
 function App() {
   const { modal, setModal, toast } = useStore()
