@@ -45,17 +45,17 @@ const router = createBrowserRouter([
       },
       {
         path: 'main',
-        element: <Layout Component={Main}></Layout>,
+        element: <Layout Component={Main} />,
         // loader: ProtectedLoader
       },
       {
         path: 'clients',
-        element: <Layout Component={Clients}></Layout>,
+        element: <Layout Component={Clients} />,
         // loader: ProtectedLoader
       },
       {
         path: 'client/:id',
-        element: <>client</>,
+        element: <Layout Component={Client} />,
         // loader: ProtectedLoader
 
       }
@@ -72,6 +72,7 @@ import Login from "./components/Intranet/Login";
 import Layout from "./components/CMR/Layout";
 import Main from "./components/Intranet/Main";
 import Clients from "./components/Intranet/Clients";
+import Client from "./components/Intranet/Client";
 
 function App() {
   const { modal, setModal, toast } = useStore()

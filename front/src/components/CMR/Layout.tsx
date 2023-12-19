@@ -84,9 +84,9 @@ const Layout = ({Component}: { Component: any}) => {
             {
               isDesktop && (
                 <>
-                <Icon Icon={<FaSignOutAlt />} text="Salir"/>
-                <Icon Icon={<LuMessagesSquare />} text="Chat" />
-                <Icon  Icon={<LuUserCircle />} text="Usuario" />
+                <Icon Icon={<FaSignOutAlt />} text="Salir" url=''/>
+                <Icon Icon={<LuMessagesSquare />} text="Chat" url='' />
+                <Icon  Icon={<LuUserCircle />} text="Usuario" url='' />
                 </>
               )
             }
@@ -100,11 +100,11 @@ const Layout = ({Component}: { Component: any}) => {
           lg:col-span-1 lg:flex-col lg:row-span-5
         '
         >
-          <Icon Icon={<FaCloud />} text="Iono"/>
-          <Icon Icon={<IoIosMail />} text="Email"/>
-          <Icon Icon={<FaTrello />} text="Trello"/>
-          <Icon Icon={<FaBook />} text="Contabilidad"/>
-          <Icon Icon={<FaUsers />} text="Usuarios"/>
+          <Icon  Icon={<FaCloud />} text="Iono" url=''/>
+          <Icon Icon={<IoIosMail />} text="Email" url=''/>
+          <Icon Icon={<FaTrello />} text="Trello" url=''/>
+          <Icon Icon={<FaBook />} text="Contabilidad" url=''/>
+          <Icon Icon={<FaUsers />} text="Clientes" url='/intranet/clients'/>
         </div>
 
         {/* Principal Component */}
