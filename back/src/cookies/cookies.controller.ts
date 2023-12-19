@@ -9,9 +9,7 @@ export class CookiesController {
 
   @Get()
   setCookie(@Res() res: Response) {
-    this.cookiesService.setCookie(res, 'accept-cookies', 'true', {
-      /* opciones de cookie */
-    });
+    this.cookiesService.setCookie(res, 'accept-cookies', 'true', {});
     return 'Cookie establecida';
   }
 
