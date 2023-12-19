@@ -12,6 +12,11 @@ export class SubscriptionService {
     private readonly subscriptionRepository: Repository<SubscriptionEntity>,
   ) {}
 
+  async getAllSubscribedEmails(): Promise<string[]> {
+    const subscriptions = await this.subscriptionRepository.find();
+    return subscriptions.map((subscription) => subscription.email);
+  }
+
   async create(newsletter: SubscriptionEntity): Promise<SubscriptionEntity> {
     return await this.subscriptionRepository.save(newsletter);
   }

@@ -49,17 +49,14 @@ import { EmailModule } from './email/email.module';
       //   },
       // },
       transport: {
-        host: 'imap.ionos.es',
+        host: 'smtp.ionos.es',
         port: 993,
         secure: true,
         auth: {
           user: 'pedro@fgddesarrolloweb.es',
           pass: 'Contraseña',
         },
-        tls: {
-          // Puedes configurar opciones TLS aquí si es necesario
-          // Consulta la documentación para las opciones disponibles
-        },
+        tls: {},
       },
     }),
     NewsletterModule,
