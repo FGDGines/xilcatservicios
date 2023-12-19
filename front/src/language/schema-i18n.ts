@@ -243,6 +243,9 @@ export interface TranslationSchema {
       description: string
     }
   }
+  blog: {
+    title: string
+  }
   footer: {
     description: string
     newsletter: {

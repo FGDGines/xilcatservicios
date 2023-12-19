@@ -264,6 +264,9 @@ const resources: Resource = {
           description: 'Gestoria xilcat services reserves the right to file civil or criminal actions that it deems necessary for improper use of the Website and Contents, or for non-compliance with these Conditions. The relationship between the User and Gestoria xilcat services will be governed by the regulations in force and applicable in Spanish territory. If any controversy arises in relation to the interpretation and/or application of these Conditions, the parties will submit their conflicts to ordinary jurisdiction, submitting to the corresponding judges and courts in accordance with law.',
         }
       },
+      blog: {
+        title: "Xilcatservices's blog"
+      },
       footer: {
         description:
           'We work at 101% in your process to offer you the best solution',
@@ -544,6 +547,9 @@ const resources: Resource = {
           description: 'Gestoria xilcat servicios se reserva la facultad de presentar las acciones civiles o penales que considere necesarias por la utilización indebida del Sitio Web y Contenidos, o por el incumplimiento de las presentes Condiciones. La relación entre el Usuario y Gestoria xilcat servicios se regirá por la normativa vigente y de aplicación en el territorio español. De surgir cualquier controversia en relación con la interpretación y/o a la aplicación de estas Condiciones las partes someterán sus conflictos a la jurisdicción ordinaria sometiéndose a los jueces y tribunales que correspondan conforme a derecho.',
         }
       },
+      blog: {
+        title: "Blog de Servicios Xilcat"
+      },
       footer: {
         description:
           'Trabajamos al 101% en tu tramite para ofrecerte la mejor solucion',
@@ -813,6 +819,9 @@ const resources: Resource = {
           title: 'ACCIONS LEGALS, LEGISLACIÓ APLICABLE I JURISDICCIÓ',
           description: `Gestoria xilcat serveis es reserva la facultat de presentar les accions civils o penals que consideri necessàries per la utilització indeguda del Lloc Web i Continguts, o per l'incompliment de les presents Condicions. La relació entre l'Usuari i Gestoria xilcat serveis es regirà per la normativa vigent i aplicable al territori espanyol. Si sorgeix qualsevol controvèrsia en relació amb la interpretació i/o l'aplicació d'aquestes Condicions, les parts sotmetran els seus conflictes a la jurisdicció ordinària sotmetent-se als jutges i tribunals que corresponguin d'acord amb el dret.`,
         }
+      },
+      blog: {
+        title: "Bloc de Xilcatservices"
       },
       footer: {
         description: `Treballem al 101% en el teu tràmit per oferir-te la millor solució`,
