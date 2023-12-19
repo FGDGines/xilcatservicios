@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { LuCookie } from 'react-icons/lu';
 import { useStore } from '../../store';
 
