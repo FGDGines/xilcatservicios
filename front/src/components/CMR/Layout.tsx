@@ -94,7 +94,12 @@ const Layout = ({Component}: { Component: any}) => {
         </div>
 
         {/* SideMenu */}
-        <div className='bg-cs-gray col-span-2 lg:col-span-1 flex items-center justify-around text-4xl md:text-6xl lg:flex-col lg:row-span-5'>
+        <div className='
+          bg-cs-gray col-span-2 flex items-center justify-around text-4xl 
+          md:text-6xl
+          lg:col-span-1 lg:flex-col lg:row-span-5
+        '
+        >
           <Icon Icon={<FaCloud />} text="Iono"/>
           <Icon Icon={<IoIosMail />} text="Email"/>
           <Icon Icon={<FaTrello />} text="Trello"/>
@@ -103,7 +108,7 @@ const Layout = ({Component}: { Component: any}) => {
         </div>
 
         {/* Principal Component */}
-        <div className=' row-span-4 overflow-auto lg:row-span-5'>{<Component />}</div>
+        <div className=' row-span-4 overflow-auto lg:row-span-5 text-black'>{<Component />}</div>
     </div>
   )
 }
