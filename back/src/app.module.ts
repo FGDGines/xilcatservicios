@@ -14,6 +14,8 @@ import { CookiesModule } from './cookies/cookies.module';
 import { CookiesMiddleware } from './cookies/cookies.middleware';
 import { CookieEntity } from './cookies/cookies.entity';
 import { EmailModule } from './email/email.module';
+import { AuthModule } from './auth/auth.module';
+import { AuthEntity } from './auth/auth.entity';
 
 @Module({
   imports: [
@@ -35,6 +37,7 @@ import { EmailModule } from './email/email.module';
         SubscriptionEntity,
         ContactEntity,
         CookieEntity,
+        AuthEntity,
       ], // Agrega tus entidades aquí
       synchronize: true, // Opcional: sincroniza automáticamente las entidades con la base de datos (cuidado en producción)
     }),
@@ -63,7 +66,8 @@ import { EmailModule } from './email/email.module';
     SubscriptionModule,
     ContactModule,
     CookiesModule,
-    EmailModule, // Agrega aquí también tus entidades si las necesitas en otros módulos
+    EmailModule,
+    AuthModule,
   ],
 })
 export class AppModule implements NestModule {
