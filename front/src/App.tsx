@@ -57,7 +57,11 @@ const router = createBrowserRouter([
         path: 'client/:id',
         element: <Layout Component={Client} />,
         // loader: ProtectedLoader
-
+      },
+      {
+        path: 'account/:id',
+        element: <Layout Component={Account} />,
+        // loader: ProtectedLoader
       }
     ]
   }
@@ -73,6 +77,7 @@ import Layout from "./components/CMR/Layout";
 import Main from "./components/Intranet/Main";
 import Clients from "./components/Intranet/Clients";
 import Client from "./components/Intranet/Client";
+import Account from "./components/Intranet/Account";
 
 function App() {
   const { modal, setModal, toast } = useStore()

@@ -7,6 +7,8 @@ import { IoIosMail } from "react-icons/io";
 import Icon from './Icon';
 import Logo from '../../assets/Logo_white.png'
 import { useDeviceSize } from '../../hooks/Responsive';
+import { useLocation, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const links = [
   {
@@ -28,13 +30,35 @@ const links = [
 ]
 
 const Layout = ({Component}: { Component: any}) => {
+  const location = useLocation()
   const { isDesktop } = useDeviceSize()
-    const [isHidden, setIsHidden] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const setDescriptionName = () => {
+    const nameDescription: { [index: string]: string} = {
+      main: 'Principal',
+      clients: 'Clientes',
+      client: "Cliente",
+      account: "Contabilidad"
+    }
+    const paths = location.pathname.split('/').filter(item => item)
+
+    return nameDescription[paths[1]]
+  }
+
+  const setUrl = (type: 'url' | 'errorMsg') => {
+    const paths = location.pathname.split('/').filter(item => item)
+    if (paths.length > 2) {
+      return type === 'url' ? '/intranet/account/' + paths[2] : ''
+    } else {
+      return type === 'url' ? '' : 'Selecciona un cliente primero'
+    }
+  }
 
   return (
     <div className='h-screen grid grid-cols-1 grid-rows-6 lg:grid-cols-[10%_1fr] text-white'>
@@ -48,7 +72,7 @@ const Layout = ({Component}: { Component: any}) => {
           </div>
           <div className='flex flex-col items-center gap-2'>
             <p className='text-xl md:text-3xl lg:text-6xl mt-4 lg:mt-2'>Intranet XilcatServicios</p>
-            <p className='text-xl mt-8 md:text-2xl lg:text-4xl lg:mt-0'>Page</p>
+            <p className='text-xl mt-8 md:text-2xl lg:text-4xl lg:mt-0'>{setDescriptionName()}</p>
           </div>
           <div className='flex flex-col justify-around items-center text-5xl lg:flex-row lg:text-4xl'>
             {
@@ -103,7 +127,7 @@ const Layout = ({Component}: { Component: any}) => {
           <Icon  Icon={<FaCloud />} text="Iono" url=''/>
           <Icon Icon={<IoIosMail />} text="Email" url=''/>
           <Icon Icon={<FaTrello />} text="Trello" url=''/>
-          <Icon Icon={<FaBook />} text="Contabilidad" url=''/>
+          <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')}/>
           <Icon Icon={<FaUsers />} text="Clientes" url='/intranet/clients'/>
         </div>
 
