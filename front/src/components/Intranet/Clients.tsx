@@ -2,7 +2,7 @@ import React from 'react'
 import ClientIcon from '../CMR/ClientIcon'
 import AddClient from '../CMR/AddClient'
 
-const clients = [
+export const clients = [
     {
         name: 'lexx',
         id: 1

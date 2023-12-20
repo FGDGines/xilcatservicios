@@ -1,6 +1,6 @@
 import React from 'react'
 import Client from '../../assets/client.png'
-import { redirect, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 type TClient = {
   id?: number
   name: string
@@ -8,10 +8,7 @@ type TClient = {
 
 const UserIcon = ({ client }: { client: TClient}) => {
   const  navigate  = useNavigate()
-  const handleRedirect = () => {
-    console.log('/client/' + client.id)
-    return navigate('/intranet/client/' + client.id)
-  }
+  const handleRedirect = () => navigate('/intranet/client/' + client.id)
   return (
     <div className='
       relative

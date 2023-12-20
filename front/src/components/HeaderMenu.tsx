@@ -60,7 +60,6 @@ const HeaderMenu = () => {
   const { isDesktop } = useDeviceSize()
   const [isOpen, setIsOpen] = useState(false);
 
-
   const links = [
     {
       text: t('footer.newsletter.links.1' as TranslationKeys),
