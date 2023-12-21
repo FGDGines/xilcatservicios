@@ -16,6 +16,9 @@ import { CookieEntity } from './cookies/cookies.entity';
 import { EmailModule } from './email/email.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthEntity } from './auth/auth.entity';
+import { ClientModule } from './client/client.module';
+import { ClientEntity } from './client/client.entity';
+import { PdfModule } from './pdf/pdf.module';
 
 @Module({
   imports: [
@@ -38,6 +41,7 @@ import { AuthEntity } from './auth/auth.entity';
         ContactEntity,
         CookieEntity,
         AuthEntity,
+        ClientEntity,
       ], // Agrega tus entidades aquí
       synchronize: true, // Opcional: sincroniza automáticamente las entidades con la base de datos (cuidado en producción)
     }),
@@ -68,6 +72,8 @@ import { AuthEntity } from './auth/auth.entity';
     CookiesModule,
     EmailModule,
     AuthModule,
+    ClientModule,
+    PdfModule,
   ],
 })
 export class AppModule implements NestModule {

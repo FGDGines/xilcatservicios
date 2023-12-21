@@ -8,7 +8,7 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(
     @InjectRepository(AuthEntity)
-    private readonly userRepository: Repository<AuthEntity>,
+    private readonly authRepository: Repository<AuthEntity>,
   ) {}
 
   async register(
@@ -18,12 +18,12 @@ export class AuthService {
     try {
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      const newUser = this.userRepository.create({
+      const newUser = this.authRepository.create({
         username,
         password: hashedPassword,
       });
 
-      return await this.userRepository.save(newUser);
+      return await this.authRepository.save(newUser);
     } catch (error) {
       return error;
     }
@@ -33,7 +33,7 @@ export class AuthService {
     username: string,
     password: string,
   ): Promise<AuthEntity | null> {
-    const user = await this.userRepository.findOne({ where: { username } });
+    const user = await this.authRepository.findOne({ where: { username } });
     if (user && (await this.comparePassword(password, user.password))) {
       return user;
     }
@@ -45,5 +45,12 @@ export class AuthService {
     hashedPassword: string,
   ): Promise<boolean> {
     return await bcrypt.compare(plainPassword, hashedPassword);
+  }
+
+  async validateAuthEntity(authId: number): Promise<boolean> {
+    const authEntity = await this.authRepository.findOne({
+      where: { id: authId },
+    });
+    return !!authEntity; // Devuelve true si se encuentra la entidad, de lo contrario, devuelve false
   }
 }

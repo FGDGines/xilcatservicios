@@ -6,7 +6,8 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { ClientEntity } from 'src/client/client.entity';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 
 @Entity()
 export class AuthEntity {
@@ -37,6 +38,7 @@ export class AuthEntity {
   })
   password: string;
 
+  // FECHA
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 
@@ -46,4 +48,8 @@ export class AuthEntity {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
+
+  // RELACIONES
+  @OneToMany(() => ClientEntity, (client) => client.auth) // Relación uno a muchos con ClientEntity
+  clients: ClientEntity[];
 }

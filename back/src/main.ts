@@ -3,6 +3,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import * as cookieParser from 'cookie-parser';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -15,6 +16,19 @@ async function bootstrap() {
     preflightContinue: false,
     optionsSuccessStatus: 204,
   };
+
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: false,
+      forbidNonWhitelisted: false,
+      transform: false,
+      transformOptions: {
+        enableImplicitConversion: false,
+        excludeExtraneousValues: false,
+      },
+      validationError: { target: false },
+    }),
+  );
 
   const config = new DocumentBuilder()
     .setTitle('Xilcat servicios API')

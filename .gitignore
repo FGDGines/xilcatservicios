@@ -14,6 +14,7 @@ dist
 dist-ssr
 *.local
 /back/dist
+public
 
 # Editor directories and files
 .vscode/*
