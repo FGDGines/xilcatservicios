@@ -73,7 +73,7 @@ export class ClientService {
           'client.paymentStatus',
           'client.created_at',
           'client.updated_at',
-          'auth.id', // Seleccionando solo el campo 'id' de 'auth'
+          'auth.id',
           'auth.username',
           'auth.created_at',
           'auth.updated_at',
@@ -109,7 +109,7 @@ export class ClientService {
   }
 
   async update(
-    id: number, // o string, dependiendo del tipo de tu ID
+    id: number,
     clientData: Partial<ClientEntity>,
   ): Promise<ClientEntity | undefined> {
     try {
@@ -146,7 +146,7 @@ export class ClientService {
 
       if (!client) {
         throw new BadRequestException(
-          'El ID de ClientEntity proporcionado no existe.' + clientId,
+          'El ID de ClientEntity proporcionado no existe: ' + clientId,
         );
       }
 
@@ -162,6 +162,15 @@ export class ClientService {
       const filePath = `${folderPath}/${fileName}`;
 
       writeFileSync(filePath, pdf.buffer);
+
+      if (client) {
+        if (!client.pdf) {
+          client.pdf = [];
+        }
+
+        client.pdf.push({ typePdf: pdfType, path: filePath });
+        await this.clientRepository.update(clientId, { pdf: client.pdf });
+      }
 
       return {
         success: true,

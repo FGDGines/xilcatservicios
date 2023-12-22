@@ -27,6 +27,7 @@ import {
   ApiQuery,
   ApiResponse,
   ApiTags,
+  ApiOperation,
 } from '@nestjs/swagger';
 import {
   // FileFieldsInterceptor,
@@ -43,6 +44,7 @@ export class ClientController {
   ) {}
 
   @Get()
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'limit', required: false, type: Number })
   @ApiResponse({ status: 200, description: 'Return all clients.' })
@@ -52,6 +54,7 @@ export class ClientController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiParam({ name: 'id', description: 'Client ID', type: Number })
   @ApiResponse({ status: 200, description: 'Return a specific client.' })
   async getClientById(@Param('id') id: number): Promise<ClientEntity> {
@@ -64,6 +67,7 @@ export class ClientController {
   }
 
   @Post()
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiBody({
     type: ClientEntity,
     description: 'Client creation example',
@@ -104,6 +108,7 @@ export class ClientController {
   }
 
   @Put(':id')
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiParam({ name: 'id', description: 'Client ID', type: Number })
   @ApiBody({ type: ClientEntity })
   @ApiResponse({ status: 200, description: 'Update a client.' })
@@ -115,6 +120,7 @@ export class ClientController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiParam({ name: 'id', description: 'Client ID', type: Number })
   @ApiResponse({ status: 200, description: 'Delete a client.' })
   async deleteClient(@Param('id') id: number): Promise<ClientEntity> {
@@ -123,6 +129,7 @@ export class ClientController {
 
   // ARCHIVOS
   @Post('upload-pdf/:clientId/:pdfType')
+  @ApiOperation({ summary: 'OPERATIVO' })
   @UseInterceptors(FileInterceptor('pdf'))
   @ApiConsumes('multipart/form-data')
   @ApiBody({
@@ -162,44 +169,8 @@ export class ClientController {
     }
   }
 
-  @Post('upload')
-  @UseInterceptors(FileInterceptor('file'))
-  @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    description: 'Upload PDF file',
-    type: 'multipart/form-data',
-    schema: {
-      type: 'object',
-      properties: {
-        file: {
-          type: 'string',
-          format: 'binary',
-        },
-      },
-    },
-  })
-  uploadFile(
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [new FileTypeValidator({ fileType: 'image/jpeg' })],
-      }),
-    )
-    file: Express.Multer.File,
-  ) {
-    console.log(file);
-  }
   // Por ejemplo, para guardar la ruta en la entidad ClientEntity
   // const client = await this.clientService.findById(clientId);
-
-  // if (client) {
-  //   // Actualiza el campo 'pdf' de la entidad para almacenar objetos con typePdf y path
-  //   if (!client.pdf) {
-  //     client.pdf = []; // Inicializa la lista si está vacía
-  //   }
-
-  //   client.pdf.push({ typePdf: pdfType, path: pdfPath });
-  //   // await client.save();
-  // }
 
   // @Post('upload-pdfs')
   // @UseInterceptors(
