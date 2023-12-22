@@ -7,6 +7,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ClientEntity } from './client.entity';
 import { Repository } from 'typeorm';
 import { validate } from 'class-validator';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { extname } from 'path';
 // import * as fs from 'fs';
 // import * as path from 'path';
 
@@ -129,6 +131,48 @@ export class ClientService {
       throw new BadRequestException(
         'El ID de ClientEntity proporcionado no existe',
       );
+    }
+  }
+
+  async handleFileUpload(
+    pdf: Express.Multer.File,
+    clientId: number,
+    pdfType: string,
+  ) {
+    try {
+      const client = await this.clientRepository.findOne({
+        where: { id: clientId },
+      });
+
+      if (!client) {
+        throw new BadRequestException(
+          'El ID de ClientEntity proporcionado no existe.' + clientId,
+        );
+      }
+
+      const folderPath = `./public/clients/${clientId}`;
+      const uniqueSuffix = `${Date.now()}-${pdfType}`;
+      const extension = extname(pdf.originalname);
+
+      if (!existsSync(folderPath)) {
+        mkdirSync(folderPath, { recursive: true });
+      }
+
+      const fileName = `${uniqueSuffix}${extension}`;
+      const filePath = `${folderPath}/${fileName}`;
+
+      writeFileSync(filePath, pdf.buffer);
+
+      return {
+        success: true,
+        filePath,
+        fileName,
+      };
+    } catch (error) {
+      throw new BadRequestException({
+        success: false,
+        message: error.message || 'Ha ocurrido un error al manejar el archivo.',
+      });
     }
   }
 
