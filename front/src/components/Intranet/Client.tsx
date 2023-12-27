@@ -2,84 +2,9 @@ import React, { useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom' 
 import { MdSwitchLeft, MdSwitchRight } from "react-icons/md";
 import { FaIdCard, FaMailBulk, FaMapMarkerAlt, FaPhoneAlt, FaRegFilePdf, FaRegFolderOpen } from "react-icons/fa";
-export const clients = [
-  {
-      name: 'lexx',
-      email: 'lexx@gmail.com',
-      address: 'asfasff asfsafasfsaf asfsafsafas asfagasgas asgaga 4242412 asfafssaf',
-      phone1: '112223344455667788',
-      phone2: '112223344455667788',
-      id: 1
-  },
-  {
-    name: 'naria',
-    id: 2
-},
-{
-  name: 'jose',
-  id: 3
-},
-{
-name: 'juan',
-id: 4
-},
-{
-name: 'pero',
-id: 5
-},
-{
-name: 'mariangel',
-id: 6
-},
-{
-name: 'lexx',
-id: 7
-},
-{
-name: 'naria',
-id: 8
+import useClients from '../../hooks/useClients';
+import { DotLoader } from 'react-spinners';
 
-},
-{
-name: 'jose',
-id: 9
-},
-{
-name: 'juan',
-id: 10
-
-},
-{
-name: 'pero',
-id: 11
-
-},
-{
-name: 'mariangel',
-id: 12
-},
-{
-name: 'lexx',
-id: 13
-},
-{
-name: 'naria',
-id: 14
-},
-{
-name: 'jose',
-id: 15
-},
-{
-name: 'juan',
-id: 16
-
-},
-{
-name: 'pero',
-id: 17
-},
-]
 
 const documents = [
   'Pasapporte',
@@ -92,10 +17,16 @@ const documents = [
 ]
 
 const Client = () => {
+  const { getClient } = useClients()
   const navigate = useNavigate()
   const [side, setSide] = useState(true)
   const { id } = useParams()
-  const client = clients.find(client => Number(client.id) === Number(id))
+  const { data, isLoading, isError } = getClient(Number(id))
+  // const client = clients.find(client => Number(client.id) === Number(id))
+  // const client = list.data?.find((item: any) => item.id === id)
+  // console.log('list.data', list.data?.[0])
+
+  // console.log('client', client)
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -114,6 +45,24 @@ const Client = () => {
   };
 
   const handlePaymentRedirection = () => navigate('/intranet/account/' + id)
+
+  if (isLoading) {
+    return (
+      <div className='flex h-full justify-center items-center'>
+        <DotLoader
+          color='#6C6798'
+          size={100}
+        />
+      </div>
+    )
+  } 
+  
+  if (isError) return(
+    <div className='flex flex-col h-full justify-center items-center'>
+      <p>Algo malo paso...</p>
+      <p>Intenta Nuevamente</p>
+    </div>
+  )
   
   return (
     <div className='relative h-full flex flex-nowrap'>
@@ -127,7 +76,7 @@ const Client = () => {
       `}>
         <div className='text-center flex flex-col gap-2 mt-4'>
           <h1>Tramite Solicitado por Jennyfer-xilcatservicios</h1>
-          <p className='font-semibold md:text-xl lg:text-3xl'>Ficha Cliente {client?.name}</p>
+          <p className='font-semibold md:text-xl lg:text-3xl'>Ficha Cliente {data?.name}</p>
         </div>
         <div className='
           flex-1 flex flex-col gap-4 py-4 px-8 mt-2 
@@ -135,39 +84,40 @@ const Client = () => {
           lg:mt-8 lg:gap-8'>
           <div className='flex gap-2 items-center md:text-xl lg:text-2xl font-bold'>
             <FaIdCard />
-            <p>Nombre: <span className='text-cs-purple font-normal'>{client?.name}</span></p>
+            <p>Nombre: <span className='text-cs-purple font-normal'>{data?.name}</span></p>
           </div>
           <div className='flex gap-2 items-center md:text-xl lg:text-2xl font-bold'>
           <FaMailBulk />
-            <p>Email: <span className='text-cs-purple font-normal'>{client?.email}</span></p>
+            <p>Email: <span className='text-cs-purple font-normal'>{data?.email}</span></p>
           </div>
           <div className='flex gap-2 items-center md:text-xl lg:text-2xl font-bold'>
           <FaMapMarkerAlt />
-            <p>Direccion: <span className='text-cs-purple font-normal'>{client?.address}</span></p>
+            <p>Direccion: <span className='text-cs-purple font-normal'>{data?.address}</span></p>
           </div>
           <div className='flex gap-2 items-center md:text-xl lg:text-2xl font-bold'>
           <FaPhoneAlt />
-            <p>Telefono Principal: <span className='text-cs-purple font-normal'>{client?.phone1}</span></p>
+            <p>Telefono Principal: <span className='text-cs-purple font-normal'>{data?.mainPhone}</span></p>
           </div>
           <div className='flex gap-2 items-center md:text-xl lg:text-2xl font-bold'>
           <FaPhoneAlt />
-            <p>Telefono Secundario: <span className='text-cs-purple font-normal'>{client?.phone2}</span></p>
+            <p>Telefono Secundario: <span className='text-cs-purple font-normal'>{data?.phone2 || 'N/A'}</span></p>
           </div>
         </div>
         <div className='mb-20 w-[80%] mr-4 self-end p-2 rounded shadow shadow-cs-purple/50 md:w-[60%] lg:w-[70%]'>
           <p className='font-semibold md:text-xl lg:text-2xl'>
           Tramite a realizar:
           {' '}
-          <span className='font-normal text-red-500'>Asilo</span>
+          <span className='font-normal text-red-500'>{data?.tramiteType}</span>
           </p>
           <p className='font-semibold md:text-xl lg:text-2xl'>
             Precio Tramitacion
             {' '}
-          <span className='font-normal text-red-500'>287$</span>
+          <span className='font-normal text-red-500'>{data?.priceQuote} €</span>
           </p>
         </div>
       </div>
       <div className={`
+      mr-4
       bg-white h-full ${side ? 'flex-0 w-0 opacity-0' : 'flex-1 w-full opacity-100'} transition-all  duration-300 ease-in flex flex-col
       lg:flex-1 lg:w-full lg:opacity-100
       `}>
@@ -185,7 +135,7 @@ const Client = () => {
                 <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
             </div>
           </div>
-          <div className='flex-1 grid grid-cols-2 place-items-center overflow-auto auto-rows-[60px] border my-2 shadow gap-2 md:grid-cols-3 lg:grid-cols-2'>
+          <div className='flex-1 grid grid-cols-2 place-items-center overflow-auto auto-rows-[60px] border my-2 px-2 shadow gap-2 md:grid-cols-3 lg:grid-cols-2'>
             <p className='col-span-2 text-center md:col-span-3 lg:col-span-2'>documentos a adjuntar</p>
               {
                 documents.map(document => (

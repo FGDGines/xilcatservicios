@@ -1,9 +1,12 @@
 import { StateCreator } from "zustand";
 
+type TEvents = 'event' | 'cookie' | 'addclient' | ''
+
 type TModal = {
     state: boolean,
-    type: string,
-    id?: number
+    type: TEvents ,
+    id?: number,
+    params?: any
 }
 
 export type ModalState = {

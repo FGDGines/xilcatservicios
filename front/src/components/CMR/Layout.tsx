@@ -71,7 +71,7 @@ const Layout = ({Component}: { Component: any}) => {
             }} /> */}
           </div>
           <div className='flex flex-col items-center gap-2'>
-            <p className='text-xl md:text-3xl lg:text-6xl mt-4 lg:mt-2'>Intranet XilcatServicios</p>
+            <a className='text-xl md:text-3xl lg:text-6xl mt-4 lg:mt-2' href='/intranet/main'>Intranet XilcatServicios</a>
             <p className='text-xl mt-8 md:text-2xl lg:text-4xl lg:mt-0'>{setDescriptionName()}</p>
           </div>
           <div className='flex flex-col justify-around items-center text-5xl lg:flex-row lg:text-4xl'>

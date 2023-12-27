@@ -2,6 +2,8 @@ import React from 'react'
 import { LuCookie } from "react-icons/lu";
 import { useStore } from '../../store';
 import { Cookie } from './Cookie';
+import Event from './Event';
+import AddClient from './AddClient';
 
 const Modal = ({
   // width,
@@ -20,6 +22,12 @@ const Modal = ({
         <div>
           {
             modal.type === 'cookie' && <Cookie />
+          }
+          {
+            modal.type === 'event' && <Event />
+          }
+          {
+            modal.type === 'addclient' && <AddClient />
           }
         </div>
       </div>

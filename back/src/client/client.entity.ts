@@ -25,7 +25,7 @@ import {
 import { AuthEntity } from 'src/auth/auth.entity';
 // import { PDFEntity } from 'src/pdf/pdf.entity';
 
-type PaymentStatus = 'PENDING' | 'PAID';
+type PaymentStatus = 'PENDING' | 'PAID' | 'NONE';
 type TramiteType = 'TYPE1' | 'TYPE2' | 'TYPE3' | 'TYPE4';
 
 @Entity()
@@ -66,14 +66,14 @@ export class ClientEntity {
 
   @Column({ nullable: true })
   @IsNumber()
-  @IsPositive({ message: 'El precio cotizado debe ser un número positivo' })
-  @Min(100, { message: 'El precio cotizado debe ser mayor que 100' })
+  // @IsPositive({ message: 'El precio cotizado debe ser un número positivo' })
+  // @Min(100, { message: 'El precio cotizado debe ser mayor que 100' })
   priceQuote: number;
 
   @Column({ nullable: true })
   @IsNumber()
-  @IsPositive({ message: 'El precio debe ser un número positivo' })
-  @Min(100, { message: 'El precio debe ser mayor que 100' })
+  // @IsPositive({ message: 'El precio debe ser un número positivo' })
+  // @Min(100, { message: 'El precio debe ser mayor que 100' })
   price: number;
 
   @Column({ type: 'simple-array', nullable: true })
@@ -86,8 +86,8 @@ export class ClientEntity {
   tramiteType: TramiteType;
 
   @Column({ default: 'PENDING' })
-  @IsIn(['PENDING', 'PAID'] as PaymentStatus[], {
-    message: 'El estado de pago es inválido - PENDING, PAID',
+  @IsIn(['PENDING', 'PAID', 'NONE'] as PaymentStatus[], {
+    message: 'El estado de pago es inválido - PENDING, PAID, NONE',
   })
   paymentStatus: PaymentStatus;
 

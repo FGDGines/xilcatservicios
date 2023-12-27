@@ -16,7 +16,7 @@ const Icon = ({ Icon, text, url, errorMsg }: TIcon) => {
     navigate(url)
   }
   return (
-      <div className='flex flex-col items-center hover:text-cs-purple-light' onClick={handleRedirect}>
+      <div className='flex flex-col items-center hover:text-cs-purple-light transition-colors' onClick={handleRedirect}>
         {Icon}
         <p className='text-sm'>{text}</p>
     </div>
