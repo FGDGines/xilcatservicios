@@ -2,10 +2,11 @@ import { get } from "./get";
 import  post  from './post'
 import getById from "./getById";
 import { QueryFunctionContext } from "react-query";
+import { TClient } from "../../types/client";
 
 type TClientServices = {
-    getById: (ctx: QueryFunctionContext) => void
-    get: () => void
+    getById: (ctx: QueryFunctionContext) => Promise<TClient>
+    get: () => Promise<TClient[]>
     post: any
 }
 

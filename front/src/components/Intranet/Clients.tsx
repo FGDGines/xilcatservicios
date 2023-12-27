@@ -4,31 +4,19 @@ import { useStore } from '../../store'
 import { DotLoader } from 'react-spinners'
 import AddClientBtn from '../CMR/AddClientBtn'
 import useClients from '../../hooks/useClients'
+import Loader from '../Common/Loader'
+import Error from '../Common/Error'
 
 
 const Clients = () => {
   const { list: { isLoading, data, isError }} = useClients()
   const { setModal } = useStore()
-  const clients: any[] = []
 
-  if (isLoading) {
-    return (
-      <div className='flex h-full justify-center items-center'>
-        <DotLoader
-          color='#6C6798'
-          size={100}
-        />
-      </div>
-    )
-  } 
+  if (isLoading) return <Loader />
   
-  if (isError) return(
-    <div className='flex flex-col h-full justify-center items-center'>
-      <p>Algo malo paso...</p>
-      <p>Intenta Nuevamente</p>
-    </div>
-  )
-  if (data.length <= 0) {
+  if (isError) return <Error />
+
+  if ( data && data?.length <= 0) {
     return (
       <div className='flex flex-col h-full justify-center items-center'>
         <div className='flex justify-center items-center flex-1'>
@@ -52,7 +40,7 @@ const Clients = () => {
       '>
       {/* I need to change the any type in client */}
       {
-        data.length > 0 && data.map((client: any) => (
+        data && data.length > 0 && data.map((client: any) => (
           <ClientIcon client={client} key={client.id} />
         ))
       }

@@ -15,7 +15,6 @@ type Inputs = {
 const AddClient = () => {
   const { add } = useClients()
     const {closeModal} = useStore()
-    const formRef  = useRef()
     const {
         register,
         handleSubmit,
@@ -40,11 +39,9 @@ const AddClient = () => {
             const messages = error.response.data.message
 
             messages.forEach((item: any) => {
-                // const key = Object.keys(item.constraints)[0]
                 toast.error(item)
               })
         }
-        // if (res.)
       }
 
   return (

@@ -1,15 +1,14 @@
 import React from 'react'
 import { useQueryClient, useQuery, useMutation } from 'react-query'
 import clients from '../services/clients'
+import { TClient } from '../types/client'
 
 const useClients = () => {
     const queryClient = useQueryClient()
     
-    {/* I need to change the any type in useQUey */}
-    const list = useQuery<any, any>('clients', clients.get)
+    const list = useQuery<TClient[], any>('clients', clients.get)
 
-    const getClient = (id:number) => useQuery<any, any>(['clients', id], clients.getById)
-
+    const getClient = (id:number) => useQuery<TClient, any>(['clients', id], clients.getById)
 
     const add = useMutation<any, any, any>({
         mutationFn: clients.post,
