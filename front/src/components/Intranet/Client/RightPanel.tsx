@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { FaRegFilePdf, FaRegFolderOpen } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { TClient } from '../../../types/client'
+import { useStore } from '../../../store'
 
 type TProps = {
     side: boolean,
@@ -21,6 +22,7 @@ const documents = [
 
 const RightPanel = ({ side, id, data }: TProps) => {
     const navigate = useNavigate()
+    const { setModal } = useStore()
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -40,13 +42,19 @@ const RightPanel = ({ side, id, data }: TProps) => {
 
     const handlePaymentRedirection = () => navigate('/intranet/account/' + id)
 
+    const handlePaymentAction = () => {
+      if (data?.paymentStatus !== 'PAID') return
+      setModal({ type: 'closeProcedure' })
+      console.log('action')
+    }
+
   return (
     <div className={`
     mr-4
     bg-white h-full ${side ? 'flex-0 w-0 opacity-0' : 'flex-1 w-full opacity-100'} transition-all  duration-300 ease-in flex flex-col
     lg:flex-1 lg:w-full lg:opacity-100
     `}>
-        <div className='basis-1/5 flex border shadow items-center my-2'>
+        <div className='basis-1/5 flex border rounded shadow items-center my-2'>
           <div className='flex-1 flex justify-center items-center gap-2 md:text-xl lg:text-2xl'>
             <p>
               Datos Adjuntos
@@ -69,7 +77,7 @@ const RightPanel = ({ side, id, data }: TProps) => {
         }
         {
           data?.tramiteType !== 'TYPE1' && (
-          <div className='flex-1 grid grid-cols-2 place-items-center overflow-auto auto-rows-[60px] border my-2 px-2 shadow gap-2 md:grid-cols-3 lg:grid-cols-2'>
+          <div className='flex-1 grid grid-cols-2 place-items-center overflow-auto auto-rows-[60px] border rounded my-2 px-2 shadow gap-2 md:grid-cols-3 lg:grid-cols-2'>
             <p className='col-span-2 text-center capitalize md:col-span-3 lg:col-span-2 md:text-xl lg:text-2xl'>documentos a adjuntar</p>
               {
                 documents.map(document => (
@@ -82,7 +90,10 @@ const RightPanel = ({ side, id, data }: TProps) => {
           </div>
           )
         }
-      <div className='basis-1/12 border my-2 shadow flex items-center justify-center'>
+      <div
+        className={`basis-1/12 border rounded my-2 shadow flex items-center justify-center ${data?.paymentStatus === 'PAID' && 'bg-green-300 hover:cursos-pointer hover:-translate-x-px hover:-translate-y-px'}`}
+        onClick={handlePaymentAction}  
+      >
         <p className='md:text-xl lg:text-3xl'>
           Verificar pagos:
           {' '}

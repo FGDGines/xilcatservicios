@@ -6,7 +6,7 @@ const AddClientBtn = () => {
   const { setModal } = useStore()
   return (
     <div className='flex justify-center items-center h-full w-full text-6xl text-cs-purple'
-    onClick={() => setModal({ state: true, type: 'addclient' })}
+    onClick={() => setModal({ type: 'addclient' })}
     >
         <FaPlus />
     </div>

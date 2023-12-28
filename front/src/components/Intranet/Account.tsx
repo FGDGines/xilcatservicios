@@ -36,7 +36,7 @@ const Account = () => {
       `}>
         <Calendar
           selectable
-          onSelectSlot={(e) => {setModal({ state: true, type: 'event', params: { start: e.start, end: e.end, type: 'account' }}); console.log('eee', e)}}
+          onSelectSlot={(e) => {setModal({ type: 'event', params: { start: e.start, end: e.end, type: 'account' }}); console.log('eee', e)}}
           localizer={localizer}
           defaultDate={new Date()}
           defaultView='month'

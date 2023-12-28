@@ -24,7 +24,7 @@ const useClients = () => {
         }
     })
 
-    const update = useMutation<any, any, any>({
+    const update = useMutation<any, any,{ data:Partial<TClient>, id: number }>({
         mutationFn: clients.update,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['clients']})

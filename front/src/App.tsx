@@ -94,7 +94,7 @@ function App() {
     const hasCookies = cookies.some((cookie) => cookie.split('=')[0].trim() === 'areAccepted')
 
     if (hasCookies) return
-    setModal({ state: true, type: 'cookie' })
+    setModal({ type: 'cookie' })
   }, [document.cookie])
 
 

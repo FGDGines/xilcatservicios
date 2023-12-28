@@ -85,7 +85,7 @@ const LeftPanel = ({ data, side }:TProps) => {
                 lg:w-[70%]
                 hover:-translate-x-2 hover:-translate-y-2 transition-all hover:bg-cs-purple hover:text-white
                 '
-                onClick={() => setModal({ state: true, type: 'addProcedure', id: Number(data.id)})}
+                onClick={() => setModal({ type: 'addProcedure', id: Number(data.id)})}
                 >
                 <p>Gestiona un tramite</p>
               </div>

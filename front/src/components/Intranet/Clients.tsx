@@ -24,7 +24,7 @@ const Clients = () => {
           border rounded shadow px-6 py-2
           hover:-translate-x-2 hover:-translate-y-2 transition-all hover:bg-cs-purple hover:text-white
         '
-        onClick={() => setModal({ state: true, type: 'addclient' })}
+        onClick={() => setModal({ type: 'addclient' })}
         >
           No hay clientes, Agregue uno
         </button>
