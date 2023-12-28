@@ -17,10 +17,26 @@ const useClients = () => {
         }
     })
 
+    const erase = useMutation<any, any, any>({
+        mutationFn: clients.erase,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['clients']})
+        }
+    })
+
+    const update = useMutation<any, any, any>({
+        mutationFn: clients.update,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['clients']})
+        }
+    })
+
     return {
         list,
         add,
-        getClient
+        erase,
+        update,
+        getClient,
     }
 }
 

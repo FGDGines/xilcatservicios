@@ -4,14 +4,21 @@ import { useStore } from '../../store';
 import { Cookie } from './Cookie';
 import Event from './Event';
 import AddClient from './AddClient';
+import AddProcedure from './AddProcedure';
 
-const Modal = ({
-  // width,
-  // height,
-}: {
-  // width: string,
-  // height: string,
-}) => {
+type TComponents = {
+  [idx: string]: JSX.Element
+}
+
+const Components: TComponents = {
+  cookie: <Cookie />,
+  event: <Event />,
+  addclient: <AddClient />,
+  addProcedure: <AddProcedure />
+}
+
+
+const Modal = () => {
   const { setModal, modal } = useStore()
   return (
     <div className='fixed top-0 z-50 h-screen w-screen flex justify-center items-center backdrop-blur-md'>
@@ -20,15 +27,7 @@ const Modal = ({
           <button onClick={() => setModal({ state: false, type: ''})} >X</button>
         </div>
         <div>
-          {
-            modal.type === 'cookie' && <Cookie />
-          }
-          {
-            modal.type === 'event' && <Event />
-          }
-          {
-            modal.type === 'addclient' && <AddClient />
-          }
+          { Components[modal.type] }
         </div>
       </div>
     </div>

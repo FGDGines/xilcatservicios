@@ -1,6 +1,6 @@
 import { StateCreator } from "zustand";
 
-type TEvents = 'event' | 'cookie' | 'addclient' | ''
+type TEvents = 'event' | 'cookie' | 'addclient' | 'addProcedure' | ''
 
 type TModal = {
     state: boolean,
