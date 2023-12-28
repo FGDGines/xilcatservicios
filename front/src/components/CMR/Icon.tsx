@@ -7,12 +7,14 @@ type TIcon = {
   text: string
   url: string
   errorMsg?: string
+  action?: any
 }
 
-const Icon = ({ Icon, text, url, errorMsg }: TIcon) => {
+const Icon = ({ Icon, text, url, errorMsg, action }: TIcon) => {
   const navigate = useNavigate()
   const handleRedirect = () => {
     if (errorMsg) return toast.error(errorMsg)
+    if (action) return action()
     navigate(url)
   }
   return (

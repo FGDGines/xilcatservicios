@@ -2,26 +2,33 @@ import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaLock, FaLockOpen } from "react-icons/fa";
 import { useAuthProvider } from '../../hooks/useAuthProvider';
-import { redirect } from 'react-router-dom';
+// import { redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 type Inputs = {
-  user: string;
+  username: string;
   password: string
 }
 
 const Login = () => {
+  const navigate = useNavigate()
   const [showPass, setShowPass] = useState(false)
   const {
     register,
     handleSubmit,
-    reset
   } = useForm<Inputs>()
-  const { signin, isAuthenticated } = useAuthProvider()
+  const { signin } = useAuthProvider()
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data)
-    const res = await signin(data.user)
-    console.log('res', isAuthenticated)
-    return redirect('/intranet/main')
+    try {
+      const res = await signin(data)
+      console.log('res', res)
+      return navigate('/intranet/main')
+
+    } catch (error: any) {
+      const messages = error.response.data.message
+      messages.forEach((msg: string) => toast.error(msg))
+    }
   }
   return (
     <div className='bg-cs-purple h-screen flex justify-center items-center'>
@@ -30,7 +37,7 @@ const Login = () => {
         >
             <div className='flex flex-col justify-center w-[90%] h-full gap-2'>
                 <label htmlFor="" className='text-xl text-cs-purple font-semibold'>Usuario</label>
-                <input type="text" className='border border-cs-purple px-4 py-4 outline-none rounded-md focus:border-blue-500 text-lg' {...register('user')} />
+                <input type="text" className='border border-cs-purple px-4 py-4 outline-none rounded-md focus:border-blue-500 text-lg' {...register('username')} />
             </div>
             <div className='relative flex flex-col w-[90%] h-full gap-2'>
                 <label htmlFor="" className='text-xl text-cs-purple font-semibold'>Contraseña</label>

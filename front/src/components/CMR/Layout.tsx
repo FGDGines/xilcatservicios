@@ -7,8 +7,9 @@ import { IoIosMail } from "react-icons/io";
 import Icon from './Icon';
 import Logo from '../../assets/Logo_white.png'
 import { useDeviceSize } from '../../hooks/Responsive';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAuthProvider } from '../../hooks/useAuthProvider';
 
 const links = [
   {
@@ -31,9 +32,11 @@ const links = [
 
 const Layout = ({Component}: { Component: any}) => {
   const location = useLocation()
+  const navigate = useNavigate()
   const { isDesktop } = useDeviceSize()
   const [isHidden, setIsHidden] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
+  const {signout } = useAuthProvider()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -58,6 +61,11 @@ const Layout = ({Component}: { Component: any}) => {
     } else {
       return type === 'url' ? '' : 'Selecciona un cliente primero'
     }
+  }
+
+  const handleSignOut = () => {
+    signout()
+    navigate('/intranet/login')
   }
 
   return (
@@ -108,7 +116,7 @@ const Layout = ({Component}: { Component: any}) => {
             {
               isDesktop && (
                 <>
-                <Icon Icon={<FaSignOutAlt />} text="Salir" url=''/>
+                <Icon Icon={<FaSignOutAlt />} text="Salir" url='' action={handleSignOut}/>
                 <Icon Icon={<LuMessagesSquare />} text="Chat" url='' />
                 <Icon  Icon={<LuUserCircle />} text="Usuario" url='' />
                 </>

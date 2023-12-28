@@ -10,6 +10,21 @@ import {
 import Politics from "./pages/Politics";
 import Legal from "./pages/Legal";
 import Cookies from "./pages/Cookies";
+import { I18nextProvider } from 'react-i18next';
+import {
+  QueryClient,
+  QueryClientProvider
+} from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+import i18n from './language/i18n';
+import Toast from "./components/Toast";
+import Blog from "./pages/Blog";
+import Login from "./components/Intranet/Login";
+import Layout from "./components/CMR/Layout";
+import Main from "./components/Intranet/Main";
+import Clients from "./components/Intranet/Clients";
+import Client from "./components/Intranet/Client";
+import Account from "./components/Intranet/Account";
 import ProtectedLoader from './pages/Intranet/ProtectedLoader'
 
 const router = createBrowserRouter([
@@ -46,43 +61,27 @@ const router = createBrowserRouter([
       {
         path: 'main',
         element: <Layout Component={Main} />,
-        // loader: ProtectedLoader
+        loader: ProtectedLoader
       },
       {
         path: 'clients',
         element: <Layout Component={Clients} />,
-        // loader: ProtectedLoader
+        loader: ProtectedLoader
       },
       {
         path: 'client/:id',
         element: <Layout Component={Client} />,
-        // loader: ProtectedLoader
+        loader: ProtectedLoader
       },
       {
         path: 'account/:id',
         element: <Layout Component={Account} />,
-        // loader: ProtectedLoader
+        loader: ProtectedLoader
       }
     ]
   }
 ])
-import { I18nextProvider } from 'react-i18next';
-import {
-  QueryClient,
-  QueryClientProvider
-} from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
-import i18n from './language/i18n';
-import Toast from "./components/Toast";
-import { ToastContainer } from "react-toastify";
-import Blog from "./pages/Blog";
-import Intranet from "./pages/Intranet";
-import Login from "./components/Intranet/Login";
-import Layout from "./components/CMR/Layout";
-import Main from "./components/Intranet/Main";
-import Clients from "./components/Intranet/Clients";
-import Client from "./components/Intranet/Client";
-import Account from "./components/Intranet/Account";
+
 
 const queryClient = new QueryClient()
 
