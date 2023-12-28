@@ -38,7 +38,7 @@ const AddProcedure = () => {
     }
 
     const handleClick = () => {
-      update.mutate({data: { tramiteType: option.value, priceQuote: price, price }, id: Number(modal.id) })
+      update.mutate({data: { tramiteType: option.value, priceQuote: price, price, paymentStatus: 'PENDING'  }, id: Number(modal.id) })
       toast.success('Agregado un nuevo tramite')
     }
   return (
