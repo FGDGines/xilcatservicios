@@ -10,6 +10,21 @@ import {
 import Politics from "./pages/Politics";
 import Legal from "./pages/Legal";
 import Cookies from "./pages/Cookies";
+import { I18nextProvider } from 'react-i18next';
+import {
+  QueryClient,
+  QueryClientProvider
+} from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+import i18n from './language/i18n';
+import Toast from "./components/Toast";
+import Blog from "./pages/Blog";
+import Login from "./components/Intranet/Login";
+import Layout from "./components/CMR/Layout";
+import Main from "./components/Intranet/Main";
+import Clients from "./components/Intranet/Clients";
+import Client from "./components/Intranet/Client";
+import Account from "./components/Intranet/Account";
 import ProtectedLoader from './pages/Intranet/ProtectedLoader'
 
 const router = createBrowserRouter([
@@ -46,41 +61,32 @@ const router = createBrowserRouter([
       {
         path: 'main',
         element: <Layout Component={Main} />,
-        // loader: ProtectedLoader
+        loader: ProtectedLoader
       },
       {
         path: 'clients',
         element: <Layout Component={Clients} />,
-        // loader: ProtectedLoader
+        loader: ProtectedLoader
       },
       {
         path: 'client/:id',
         element: <Layout Component={Client} />,
-        // loader: ProtectedLoader
+        loader: ProtectedLoader
       },
       {
         path: 'account/:id',
         element: <Layout Component={Account} />,
-        // loader: ProtectedLoader
+        loader: ProtectedLoader
       }
     ]
   }
 ])
-import { I18nextProvider } from 'react-i18next';
-import i18n from './language/i18n';
-import Toast from "./components/Toast";
-import { ToastContainer } from "react-toastify";
-import Blog from "./pages/Blog";
-import Intranet from "./pages/Intranet";
-import Login from "./components/Intranet/Login";
-import Layout from "./components/CMR/Layout";
-import Main from "./components/Intranet/Main";
-import Clients from "./components/Intranet/Clients";
-import Client from "./components/Intranet/Client";
-import Account from "./components/Intranet/Account";
+
+
+const queryClient = new QueryClient()
 
 function App() {
-  const { modal, setModal, toast } = useStore()
+  const { modal, setModal } = useStore()
 
   useEffect(() => {
     const cookies = document.cookie.split(';')
@@ -88,18 +94,21 @@ function App() {
     const hasCookies = cookies.some((cookie) => cookie.split('=')[0].trim() === 'areAccepted')
 
     if (hasCookies) return
-    setModal({ state: true, type: 'cookie' })
+    setModal({ type: 'cookie' })
   }, [document.cookie])
 
 
   return (
     <div className="relative">
       <I18nextProvider i18n={i18n}>
-        <RouterProvider router={router} />
-        {
-          modal.state && <Modal />
-        }
-        <Toast />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          {
+            modal.state && <Modal />
+          }
+          <Toast />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </I18nextProvider>
       
     </div>

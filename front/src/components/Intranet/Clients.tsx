@@ -1,94 +1,50 @@
 import React from 'react'
 import ClientIcon from '../CMR/ClientIcon'
-import AddClient from '../CMR/AddClient'
+import { useStore } from '../../store'
+import { DotLoader } from 'react-spinners'
+import AddClientBtn from '../CMR/AddClientBtn'
+import useClients from '../../hooks/useClients'
+import Loader from '../Common/Loader'
+import Error from '../Common/Error'
 
-export const clients = [
-    {
-        name: 'lexx',
-        id: 1
-    },
-    {
-      name: 'naria',
-      id: 2
-  },
-  {
-    name: 'jose',
-    id: 3
-},
-{
-  name: 'juan',
-  id: 4
-},
-{
-  name: 'pero',
-  id: 5
-},
-{
-  name: 'mariangel',
-  id: 6
-},
-{
-  name: 'lexx',
-  id: 7
-},
-{
-name: 'naria',
-id: 8
-
-},
-{
-name: 'jose',
-id: 9
-},
-{
-name: 'juan',
-id: 10
-
-},
-{
-name: 'pero',
-id: 11
-
-},
-{
-name: 'mariangel',
-id: 12
-},
-{
-  name: 'lexx',
-  id: 13
-},
-{
-name: 'naria',
-id: 14
-},
-{
-name: 'jose',
-id: 15
-},
-{
-name: 'juan',
-id: 16
-
-},
-{
-name: 'pero',
-id: 17
-},
-]
 
 const Clients = () => {
+  const { list: { isLoading, data, isError }} = useClients()
+  const { setModal } = useStore()
+
+  if (isLoading) return <Loader />
+  
+  if (isError) return <Error />
+
+  if ( data && data?.length <= 0) {
+    return (
+      <div className='flex flex-col h-full justify-center items-center'>
+        <div className='flex justify-center items-center flex-1'>
+          <button className='
+          border rounded shadow px-6 py-2
+          hover:-translate-x-2 hover:-translate-y-2 transition-all hover:bg-cs-purple hover:text-white
+        '
+        onClick={() => setModal({ type: 'addclient' })}
+        >
+          No hay clientes, Agregue uno
+        </button>
+        </div>
+      </div>
+    )
+  }
   return (
     <div className='
       h-full grid grid-cols-2 px-4 py-2 auto-rows-[150px] gap-4
       md:grid-cols-4
       lg:grid-cols-6
-      '>{
-      clients.map(client => (
-        <ClientIcon client={client} key={client.id} />
-      ))
-    }
-    <AddClient />
+      '>
+      {/* I need to change the any type in client */}
+      {
+        data && data.length > 0 && data.map((client: any) => (
+          <ClientIcon client={client} key={client.id} />
+        ))
+      }
+    <AddClientBtn />
     </div>
   )
 }

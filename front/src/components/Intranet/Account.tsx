@@ -2,8 +2,26 @@ import React, { useState } from 'react'
 import { FaIdCard, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa'
 import { MdSwitchLeft, MdSwitchRight } from 'react-icons/md'
 import { useParams } from 'react-router-dom'
+import { Calendar, momentLocalizer} from 'react-big-calendar'
+import moment from 'moment'
+
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import { useStore } from '../../store'
+
+const localizer = momentLocalizer(moment)
+
+const events = [
+  {
+    start: moment().toDate(),
+    end: moment()
+      .add(1, "days")
+      .toDate(),
+    title: "Some title"
+  }
+]
 
 const Account = () => {
+  const { setModal, event} = useStore()
   const [side, setSide] = useState(true)
 
   const {id} = useParams()
@@ -16,7 +34,18 @@ const Account = () => {
       bg-white h-full ${side ? 'flex-1 w-full' : 'flex-0 w-0'} transition-all duration-300 ease-in flex flex-col
       lg:flex-1 lg:w-full
       `}>
-        Calendar
+        <Calendar
+          selectable
+          onSelectSlot={(e) => {setModal({ type: 'event', params: { start: e.start, end: e.end, type: 'account' }}); console.log('eee', e)}}
+          localizer={localizer}
+          defaultDate={new Date()}
+          defaultView='month'
+          events={event.account}
+          style={{
+            height: '100%',
+            width: '100%'
+          }}
+        />
       </div>
       <div className={`
       bg-white h-full ${side ? 'flex-0 w-0' : 'flex-1 w-full'} transition-all  duration-300 ease-in flex flex-col

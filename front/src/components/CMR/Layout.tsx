@@ -7,8 +7,9 @@ import { IoIosMail } from "react-icons/io";
 import Icon from './Icon';
 import Logo from '../../assets/Logo_white.png'
 import { useDeviceSize } from '../../hooks/Responsive';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAuthProvider } from '../../hooks/useAuthProvider';
 
 const links = [
   {
@@ -31,9 +32,11 @@ const links = [
 
 const Layout = ({Component}: { Component: any}) => {
   const location = useLocation()
+  const navigate = useNavigate()
   const { isDesktop } = useDeviceSize()
   const [isHidden, setIsHidden] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
+  const {signout } = useAuthProvider()
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -60,6 +63,11 @@ const Layout = ({Component}: { Component: any}) => {
     }
   }
 
+  const handleSignOut = () => {
+    signout()
+    navigate('/intranet/login')
+  }
+
   return (
     <div className='h-screen grid grid-cols-1 grid-rows-6 lg:grid-cols-[10%_1fr] text-white'>
         {/* Header  */}
@@ -71,7 +79,7 @@ const Layout = ({Component}: { Component: any}) => {
             }} /> */}
           </div>
           <div className='flex flex-col items-center gap-2'>
-            <p className='text-xl md:text-3xl lg:text-6xl mt-4 lg:mt-2'>Intranet XilcatServicios</p>
+            <a className='text-xl md:text-3xl lg:text-6xl mt-4 lg:mt-2' href='/intranet/main'>Intranet XilcatServicios</a>
             <p className='text-xl mt-8 md:text-2xl lg:text-4xl lg:mt-0'>{setDescriptionName()}</p>
           </div>
           <div className='flex flex-col justify-around items-center text-5xl lg:flex-row lg:text-4xl'>
@@ -108,7 +116,7 @@ const Layout = ({Component}: { Component: any}) => {
             {
               isDesktop && (
                 <>
-                <Icon Icon={<FaSignOutAlt />} text="Salir" url=''/>
+                <Icon Icon={<FaSignOutAlt />} text="Salir" url='' action={handleSignOut}/>
                 <Icon Icon={<LuMessagesSquare />} text="Chat" url='' />
                 <Icon  Icon={<LuUserCircle />} text="Usuario" url='' />
                 </>
