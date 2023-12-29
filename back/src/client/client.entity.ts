@@ -11,6 +11,7 @@ import {
   // OneToMany,
 } from 'typeorm';
 import {
+  IsArray,
   IsEmail,
   IsIn,
   IsNotEmpty,
@@ -19,34 +20,39 @@ import {
   IsPositive,
   IsString,
   Matches,
-  Min,
   MinLength,
+  ValidateNested,
 } from 'class-validator';
 import { AuthEntity } from 'src/auth/auth.entity';
+import { PaymentStatus, PdfDto, TramiteType } from './client.dto';
+import { Type } from 'class-transformer';
+import { ApiProperty } from '@nestjs/swagger';
 // import { PDFEntity } from 'src/pdf/pdf.entity';
-
-type PaymentStatus = 'PENDING' | 'PAID' | 'NONE';
-type TramiteType = 'TYPE1' | 'TYPE2' | 'TYPE3' | 'TYPE4';
 
 @Entity()
 export class ClientEntity {
+  @ApiProperty()
   @PrimaryGeneratedColumn()
   id: number;
 
+  @ApiProperty()
   @Column()
   @IsNotEmpty({ message: 'El nombre es obligatorio' })
   @IsString({ message: 'El nombre debe ser un texto' })
   name: string;
 
+  @ApiProperty()
   @Column()
   @IsEmail({}, { message: 'El formato del correo electrónico es inválido' })
   email: string;
 
+  @ApiProperty()
   @Column()
   @IsNotEmpty({ message: 'La dirección es obligatoria' })
   @MinLength(5, { message: 'La dirección debe tener al menos 5 caracteres' })
   address: string;
 
+  @ApiProperty()
   @Column()
   @IsNotEmpty({ message: 'El teléfono principal es obligatorio' })
   @Matches(/^(\+(34)\s?)?\d{9}$|^(\+(1)\s?)?\d{10}$/, {
@@ -56,6 +62,7 @@ export class ClientEntity {
   })
   mainPhone: string;
 
+  @ApiProperty()
   @Column({ nullable: true })
   @IsOptional()
   @Matches(/^(\+(34)\s?)?\d{9}$|^(\+(1)\s?)?\d{10}$/, {
@@ -64,27 +71,35 @@ export class ClientEntity {
   })
   secondaryPhone: string;
 
+  @ApiProperty()
   @Column({ nullable: true })
   @IsNumber()
   // @IsPositive({ message: 'El precio cotizado debe ser un número positivo' })
   // @Min(100, { message: 'El precio cotizado debe ser mayor que 100' })
   priceQuote: number;
 
+  @ApiProperty()
   @Column({ nullable: true })
   @IsNumber()
   // @IsPositive({ message: 'El precio debe ser un número positivo' })
   // @Min(100, { message: 'El precio debe ser mayor que 100' })
   price: number;
 
-  @Column({ type: 'simple-array', nullable: true })
-  pdf: string[];
+  @Column({ type: 'json', nullable: true })
+  @IsArray({ message: 'No es una lista' })
+  @ValidateNested({ each: true })
+  @ApiProperty({ type: [PdfDto] })
+  @Type(() => PdfDto)
+  pdf: PdfDto[];
 
+  @ApiProperty()
   @Column({ default: 'TYPE1' })
   @IsIn(['TYPE1', 'TYPE2', 'TYPE3', 'TYPE4'] as TramiteType[], {
     message: `El tipo de trámite es inválido - 'TYPE1', 'TYPE2', 'TYPE3', 'TYPE4'`,
   })
   tramiteType: TramiteType;
 
+  @ApiProperty()
   @Column({ default: 'PENDING' })
   @IsIn(['PENDING', 'PAID', 'NONE'] as PaymentStatus[], {
     message: 'El estado de pago es inválido - PENDING, PAID, NONE',
@@ -92,9 +107,11 @@ export class ClientEntity {
   paymentStatus: PaymentStatus;
 
   // FECHA
+  @ApiProperty()
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 
+  @ApiProperty()
   @Column({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
@@ -103,6 +120,7 @@ export class ClientEntity {
   updated_at: Date;
 
   // RELACIONES
+
   @ManyToOne(() => AuthEntity, (auth) => auth.clients)
   @JoinColumn()
   @IsNumber({}, { message: 'El ID de AuthEntity debe ser un número' })

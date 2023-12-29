@@ -3,10 +3,12 @@ import {
   Body,
   Controller,
   Delete,
+  FileTypeValidator,
   Get,
   HttpException,
   HttpStatus,
   Param,
+  ParseFilePipe,
   Post,
   Put,
   Query,
@@ -25,13 +27,12 @@ import {
   ApiQuery,
   ApiResponse,
   ApiTags,
+  ApiOperation,
 } from '@nestjs/swagger';
 import {
   // FileFieldsInterceptor,
   FileInterceptor,
 } from '@nestjs/platform-express';
-import { diskStorage } from 'multer';
-import { extname } from 'path';
 import { AuthService } from 'src/auth/auth.service';
 
 @ApiTags('client')
@@ -43,6 +44,7 @@ export class ClientController {
   ) {}
 
   @Get()
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'limit', required: false, type: Number })
   @ApiResponse({ status: 200, description: 'Return all clients.' })
@@ -52,6 +54,7 @@ export class ClientController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiParam({ name: 'id', description: 'Client ID', type: Number })
   @ApiResponse({ status: 200, description: 'Return a specific client.' })
   async getClientById(@Param('id') id: number): Promise<ClientEntity> {
@@ -64,6 +67,7 @@ export class ClientController {
   }
 
   @Post()
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiBody({
     type: ClientEntity,
     description: 'Client creation example',
@@ -73,13 +77,16 @@ export class ClientController {
           name: 'John Doe',
           email: 'johndoe@example.com',
           address: '123 Main St',
-          mainPhone: '123-456-7890',
+          mainPhone: '+34123456789',
           priceQuote: 100,
           price: 150,
-          auth: 2,
-          pdf: ['url1', 'url2'],
-          tramiteType: 'Asylum',
-          paymentStatus: 'Pending',
+          auth: 5,
+          pdf: [
+            { typePdf: '', path: '' },
+            { typePdf: '', path: '' },
+          ],
+          tramiteType: 'TYPE1',
+          paymentStatus: 'PENDING',
         },
         summary: 'Sample client Object',
       },
@@ -101,6 +108,7 @@ export class ClientController {
   }
 
   @Put(':id')
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiParam({ name: 'id', description: 'Client ID', type: Number })
   @ApiBody({ type: ClientEntity })
   @ApiResponse({ status: 200, description: 'Update a client.' })
@@ -112,6 +120,7 @@ export class ClientController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'OPERATIVO' })
   @ApiParam({ name: 'id', description: 'Client ID', type: Number })
   @ApiResponse({ status: 200, description: 'Delete a client.' })
   async deleteClient(@Param('id') id: number): Promise<ClientEntity> {
@@ -119,21 +128,9 @@ export class ClientController {
   }
 
   // ARCHIVOS
-  @Post('upload-pdf')
-  @UseInterceptors(
-    FileInterceptor('pdf', {
-      storage: diskStorage({
-        destination: './public',
-        filename: (_, file, callback) => {
-          const uniqueSuffix = `${Date.now()}-${Math.round(
-            Math.random() * 1e9,
-          )}`;
-          const extension = extname(file.originalname);
-          callback(null, `${file.fieldname}-${uniqueSuffix}${extension}`);
-        },
-      }),
-    }),
-  )
+  @Post('upload-pdf/:clientId/:pdfType')
+  @ApiOperation({ summary: 'OPERATIVO' })
+  @UseInterceptors(FileInterceptor('pdf'))
   @ApiConsumes('multipart/form-data')
   @ApiBody({
     description: 'Upload PDF file',
@@ -148,14 +145,32 @@ export class ClientController {
       },
     },
   })
-  async uploadPDF(@UploadedFile() file) {
-    // Lógica para guardar el archivo localmente y obtener la ruta
-    const pdfPath = '/public/' + file.filename; // Suponiendo que el archivo se almacene en el directorio 'public'
+  @ApiResponse({ status: 200, description: 'Update a client PDF.' })
+  async uploadPDF(
+    @Param('clientId') clientId: number,
+    @Param('pdfType') pdfType: string,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [new FileTypeValidator({ fileType: 'pdf' })],
+      }),
+    )
+    pdf: Express.Multer.File,
+  ) {
+    try {
+      const { filePath, fileName } = await this.clientService.handleFileUpload(
+        pdf,
+        clientId,
+        pdfType,
+      );
 
-    // Aquí puedes usar 'pdfPath' para almacenar la ruta en la base de datos o en el campo 'pdfPath' de la entidad ClientEntity
-    // Luego, retorna la ruta o algún mensaje de éxito
-    return { pdfPath };
+      return { success: true, filePath, fileName };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
+
+  // Por ejemplo, para guardar la ruta en la entidad ClientEntity
+  // const client = await this.clientService.findById(clientId);
 
   // @Post('upload-pdfs')
   // @UseInterceptors(
