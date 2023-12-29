@@ -2,7 +2,9 @@ import React from 'react'
 
 const CloseProcedure = () => {
   return (
-    <div>CloseProcedure</div>
+    <div>
+        <p>Estas seguro que se ha paga su totalidad?</p>
+    </div>
   )
 }
 

@@ -40,10 +40,13 @@ const RightPanel = ({ side, id, data }: TProps) => {
       }
     };
 
-    const handlePaymentRedirection = () => navigate('/intranet/account/' + id)
+    const handlePaymentRedirection = (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation()
+      navigate('/intranet/account/' + id)
+    }
 
     const handlePaymentAction = () => {
-      if (data?.paymentStatus !== 'PAID') return
+      // if (data?.paymentStatus !== 'PAID') return
       setModal({ type: 'closeProcedure' })
       console.log('action')
     }

@@ -28,7 +28,7 @@ const options: TProcedureOption[] = [
 const AddProcedure = () => {
     const [option, setValue] = useState<TProcedureOption>(options[0])
     const [price, setPrice] = useState(0)
-    const { modal } = useStore()
+    const { modal, closeModal } = useStore()
     const { update } = useClients()
     const handleChange = (
       newValue: any,
@@ -40,6 +40,7 @@ const AddProcedure = () => {
     const handleClick = () => {
       update.mutate({data: { tramiteType: option.value, priceQuote: price, price, paymentStatus: 'PENDING'  }, id: Number(modal.id) })
       toast.success('Agregado un nuevo tramite')
+      closeModal()
     }
   return (
     <div className='flex flex-col gap-4'>
