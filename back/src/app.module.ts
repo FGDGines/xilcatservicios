@@ -19,6 +19,7 @@ import { AuthEntity } from './auth/auth.entity';
 import { ClientModule } from './client/client.module';
 import { ClientEntity } from './client/client.entity';
 import { PdfModule } from './pdf/pdf.module';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -74,6 +75,7 @@ import { PdfModule } from './pdf/pdf.module';
     AuthModule,
     ClientModule,
     PdfModule,
+    ChatModule,
   ],
 })
 export class AppModule implements NestModule {

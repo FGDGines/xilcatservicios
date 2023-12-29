@@ -2,7 +2,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export type PaymentStatus = 'PENDING' | 'PAID';
+export type PaymentStatus = 'PENDING' | 'PAID' | 'NONE';
 export type TramiteType = 'TYPE1' | 'TYPE2' | 'TYPE3' | 'TYPE4';
 
 export class PdfDto {

@@ -20,7 +20,6 @@ import {
   IsPositive,
   IsString,
   Matches,
-  Min,
   MinLength,
   ValidateNested,
 } from 'class-validator';
@@ -29,9 +28,6 @@ import { PaymentStatus, PdfDto, TramiteType } from './client.dto';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 // import { PDFEntity } from 'src/pdf/pdf.entity';
-
-type PaymentStatus = 'PENDING' | 'PAID' | 'NONE';
-type TramiteType = 'TYPE1' | 'TYPE2' | 'TYPE3' | 'TYPE4';
 
 @Entity()
 export class ClientEntity {

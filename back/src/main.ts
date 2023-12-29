@@ -42,5 +42,6 @@ async function bootstrap() {
   app.enableCors(corsOptions); // Habilitar CORS con las opciones especificadas
   app.use(cookieParser());
   await app.listen(3000);
+  console.log(`Puerto Backend: ${await app.getUrl()}`);
 }
 bootstrap();
