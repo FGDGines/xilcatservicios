@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { FaRegFilePdf, FaRegFolderOpen } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { TClient } from '../../../types/client'
-import { useStore } from '../../../store'
+import { useAppStore } from '../../../store'
 
 type TProps = {
     side: boolean,
@@ -22,7 +22,7 @@ const documents = [
 
 const RightPanel = ({ side, id, data }: TProps) => {
     const navigate = useNavigate()
-    const { setModal } = useStore()
+    const { setModal } = useAppStore()
 
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -45,11 +45,11 @@ const RightPanel = ({ side, id, data }: TProps) => {
       navigate('/intranet/account/' + id)
     }
 
-    const handlePaymentAction = () => {
-      // if (data?.paymentStatus !== 'PAID') return
-      setModal({ type: 'closeProcedure' })
-      console.log('action')
-    }
+    // const handlePaymentAction = () => {
+    //   // if (data?.paymentStatus !== 'PAID') return
+    //   setModal({ type: 'closeProcedure' })
+    //   console.log('action')
+    // }
 
   return (
     <div className={`
@@ -95,7 +95,6 @@ const RightPanel = ({ side, id, data }: TProps) => {
         }
       <div
         className={`basis-1/12 border rounded my-2 shadow flex items-center justify-center ${data?.paymentStatus === 'PAID' && 'bg-green-300 hover:cursos-pointer hover:-translate-x-px hover:-translate-y-px'}`}
-        onClick={handlePaymentAction}  
       >
         <p className='md:text-xl lg:text-3xl'>
           Verificar pagos:

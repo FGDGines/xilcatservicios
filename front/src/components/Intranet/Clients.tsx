@@ -1,6 +1,6 @@
 import React from 'react'
 import ClientIcon from '../CMR/ClientIcon'
-import { useStore } from '../../store'
+import { useAppStore } from '../../store'
 import { DotLoader } from 'react-spinners'
 import AddClientBtn from '../CMR/AddClientBtn'
 import useClients from '../../hooks/useClients'
@@ -10,7 +10,7 @@ import Error from '../Common/Error'
 
 const Clients = () => {
   const { list: { isLoading, data, isError }} = useClients()
-  const { setModal } = useStore()
+  const { setModal } = useAppStore()
 
   if (isLoading) return <Loader />
   

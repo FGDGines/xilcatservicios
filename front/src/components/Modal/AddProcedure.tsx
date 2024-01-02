@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Select from 'react-select'
 import useClients from '../../hooks/useClients'
-import { useStore } from '../../store'
+import { useAppStore } from '../../store'
 import { toast } from 'react-toastify'
 import { TramiteType } from '../../types/client'
 
@@ -28,7 +28,7 @@ const options: TProcedureOption[] = [
 const AddProcedure = () => {
     const [option, setValue] = useState<TProcedureOption>(options[0])
     const [price, setPrice] = useState(0)
-    const { modal, closeModal } = useStore()
+    const { modal, closeModal } = useAppStore()
     const { update } = useClients()
     const handleChange = (
       newValue: any,

@@ -16,3 +16,9 @@ export class PdfDto {
   @ApiProperty()
   path: string;
 }
+
+export class DuesDto {
+  @IsString()
+  @ApiProperty()
+  dues: string
+}

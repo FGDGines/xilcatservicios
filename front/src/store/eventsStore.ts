@@ -2,23 +2,26 @@ import { Moment } from "moment";
 import { StateCreator } from "zustand";
 
 
-type TEvent = {
+export type TAccountEvent = {
     start: Moment,
     end: Moment,
-    title: string
+    title: string,
+    amount: number
 }
+
+export type TJournalEvent = Omit<TAccountEvent, 'amount'>
 
 type TEvents = {
     // state: boolean,
-    account: TEvent[] ,
-    journal: TEvent[]
+    account: TAccountEvent[] ,
+    journal: TJournalEvent[]
     // id?: number
 }
 
 export type EventState = {
     event: TEvents,
-    addAccountEvent: (event: TEvent) => void
-    addJournalEvent: (event: TEvent) => void
+    addAccountEvent: (event: TAccountEvent) => void
+    addJournalEvent: (event: TJournalEvent) => void
     closeEvent: () => void
 }
 

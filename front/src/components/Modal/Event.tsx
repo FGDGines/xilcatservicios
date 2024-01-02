@@ -1,23 +1,37 @@
 import React, { useState } from 'react'
-import { useStore } from '../../store'
+import { useAppStore } from '../../store'
 import { type } from 'os'
 import moment from 'moment'
 import { toast } from 'react-toastify'
 
+import useClients from '../../hooks/useClients'
+
 const Event = () => {
   const [amount, setAmount] = useState(0)
   const [title, setTitle] = useState('')
-  const { addAccountEvent, addJournalEvent, modal, closeEvent, closeModal } = useStore()
+  const { addAccountEvent, addJournalEvent, modal, closeEvent, closeModal, event: { account } } = useAppStore()
+
+  const { update } = useClients()
+  const startDate = moment(modal.params.start).toDate()
 
   const handleAddEvent = () => {
     let toastMessage;
     if (modal.params.type === 'account'){
-      addAccountEvent({
-        start: moment(modal.params.start),
-        end: moment(modal.params.end),
-        title: `Pago ${amount}$`
-      })
-      toastMessage = 'Pago agregado'
+      try {
+        const eventToAdd = {
+          start: moment(modal.params.start),
+          end: moment(modal.params.end),
+          title: `Pago ${amount}€`,
+          amount
+        }
+        addAccountEvent(eventToAdd)
+        toastMessage = 'Pago agregado'
+        update.mutate({ data: { dues: JSON.stringify(account.concat(eventToAdd)) }, id: Number(modal.params.id) })
+      } catch (err: any) {
+        //put something that delete the event recently added
+        toast.error("No se puedo Agregar el pago")
+        return closeModal()
+      }
     } else {
       addJournalEvent({
         start: moment(modal.params.start),
@@ -31,7 +45,7 @@ const Event = () => {
   }
   return (
     <div className='flex flex-col gap-4'>
-      <p className='font-semibold'>Fecha {moment(modal.params.start).toDate().getDate()}/{moment(modal.params.start).toDate().getMonth()}/{moment(modal.params.start).toDate().getFullYear()}</p>
+      <p className='font-semibold'>Fecha {startDate.getDate()}/{startDate.getMonth()}/{startDate.getFullYear()}</p>
       <div className='flex gap-2 justify-evenly'>
         <label htmlFor="payment">Ingrese monto del pago</label>
         <input type="number" id="payment" min={0} className='border' value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
