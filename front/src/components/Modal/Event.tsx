@@ -9,7 +9,7 @@ import useClients from '../../hooks/useClients'
 const Event = () => {
   const [amount, setAmount] = useState(0)
   const [title, setTitle] = useState('')
-  const { addAccountEvent, addJournalEvent, modal, closeEvent, closeModal, event: { account } } = useAppStore()
+  const { addAccountEvent, addJournalEvent, modal, closeModal, event: { account } } = useAppStore()
 
   const { update } = useClients()
   const startDate = moment(modal.params.start).toDate()

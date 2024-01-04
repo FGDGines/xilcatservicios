@@ -23,10 +23,10 @@ const Account = () => {
 
   return (
     <div className='relative h-full flex flex-nowrap'>
-      <div className='absolute bottom-6 right-6 text-white text-4xl bg-blue-500 rounded-full z-10 lg:w-0 lg:hidden hover:cursor-pointer' onClick={() => setSide(prev => !prev)}>
+      <div className='absolute bottom-6 right-6 text-white text-4xl bg-blue-500 rounded-full z-20 lg:w-0 lg:hidden hover:cursor-pointer' onClick={() => setSide(prev => !prev)}>
         { side ? <MdSwitchLeft /> : <MdSwitchRight /> }
       </div>
-      <LeftPanel side={side}/>
+      <LeftPanel side={side} data={data}/>
       <RightPanel side={side} data={data} />
     </div>
   )
