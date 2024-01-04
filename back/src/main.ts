@@ -10,9 +10,9 @@ async function bootstrap() {
   app.setGlobalPrefix('/api');
 
   const corsOptions: CorsOptions = {
-    origin: true, // Permite solicitudes desde todas las fuentes
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
-    allowedHeaders: 'Content-Type, Accept', // Encabezados permitidos
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Accept',
     preflightContinue: false,
     optionsSuccessStatus: 204,
   };
@@ -43,5 +43,6 @@ async function bootstrap() {
   app.use(cookieParser());
   await app.listen(3000);
   console.log(`Puerto Backend: ${await app.getUrl()}`);
+  console.log(`Puerto Swagger: ${(await app.getUrl()) + '/doc'}`);
 }
 bootstrap();

@@ -15,16 +15,33 @@ export class ChatGateway implements OnModuleInit {
   @WebSocketServer()
   public server: Server;
   constructor(private readonly chatService: ChatService) {
-    this.server = new Server(); // Inicializar el servidor de Socket.io
+    this.server = new Server({
+      cors: {
+        origin: true, // Coloca aquí el origen permitido
+        credentials: true, // Habilitar credenciales si es necesario
+      },
+    }); // Inicializar el servidor de Socket.io
   }
   onModuleInit() {
     this.server.on('connection', (socket: Socket) => {
-      console.log('CLIENTE CONECTADO: ' + socket.id);
       const { name, token } = socket.handshake.auth;
       console.log({ name, token });
+      if (!name) {
+        socket.disconnect();
+        return;
+      }
+
+      this.chatService.onAuthConnect({
+        username: name,
+      });
+
+      this.server.emit('on-auth-change', this.chatService.getAuthAll());
+
+      socket.emit('welcome-server', 'Bienvenido a mi servicio');
 
       socket.on('disconnect', () => {
-        console.log('CLIENTE DESCONECTADO: ' + socket.id);
+        this.chatService.onAuthDisconnect(name);
+        this.server.emit('on-auth-change', this.chatService.getAuthAll());
       });
     });
   }
