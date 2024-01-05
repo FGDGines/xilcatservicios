@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Modal from "./components/Modal";
 import Landing from "./pages/Landing/Landing";
-import { useStore } from "./store";
+import { useAppStore } from "./store";
 import {
   createBrowserRouter,
   Outlet,
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
 const queryClient = new QueryClient()
 
 function App() {
-  const { modal, setModal } = useStore()
+  const { modal, setModal } = useAppStore()
 
   useEffect(() => {
     const cookies = document.cookie.split(';')

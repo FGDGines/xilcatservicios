@@ -1,5 +1,5 @@
 import { LuCookie } from 'react-icons/lu';
-import { useStore } from '../../store';
+import { useAppStore } from '../../store';
 
 interface AcceptCookiesDto {
     accepted: boolean;
@@ -50,7 +50,7 @@ interface AcceptCookiesDto {
 // };
 
 export const Cookie = () => {
-    const { closeModal } = useStore()
+    const { closeModal } = useAppStore()
     const handleAcceptCookies = async () => {
         const data: AcceptCookiesDto = {
             accepted: true, // Cambia este valor dependiendo de la lógica en tu aplicación

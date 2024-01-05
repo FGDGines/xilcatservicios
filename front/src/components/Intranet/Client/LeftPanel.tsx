@@ -4,7 +4,7 @@ import { TClient } from '../../../types/client'
 import useClients from '../../../hooks/useClients'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-import { useStore } from '../../../store'
+import { useAppStore } from '../../../store'
 
 type TProps = {
     data: TClient | undefined
@@ -13,7 +13,7 @@ type TProps = {
 
 const LeftPanel = ({ data, side }:TProps) => {
   const { erase } = useClients()
-  const { setModal } = useStore()
+  const { setModal } = useAppStore()
   const navigate = useNavigate()
   const handleClick = () => {
     console.log('id in left panel', Number(data?.id))

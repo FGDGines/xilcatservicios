@@ -15,4 +15,5 @@ export type TClient = {
     paymentStatus: PaymentStatus
     auth: any
     id?: number
+    dues: string
 }

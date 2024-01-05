@@ -24,7 +24,7 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { AuthEntity } from 'src/auth/auth.entity';
-import { PaymentStatus, PdfDto, TramiteType } from './client.dto';
+import { DuesDto, PaymentStatus, PdfDto, TramiteType } from './client.dto';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 // import { PDFEntity } from 'src/pdf/pdf.entity';
@@ -91,6 +91,11 @@ export class ClientEntity {
   @ApiProperty({ type: [PdfDto] })
   @Type(() => PdfDto)
   pdf: PdfDto[];
+
+  @Column({ type: 'json' })
+  @ApiProperty({ type: DuesDto})
+  @Type(() => DuesDto)
+  dues: string
 
   @ApiProperty()
   @Column({ default: 'TYPE1' })

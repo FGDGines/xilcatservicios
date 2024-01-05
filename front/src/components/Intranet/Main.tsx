@@ -6,10 +6,13 @@ const localizer = momentLocalizer(moment)
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { MdSwitchLeft, MdSwitchRight } from 'react-icons/md';
+import { useAppStore } from '../../store';
 import { Chat } from './Chat';
 
 
 const Main = () => {
+  const { setModal, event} = useAppStore()
+
   const [side, setSide] = useState(true)
 
   return (
@@ -21,17 +24,17 @@ const Main = () => {
     bg-white h-full ${side ? 'flex-1 w-full' : 'flex-0 w-0'} transition-all duration-300 ease-in flex flex-col
     lg:flex-1 lg:w-full
     `}>
-        <Calendar
-          localizer={localizer}
-          defaultDate={new Date()}
-          defaultView='month'
-          style={{
-            height: '100%',
-            width: '100%'
-          }}
-        />
-      </div>
-      <div className={`
+      <Calendar
+        localizer={localizer}
+        defaultDate={new Date()}
+        defaultView='month'
+        style={{
+          height: '100%',
+          width: '100%'
+        }}
+      />
+    </div>
+    <div className={`
     bg-white h-full ${side ? 'flex-0 w-0' : 'flex-1 w-full'} transition-all  duration-300 ease-in flex flex-col
     lg:basis-1/4 lg:w-full
     `}>

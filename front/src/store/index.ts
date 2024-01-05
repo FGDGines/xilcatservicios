@@ -4,9 +4,9 @@ import { devtools } from 'zustand/middleware'
 import { modalSlice, ModalState} from './modalStore';
 import { eventSlice, EventState } from './eventsStore'
 
-type AppStore = ModalState & EventState
+export type AppStore = ModalState & EventState
 
-export const useStore = create<AppStore>() (
+export const useAppStore = create<AppStore>() (
     devtools((...a) => ({
         ...modalSlice(...a),
         ...eventSlice(...a)

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useRef } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { useStore } from '../../store';
+import { useAppStore } from '../../store';
 import useClients from '../../hooks/useClients';
 
 type Inputs = {
@@ -14,7 +14,7 @@ type Inputs = {
 
 const AddClient = () => {
   const { add } = useClients()
-    const {closeModal} = useStore()
+    const {closeModal} = useAppStore()
     const {
         register,
         handleSubmit,
