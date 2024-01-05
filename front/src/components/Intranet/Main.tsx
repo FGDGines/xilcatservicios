@@ -6,9 +6,12 @@ const localizer = momentLocalizer(moment)
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { MdSwitchLeft, MdSwitchRight } from 'react-icons/md';
+import { useAppStore } from '../../store';
 
 
 const Main = () => {
+  const { setModal, event} = useAppStore()
+
   const [side, setSide] = useState(true)
 
   return (
@@ -21,9 +24,12 @@ const Main = () => {
     lg:flex-1 lg:w-full
     `}>
       <Calendar
+        selectable
         localizer={localizer}
         defaultDate={new Date()}
         defaultView='month'
+        events={event.journal}
+        onSelectSlot={(e) => setModal({ type: 'event', params: { start: e.start, end: e.end, type: 'journal' }})}
         style={{
           height: '100%',
           width: '100%'

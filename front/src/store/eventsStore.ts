@@ -9,7 +9,7 @@ export type TAccountEvent = {
     amount: number
 }
 
-export type TJournalEvent = Omit<TAccountEvent, 'amount'>
+export type TJournalEvent = Omit<TAccountEvent, 'amount'> & { description: string }
 
 type TEvents = {
     // state: boolean,
