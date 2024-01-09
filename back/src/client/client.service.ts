@@ -38,6 +38,7 @@ export class ClientService {
           'client.paymentStatus',
           'client.created_at',
           'client.updated_at',
+          'client.dues',
           // Seleccionando todos los campos de 'auth' excepto 'password'
           'auth.id',
           'auth.username',
@@ -73,6 +74,8 @@ export class ClientService {
           'client.paymentStatus',
           'client.created_at',
           'client.updated_at',
+          'client.dues',
+
           'auth.id',
           'auth.username',
           'auth.created_at',
