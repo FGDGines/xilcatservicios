@@ -20,6 +20,7 @@ import { ClientModule } from './client/client.module';
 import { ClientEntity } from './client/client.entity';
 import { PdfModule } from './pdf/pdf.module';
 import { ChatModule } from './chat/chat.module';
+import { ChatEntity } from './chat/chat.entity';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { ChatModule } from './chat/chat.module';
         CookieEntity,
         AuthEntity,
         ClientEntity,
+        ChatEntity,
       ], // Agrega tus entidades aquí
       synchronize: true, // Opcional: sincroniza automáticamente las entidades con la base de datos (cuidado en producción)
     }),

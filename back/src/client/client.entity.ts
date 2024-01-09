@@ -120,7 +120,6 @@ export class ClientEntity {
   updated_at: Date;
 
   // RELACIONES
-
   @ManyToOne(() => AuthEntity, (auth) => auth.clients)
   @JoinColumn()
   @IsNumber({}, { message: 'El ID de AuthEntity debe ser un número' })
