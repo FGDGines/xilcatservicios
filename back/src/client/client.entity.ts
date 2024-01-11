@@ -86,8 +86,8 @@ export class ClientEntity {
   price: number;
 
   @Column({ type: 'json', nullable: true })
-  @IsArray({ message: 'No es una lista' })
-  @ValidateNested({ each: true })
+  // @IsArray({ message: 'No es una lista' })
+  // @ValidateNested({ each: true })
   @ApiProperty({ type: [PdfDto] })
   @Type(() => PdfDto)
   pdf: PdfDto[];
@@ -95,7 +95,7 @@ export class ClientEntity {
   @Column({ type: 'json' })
   @ApiProperty({ type: DuesDto})
   @Type(() => DuesDto)
-  dues: string
+  dues: string = 'null'
 
   @ApiProperty()
   @Column({ default: 'TYPE1' })

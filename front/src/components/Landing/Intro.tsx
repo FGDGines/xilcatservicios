@@ -28,7 +28,7 @@ const Intro = () => {
                 className=' relative flex items-center justify-center mb-6 lg:mb-0 py-5'
             >
             {/* <GroupSVG /> */}
-            <div className='z-10 md:w-[60%] lg:w-full lg:h-full xl:w-[50%]'>
+            <div className='z-10 md:w-[60%] lg:w-full lg:h-full xl:w-[60%]'>
                 <img src={GroupImg} className='min-h-[80%] min-w-full' />
 
             </div>

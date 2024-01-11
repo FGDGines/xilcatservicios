@@ -43,7 +43,7 @@ const Services = () => {
   ]
 
   return (
-    <div className='min-h-[20vh] px-6 py-2 mt-4 md:mt-20 lg:mt-12' id="Actions">
+    <div className='min-h-[20vh] px-6 py-2 mt-4 md:mt-20 lg:mt-12 text-cs-purple' id="Actions">
       <p className='text-center text-2xl mb-8 font-bold md:text-[40px]'>{t('services.title' as TranslationKeys)}</p>
       <p className='text-center text-[11px] md:px-20 md:text-[20px]'>{t('services.description' as TranslationKeys)}</p>
       <div className='mt-8 md:px-20 lg:grid lg:grid-cols-3 lg:gap-12 lg:px-0'>

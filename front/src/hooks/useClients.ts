@@ -31,12 +31,20 @@ const useClients = () => {
         }
     })
 
+    const addPdf = useMutation<any, any, { clientId: number, pdfType: string, pdf: any }>({
+        mutationFn: clients.addPdf,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['clients']})
+        }
+    })
+
     return {
         list,
         add,
         erase,
         update,
         getClient,
+        addPdf
     }
 }
 

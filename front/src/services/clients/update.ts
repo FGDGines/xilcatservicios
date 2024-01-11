@@ -9,8 +9,6 @@ type TProps = {
 
 const update = async ({ data, id }: TProps) => {
     try {
-        console.log('here in update', data)
-        console.log('here in update id', id)
         const response = await axios.put(import.meta.env.VITE_BACKEND_URL + '/client/' + id, data)
         if (response.statusText !== 'OK') throw new Error("Algo paso")
         return response.data

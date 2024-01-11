@@ -37,6 +37,7 @@ const Clients = () => {
       h-full grid grid-cols-2 px-4 py-2 auto-rows-[150px] gap-4
       md:grid-cols-4
       lg:grid-cols-6
+      xl:grid-cols-8
       '>
       {/* I need to change the any type in client */}
       {

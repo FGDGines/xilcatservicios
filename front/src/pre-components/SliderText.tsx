@@ -39,8 +39,8 @@ export const SliderText = () => {
     };
 
     return <>
-        <h1 id="Services" style={{ fontWeight: 700 }} className="text-center my-3 text-[30px] md:text-[40px]">{t('powers.title' as TranslationKeys)}</h1>
-        <h2 style={{ fontWeight: 300 }} className="text-center mt-3 mb-8 text-[16px] md:text-[21px] md:px-24">{t('powers.description' as TranslationKeys)}</h2>
+        <h1 id="Services" style={{ fontWeight: 700 }} className="text-center my-3 text-[30px] md:text-[40px] text-cs-purple">{t('powers.title' as TranslationKeys)}</h1>
+        <h2 style={{ fontWeight: 300 }} className="text-center mt-3 mb-8 text-[16px] md:text-[21px] md:px-24 text-cs-purple">{t('powers.description' as TranslationKeys)}</h2>
         <div className="flex w-full mx-auto xl:w-[90%]">
             {service.map((item, index) => (
                 <div

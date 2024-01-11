@@ -29,9 +29,9 @@ const LanguageSelector = () => {
     });
   }
   return (
-    <div className="relative inline-block">
+    <div className="relative w-8">
       <select
-        className="appearance-none bg-transparent border-none text-center text-gray-700 py-2 px-4 leading-tight focus:outline-none opacity-0 w-1"
+        className=" absolute top-0 left-4 appearance-none bg-transparent border-none text-center text-gray-700 py-2 px-4 leading-tight focus:outline-none opacity-0"
         onChange={(e) => changeLanguage(e.target.value)}
       >
         {options.map((option) => (
@@ -40,7 +40,7 @@ const LanguageSelector = () => {
           </option>
         ))}
       </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-0 text-gray-700 w-4">
         {options.map((option) =>{
           if (option.value === i18n.language) return(
           <img

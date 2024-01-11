@@ -3,6 +3,8 @@ import { FaRegFilePdf, FaRegFolderOpen } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { TClient } from '../../../types/client'
 import { useAppStore } from '../../../store'
+import  { toast } from 'react-toastify'
+import useClients from '../../../hooks/useClients'
 
 type TProps = {
     side: boolean,
@@ -21,35 +23,36 @@ const documents = [
   ]
 
 const RightPanel = ({ side, id, data }: TProps) => {
+  const { addPdf } = useClients()
     const navigate = useNavigate()
     const { setModal } = useAppStore()
+    const multipleFilesRef = useRef<Array<HTMLInputElement | null>>([])
 
-    const fileInputRef = useRef<HTMLInputElement>(null);
+    const hasFileUploaded = (document: string) => {
+      console.log('fileeeeeeeeee', data)
+      if (typeof data?.pdf === 'string') return false
+      return data?.pdf.find(((item:any)=> item.typePdf === document))
+    }
 
-    const handleClick = () => {
-      if (fileInputRef.current) {
-        fileInputRef.current.click();
+    const handleClick = (id: number) => {
+      const currentRef = multipleFilesRef.current[id];
+      if ((currentRef && Number(currentRef.files?.length) <= 0) && !hasFileUploaded(String(currentRef?.name))) {
+        currentRef?.click();
+      } else {
+        toast.warning('file already uploaded');
       }
     };
   
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files && event.target.files[0];
-      if (file) {
-        // Handle the selected file here
-        console.log('Selected file:', file);
-      }
+      if (file) addPdf.mutate({pdf: file, pdfType: event.target.name, clientId: id })
     };
 
     const handlePaymentRedirection = (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation()
       navigate('/intranet/account/' + id)
     }
-
-    // const handlePaymentAction = () => {
-    //   // if (data?.paymentStatus !== 'PAID') return
-    //   setModal({ type: 'closeProcedure' })
-    //   console.log('action')
-    // }
+    const setRef = (id: number) => (el: HTMLInputElement) => multipleFilesRef.current[id] = el;
 
   return (
     <div className={`
@@ -65,10 +68,10 @@ const RightPanel = ({ side, id, data }: TProps) => {
               <FaRegFolderOpen />
           </div>
           <div className='flex-1 flex justify-center items-center'>
-              <button type="button" onClick={handleClick} className="bg-cs-purple hover:bg-cs-purple-light text-white font-bold py-2 px-6 rounded">
+              <button type="button"  className="bg-cs-purple hover:bg-cs-purple-light text-white font-bold py-2 px-6 rounded">
                 Examinar
               </button>
-              <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" />
+              {/* <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" /> */}
           </div>
         </div>
         {
@@ -83,10 +86,11 @@ const RightPanel = ({ side, id, data }: TProps) => {
           <div className='flex-1 grid grid-cols-2 place-items-center overflow-auto auto-rows-[60px] border rounded my-2 px-2 shadow gap-2 md:grid-cols-3 lg:grid-cols-2'>
             <p className='col-span-2 text-center capitalize md:col-span-3 lg:col-span-2 md:text-xl lg:text-2xl'>documentos a adjuntar</p>
               {
-                documents.map(document => (
-                  <div className='flex justify-center items-center gap-2 bg-cs-purple px-4 py-2 rounded text-white w-full' key={document}>
+                documents.map((document, idx) => (
+                  <div className={`flex justify-center items-center gap-2 bg-cs-purple px-4 py-2 rounded text-white w-full hover:bg-cs-purple-light ${(Number(multipleFilesRef.current[idx]?.files?.length) > 0 || hasFileUploaded(document)) ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'}`} key={document} onClick={() =>handleClick(idx)}>
                     <p className='truncate'>{document}</p>
                     <FaRegFilePdf />
+                    <input type="file" name={document} id="" ref={setRef(idx)} className='hidden' onChange={handleFileChange} />
                   </div>
                 ))
               }

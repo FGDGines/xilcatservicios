@@ -56,7 +56,7 @@ const Footer = () => {
       text: t('footer.newsletter.links.4' as TranslationKeys)
     },
     {
-      url: '',
+      url: '/blog',
       text: t('footer.newsletter.links.5' as TranslationKeys)
     }
   ]

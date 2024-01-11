@@ -1,6 +1,11 @@
 export type TramiteType = 'TYPE1' | 'TYPE2' | 'TYPE3' | 'TYPE4';
 export type PaymentStatus = 'PENDING' | 'PAID' | 'NONE';
 
+type TPdf = {
+    path: string
+    typePdf: string
+}
+
 
 export type TClient = {
     name: string
@@ -10,7 +15,7 @@ export type TClient = {
     secondaryPhone: string
     priceQuote: number
     price: number
-    pdf: string
+    pdf: string | TPdf[]
     tramiteType: TramiteType
     paymentStatus: PaymentStatus
     auth: any

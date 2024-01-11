@@ -20,7 +20,7 @@ type TProps = {
 const LeftPanel = ({side, data }: TProps) => {
   const { setModal, event} = useAppStore()
   const { id } = useParams()
-  const canAddPayment = data?.dues !== null
+  const canAddPayment = data?.dues !== null && data?.price !== 0
 
   return (
     <div className={`

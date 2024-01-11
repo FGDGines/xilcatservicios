@@ -26,9 +26,9 @@ const AddClient = () => {
             priceQuote: 0,
             price: 0,
             auth: 1,
-            pdf: JSON.stringify({}),
+            pdf: JSON.stringify([{}]),
             tramiteType: 'TYPE1',
-            paymentStatus: 'NONE'
+            paymentStatus: 'NONE',
         }
         try {
             add.mutate(bodyToSend)

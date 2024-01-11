@@ -5,13 +5,15 @@ import { QueryFunctionContext } from "react-query";
 import { TClient } from "../../types/client";
 import erase from "./erase";
 import update from "./update";
+import addPdf from './addPdf'
 
 type TClientServices = {
     getById: (ctx: QueryFunctionContext) => Promise<TClient>
     get: () => Promise<TClient[]>
     erase: any
     post: any
-    update: any
+    update: any,
+    addPdf: any
 }
 
 const clients: TClientServices = {
@@ -19,7 +21,8 @@ const clients: TClientServices = {
     post,
     getById,
     erase,
-    update
+    update,
+    addPdf
 }
 
 export default clients

@@ -25,6 +25,10 @@ const Main = () => {
     lg:flex-1 lg:w-full
     `}>
       <Calendar
+        selectable
+        onSelectSlot={(e) => setModal({ type: 'event', params: { start: e.start, end: e.end, type: 'journal' }})}
+        onSelectEvent={(e) => alert('you just click here')}
+        events={event.journal}
         localizer={localizer}
         defaultDate={new Date()}
         defaultView='month'
