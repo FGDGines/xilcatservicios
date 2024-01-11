@@ -39,7 +39,10 @@ export class AuthController {
     const { username, password } = body;
     const user = await this.authService.validateUser(username, password);
     if (user) {
-      const token = jwt.sign({ username: user.username }, 'xilcat');
+      const token = jwt.sign(
+        { username: user.username, id: user.id },
+        'xilcat',
+      );
       return { token };
     }
     return { message: 'Credenciales inválidas' };
