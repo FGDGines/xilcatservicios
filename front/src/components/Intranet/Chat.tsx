@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from 'react';
+import { SetStateAction, useEffect, useRef, useState } from 'react';
 // import { useAuthProvider } from '../../hooks/useAuthProvider';
 
 interface Message {
@@ -23,19 +23,22 @@ export const Chat = () => {
     const [online, setOnline] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState(false);
     const [messages, setMessage] = useState<Message[]>([])
-    // const messages: Message[] = [
-    //     {
-    //         name: "", userId: 'John Doe', message: "Hey team, let's have our meeting at 2 PM today."
-    //     },
-    //     { name: "", userId: 'Jane Smith', message: 'Sounds good to me!' },
-    //     // Add more messages here...
-    // ];
-
     const [isOpen, setIsOpen] = useState(false);
+    const messagesEndRef = useRef<HTMLDivElement>(null);
 
     const toggleChat = () => {
         setIsOpen(!isOpen);
     };
+
+    const scrollToBottom = () => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollTop = messagesEndRef.current.scrollHeight;
+        }
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
 
     useEffect(() => {
         chat.connect()
@@ -54,34 +57,20 @@ export const Chat = () => {
         }
 
         function onMessage(data: Message[]) {
-            setMessage(data)
             console.log(data)
+            setMessage(data)
         }
 
-        chat.on('handshake', (handshakeData: { name: string; token: string }) => {
-
-            const { name, token } = handshakeData;
-            console.log('Información del handshake:', name, token);
-        });
-
-        // function onDisconnect() {
-        //     setOnline(false);
-        // }
-
-        // function onFooEvent(value) {
-        //     setFooEvents(previous => [...previous, value]);
-        // }
-
         chat.on('connect', onConnect);
-        chat.on('disconnect', onDisconnect);
         chat.on('on-auth-change', onAuthChange);
         chat.on('on-message', onMessage);
+        chat.on('disconnect', onDisconnect);
 
         return () => {
             chat.off('connect', onConnect);
             chat.off('disconnect', onDisconnect);
             chat.off('on-auth-change', onAuthChange);
-            // chat.off('on-message', onMessage);
+            chat.off('on-message', onMessage);
             // chat.off('disconnect', onDisconnect);
         };
     }, []);
@@ -119,34 +108,18 @@ export const Chat = () => {
                                 <div className="contact bar flex items-center p-4 border-b border-gray-200 justify-between">
                                     <div className={`w-2 h-2 rounded-full  ${online ? 'bg-green-500' : 'bg-red-500'}`}></div>
                                     <div className="name font-semibold ml-3"> {decodedPayloadOrNull?.username}</div>
-                                    {/* <div className="seen text-sm text-gray-500 ml-auto">Hoy a las 12:56</div> */}
                                     <button className="bg-red-500 text-white z-100 py-2 px-4 rounded-lg" onClick={toggleChat}>
                                         Cerrar Chat
                                     </button>
                                 </div>
 
-                                <div className="messages flex-1 p-4 overflow-y-auto">
-
-                                    {/* <div className="message incoming bg-gray-900 text-white rounded-lg p-3 mb-4">
-                                        Mensaje 1
-                                    </div>
-
-                                    <div className="message bg-white text-gray-700 rounded-lg p-3 mb-4 ml-auto">
-                                        Mensaje 2
-                                    </div> */}
-
+                                <div ref={messagesEndRef} className="messages flex-1 p-4 overflow-y-auto">
                                     {messages.map(data =>
-                                        <div className={`message ${data.auth.id === decodedPayloadOrNull?.id ? " bg-gray-900 text-white" : "incoming bg-white"}  text-gray-700 rounded-lg p-3 mb-4 ml-auto `}>
+                                        <div style={{ alignSelf: "flex-end" }} className={`message ${data.auth.id === decodedPayloadOrNull?.id ? " bg-gray-900 w-32 text-white ml-auto" : "incoming bg-white border w-32 "}  text-gray-700 rounded-lg p-3 mb-4  `}>
                                             <small className='font-bold'>{data.auth.username}</small>
                                             <p className='font-light'> {data.message}</p>
                                             <p className='text-gray-500 flex'> {getRelativeTime(data.created_at)}</p>
                                         </div>)}
-
-                                    {/* <div className="message stark flex items-center justify-center">
-                                        <div className="typing w-2 h-2 bg-gray-400 rounded-full animate-ping mx-1"></div>
-                                        <div className="typing w-2 h-2 bg-gray-400 rounded-full animate-ping mx-1"></div>
-                                        <div className="typing w-2 h-2 bg-gray-400 rounded-full animate-ping mx-1"></div>
-                                    </div> */}
                                 </div>
 
                                 <form onSubmit={e => {
@@ -209,24 +182,6 @@ export const Chat = () => {
                         </a>
                     </li>)}
                 </ul>
-
-                {/* <div className="chat-container">
-                    <div className="h-full w-full p-4">
-                        {messages.map((message, index) => (
-                            <div
-                                key={index}
-                                className={`py-2 ${message.sender === 'John Doe' ? 'sent-message' : 'received-message'}`}
-                            >
-                                <h4 className="mb-1 text-lg font-medium leading-none text-gray-700">{message.sender}</h4>
-                                <p className="text-gray-500">{message.content}</p>
-                            </div>
-                        ))}
-                    </div>
-                    <div className="mt-4 grid w-full gap-1.5">
-                        <input type="text" id="message-input" placeholder="Type your message here." />
-                        <button className="float-right mt-2 bg-blue-500 text-white">Send</button>
-                    </div>
-                </div> */}
             </div>
 
             <ChatLayaout />

@@ -56,6 +56,7 @@ export class ChatService {
           'auth.created_at',
           'auth.updated_at',
         ])
+        .orderBy('chat.created_at', 'ASC')
         .take(limit)
         .skip((page - 1) * limit)
         .getMany();

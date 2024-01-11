@@ -3,7 +3,6 @@ import {
   SubscribeMessage,
   MessageBody,
   WebSocketServer,
-  ConnectedSocket,
 } from '@nestjs/websockets';
 import { ChatService } from './chat.service';
 import { OnModuleInit, ValidationPipe } from '@nestjs/common';
@@ -27,7 +26,7 @@ export class ChatGateway implements OnModuleInit {
     });
   }
   onModuleInit() {
-    this.server.on('connection', (socket: Socket) => {
+    this.server.on('connection', async (socket: Socket) => {
       const { name, token, authId } = socket.handshake.auth;
       console.log({ name, token, authId });
       if (!name) {
@@ -38,10 +37,10 @@ export class ChatGateway implements OnModuleInit {
       this.chatService.onAuthConnect({
         username: name,
       });
+      // console.log(await this.chatService.findAll(1, 0));
 
       this.server.emit('on-auth-change', this.chatService.getAuthAll());
-
-      socket.emit('welcome-server', 'Bienvenido a mi servicio');
+      this.server.emit('on-message', await this.chatService.findAll(1, 0));
 
       socket.on('disconnect', () => {
         this.chatService.onAuthDisconnect(name);
@@ -51,20 +50,14 @@ export class ChatGateway implements OnModuleInit {
   }
 
   @SubscribeMessage('send-message')
-  async handleMessage(
-    @MessageBody(new ValidationPipe()) chat: ChatEntity,
-    @ConnectedSocket() client: Socket,
-  ) {
+  async handleMessage(@MessageBody(new ValidationPipe()) chat: ChatEntity) {
     try {
-      const { name, authId } = client.handshake.auth;
-      console.log({ name, authId, chat });
-      this.chatService.createChat(chat);
+      await this.chatService.createChat(chat);
+      this.server.emit('on-message', await this.chatService.findAll(1, 0));
 
       if (!chat) {
         return;
       }
-
-      this.server.emit('on-message', await this.chatService.findAll(1, 200));
     } catch (error) {
       return error;
     }
