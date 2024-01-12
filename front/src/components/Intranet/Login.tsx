@@ -22,7 +22,6 @@ const Login = () => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
       const res = await signin(data)
-      console.log('res', res)
       return navigate('/intranet/main')
 
     } catch (error: any) {
@@ -48,7 +47,7 @@ const Login = () => {
             </div>
             <div className='flex flex-col item-center justify-center0 w-[90%] min-h-[25%]'>
                 <button className='bg-cs-gray py-2  text-white  hover:bg-cs-purple rounded'>Entrar</button>
-                <p className='text-sm text-center mt-2'>No estas registrado?</p>
+                <a className='text-sm text-center mt-2 hover:text-cs-purple-light' href='/intranet/register'>No estas registrado?</a>
             </div>
         </form>
     </div>

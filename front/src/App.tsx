@@ -26,6 +26,7 @@ import Clients from "./components/Intranet/Clients";
 import Client from "./components/Intranet/Client";
 import Account from "./components/Intranet/Account";
 import ProtectedLoader from './pages/Intranet/ProtectedLoader'
+import Register from "./components/Intranet/Register";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+      },
+      {
+        path: 'register',
+        element: <Register />,
       },
       {
         path: 'main',
