@@ -1,5 +1,6 @@
 import { Calendar, momentLocalizer} from 'react-big-calendar'
 import moment from 'moment'
+import {toast} from 'react-toastify'
 import { useAppStore } from '../../../store'
 import { useParams } from 'react-router-dom'
 
@@ -21,6 +22,12 @@ const LeftPanel = ({side, data }: TProps) => {
   const { setModal, event} = useAppStore()
   const { id } = useParams()
   const canAddPayment = data?.dues !== null && data?.price !== 0
+  const checkIsBeforeToday = (startDay: any) => {
+    const start = moment(startDay)
+    const now = moment(moment.now())
+    if (moment.utc(start).isAfter(now)) toast.error("No puedes agregar un pago en una fecha posterior a la actual")
+    return moment.utc(start).isBefore(now)
+  }
 
   return (
     <div className={`
@@ -29,7 +36,7 @@ const LeftPanel = ({side, data }: TProps) => {
     `}>
       <Calendar
         selectable
-        onSelectSlot={(e) => canAddPayment && setModal({ type: 'event', params: { start: e.start, end: e.end, type: 'account', id }})}
+        onSelectSlot={(e) => (canAddPayment && checkIsBeforeToday(e.start)) && setModal({ type: 'event', params: { start: e.start, end: e.end, type: 'account', id }})}
         localizer={localizer}
         defaultDate={new Date()}
         defaultView='month'

@@ -27,7 +27,7 @@ const Main = () => {
       <Calendar
         selectable
         onSelectSlot={(e) => setModal({ type: 'event', params: { start: e.start, end: e.end, type: 'journal' }})}
-        onSelectEvent={(e) => alert('you just click here')}
+        onSelectEvent={(e) => setModal({ type: 'description', params: { text: e.description, title: e.title } })}
         events={event.journal}
         localizer={localizer}
         defaultDate={new Date()}

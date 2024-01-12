@@ -29,8 +29,8 @@ const RightPanel = ({ side, id, data }: TProps) => {
     const multipleFilesRef = useRef<Array<HTMLInputElement | null>>([])
 
     const hasFileUploaded = (document: string) => {
-      console.log('fileeeeeeeeee', data)
       if (typeof data?.pdf === 'string') return false
+      if (!data?.pdf) return false
       return data?.pdf.find(((item:any)=> item.typePdf === document))
     }
 

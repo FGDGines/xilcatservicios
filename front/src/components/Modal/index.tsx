@@ -7,6 +7,7 @@ import AddClient from './AddClient';
 import AddProcedure from './AddProcedure';
 import { TEvents } from '../../store/modalStore';
 import CloseProcedure from './CloseProcedure';
+import Description from './Description';
 
 type TComponents = Record<TEvents, JSX.Element> 
 
@@ -15,7 +16,8 @@ const Components: TComponents = {
   event: <Event />,
   addclient: <AddClient />,
   addProcedure: <AddProcedure />,
-  closeProcedure: <CloseProcedure />
+  closeProcedure: <CloseProcedure />,
+  description: <Description />
 }
 
 
