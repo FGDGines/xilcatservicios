@@ -30,19 +30,25 @@ async function bootstrap() {
     }),
   );
 
-  const config = new DocumentBuilder()
-    .setTitle('Xilcat servicios API')
-    .setDescription('Descripción de tu API')
-    .setVersion('1.0')
-    .build();
+  // Verificar si estamos en modo de desarrollo antes de configurar Swagger
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    const config = new DocumentBuilder()
+      .setTitle('Xilcat servicios API')
+      .setDescription('Descripción de tu API')
+      .setVersion('1.0')
+      .build();
 
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('doc', app, document);
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('doc', app, document);
+  }
 
   app.enableCors(corsOptions); // Habilitar CORS con las opciones especificadas
   app.use(cookieParser());
   await app.listen(3000);
   console.log(`Puerto Backend: ${await app.getUrl()}`);
-  console.log(`Puerto Swagger: ${(await app.getUrl()) + '/doc'}`);
+  // Mostrar la URL de Swagger solo en modo de desarrollo
+  if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+    console.log(`Puerto Swagger: ${(await app.getUrl()) + '/doc'}`);
+  }
 }
 bootstrap();
