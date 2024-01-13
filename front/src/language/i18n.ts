@@ -62,9 +62,37 @@ const resources: Resource = {
               'It is the authority given to a person to carry out and execute certain legal and material acts on our behalf. The attorney-in-fact (the person who receives the authority) does not have to accept the power; it is a unilateral decision of the grantor (the person who grants the authority).',
           },
           b: {
-            title: 'a',
-            description: 'a',
+            title: 'Powers of Attorney',
+            description: 'Document in which the notary states the veracity of what happened during an assembly, congress, session, judicial hearing or meeting of any nature, as well as the agreements or decisions taken.',
           },
+          c: {
+            title: 'Certified copy',
+            description: 'The certification of a document is an act through which the same administrative validity is given to the photocopy of a document as to the original. That is, this copy will be equally valid to operate with it, without it being necessary to present the original document.'
+          },
+          d: {
+            title: 'Apostille',
+            description: 'The apostille is a seal that certifies the authenticity of the signature of public officials or diplomatic agents in the exercise of their functions and the position in which they have acted, which must be registered in the database of the Ministry of Foreign Affairs of the country of origin, so that the document is valid and has legal effects in another country that is a member of the 1961 Hague Convention on the Abolition of the Legalization Requirement for Foreign Public Documents.'
+          },
+          e: {
+            title: 'Legalization',
+            description: 'Legalization is an administrative act that grants validity to a foreign public document, verifying the authenticity of the signature placed on a document and the quality in which the authority signing the document has acted.'
+          },
+          f: {
+            title: 'Sworn translation',
+            description: 'Sworn translation (also called, depending on the country, public translation, official translation or certified translation) is the translation of any type of document, carried out by a translator recognized by an official body and called, for that reason, official translator, sworn translator. , certified translator or expert translator, among other names.'
+          },
+          g: {
+            title: 'Central Civil Registry',
+            description: 'It is the basic document of recognition and legal existence. At Xilcat we help you get an appointment since lately all civil registries have collapsed and only work by making an appointment online. The online system allows you to obtain: birth certificates for children born in Spain and appointments to register them, also appointments for civil marriages and to register a marriage of a Spaniard married to a person outside Spanish territory.'
+          },
+          h: {
+            title: 'Activity licenses',
+            description: 'The activity license is the document that certifies the use of a premises, warehouse or office for the exercise of a specific commercial activity. This document will describe the habitability conditions of the establishment in question, as well as the necessary conditioning for the activity that is going to be carried out there.'
+          },
+          i: {
+            title: 'Flat Transfers',
+            description: 'no Info'
+          }
         },
       },
       teams: {
@@ -280,6 +308,7 @@ const resources: Resource = {
             3: 'Offerings',
             4: 'Contact Us',
             5: 'Blog',
+            6: 'Client Zone'
           },
         },
       },
@@ -345,9 +374,37 @@ const resources: Resource = {
               'Es la autoridad que se da a una persona para realizar y ejecutar determinados actos jurídicos y materiales en nuestro nombre. El apoderado (persona que recibe la autoridad) no tiene que aceptar el poder, es una decisión unilateral del poderdante (persona que concede la autoridad).',
           },
           b: {
-            title: 'a',
-            description: 'a',
+            title: 'Actas Notariales',
+            description: 'Documento en el que el notario hace constar la veracidad de lo acontecido durante una asamblea, congreso, sesión, vista judicial o reunión de cualquier naturaleza, así como de los acuerdos o decisiones tomadas.',
           },
+          c: {
+            title: 'Copia Compulsada',
+            description: `La compulsa de un documento es un acto a través del cual se le da la misma validez administrativa a la fotocopia de un documento que al original. Es decir, esa copia será igualmente válida para operar con ella, sin que sea necesario presentar el documento original.`
+          },
+          d: {
+            title: 'Apostillado',
+            description: 'La apostilla es un sello que certifica la autenticidad de la firma de funcionarios públicos o agentes diplomáticos en ejercicio de sus funciones y el cargo en que hayan actuado, la cual deberá estar registrada en la base de datos del Ministerio de Relaciones Exteriores de su país de origen, para que el documento sea válido y surta efectos legales en otro país miembro del Convenio de la Haya de 1961, sobre la abolición del requisito de legalización para documentos públicos extranjeros.'
+          },
+          e: {
+            title: 'Legalización',
+            description: 'La legalización es un acto administrativo por el que se otorga validez a un documento público extranjero, comprobando la autenticidad de la firma puesta en un documento y la calidad en que la autoridad firmante del documento ha actuado.'
+          },
+          f: {
+            title: 'Traducción Jurada',
+            description: 'La traducción jurada (también llamada, según el país, traducción pública, traducción oficial o traducción certificada) es la traducción de cualquier tipo de documento, realizada por un traductor reconocido por un organismo oficial y llamado, por esa razón, traductor oficial, traductor jurado, traductor certificado o perito traductor, entre otras denominaciones.'
+          },
+          g: {
+            title: 'Registro Civil Central',
+            description: 'Es el documento básico de reconocimiento y existencia legal. En Xilcat te ayudamos a conseguir cita ya que últimamente todos los registros civiles están colapsados y solo funcionan sacando cita online. El sistema online te permite sacar: partidas de nacimiento de niños nacidos en España y citas para registrarlos, también cita para matrimonios por lo civil y para registrar un matrimonio de español casado con una persona fuera del territorio español.'
+          },
+          h: {
+            title: 'Licencias de actividad',
+            description: 'La licencia de actividad es el documento que acredita el uso de un local, nave u oficina para el ejercicio de una determinada actividad comercial. En este documento se describirán las condiciones de habitabilidad del establecimiento en cuestión, así como el acondicionamiento necesario para la actividad que se va a realizar en él.'
+          },
+          i: {
+            title: 'Traspasos Plano',
+            description: 'No hay informacion'
+          }
         },
       },
       teams: {
@@ -564,6 +621,7 @@ const resources: Resource = {
             3: 'Ofrecemos',
             4: 'Contáctenos',
             5: 'Blog',
+            6: 'Zona Cliente'
           },
         },
       },
@@ -620,9 +678,37 @@ const resources: Resource = {
             description: `És l'autoritat que es dóna a una persona per realitzar i executar determinats actes jurídics i materials en el nostre nom. L'apoderat (persona que rep l'autoritat) no ha d'acceptar el poder, és una decisió unilateral del poderdant (persona que concedeix l'autoritat).`,
           },
           b: {
-            title: `a`,
-            description: `a`,
+            title: `Actes Notarials`,
+            description: `Document en què el notari fa constar la veracitat del que ha passat durant una assemblea, congrés, sessió, vista judicial o reunió de qualsevol naturalesa, així com dels acords o decisions preses.`,
           },
+          c: {
+            title: 'Còpia Compulsada',
+            description: `La compulsa d'un document és un acte a través del qual es dóna la mateixa validesa administrativa a la fotocòpia d'un document que a l'original. És a dir, aquesta còpia serà igualment vàlida per operar-hi, sense que sigui necessari presentar el document original.`
+          },
+          d: {
+            title: 'Postil·lat',
+            description: `La postil·la és un segell que certifica l'autenticitat de la signatura de funcionaris públics o agents diplomàtics en exercici de les seves funcions i el càrrec en què hagin actuat, la qual haurà d'estar registrada a la base de dades del Ministeri de Relacions Exteriors del país de origen, perquè el document sigui vàlid i tingui efectes legals en un altre país membre del Conveni de la Haia de 1961, sobre l'abolició del requisit de legalització per a documents públics estrangers.`
+          },
+          e: {
+            title: 'Legalització',
+            description: `La legalització és un acte administratiu pel qual s'atorga validesa a un document públic estranger, comprovant l'autenticitat de la signatura posada en un document i la qualitat en què l'autoritat signant del document ha actuat.`
+          },
+          f: {
+            title: 'Traducció Jurada',
+            description: `La traducció jurada (també anomenada, segons el país, traducció pública, traducció oficial o traducció certificada) és la traducció de qualsevol tipus de document, realitzada per un traductor reconegut per un organisme oficial i anomenat, per aquesta raó, traductor oficial, traductor jurat , traductor certificat o perit traductor, entre altres denominacions.`
+          },
+          g: {
+            title: 'Registre Civil Central',
+            description: `És el document bàsic de reconeixement i existència legal. A Xilcat t'ajudem a aconseguir cita ja que últimament tots els registres civils estan col·lapsats i només funcionen traient cita online. El sistema online et permet treure: partides de naixement de nens nascuts a Espanya i cites per registrar-los, també cita per a matrimonis civils i per registrar un matrimoni d'espanyol casat amb una persona fora del territori espanyol.`
+          },
+          h: {
+            title: `Llicències d'activitat`,
+            description: `La llicència dactivitat és el document que acredita lús dun local, nau o oficina per a lexercici duna determinada activitat comercial. En aquest document es descriuran les condicions d'habitabilitat de l'establiment en qüestió, així com el condicionament necessari per a l'activitat que s'hi realitzarà.`
+          },
+          i: {
+            title: 'Traspassos Plànol',
+            description: 'No info'
+          }
         },
       },
       teams: {
@@ -835,6 +921,7 @@ const resources: Resource = {
             3: `Oferim`,
             4: `Contacta amb nosaltres`,
             5: `Blog`,
+            6: 'zona client'
           },
         },
       },

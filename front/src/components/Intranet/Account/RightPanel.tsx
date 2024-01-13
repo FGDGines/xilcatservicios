@@ -82,9 +82,9 @@ const RightPanel = ({ side, data }: TProps) => {
         }
         {
           (account.length <= 0 && data?.price !== 0) && (
-            <div>
+            <div className='flex flex-col items-center mt-2 text-xl'>
             <p>Realice el primer pago</p>
-            <p><MdOutlinePayments /></p>
+            <p><MdOutlinePayments  className="text-2xl" /></p>
             </div>
           )
         }

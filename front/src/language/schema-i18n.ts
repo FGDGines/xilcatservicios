@@ -45,8 +45,36 @@ export interface TranslationSchema {
       a: {
         title: string
         description: string
-      }
+      },
       b: {
+        title: string
+        description: string
+      },
+      c: {
+        title: string
+        description: string
+      },
+      d: {
+        title: string
+        description: string
+      },
+      f: {
+        title: string
+        description: string
+      },
+      g: {
+        title: string
+        description: string
+      },
+      h: {
+        title: string
+        description: string
+      }
+      i: {
+        title: string
+        description: string
+      }
+      e: {
         title: string
         description: string
       }
@@ -258,6 +286,7 @@ export interface TranslationSchema {
         3: string
         4: string
         5: string
+        6: string
       }
     }
   }

@@ -17,41 +17,68 @@ type TOptions = {
 
 const LanguageSelector = () => {
   const { i18n } = useTranslation<TranslationKeys>();
-
-  const options: TOptions[] = [
+  const [options, setOptions] = useState<TOptions[]>([
     { value: 'ca', label: 'Catalán', image: catalaIcon },
     { value: 'es', label: 'Español', image: spanishIcon },
     { value: 'en', label: 'English', image: inglesIcon },
-  ];
+  ])
+
     const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng).catch((error) => {
-        console.error('Error al cambiar el idioma:', error);
-    });
-  }
+      i18n.changeLanguage(lng).catch((error) => {
+          console.error('Error al cambiar el idioma:', error);
+      });
+    }
+    const getStyle = (id: number) => {
+      if (id === 0) return 'z-1 absolute left-0 top-0 opacity-50'
+      if (id === 1) return 'z-10 absolute left-4 top-2'
+      if (id === 2) return 'z-1 absolute left-8 top-0 opacity-50'
+    }
+
+    const handleClick = (lng: string) => {
+      setOptions(prev => {
+        const currentLng = prev.find(opt => opt.value === lng) as any
+        const optionWithoutLng = prev.filter(opt => opt.value !== lng)
+        return [optionWithoutLng[0],     currentLng, optionWithoutLng[1]]
+
+      })
+      changeLanguage(lng)
+    }
   return (
-    <div className="relative w-8">
-      <select
-        className=" absolute top-0 left-4 appearance-none bg-transparent border-none text-center text-gray-700 py-2 px-4 leading-tight focus:outline-none opacity-0"
-        onChange={(e) => changeLanguage(e.target.value)}
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-0 text-gray-700 w-4">
-        {options.map((option) =>{
-          if (option.value === i18n.language) return(
-          <img
-            key={option.value}
-            src={option.image}
-            alt={option.label}
-            className="w-4 h-4 mr-1"
-          />
-        )})}
-      </div>
-    </div>
+    // <div className="relative w-8">
+    //   <select
+    //     className=" absolute top-0 left-4 appearance-none bg-transparent border-none text-center text-gray-700 py-2 px-4 leading-tight focus:outline-none opacity-0"
+    //     onChange={(e) => changeLanguage(e.target.value)}
+    //   >
+    //     {options.map((option) => (
+    //       <option key={option.value} value={option.value}>
+    //         {option.label}
+    //       </option>
+    //     ))}
+    //   </select>
+    //   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-0 text-gray-700 w-4">
+    //     {options.map((option) =>{
+    //       if (option.value === i18n.language) return(
+    //       <img
+    //         key={option.value}
+    //         src={option.image}
+    //         alt={option.label}
+    //         className="w-4 h-4 mr-1"
+    //       />
+    //     )})}
+    //   </div>
+    // </div>
+    <div className="relative flex gap-2 w-[10%] self-start">
+      {
+        options.map((opt, idx) => (
+          <div className={`${getStyle(idx)} flex h-6 w-6 items-center justify-center rounded-full text-white transition-all hover:translate-y-1`} onClick={() => handleClick(opt.value)}>
+            <img src={opt.image} alt="" key={opt.value}  className="w-full h-full"/>
+          </div>
+        ))
+      }
+    {/* <div className="z-1 absolute left-0 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-8 text-white transition-all hover:translate-y-2">a</div>
+    <div className="absolute left-8 top-4 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 p-8 text-white transition-all hover:translate-y-2">b</div>
+    <div className="z-1 absolute left-16 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-green-500 p-8 text-white transition-all hover:translate-y-2">c</div> */}
+  </div>
   );
 };
 
@@ -80,6 +107,10 @@ const HeaderMenu = () => {
     {
       text: t('footer.newsletter.links.5' as TranslationKeys),
       link: '/blog'
+    },
+    {
+      text: t('footer.newsletter.links.6' as TranslationKeys),
+      link: '/intranet/main'
     }
   ]
 
@@ -94,10 +125,10 @@ const HeaderMenu = () => {
         </div>
         {
           isDesktop && (
-            <div className='flex gap-2 justify-around basis-2/3 text-white text-[18px] xl:basis-1/2'>
+            <div className='flex gap-4 justify-around basis-2/3 text-white text-[18px] lg:basis-4/6 items-center text-center'>
             {
               links.map(link => (
-                <a href={link.link}>
+                <a href={link.link} className='hover:drop-shadow-[4px_4px_2px_rgba(108,103,152,1)]'>
                   {link.text}
                 </a>
               ))

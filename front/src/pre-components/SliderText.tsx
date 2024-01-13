@@ -9,34 +9,23 @@ import { useTranslation } from "react-i18next";
 export const SliderText = () => {
     const { t } = useTranslation<TranslationKeys>();
     const { isDesktop } = useDeviceSize();
-    // EL i18n NO FUNCIONA CON STATE EL CAMBIO DE IDIOMA :c 
-    // const [service,] = useState<Service[]>([
-    //     { name: t('powers.power.a.title' as TranslationKeys), description: t('powers.power.a.description' as TranslationKeys) },
-    //     { name: t('powers.power.b.title' as TranslationKeys), description: t('powers.power.b.description' as TranslationKeys) },
-    //     { name: "Poderes 2", description: "Lorem Ipsum2" },
-    //     { name: "Poderes 3", description: "Lorem Ipsum3" },
-    //     { name: "Poderes 4", description: "Lorem Ipsum4" },
-    //     { name: "Poderes 5", description: "Lorem Ipsum5" }
-    // ])
+    const [currentSlide, setCurrentSlide] = useState<number>(0);
 
     const service: Service[] = [
         { name: t('powers.power.a.title' as TranslationKeys), description: t('powers.power.a.description' as TranslationKeys) },
         { name: t('powers.power.b.title' as TranslationKeys), description: t('powers.power.b.description' as TranslationKeys) },
-        { name: "Poderes 2", description: "Lorem Ipsum2" },
-        { name: "Poderes 3", description: "Lorem Ipsum3" },
-        { name: "Poderes 4", description: "Lorem Ipsum4" },
-        { name: "Poderes 5", description: "Lorem Ipsum5" }
+        { name: t('powers.power.c.title' as TranslationKeys), description: t('powers.power.c.description' as TranslationKeys) },
+        { name: t('powers.power.d.title' as TranslationKeys), description: t('powers.power.d.description' as TranslationKeys) },
+        { name: t('powers.power.e.title' as TranslationKeys), description: t('powers.power.e.description' as TranslationKeys) },
+        { name: t('powers.power.f.title' as TranslationKeys), description: t('powers.power.f.description' as TranslationKeys) },
+        { name: t('powers.power.g.title' as TranslationKeys), description: t('powers.power.g.description' as TranslationKeys) },
+        { name: t('powers.power.h.title' as TranslationKeys), description: t('powers.power.h.description' as TranslationKeys) },
+        { name: t('powers.power.i.title' as TranslationKeys), description: t('powers.power.i.description' as TranslationKeys) },
+
     ]
 
-    const [currentSlide, setCurrentSlide] = useState<number>(0);
-
-    const nextSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide === service.length - 1 ? 0 : prevSlide + 1));
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prevSlide) => (prevSlide === 0 ? service.length - 1 : prevSlide - 1));
-    };
+    const nextSlide = () => setCurrentSlide((prevSlide) => (prevSlide === service.length - 1 ? 0 : prevSlide + 1));
+    const prevSlide = () => setCurrentSlide((prevSlide) => (prevSlide === 0 ? service.length - 1 : prevSlide - 1));
 
     return <>
         <h1 id="Services" style={{ fontWeight: 700 }} className="text-center my-3 text-[30px] md:text-[40px] text-cs-purple">{t('powers.title' as TranslationKeys)}</h1>
