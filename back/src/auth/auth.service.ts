@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { AuthEntity } from './auth.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { AuthCredentialsDto } from './auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -12,15 +13,16 @@ export class AuthService {
   ) {}
 
   async register(
-    createUserDto: AuthEntity,
+    createUserDto: AuthCredentialsDto,
   ): Promise<AuthEntity | ValidationError[]> {
     const { username, password } = createUserDto;
     try {
+      const adminExists = await this.isAdminExists();
       const hashedPassword = await bcrypt.hash(password, 10);
-
       const newUser = this.authRepository.create({
         username,
         password: hashedPassword,
+        rol: !adminExists ? 'ADMINISTRATOR' : 'CLIENT',
       });
 
       return await this.authRepository.save(newUser);
@@ -52,5 +54,12 @@ export class AuthService {
       where: { id: authId },
     });
     return !!authEntity; // Devuelve true si se encuentra la entidad, de lo contrario, devuelve false
+  }
+
+  async isAdminExists(): Promise<boolean> {
+    const adminCount = await this.authRepository.count({
+      where: { rol: 'ADMINISTRATOR' },
+    });
+    return adminCount > 0;
   }
 }

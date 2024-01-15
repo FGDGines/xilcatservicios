@@ -1,21 +1,16 @@
 /* eslint-disable prettier/prettier */
 import {
-  IsIn,
   IsNotEmpty,
   IsString,
-  Matches,
-  MaxLength,
   MinLength,
+  MaxLength,
+  Matches,
 } from 'class-validator';
-import { ClientEntity } from 'src/client/client.entity';
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Rol } from './auth.dto';
+import { Column } from 'typeorm';
 
-@Entity()
-export class AuthEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+export type Rol = 'ADMINISTRATOR' | 'LAWYER' | 'ADVISER' | 'CLIENT';
 
+export class AuthCredentialsDto {
   @Column({ unique: true })
   @IsNotEmpty({ message: 'El nombre de usuario es obligatorio' })
   @IsString({ message: 'El nombre de usuario debe ser un texto' })
@@ -27,7 +22,6 @@ export class AuthEntity {
   })
   username: string;
 
-  @Column()
   @IsNotEmpty({ message: 'La contraseña es obligatoria' })
   @IsString({ message: 'La contraseña debe ser un texto' })
   @MinLength(6, { message: 'La contraseña debe tener al menos 6 caracteres' })
@@ -39,25 +33,4 @@ export class AuthEntity {
       'La contraseña debe contener al menos una letra mayúscula, una minúscula, un número y un carácter especial',
   })
   password: string;
-
-  @Column({ default: 'CLIENT' as Rol })
-  @IsIn(['ABOGADO', 'ADMINISTRADOR', 'ASESOR', 'CLIENT'] as Rol[], {
-    message: 'El estado de pago es inválido - ABOGADO, ADMINISTRADOR, ASESOR, CLIENT',
-  })
-  rol: Rol;
-
-  // FECHA
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  created_at: Date;
-
-  @Column({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-    onUpdate: 'CURRENT_TIMESTAMP',
-  })
-  updated_at: Date;
-
-  // RELACIONES
-  @OneToMany(() => ClientEntity, (client) => client.auth) // Relación uno a muchos con ClientEntity
-  clients: ClientEntity[];
 }

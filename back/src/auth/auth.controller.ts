@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import * as jwt from 'jsonwebtoken'; // Importa la biblioteca jsonwebtoken
 import { AuthEntity } from './auth.entity';
+import { AuthCredentialsDto } from './auth.dto';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -66,7 +67,14 @@ export class AuthController {
     },
   })
   async register(
-    @Body(new ValidationPipe()) createUserDto: AuthEntity,
+    @Body(
+      new ValidationPipe({
+        skipMissingProperties: true,
+        forbidNonWhitelisted: true,
+        whitelist: true,
+      }),
+    )
+    createUserDto: AuthCredentialsDto,
   ): Promise<AuthEntity | ValidationError[]> {
     return await this.authService.register(createUserDto);
   }

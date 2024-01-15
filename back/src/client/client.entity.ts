@@ -11,7 +11,6 @@ import {
   // OneToMany,
 } from 'typeorm';
 import {
-  IsArray,
   IsEmail,
   IsIn,
   IsNotEmpty,
@@ -21,7 +20,6 @@ import {
   IsString,
   Matches,
   MinLength,
-  ValidateNested,
 } from 'class-validator';
 import { AuthEntity } from 'src/auth/auth.entity';
 import { DuesDto, PaymentStatus, PdfDto, TramiteType } from './client.dto';
@@ -93,9 +91,9 @@ export class ClientEntity {
   pdf: PdfDto[];
 
   @Column({ type: 'json' })
-  @ApiProperty({ type: DuesDto})
+  @ApiProperty({ type: DuesDto })
   @Type(() => DuesDto)
-  dues: string = 'null'
+  dues: string = 'null';
 
   @ApiProperty()
   @Column({ default: 'TYPE1' })
