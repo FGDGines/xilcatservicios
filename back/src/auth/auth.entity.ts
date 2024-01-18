@@ -42,7 +42,7 @@ export class AuthEntity {
 
   @Column({ default: 'CLIENT' as Rol })
   @IsIn(['ABOGADO', 'ADMINISTRADOR', 'ASESOR', 'CLIENT'] as Rol[], {
-    message: 'El estado de pago es inválido - ABOGADO, ADMINISTRADOR, ASESOR, CLIENT',
+    message: 'El rol es invalido - ABOGADO, ADMINISTRADOR, ASESOR, CLIENT',
   })
   rol: Rol;
 

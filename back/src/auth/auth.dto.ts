@@ -6,11 +6,14 @@ import {
   MaxLength,
   Matches,
 } from 'class-validator';
-import { Column } from 'typeorm';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
 export type Rol = 'ADMINISTRATOR' | 'LAWYER' | 'ADVISER' | 'CLIENT';
 
 export class AuthCredentialsDto {
+  @PrimaryGeneratedColumn()
+  id: number;
+
   @Column({ unique: true })
   @IsNotEmpty({ message: 'El nombre de usuario es obligatorio' })
   @IsString({ message: 'El nombre de usuario debe ser un texto' })

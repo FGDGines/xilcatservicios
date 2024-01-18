@@ -1,12 +1,23 @@
 import {
   Body,
   Controller,
+  Get,
+  Param,
   Post,
+  Put,
+  Query,
   ValidationError,
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOperation,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import * as jwt from 'jsonwebtoken'; // Importa la biblioteca jsonwebtoken
 import { AuthEntity } from './auth.entity';
 import { AuthCredentialsDto } from './auth.dto';
@@ -15,6 +26,16 @@ import { AuthCredentialsDto } from './auth.dto';
 @ApiTags('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
+  @Get()
+  @ApiOperation({ summary: 'OPERATIVO' })
+  @ApiQuery({ name: 'page', required: false, type: Number })
+  @ApiQuery({ name: 'limit', required: false, type: Number })
+  @ApiResponse({ status: 200, description: 'Return all clients.' })
+  async getAllAuth(@Query() queryParams): Promise<AuthEntity[]> {
+    const { page = 1, limit = 10 } = queryParams;
+    return await this.authService.findAll(page, limit);
+  }
 
   @Post('login')
   @ApiOperation({ summary: 'OPERATIVO' })
@@ -25,7 +46,7 @@ export class AuthController {
   @ApiResponse({ status: 400, description: 'Invalid credentials.' })
   @ApiBody({
     description: 'Login credentials example',
-    type: AuthEntity,
+    type: AuthCredentialsDto,
     examples: {
       example1: {
         value: {
@@ -36,7 +57,7 @@ export class AuthController {
       },
     },
   })
-  async login(@Body() body: AuthEntity) {
+  async login(@Body() body: AuthCredentialsDto) {
     const { username, password } = body;
     const user = await this.authService.validateUser(username, password);
     if (user) {
@@ -77,5 +98,17 @@ export class AuthController {
     createUserDto: AuthCredentialsDto,
   ): Promise<AuthEntity | ValidationError[]> {
     return await this.authService.register(createUserDto);
+  }
+
+  @Put(':id')
+  @ApiOperation({ summary: 'OPERATIVO' })
+  @ApiParam({ name: 'id', description: 'Auth ID', type: Number })
+  @ApiBody({ type: AuthEntity })
+  @ApiResponse({ status: 200, description: 'Update a Auth.' })
+  async updateClient(
+    @Param('id') id: number,
+    @Body() authData: Partial<AuthEntity>,
+  ): Promise<AuthEntity | ValidationError[]> {
+    return await this.authService.update(id, authData);
   }
 }

@@ -12,6 +12,18 @@ export class AuthService {
     private readonly authRepository: Repository<AuthEntity>,
   ) {}
 
+  async update(
+    id: number,
+    authData: Partial<AuthEntity>,
+  ): Promise<AuthEntity | undefined> {
+    try {
+      await this.authRepository.update(id, authData);
+      return await this.authRepository.findOne({ where: { id } });
+    } catch (error) {
+      return error;
+    }
+  }
+
   async register(
     createUserDto: AuthCredentialsDto,
   ): Promise<AuthEntity | ValidationError[]> {
@@ -61,5 +73,26 @@ export class AuthService {
       where: { rol: 'ADMINISTRATOR' },
     });
     return adminCount > 0;
+  }
+
+  async findAll(page: number, limit: number): Promise<AuthEntity[]> {
+    try {
+      const clients = await this.authRepository
+        .createQueryBuilder('auth')
+        .select([
+          'auth.id',
+          'auth.username',
+          'auth.rol',
+          'auth.created_at',
+          'auth.updated_at',
+        ])
+        .take(limit)
+        .skip((page - 1) * limit)
+        .getMany();
+
+      return clients;
+    } catch (error) {
+      throw error;
+    }
   }
 }
