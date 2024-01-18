@@ -31,10 +31,12 @@ export class AuthController {
   @ApiOperation({ summary: 'OPERATIVO' })
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'limit', required: false, type: Number })
-  @ApiResponse({ status: 200, description: 'Return all clients.' })
+  @ApiQuery({ name: 'online', required: false, type: Boolean })
+  @ApiQuery({ name: 'activo', required: false, type: Boolean })
+  @ApiResponse({ status: 200, description: 'Return all Auths.' })
   async getAllAuth(@Query() queryParams): Promise<AuthEntity[]> {
-    const { page = 1, limit = 10 } = queryParams;
-    return await this.authService.findAll(page, limit);
+    const { page = 1, limit = 10, online, activo } = queryParams;
+    return await this.authService.findAll(page, limit, online, activo);
   }
 
   @Post('login')

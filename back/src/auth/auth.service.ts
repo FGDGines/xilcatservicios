@@ -75,21 +75,45 @@ export class AuthService {
     return adminCount > 0;
   }
 
-  async findAll(page: number, limit: number): Promise<AuthEntity[]> {
+  async findAll(
+    page: number,
+    limit: number,
+    online?: string,
+    activo?: string,
+  ): Promise<AuthEntity[]> {
     try {
-      const clients = await this.authRepository
+      const parsedOnline =
+        online === 'true' ? true : online === 'false' ? false : undefined;
+      const parsedActivo =
+        activo === 'true' ? true : activo === 'false' ? false : undefined;
+
+      const query = this.authRepository
         .createQueryBuilder('auth')
         .select([
           'auth.id',
           'auth.username',
           'auth.rol',
+          'auth.online',
+          'auth.activo',
           'auth.created_at',
           'auth.updated_at',
         ])
-        .take(limit)
         .skip((page - 1) * limit)
-        .getMany();
+        .take(limit);
 
+      if (parsedOnline !== undefined) {
+        query.andWhere('auth.online = :online', {
+          online: parsedOnline,
+        });
+      }
+
+      if (parsedActivo !== undefined) {
+        query.andWhere('auth.activo = :activo', {
+          activo: parsedActivo,
+        });
+      }
+
+      const clients = await query.getMany();
       return clients;
     } catch (error) {
       throw error;
