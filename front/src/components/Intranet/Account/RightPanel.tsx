@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { TClient } from '../../../types/client'
 import { FaIdCard, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa'
 import PaymentItem from './PaymentItem'

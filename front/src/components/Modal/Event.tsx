@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useAppStore } from '../../store'
-import { type } from 'os'
 import moment from 'moment'
 import { toast } from 'react-toastify'
 import  Select, { SingleValue }  from 'react-select'
@@ -53,7 +52,6 @@ const Event = () => {
   }
   const handleChange = (
     newValue: SingleValue<{ label: string, value: string }>,
-    actionMeta: any
   ) => {
     setTitle(String(newValue?.value))
   }

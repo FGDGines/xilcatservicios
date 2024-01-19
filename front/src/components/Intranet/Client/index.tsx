@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react'
+import { useReducer } from 'react'
 import { useParams } from 'react-router-dom' 
 import { MdSwitchLeft, MdSwitchRight } from "react-icons/md";
 import useClients from '../../../hooks/useClients';

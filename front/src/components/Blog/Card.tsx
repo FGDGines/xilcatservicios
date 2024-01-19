@@ -1,4 +1,3 @@
-import React from 'react'
 import { TArticle } from '../../pages/Blog'
 import { FaWhatsapp } from "react-icons/fa";
 import  Logo from '../../assets/Logo_white.png'

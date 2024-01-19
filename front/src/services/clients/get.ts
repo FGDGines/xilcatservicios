@@ -8,5 +8,4 @@ export const get = async () => {
     } catch (error: any) {
         return 'something wrong'
     }
-    // return await axios.get('http://localhost:3000' + import.meta.env.VITE_BACKEND_URL + '/clients')
 }

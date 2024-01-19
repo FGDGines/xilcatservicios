@@ -1,7 +1,5 @@
-import React from 'react'
 import ClientIcon from '../CMR/ClientIcon'
 import { useAppStore } from '../../store'
-import { DotLoader } from 'react-spinners'
 import AddClientBtn from '../CMR/AddClientBtn'
 import useClients from '../../hooks/useClients'
 import Loader from '../Common/Loader'

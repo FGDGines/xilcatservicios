@@ -1,5 +1,5 @@
 import { SetStateAction, useEffect, useRef, useState } from 'react';
-// import { useAuthProvider } from '../../hooks/useAuthProvider';
+import { chat, decodedPayloadOrNull } from './../../socket';
 
 interface Message {
     readonly id: string;
@@ -16,7 +16,6 @@ interface Auth {
     readonly updated_at: string
 }
 
-import { chat, decodedPayloadOrNull } from './../../socket.ts';
 
 export const Chat = () => {
     const [users, setUsers] = useState<{ username: string, id: number }[]>([])

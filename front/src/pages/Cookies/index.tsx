@@ -1,4 +1,3 @@
-import React from 'react'
 import HeaderMenu from '../../components/HeaderMenu'
 import Footer from '../../components/Footer'
 import PoliticsBar from '../../components/PoliticsBar'

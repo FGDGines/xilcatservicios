@@ -1,5 +1,3 @@
-import React from 'react'
-import { LuCookie } from "react-icons/lu";
 import { useAppStore } from '../../store';
 import { Cookie } from './Cookie';
 import Event from './Event';

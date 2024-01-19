@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import { FaRegFilePdf, FaRegFolderOpen } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { TClient } from '../../../types/client'
-import { useAppStore } from '../../../store'
 import  { toast } from 'react-toastify'
 import useClients from '../../../hooks/useClients'
 
@@ -25,7 +24,6 @@ const documents = [
 const RightPanel = ({ side, id, data }: TProps) => {
   const { addPdf } = useClients()
     const navigate = useNavigate()
-    const { setModal } = useAppStore()
     const multipleFilesRef = useRef<Array<HTMLInputElement | null>>([])
 
     const hasFileUploaded = (document: string) => {

@@ -8,7 +8,6 @@ import { TranslationKeys } from '../language/type-i18n';
 import spanishIcon from '../assets/castellano.png';
 import catalaIcon from '../assets/catala.png'
 import inglesIcon from '../assets/ingles.png'
-import Select from 'react-select';
 
 
 type TOptions = {
@@ -44,29 +43,7 @@ const LanguageSelector = () => {
       changeLanguage(lng)
     }
   return (
-    // <div className="relative w-8">
-    //   <select
-    //     className=" absolute top-0 left-4 appearance-none bg-transparent border-none text-center text-gray-700 py-2 px-4 leading-tight focus:outline-none opacity-0"
-    //     onChange={(e) => changeLanguage(e.target.value)}
-    //   >
-    //     {options.map((option) => (
-    //       <option key={option.value} value={option.value}>
-    //         {option.label}
-    //       </option>
-    //     ))}
-    //   </select>
-    //   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-0 text-gray-700 w-4">
-    //     {options.map((option) =>{
-    //       if (option.value === i18n.language) return(
-    //       <img
-    //         key={option.value}
-    //         src={option.image}
-    //         alt={option.label}
-    //         className="w-4 h-4 mr-1"
-    //       />
-    //     )})}
-    //   </div>
-    // </div>
+
     <div className="relative flex gap-2 w-[10%] self-start">
       {
         options.map((opt, idx) => (
@@ -75,9 +52,7 @@ const LanguageSelector = () => {
           </div>
         ))
       }
-    {/* <div className="z-1 absolute left-0 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 p-8 text-white transition-all hover:translate-y-2">a</div>
-    <div className="absolute left-8 top-4 z-10 flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 p-8 text-white transition-all hover:translate-y-2">b</div>
-    <div className="z-1 absolute left-16 top-0 flex h-5 w-5 items-center justify-center rounded-full bg-green-500 p-8 text-white transition-all hover:translate-y-2">c</div> */}
+
   </div>
   );
 };

@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FaLock, FaLockOpen } from "react-icons/fa";
 import { useAuthProvider } from '../../hooks/useAuthProvider';
-// import { redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,7 +20,7 @@ const Login = () => {
   const { signin } = useAuthProvider()
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     try {
-      const res = await signin(data)
+      await signin(data)
       return navigate('/intranet/main')
 
     } catch (error: any) {

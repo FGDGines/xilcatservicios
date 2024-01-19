@@ -1,4 +1,3 @@
-import React from 'react'
 import { FaIdCard, FaMailBulk, FaMapMarkerAlt, FaPhoneAlt, FaTrash } from 'react-icons/fa'
 import { TClient } from '../../../types/client'
 import useClients from '../../../hooks/useClients'

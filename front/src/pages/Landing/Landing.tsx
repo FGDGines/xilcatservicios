@@ -6,13 +6,9 @@ import Contact from '../../components/Landing/Contact'
 import Footer from '../../components/Footer'
 import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
-// import { Chatbot } from '../../pre-components/Chatbot'
 import PoliticsBar from '../../components/PoliticsBar'
-// import { ToastContainer } from 'react-toastify'
-// import 'react-toastify/dist/ReactToastify.css';
 
 const Landing = () => {
-  // const { isDesktop } = useDeviceSize()
   return (
     <>
       <HeaderMenu />
@@ -25,9 +21,6 @@ const Landing = () => {
         <Contact />
       </div>
       <Footer />
-      {/* {
-        isDesktop && <Chatbot />
-      } */}
       <PoliticsBar />
     </>
   )

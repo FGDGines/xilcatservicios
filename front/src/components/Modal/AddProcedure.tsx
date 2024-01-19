@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Select from 'react-select'
 import useClients from '../../hooks/useClients'
 import { useAppStore } from '../../store'
@@ -32,7 +32,6 @@ const AddProcedure = () => {
     const { update } = useClients()
     const handleChange = (
       newValue: any,
-      actionMeta: any
     ) => {
       setValue(newValue)
     }

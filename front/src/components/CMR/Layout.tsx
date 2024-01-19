@@ -1,14 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FaUsers, FaBook,  FaTrello, FaCloud, FaSignOutAlt } from "react-icons/fa";
 import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 import { IoIosMail } from "react-icons/io";
 import Icon from './Icon';
-import Logo from '../../assets/Logo_white.png'
 import { useDeviceSize } from '../../hooks/Responsive';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthProvider } from '../../hooks/useAuthProvider';
 
 const links = [
@@ -34,7 +32,6 @@ const Layout = ({Component}: { Component: any}) => {
   const location = useLocation()
   const navigate = useNavigate()
   const { isDesktop } = useDeviceSize()
-  const [isHidden, setIsHidden] = useState(false)
   const [isOpen, setIsOpen] = useState(false);
   const {signout } = useAuthProvider()
 
@@ -73,10 +70,6 @@ const Layout = ({Component}: { Component: any}) => {
         {/* Header  */}
         <div className='col-span-2 grid grid-cols-[20%_1fr_20%] lg:row-span-1 bg-cs-purple boder-2 border-red-500'>
           <div className=''>
-            {/* <img src={Logo} alt="" style={{
-              // width: '80%',
-              // height: '80%'
-            }} /> */}
           </div>
           <div className='flex flex-col items-center gap-2'>
             <a className='text-xl md:text-3xl lg:text-6xl mt-4 lg:mt-2' href='/intranet/main'>Intranet XilcatServicios</a>

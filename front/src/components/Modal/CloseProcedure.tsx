@@ -1,8 +1,6 @@
-import React from 'react'
 import useClients from '../../hooks/useClients'
 import { useAppStore } from '../../store'
 import { toast } from 'react-toastify'
-import { redirect, useNavigate } from 'react-router-dom'
 
 const CloseProcedure = () => {
 

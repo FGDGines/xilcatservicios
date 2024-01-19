@@ -1,4 +1,3 @@
-import React from 'react'
 import { useQueryClient, useQuery, useMutation } from 'react-query'
 import clients from '../services/clients'
 import { TClient } from '../types/client'
