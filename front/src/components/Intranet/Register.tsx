@@ -35,7 +35,7 @@ const Register = () => {
   }
   return (
     <div className='bg-cs-purple h-screen flex justify-center items-center'>
-        <form className='h-[60%] w-[80%] bg-white text-cs-gray rounded grid grid-cols-1 place-items-center gap-4 shadow-xl shadow-gray-500/80 md:w-[60%] lg:w-[40%]'
+        <form className='h-[60%] w-[80%] bg-white text-cs-gray rounded grid grid-cols-1 place-items-center gap-4 shadow-xl shadow-gray-500/80 md:w-[60%] lg:h-[70%] lg:w-[40%] lg:py-8'
         onSubmit={handleSubmit(onSubmit)}
         >
             <div className='flex flex-col justify-center w-[90%] h-full gap-2'>
