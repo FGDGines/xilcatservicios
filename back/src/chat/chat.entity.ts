@@ -40,7 +40,7 @@ export class ChatEntity {
   updated_at: Date;
 
   // RELACIONES
-  @ManyToOne(() => AuthEntity, (auth) => auth.clients)
+  @ManyToOne(() => AuthEntity, (auth) => auth.chats)
   @JoinColumn()
   @IsNumber({}, { message: 'El ID de AuthEntity debe ser un número' })
   @IsPositive({ message: 'El ID de AuthEntity debe ser un número positivo' })
