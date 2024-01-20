@@ -1,9 +1,15 @@
-import { Injectable, ValidationError } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  ValidationError,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AuthEntity } from './auth.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { AuthCredentialsDto } from './auth.dto';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { extname } from 'path';
 
 @Injectable()
 export class AuthService {
@@ -97,6 +103,7 @@ export class AuthService {
           'auth.activo',
           'auth.created_at',
           'auth.updated_at',
+          'auth.imagePath',
         ])
         .skip((page - 1) * limit)
         .take(limit);
@@ -117,6 +124,47 @@ export class AuthService {
       return clients;
     } catch (error) {
       throw error;
+    }
+  }
+
+  async handleFileUpload(file: Express.Multer.File, authId: number) {
+    try {
+      console.log(authId);
+      const auth = await this.authRepository.findOne({
+        where: { id: authId },
+      });
+
+      if (!auth) {
+        throw new BadRequestException(
+          'El ID de Auth proporcionado no existe: ' + authId,
+        );
+      }
+
+      const folderPath = `./public/auth/${auth.id}`;
+      const uniqueSuffix = `${Date.now()}`;
+      const extension = extname(file.originalname);
+
+      if (!existsSync(folderPath)) {
+        mkdirSync(folderPath, { recursive: true });
+      }
+
+      const fileName = `${uniqueSuffix}${extension}`;
+      const filePath = `${folderPath}/${fileName}`;
+
+      writeFileSync(filePath, file.buffer);
+
+      await this.authRepository.update(authId, { imagePath: filePath });
+
+      return {
+        success: true,
+        filePath,
+        fileName,
+      };
+    } catch (error) {
+      throw new BadRequestException({
+        success: false,
+        message: error.message || 'Ha ocurrido un error al manejar el archivo.',
+      });
     }
   }
 }

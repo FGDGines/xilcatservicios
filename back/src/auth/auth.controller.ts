@@ -1,17 +1,24 @@
 import {
   Body,
   Controller,
+  FileTypeValidator,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
+  ParseFilePipe,
   Post,
   Put,
   Query,
+  UploadedFile,
+  UseInterceptors,
   ValidationError,
   ValidationPipe,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import {
   ApiBody,
+  ApiConsumes,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -21,6 +28,7 @@ import {
 import * as jwt from 'jsonwebtoken'; // Importa la biblioteca jsonwebtoken
 import { AuthEntity } from './auth.entity';
 import { AuthCredentialsDto } from './auth.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('auth')
 @ApiTags('auth')
@@ -112,5 +120,46 @@ export class AuthController {
     @Body() authData: Partial<AuthEntity>,
   ): Promise<AuthEntity | ValidationError[]> {
     return await this.authService.update(id, authData);
+  }
+
+  // ARCHIVOS
+  @Post('upload-image/:authId')
+  @ApiOperation({ summary: 'OPERATIVO' })
+  @UseInterceptors(FileInterceptor('file'))
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'Upload image file',
+    type: 'multipart/form-data',
+    schema: {
+      type: 'object',
+      properties: {
+        file: {
+          type: 'string',
+          format: 'binary',
+        },
+      },
+    },
+  })
+  @ApiResponse({ status: 200, description: 'Update a client PDF.' })
+  async uploadPDF(
+    @Param('authId') authId: number,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [new FileTypeValidator({ fileType: 'image/jpeg' })],
+      }),
+    )
+    file: Express.Multer.File,
+  ) {
+    try {
+      console.log(authId);
+      const { filePath, fileName } = await this.authService.handleFileUpload(
+        file,
+        authId,
+      );
+
+      return { success: true, filePath, fileName };
+    } catch (error) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
+    }
   }
 }
