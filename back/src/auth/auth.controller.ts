@@ -72,7 +72,12 @@ export class AuthController {
     const user = await this.authService.validateUser(username, password);
     if (user) {
       const token = jwt.sign(
-        { username: user.username, id: user.id },
+        {
+          username: user.username,
+          id: user.id,
+          imagePath: user.imagePath,
+          created_at: user.created_at,
+        },
         'xilcat',
       );
       return { token };
