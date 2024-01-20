@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useReducer} from 'react'
 import { FaUsers, FaBook,  FaTrello, FaCloud, FaSignOutAlt } from "react-icons/fa";
 import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -9,11 +9,18 @@ import { useDeviceSize } from '../../hooks/Responsive';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthProvider } from '../../hooks/useAuthProvider';
 
-const links = [
+type TLinks = {
+  text: string,
+  Icon: JSX.Element,
+  link: string,
+  action? : () => void
+}
+
+const links: TLinks[] = [
   {
     link: '',
     text: 'Salir',
-    Icon: <FaSignOutAlt />
+    Icon: <FaSignOutAlt />,
   },
   {
     link: '',
@@ -32,12 +39,8 @@ const Layout = ({Component}: { Component: any}) => {
   const location = useLocation()
   const navigate = useNavigate()
   const { isDesktop } = useDeviceSize()
-  const [isOpen, setIsOpen] = useState(false);
-  const {signout } = useAuthProvider()
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  const [isOpen, toggleIsOpen] = useReducer((prev) => !prev, false)
+  const { signout } = useAuthProvider()
 
   const setDescriptionName = () => {
     const nameDescription: { [index: string]: string} = {
@@ -82,7 +85,7 @@ const Layout = ({Component}: { Component: any}) => {
                     <div className="relative">
                     <button
                       className="focus:outline-none"
-                      onClick={toggleMenu}
+                      onClick={toggleIsOpen}
                     >
                       <GiHamburgerMenu />
                     </button>
@@ -90,14 +93,20 @@ const Layout = ({Component}: { Component: any}) => {
                       <div className="absolute z-10 right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
                         {
                           links.map(link => (
-                            <a
-                            href={link.link}
+                            <p
                             className="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-lg flex gap-2"
-                            onClick={() => toggleMenu()}
+                            onClick={() => {
+                              toggleIsOpen()
+                              if (link.link !== '') {
+                                console.log('navigating')
+                                navigate(link.link)
+                              }
+                              if (link.text === 'Salir') handleSignOut()
+                            }}
                           >
                             {link.Icon}
                             {link.text}
-                          </a>
+                          </p>
                           ))
                         }
                       </div>
