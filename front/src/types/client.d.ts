@@ -21,4 +21,5 @@ export type TClient = {
     auth: any
     id?: number
     dues: string
+    collaborators: string
 }

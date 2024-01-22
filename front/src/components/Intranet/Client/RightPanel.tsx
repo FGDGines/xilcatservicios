@@ -26,6 +26,8 @@ const RightPanel = ({ side, id, data }: TProps) => {
     const navigate = useNavigate()
     const multipleFilesRef = useRef<Array<HTMLInputElement | null>>([])
 
+    console.log('data', data)
+
     const hasFileUploaded = (document: string) => {
       if (typeof data?.pdf === 'string') return false
       if (!data?.pdf) return false
@@ -58,8 +60,10 @@ const RightPanel = ({ side, id, data }: TProps) => {
     bg-white h-full ${side ? 'flex-0 w-0 opacity-0' : 'flex-1 w-full opacity-100'} transition-all  duration-300 ease-in flex flex-col
     lg:flex-1 lg:w-full lg:opacity-100
     `}>
+          {
+            data?.tramiteType !== 'TYPE1' && (
         <div className='basis-1/5 flex border rounded shadow items-center my-2'>
-          <div className='flex-1 flex justify-center items-center gap-2 md:text-xl lg:text-2xl'>
+          {/* <div className='flex-1 flex justify-center items-center gap-2 md:text-xl lg:text-2xl'>
             <p>
               Datos Adjuntos
             </p>
@@ -69,9 +73,15 @@ const RightPanel = ({ side, id, data }: TProps) => {
               <button type="button"  className="bg-cs-purple hover:bg-cs-purple-light text-white font-bold py-2 px-6 rounded">
                 Examinar
               </button>
+          </div> */}
               {/* <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" /> */}
-          </div>
+                  <div className='flex-1 flex justify-center items-center gap-2 md:text-xl lg:text-2xl'>
+                    <p>Colaboradores: {data?.collaborators || 'Ninguno'}</p>
+                  </div>
+
         </div>
+                )
+              }
         {
           data?.tramiteType === 'TYPE1' && (
             <div className='text-center border my-2 py-4 shadow'>

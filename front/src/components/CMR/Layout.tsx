@@ -1,5 +1,5 @@
 import { useReducer} from 'react'
-import { FaUsers, FaBook,  FaTrello, FaCloud, FaSignOutAlt, FaUsersCog } from "react-icons/fa";
+import { FaUsers, FaBook,  FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote } from "react-icons/fa";
 import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
 
@@ -33,7 +33,11 @@ const links: TLinks[] = [
     link: '',
     text: 'Usuario',
     Icon: <LuUserCircle />
-
+  },
+  {
+    link: '',
+    text: 'Blog',
+    Icon: <FaRegStickyNote />
   },
 ]
 
@@ -74,6 +78,9 @@ const Layout = ({Component}: { Component: any}) => {
   const handleAuthUserOpenModal = () => {
     setModal({ type: 'auth_user'})
   }
+  const handleBlogOpen = () => {
+    setModal({ type: 'blog'})
+  }
 
   return (
     <div className='h-screen grid grid-cols-1 grid-rows-6 lg:grid-cols-[10%_1fr] text-white'>
@@ -110,6 +117,7 @@ const Layout = ({Component}: { Component: any}) => {
                               }
                               if (link.text === 'Salir') handleSignOut()
                               if (link.text === 'Chat') handleChatOpen()
+                              if (link.text === 'Blog') handleBlogOpen()
                             }}
                           >
                             {link.Icon}
@@ -129,6 +137,7 @@ const Layout = ({Component}: { Component: any}) => {
                 <Icon Icon={<FaSignOutAlt />} text="Salir" url='' action={handleSignOut}/>
                 <Icon Icon={<LuMessagesSquare />} text="Chat" url='' action={handleChatOpen} />
                 <Icon  Icon={<LuUserCircle />} text="Usuario" url='' />
+                <Icon  Icon={<FaRegStickyNote />} text="Blog" url='' action={handleBlogOpen} />
                 </>
               )
             }

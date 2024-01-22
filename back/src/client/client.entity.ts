@@ -22,7 +22,7 @@ import {
   MinLength,
 } from 'class-validator';
 import { AuthEntity } from 'src/auth/auth.entity';
-import { DuesDto, PaymentStatus, PdfDto, TramiteType } from './client.dto';
+import { CollaboratorsDto, DuesDto, PaymentStatus, PdfDto, TramiteType } from './client.dto';
 import { Type } from 'class-transformer';
 import { ApiProperty } from '@nestjs/swagger';
 // import { PDFEntity } from 'src/pdf/pdf.entity';
@@ -94,6 +94,11 @@ export class ClientEntity {
   @ApiProperty({ type: DuesDto })
   @Type(() => DuesDto)
   dues: string = 'null';
+
+  @Column({ type: 'json' })
+  @ApiProperty({ type: CollaboratorsDto })
+  @Type(() => CollaboratorsDto)
+  collaborators: string;
 
   @ApiProperty()
   @Column({ default: 'TYPE1' })

@@ -14,6 +14,7 @@ const LeftPanel = ({ data, side }:TProps) => {
   const { erase } = useClients()
   const { setModal } = useAppStore()
   const navigate = useNavigate()
+  
   const handleClick = () => {
     console.log('id in left panel', Number(data?.id))
     erase.mutate(Number(data?.id))
@@ -30,7 +31,7 @@ const LeftPanel = ({ data, side }:TProps) => {
         <FaTrash />
       </button>
       <div className='text-center flex flex-col gap-2 mt-4'>
-        <h1>Tramite Solicitado por Jennyfer-xilcatservicios</h1>
+        <h1>Tramite Solicitado por {data?.auth.username}</h1>
         <p className='font-semibold md:text-xl lg:text-3xl'>Ficha Cliente {data?.name.split(' ')[0]}</p>
       </div>
       <div className='

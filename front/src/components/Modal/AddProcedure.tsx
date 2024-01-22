@@ -4,9 +4,14 @@ import useClients from '../../hooks/useClients'
 import { useAppStore } from '../../store'
 import { toast } from 'react-toastify'
 import { TramiteType } from '../../types/client'
+import useAuthUsers from '../../hooks/useAuthUsers'
 
 type TProcedureOption = {
   value: TramiteType
+  label: string
+}
+type TLawyersOption = {
+  value: string,
   label: string
 }
 
@@ -27,17 +32,24 @@ const options: TProcedureOption[] = [
 
 const AddProcedure = () => {
     const [option, setValue] = useState<TProcedureOption>(options[0])
+    const [lawyerOpt, setLawyerOpt] = useState<TLawyersOption>({ value: '', label: ''})
     const [price, setPrice] = useState(0)
     const { modal, closeModal } = useAppStore()
     const { update } = useClients()
+    const { list } = useAuthUsers()
+    const lawyers = list?.data?.filter((item:any) => item.rol === 'LAWYER').map((item: any) => ({ value: item.id, label: item.username})) || []
     const handleChange = (
       newValue: any,
     ) => {
       setValue(newValue)
     }
 
+    const handleLawyerChange = (newValue: any) => {
+      setLawyerOpt(newValue)
+    }
+
     const handleClick = () => {
-      update.mutate({data: { tramiteType: option.value, priceQuote: price, price, paymentStatus: 'PENDING'  }, id: Number(modal.id) })
+      update.mutate({data: { tramiteType: option.value, priceQuote: price, price, paymentStatus: 'PENDING', collaborators: lawyerOpt.label   }, id: Number(modal.id) })
       toast.success('Agregado un nuevo tramite')
       closeModal()
     }
@@ -49,6 +61,11 @@ const AddProcedure = () => {
           isSearchable
           options={options}
           onChange={handleChange}
+        />
+        <Select
+          isSearchable
+          options={lawyers}
+          onChange={handleLawyerChange}
         />
         <div className='flex items-center gap-2 relative'>
           <label htmlFor="procedure" className='absolute left-2'>Cotizacion €</label>

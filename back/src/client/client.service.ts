@@ -75,6 +75,7 @@ export class ClientService {
           'client.created_at',
           'client.updated_at',
           'client.dues',
+          'client.collaborators',
 
           'auth.id',
           'auth.username',

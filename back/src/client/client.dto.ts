@@ -22,3 +22,9 @@ export class DuesDto {
   @ApiProperty()
   dues: string
 }
+
+export class CollaboratorsDto {
+  @IsString()
+  @ApiProperty()
+  collaborators: string
+}
