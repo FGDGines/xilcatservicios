@@ -23,13 +23,8 @@ export const Chat = () => {
     const [online, setOnline] = useState<boolean>(false)
     const [isLoading, setIsLoading] = useState(false);
     const [messages, setMessage] = useState<Message[]>([])
-    const [isOpen, setIsOpen] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const { isChatOpen, handleChatClose } = useAppStore()
-
-    const toggleChat = () => {
-        setIsOpen(!isOpen);
-    };
 
     const scrollToBottom = () => {
         if (messagesEndRef.current) {

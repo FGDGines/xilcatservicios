@@ -1,4 +1,3 @@
-import React from 'react'
 import useAuthUsers from '../../hooks/useAuthUsers'
 
 const AuthUser = () => {

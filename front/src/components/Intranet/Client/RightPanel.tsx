@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { FaRegFilePdf, FaRegFolderOpen } from 'react-icons/fa'
+import { FaRegFilePdf } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import { TClient } from '../../../types/client'
 import  { toast } from 'react-toastify'
