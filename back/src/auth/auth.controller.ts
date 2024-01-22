@@ -74,7 +74,8 @@ export class AuthController {
       const token = jwt.sign(
         {
           username: user.username,
-          id: user.id, rol: user.rol,
+          id: user.id,
+          rol: user.rol,
           imagePath: user.imagePath,
           created_at: user.created_at,
         },

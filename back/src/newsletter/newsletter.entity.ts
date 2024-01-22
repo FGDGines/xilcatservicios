@@ -1,7 +1,12 @@
-/* eslint-disable prettier/prettier */
 import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 import { AuthEntity } from 'src/auth/auth.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 
 @Entity()
 export class NewsletterEntity {

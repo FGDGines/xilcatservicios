@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { IsEmail, IsNotEmpty } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -12,7 +11,7 @@ export class SubscriptionEntity {
   @IsEmail({}, { message: 'El formato del correo electrónico es inválido' })
   email: string;
 
-  @Column({ default: false }) 
+  @Column({ default: false })
   verified: boolean;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
@@ -22,6 +21,6 @@ export class SubscriptionEntity {
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP',
     onUpdate: 'CURRENT_TIMESTAMP',
-  }) 
+  })
   updated_at: Date;
 }

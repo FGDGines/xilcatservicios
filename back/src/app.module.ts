@@ -21,6 +21,7 @@ import { ClientEntity } from './client/client.entity';
 import { PdfModule } from './pdf/pdf.module';
 import { ChatModule } from './chat/chat.module';
 import { ChatEntity } from './chat/chat.entity';
+import { BlogModule } from './blog/blog.module';
 
 @Module({
   imports: [
@@ -78,6 +79,7 @@ import { ChatEntity } from './chat/chat.entity';
     ClientModule,
     PdfModule,
     ChatModule,
+    BlogModule,
   ],
 })
 export class AppModule implements NestModule {
