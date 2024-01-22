@@ -10,6 +10,8 @@ import {
 import { ClientEntity } from 'src/client/client.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Rol } from './auth.dto';
+import { NewsletterEntity } from 'src/newsletter/newsletter.entity';
+import { ChatEntity } from 'src/chat/chat.entity';
 
 @Entity()
 export class AuthEntity {
@@ -52,6 +54,9 @@ export class AuthEntity {
   @Column({ default: false })
   online: boolean;
 
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  imagePath: string;
+
   // FECHA
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
@@ -66,4 +71,10 @@ export class AuthEntity {
   // RELACIONES
   @OneToMany(() => ClientEntity, (client) => client.auth) // Relación uno a muchos con ClientEntity
   clients: ClientEntity[];
+
+  @OneToMany(() => NewsletterEntity, (newsletter) => newsletter.auth)
+  newsletters: NewsletterEntity[];
+
+  @OneToMany(() => ChatEntity, (chat) => chat.auth)
+  chats: ChatEntity[];
 }
