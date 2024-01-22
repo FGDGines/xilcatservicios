@@ -17,7 +17,7 @@ const Main = () => {
 
   return (
     <div className='relative h-full flex flex-nowrap'>
-      <div className='absolute bottom-6 right-6 text-white text-4xl bg-blue-500 rounded-full z-10 lg:w-0 lg:hidden hover:cursor-pointer' onClick={() => setSide(prev => !prev)}>
+      <div className='fixed bottom-6 right-6 text-white text-4xl bg-blue-500 rounded-full z-10 lg:w-0 lg:hidden hover:cursor-pointer' onClick={() => setSide(prev => !prev)}>
         {side ? <MdSwitchLeft /> : <MdSwitchRight />}
       </div>
       <div className={`

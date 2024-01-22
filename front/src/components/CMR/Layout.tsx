@@ -8,6 +8,7 @@ import Icon from './Icon';
 import { useDeviceSize } from '../../hooks/Responsive';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthProvider } from '../../hooks/useAuthProvider';
+import { useAppStore } from '../../store';
 
 type TLinks = {
   text: string,
@@ -41,6 +42,7 @@ const Layout = ({Component}: { Component: any}) => {
   const { isDesktop } = useDeviceSize()
   const [isOpen, toggleIsOpen] = useReducer((prev) => !prev, false)
   const { signout } = useAuthProvider()
+  const { handleChatOpen } = useAppStore()
 
   const setDescriptionName = () => {
     const nameDescription: { [index: string]: string} = {
@@ -102,6 +104,7 @@ const Layout = ({Component}: { Component: any}) => {
                                 navigate(link.link)
                               }
                               if (link.text === 'Salir') handleSignOut()
+                              if (link.text === 'Chat') handleChatOpen()
                             }}
                           >
                             {link.Icon}
@@ -119,7 +122,7 @@ const Layout = ({Component}: { Component: any}) => {
               isDesktop && (
                 <>
                 <Icon Icon={<FaSignOutAlt />} text="Salir" url='' action={handleSignOut}/>
-                <Icon Icon={<LuMessagesSquare />} text="Chat" url='' />
+                <Icon Icon={<LuMessagesSquare />} text="Chat" url='' action={handleChatOpen} />
                 <Icon  Icon={<LuUserCircle />} text="Usuario" url='' />
                 </>
               )

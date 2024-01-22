@@ -1,5 +1,6 @@
 import { SetStateAction, useEffect, useRef, useState } from 'react';
 import { chat, decodedPayloadOrNull } from './../../socket';
+import { useAppStore } from '../../store';
 
 interface Message {
     readonly id: string;
@@ -24,6 +25,7 @@ export const Chat = () => {
     const [messages, setMessage] = useState<Message[]>([])
     const [isOpen, setIsOpen] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const { isChatOpen, handleChatClose } = useAppStore()
 
     const toggleChat = () => {
         setIsOpen(!isOpen);
@@ -107,7 +109,7 @@ export const Chat = () => {
                                 <div className="contact bar flex items-center p-4 border-b border-gray-200 justify-between">
                                     <div className={`w-2 h-2 rounded-full  ${online ? 'bg-green-500' : 'bg-red-500'}`}></div>
                                     <div className="name font-semibold ml-3"> {decodedPayloadOrNull?.username}</div>
-                                    <button className="bg-red-500 text-white z-100 py-2 px-4 rounded-lg" onClick={toggleChat}>
+                                    <button className="bg-red-500 text-white z-100 py-2 px-4 rounded-lg" onClick={handleChatClose}>
                                         Cerrar Chat
                                     </button>
                                 </div>
@@ -155,13 +157,16 @@ export const Chat = () => {
         return (
             <div className="fixed bottom-4 right-4 z-50">
                 <div className="chat bg-white rounded-lg shadow-xl flex flex-col">
-                    {!isOpen ? (
+                    {/* {!isOpen ? (
                         <button className="bg-blue-500 text-white py-2 px-4 rounded-lg" onClick={toggleChat}>
                             Abrir Chat
                         </button>
                     ) : (
                         <ChatTemplate />
-                    )}
+                    )} */}
+                    {
+                        isChatOpen && <ChatTemplate />
+                    }
                 </div>
             </div>
         );
