@@ -17,7 +17,7 @@ const Main = () => {
 
   return (
     <div className='relative h-full flex flex-nowrap'>
-      <div className='fixed bottom-6 right-6 text-white text-4xl bg-blue-500 rounded-full z-10 lg:w-0 lg:hidden hover:cursor-pointer' onClick={() => setSide(prev => !prev)}>
+      <div className='fixed bottom-6 left-6 text-white text-4xl bg-blue-500 rounded-full z-10 lg:w-0 lg:hidden hover:cursor-pointer' onClick={() => setSide(prev => !prev)}>
         {side ? <MdSwitchLeft /> : <MdSwitchRight />}
       </div>
       <div className={`
@@ -42,7 +42,6 @@ const Main = () => {
     bg-white h-full ${side ? 'flex-0 w-0' : 'flex-1 w-full'} transition-all  duration-300 ease-in flex flex-col
     lg:basis-1/4 lg:w-full
     `}>
-        panel 2 - Pruebas de chat aqui
         <Chat />
       </div>
     </div>

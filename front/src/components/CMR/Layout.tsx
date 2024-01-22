@@ -1,5 +1,5 @@
 import { useReducer} from 'react'
-import { FaUsers, FaBook,  FaTrello, FaCloud, FaSignOutAlt } from "react-icons/fa";
+import { FaUsers, FaBook,  FaTrello, FaCloud, FaSignOutAlt, FaUsersCog } from "react-icons/fa";
 import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
 
@@ -9,6 +9,7 @@ import { useDeviceSize } from '../../hooks/Responsive';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthProvider } from '../../hooks/useAuthProvider';
 import { useAppStore } from '../../store';
+import { jwtDecode } from 'jwt-decode';
 
 type TLinks = {
   text: string,
@@ -42,7 +43,8 @@ const Layout = ({Component}: { Component: any}) => {
   const { isDesktop } = useDeviceSize()
   const [isOpen, toggleIsOpen] = useReducer((prev) => !prev, false)
   const { signout } = useAuthProvider()
-  const { handleChatOpen } = useAppStore()
+  const { handleChatOpen, setModal } = useAppStore()
+  const auth = localStorage.getItem('auth_token') && jwtDecode(String(localStorage.getItem('auth_token'))) as any
 
   const setDescriptionName = () => {
     const nameDescription: { [index: string]: string} = {
@@ -68,6 +70,9 @@ const Layout = ({Component}: { Component: any}) => {
   const handleSignOut = () => {
     signout()
     navigate('/intranet/login')
+  }
+  const handleAuthUserOpenModal = () => {
+    setModal({ type: 'auth_user'})
   }
 
   return (
@@ -137,11 +142,21 @@ const Layout = ({Component}: { Component: any}) => {
           lg:col-span-1 lg:flex-col lg:row-span-5
         '
         >
-          <Icon  Icon={<FaCloud />} text="Iono" url=''/>
-          <Icon Icon={<IoIosMail />} text="Email" url=''/>
-          <Icon Icon={<FaTrello />} text="Trello" url=''/>
-          <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')}/>
+          {
+            auth.rol !== 'LAWYER' && (
+              <>
+                <Icon  Icon={<FaCloud />} text="Iono" url=''/>
+                <Icon Icon={<IoIosMail />} text="Email" url=''/>
+                <Icon Icon={<FaTrello />} text="Trello" url=''/>
+                <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')}/>
+              </>
+            )
+          }
           <Icon Icon={<FaUsers />} text="Clientes" url='/intranet/clients'/>
+          {
+            auth.rol === 'ADMINISTRATOR' && <Icon Icon={<FaUsersCog />} text="Usuarios" url="" action={handleAuthUserOpenModal}/>
+          }
+          
         </div>
 
         {/* Principal Component */}
