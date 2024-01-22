@@ -2,18 +2,22 @@ import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express'; // Importa los tipos Request y Response de Express
 import { CookiesService } from './cookies.service';
 import { AcceptCookiesDto } from './cookies.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('cookie')
 @Controller('cookies')
 export class CookiesController {
   constructor(private readonly cookiesService: CookiesService) {}
 
   @Get()
+  @ApiOperation({ summary: 'OPERATIVO' })
   setCookie(@Res() res: Response) {
     this.cookiesService.setCookie(res, 'accept-cookies', 'true', {});
     return 'Cookie establecida';
   }
 
   @Get('/get-cookie')
+  @ApiOperation({ summary: 'OPERATIVO' })
   getCookie(@Req() req: Request) {
     const cookieValue = this.cookiesService.getCookie(req, 'accept-cookies');
     return cookieValue
@@ -22,11 +26,14 @@ export class CookiesController {
   }
 
   @Get('/clear-cookie')
+  @ApiOperation({ summary: 'OPERATIVO' })
   clearCookie(@Res() res: Response) {
     this.cookiesService.clearCookie(res, 'accept-cookies');
     return 'Cookie eliminada';
   }
+
   @Post('accept-cookies')
+  @ApiOperation({ summary: 'OPERATIVO' })
   async acceptCookies(@Body() body: AcceptCookiesDto, @Res() res: Response) {
     const { accepted } = body;
     try {
@@ -46,6 +53,7 @@ export class CookiesController {
   }
 
   @Get('/pop-up')
+  @ApiOperation({ summary: 'NO FUNCIONA' })
   async Headers(@Res() res: Response) {
     // Al enviar la respuesta, verifica si se debe mostrar el banner de cookies
     if (res.locals.showCookieBanner) {
@@ -58,6 +66,7 @@ export class CookiesController {
   }
 
   @Get('/pop-up2')
+  @ApiOperation({ summary: 'NO FUNCIONA' })
   async PopUp(@Res() res: Response) {
     // ... lógica de tu controlador ...
 

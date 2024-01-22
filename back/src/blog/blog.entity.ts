@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class NewsletterEntity {
+export class BlogEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -20,6 +20,9 @@ export class NewsletterEntity {
   @IsNotEmpty({ message: 'El contenido no puede estar vacío' })
   @Column()
   content: string;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  imagePath: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;

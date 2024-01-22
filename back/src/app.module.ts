@@ -22,6 +22,7 @@ import { PdfModule } from './pdf/pdf.module';
 import { ChatModule } from './chat/chat.module';
 import { ChatEntity } from './chat/chat.entity';
 import { BlogModule } from './blog/blog.module';
+import { BlogEntity } from './blog/blog.entity';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { BlogModule } from './blog/blog.module';
         AuthEntity,
         ClientEntity,
         ChatEntity,
+        BlogEntity,
       ], // Agrega tus entidades aquí
       synchronize: true, // Opcional: sincroniza automáticamente las entidades con la base de datos (cuidado en producción)
     }),

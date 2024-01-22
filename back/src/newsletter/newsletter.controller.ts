@@ -7,12 +7,6 @@ import {
   Param,
   Delete,
   ValidationError,
-  UseInterceptors,
-  FileTypeValidator,
-  UploadedFile,
-  ParseFilePipe,
-  HttpException,
-  HttpStatus,
   Query,
   BadRequestException,
 } from '@nestjs/common';
@@ -22,12 +16,10 @@ import {
   ApiResponse,
   ApiParam,
   ApiBody,
-  ApiConsumes,
   ApiQuery,
 } from '@nestjs/swagger';
 import { NewsletterService } from './newsletter.service';
 import { NewsletterEntity } from 'src/newsletter/newsletter.entity';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthService } from 'src/auth/auth.service';
 
 @ApiTags('newsletter')
@@ -111,43 +103,5 @@ export class NewsletterController {
   })
   async delete(@Param('id') id: number): Promise<NewsletterEntity> {
     return await this.newsletterService.delete(id);
-  }
-
-  // ARCHIVOS
-  @Post('upload-image/:newsletterId')
-  @ApiOperation({ summary: 'OPERATIVO' })
-  @UseInterceptors(FileInterceptor('file'))
-  @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    description: 'Upload image file',
-    type: 'multipart/form-data',
-    schema: {
-      type: 'object',
-      properties: {
-        file: {
-          type: 'string',
-          format: 'binary',
-        },
-      },
-    },
-  })
-  @ApiResponse({ status: 200, description: 'Update a client PDF.' })
-  async uploadPDF(
-    @Param('newsletterId') newsletterId: number,
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: [new FileTypeValidator({ fileType: 'image/jpeg' })],
-      }),
-    )
-    file: Express.Multer.File,
-  ) {
-    try {
-      const { filePath, fileName } =
-        await this.newsletterService.handleFileUpload(file, newsletterId);
-
-      return { success: true, filePath, fileName };
-    } catch (error) {
-      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
-    }
   }
 }
