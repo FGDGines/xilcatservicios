@@ -1,5 +1,5 @@
 
-import Logo from '../assets/logo_white.png'
+import Logo from '../assets/Logo_white.png'
 import { IoMenu } from "react-icons/io5";
 import { useDeviceSize } from '../hooks/Responsive';
 import { useState } from 'react';
