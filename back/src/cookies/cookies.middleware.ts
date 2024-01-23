@@ -1,5 +1,5 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { NextFunction, Request, Response } from 'express'; // Importa los tipos Request, Response y NextFunction de Express
+import { NextFunction, Request, Response } from 'express';
 import { CookiesService } from './cookies.service';
 import { CookieEntity } from './cookies.entity';
 
@@ -11,10 +11,7 @@ export class CookiesMiddleware implements NestMiddleware {
     const cookieConsent = this.cookiesService.getCookie(req, 'accept-cookies');
 
     if (cookieConsent) {
-      // Si no hay consentimiento, establece una cookie de consentimiento y establece una bandera en la respuesta
-      this.cookiesService.setCookie(res, 'accept-cookies', 'true', {
-        /* opciones de cookie */
-      });
+      this.cookiesService.setCookie(res, 'accept-cookies', 'true', {});
 
       const cookieLog = new CookieEntity(); // Crea una instancia de la entidad CookieLogEntity
       cookieLog.ipAddress = req.ip; // Puedes almacenar la dirección IP del usuario

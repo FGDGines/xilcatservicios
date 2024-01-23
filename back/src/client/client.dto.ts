@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 
@@ -20,11 +19,11 @@ export class PdfDto {
 export class DuesDto {
   @IsString()
   @ApiProperty()
-  dues: string
+  dues: string;
 }
 
 export class CollaboratorsDto {
   @IsString()
   @ApiProperty()
-  collaborators: string
+  collaborators: string;
 }

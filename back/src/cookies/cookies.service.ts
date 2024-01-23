@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Response, Request, CookieOptions } from 'express'; // Importa los tipos de Express
+import { Response, Request, CookieOptions } from 'express';
 import { CookieEntity } from './cookies.entity';
 import { Repository } from 'typeorm';
 

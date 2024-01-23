@@ -1,6 +1,4 @@
-/* eslint-disable prettier/prettier */
-import { ClientEntity } from 'src/client/client.entity';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class PDFEntity {

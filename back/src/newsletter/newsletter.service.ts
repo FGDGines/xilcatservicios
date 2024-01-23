@@ -1,14 +1,8 @@
-import {
-  BadRequestException,
-  Injectable,
-  ValidationError,
-} from '@nestjs/common';
+import { Injectable, ValidationError } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NewsletterEntity } from 'src/newsletter/newsletter.entity';
 import { validate } from 'class-validator';
-import { extname } from 'path';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
 @Injectable()
 export class NewsletterService {
@@ -80,47 +74,5 @@ export class NewsletterService {
     const newsletterToDelete = await this.findById(id);
     await this.newsletterRepository.delete(id);
     return newsletterToDelete;
-  }
-
-  async handleFileUpload(file: Express.Multer.File, newsletterId: number) {
-    try {
-      const newsletter = await this.newsletterRepository.findOne({
-        where: { id: newsletterId },
-      });
-
-      if (!newsletter) {
-        throw new BadRequestException(
-          'El ID de Auth proporcionado no existe: ' + newsletterId,
-        );
-      }
-
-      const folderPath = `./public/newsletter/${newsletter.id}`;
-      const uniqueSuffix = `${Date.now()}`;
-      const extension = extname(file.originalname);
-
-      if (!existsSync(folderPath)) {
-        mkdirSync(folderPath, { recursive: true });
-      }
-
-      const fileName = `${uniqueSuffix}${extension}`;
-      const filePath = `${folderPath}/${fileName}`;
-
-      writeFileSync(filePath, file.buffer);
-
-      await this.newsletterRepository.update(newsletterId, {
-        imagePath: filePath,
-      });
-
-      return {
-        success: true,
-        filePath,
-        fileName,
-      };
-    } catch (error) {
-      throw new BadRequestException({
-        success: false,
-        message: error.message || 'Ha ocurrido un error al manejar el archivo.',
-      });
-    }
   }
 }

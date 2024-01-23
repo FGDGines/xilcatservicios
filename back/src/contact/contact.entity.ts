@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { IsEmail, IsNotEmpty, Matches } from 'class-validator';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 

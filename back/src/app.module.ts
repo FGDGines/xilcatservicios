@@ -21,6 +21,8 @@ import { ClientEntity } from './client/client.entity';
 import { PdfModule } from './pdf/pdf.module';
 import { ChatModule } from './chat/chat.module';
 import { ChatEntity } from './chat/chat.entity';
+import { BlogModule } from './blog/blog.module';
+import { BlogEntity } from './blog/blog.entity';
 
 @Module({
   imports: [
@@ -45,6 +47,7 @@ import { ChatEntity } from './chat/chat.entity';
         AuthEntity,
         ClientEntity,
         ChatEntity,
+        BlogEntity,
       ], // Agrega tus entidades aquí
       synchronize: true, // Opcional: sincroniza automáticamente las entidades con la base de datos (cuidado en producción)
     }),
@@ -78,6 +81,7 @@ import { ChatEntity } from './chat/chat.entity';
     ClientModule,
     PdfModule,
     ChatModule,
+    BlogModule,
   ],
 })
 export class AppModule implements NestModule {
