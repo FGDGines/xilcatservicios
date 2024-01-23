@@ -2,6 +2,7 @@ import { TArticle } from '../../pages/Blog'
 import { FaWhatsapp } from "react-icons/fa";
 import  Logo from '../../assets/Logo_white.png'
 import  profile from '../../assets/imgs/carrusel-img-1.jpeg'
+import moment from 'moment';
 
 const Card = ({ article }: { article: TArticle}) => {
   return (
@@ -18,8 +19,8 @@ const Card = ({ article }: { article: TArticle}) => {
                     </div>
                 </div>
                 <div className='basis-2/4 flex- flex-col'>
-                    <div>{article.author}</div>
-                    <div>{article.date}</div>
+                    <div>{article.auth.username}</div>
+                    <div>{moment(article.auth.created_at).format('DD/MM/YYYY')}</div>
                 </div>
                 <div className='basis-1/4'></div>
             </div>
