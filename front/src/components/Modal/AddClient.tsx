@@ -27,6 +27,7 @@ const AddClient = () => {
             pdf: JSON.stringify([{}]),
             tramiteType: 'TYPE1',
             paymentStatus: 'NONE',
+            collaborators: ''
         }
         try {
             add.mutate(bodyToSend)

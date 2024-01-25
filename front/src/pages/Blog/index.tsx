@@ -3,9 +3,18 @@ import Card from '../../components/Blog/Card';
 import HeaderMenu from '../../components/HeaderMenu';
 import Footer from '../../components/Footer';
 import PoliticsBar from '../../components/PoliticsBar';
+import useBlog from '../../hooks/useBlog';
 
-type ArticleKeys = 'id' | 'title' | 'content' | 'author' | 'date'
-export type TArticle = Record<ArticleKeys , string | number> 
+type ArticleKeys = 'id' | 'title' | 'content'
+type ArticleRecord = Record<ArticleKeys , string | number> 
+type ArticleAuth = {
+  auth: {
+    username: string,
+    created_at: string
+  }
+}
+export type TArticle = ArticleRecord & ArticleAuth
+
 
 const articles = [
   {
@@ -26,12 +35,13 @@ const articles = [
 ];
 
 const BlogPage: React.FC = () => {
+  const {list} = useBlog()
   return (
     <>
     <HeaderMenu />
     <div className="container mx-auto py-8 min-h-[50vh] px-2 md:px-6 xl:grid xl:grid-cols-2 xl:gap-2 xl:place-items-center xl:p-0">
       <h1 className="text-4xl mb-8 text-center col-span-2 xl:item-center">Xilcat Blog</h1>
-      {articles.map((article) => (
+      {list?.data?.map((article) => (
           <Card article={article}/>
           ))}
     </div>

@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import useBlog from "../../hooks/useBlog"
 import { jwtDecode } from "jwt-decode";
+import axios from "axios";
 
 type Inputs = {
   title: string;
@@ -19,13 +20,10 @@ const Blog = () => {
     if (list.data === undefined) return
     const {image, ...rest} = data
     const lastBlog = list.data?.length === 0 ? { id: 1 } : list?.data[list.data?.length -1]
-    // const formData = new FormData()
-    // formData.append('title', data.title)
-    // formData.append('content', data.content)
-    // formData.append('auth', auth.id)
-    post.mutate({ ...rest, auth: auth.id})
-    postImage.mutate({ data: data.image, id: lastBlog.id })
 
+    // post.mutate({ ...rest, auth: auth.id})
+    // await axios.post(import.meta.env.VITE_BACKEND_URL + '/blog/upload-image/' + (Number(lastBlog.id) + 1), formData )
+    postImage.mutate({ data: image, id: lastBlog.id + 1  })
   }
   return (
     <form className="" onSubmit={handleSubmit(onSubmit)}>

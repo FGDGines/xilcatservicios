@@ -7,7 +7,9 @@ type TProps = {
 
 const postImage = async ({ data, id}: TProps) => {
     try {
-        const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/blog/upload-image/' + id, data)
+        const formData = new FormData()
+        formData.append('file', data)
+        const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/blog/upload-image/' + id, formData)
         console.log('response', response)
         if (response.statusText !== 'OK') throw new Error("Algo paso")
         return response.data
