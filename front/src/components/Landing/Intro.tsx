@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import GroupImg from '../../assets/rafikigroup.png'
+import GroupImg from '../../assets/rafiki.png'
 import { FaPhoneAlt } from "react-icons/fa";
 import { TranslationKeys } from '../../language/type-i18n';
 
