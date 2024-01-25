@@ -20,19 +20,14 @@ const Icon = ({ Icon, text, url, errorMsg, action, isSide }: TIcon) => {
   }
   const isActive = (direction: string) => {
     const lastPath = direction.split('/')
-    console.log('lastPath', lastPath)
-    console.log('includes', lastPath?.includes('clients' || 'account'))
-    console.log('direction', direction)
-    console.log('url', url)
-    const regex = new RegExp(url, 'gi')
     return lastPath?.includes('clients' || 'account' || 'client') && direction === url
   }
   return (
       <div
         className={`
-        flex flex-col items-center justify-center transition-all 
+        flex flex-col items-center justify-center transition-all text-lg
         hover:text-cs-purple-light hover:cursor-pointer ${ isSide && 'hover:bg-cs-purple-light hover:h-[90%] lg:hover:justify-start lg:hover:h-min lg:hover:w-[80%] hover:rounded-md hover:text-white '}
-        ${isSide && 'lg:flex-row lg:gap-2'} lg:text-xl lg:ml-6 p-2
+        ${isSide && 'lg:flex-row lg:gap-2 lg:ml-6 '} lg:text-xl p-2
         xl:text-3xl
         ${isActive(location.pathname) && 'bg-white h-[90%] rounded text-cs-purple lg:h-min lg:w-[80%] lg:justify-start'}
         `}

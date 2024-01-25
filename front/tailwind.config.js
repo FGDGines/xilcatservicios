@@ -3,6 +3,9 @@ module.exports = {
   content: [ './src/**/*.{js,jsx,ts,tsx}',],
   theme: {
     extend: {
+      gridTemplateRows: {
+        '10': 'repeat(10, minmax(0, 1fr))'
+      },
       content: {
         'logo': 'url("./src/assets/Logo_white.png")'
       },
