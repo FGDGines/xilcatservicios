@@ -21,7 +21,7 @@ const Main = () => {
         {side ? <MdSwitchLeft /> : <MdSwitchRight />}
       </div>
       <div className={`
-    bg-white h-full ${side ? 'flex-1 w-full' : 'flex-0 w-0'} transition-all duration-300 ease-in flex flex-col
+    bg-white h-full ${side ? 'flex-1 w-full' : 'flex-0 w-0'} transition-all duration-300 ease-in flex flex-col p-4
     lg:flex-1 lg:w-full
     `}>
       <Calendar

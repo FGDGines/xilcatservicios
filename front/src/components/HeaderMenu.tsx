@@ -2,7 +2,7 @@
 import Logo from '../assets/Logo_white.png'
 import { IoMenu } from "react-icons/io5";
 import { useDeviceSize } from '../hooks/Responsive';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TranslationKeys } from '../language/type-i18n';
 import spanishIcon from '../assets/castellano.png';
@@ -83,10 +83,10 @@ const HeaderMenu = () => {
       text: t('footer.newsletter.links.5' as TranslationKeys),
       link: '/blog'
     },
-    {
-      text: t('footer.newsletter.links.6' as TranslationKeys),
-      link: '/intranet/main'
-    }
+    // {
+    //   text: t('footer.newsletter.links.6' as TranslationKeys),
+    //   link: '/intranet/main'
+    // }
   ]
 
   const toggleMenu = () => {

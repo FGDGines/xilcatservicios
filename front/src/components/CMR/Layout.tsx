@@ -21,11 +21,6 @@ type TLinks = {
 const links: TLinks[] = [
   {
     link: '',
-    text: 'Salir',
-    Icon: <FaSignOutAlt />,
-  },
-  {
-    link: '',
     text: 'Chat',
     Icon: <LuMessagesSquare />
   },
@@ -38,6 +33,11 @@ const links: TLinks[] = [
     link: '',
     text: 'Blog',
     Icon: <FaRegStickyNote />
+  },
+  {
+    link: '',
+    text: 'Salir',
+    Icon: <FaSignOutAlt />,
   },
 ]
 
@@ -134,10 +134,10 @@ const Layout = ({Component}: { Component: any}) => {
             {
               isDesktop && (
                 <>
-                <Icon Icon={<FaSignOutAlt />} text="Salir" url='' action={handleSignOut}/>
                 <Icon Icon={<LuMessagesSquare />} text="Chat" url='' action={handleChatOpen} />
                 <Icon  Icon={<LuUserCircle />} text="Usuario" url='' />
                 <Icon  Icon={<FaRegStickyNote />} text="Blog" url='' action={handleBlogOpen} />
+                <Icon Icon={<FaSignOutAlt />} text="Salir" url='' action={handleSignOut}/>
                 </>
               )
             }

@@ -7,8 +7,21 @@ import Footer from '../../components/Footer'
 import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
 import PoliticsBar from '../../components/PoliticsBar'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Landing = () => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const keyFunction = (e: KeyboardEvent) => {
+      if (e.key === 'l' && e.ctrlKey) navigate('/intranet/login')
+    }
+
+    document.addEventListener('keydown', keyFunction)
+
+    return () => document.removeEventListener('keydown', keyFunction)
+  }, [])
   return (
     <>
       <HeaderMenu />

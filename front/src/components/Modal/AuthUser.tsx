@@ -5,6 +5,7 @@ const AuthUser = () => {
   const handleChangeRol = (user: any) => {
     const roles = ['CLIENT', 'LAWYER', 'ADVISER' ]
     const { rol, id }= user
+    if (rol === 'ADMINISTRATOR') return;
 
     const oldRolId = roles.findIndex((item) => item === rol)
     const newRolId = oldRolId + 1 >= roles.length ? 0 : oldRolId + 1
