@@ -114,7 +114,7 @@ export class BlogController {
   }
 
   // ARCHIVOS
-  @Post('upload-image/:newsletterId')
+  @Post('upload-image/:blogId')
   @ApiOperation({ summary: 'OPERATIVO' })
   @UseInterceptors(FileInterceptor('file'))
   @ApiConsumes('multipart/form-data')
