@@ -83,7 +83,7 @@ const Layout = ({Component}: { Component: any}) => {
   }
 
   return (
-    <div className='h-screen grid grid-cols-1 grid-rows-6 lg:grid-cols-[10%_1fr] text-white'>
+    <div className='h-screen grid grid-cols-1 grid-rows-6 lg:grid-cols-[15%_1fr] text-white'>
         {/* Header  */}
         <div className='col-span-2 grid grid-cols-[20%_1fr_20%] lg:row-span-1 bg-cs-purple boder-2 border-red-500'>
           <div className=''>
@@ -148,22 +148,22 @@ const Layout = ({Component}: { Component: any}) => {
         <div className='
           bg-cs-gray col-span-2 flex items-center justify-around text-4xl 
           md:text-6xl
-          lg:col-span-1 lg:flex-col lg:row-span-5
+          lg:col-span-1 lg:flex-col lg:row-span-5 lg:items-start lg:justify-start lg:gap-4 lg:pt-8
         '
         >
           {
             auth.rol !== 'LAWYER' && (
               <>
-                <Icon  Icon={<FaCloud />} text="Iono" url=''/>
-                <Icon Icon={<IoIosMail />} text="Email" url=''/>
-                <Icon Icon={<FaTrello />} text="Trello" url=''/>
-                <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')}/>
+                <Icon  Icon={<FaCloud />} text="Iono" url='' isSide/>
+                <Icon Icon={<IoIosMail />} text="Email" url='' isSide/>
+                <Icon Icon={<FaTrello />} text="Trello" url='' isSide/>
+                <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')} isSide/>
               </>
             )
           }
-          <Icon Icon={<FaUsers />} text="Clientes" url='/intranet/clients'/>
+          <Icon Icon={<FaUsers />} text="Clientes" url='/intranet/clients' isSide/>
           {
-            auth.rol === 'ADMINISTRATOR' && <Icon Icon={<FaUsersCog />} text="Usuarios" url="" action={handleAuthUserOpenModal}/>
+            auth.rol === 'ADMINISTRATOR' && <Icon Icon={<FaUsersCog />} text="Usuarios" url="" action={handleAuthUserOpenModal} isSide/>
           }
           
         </div>
