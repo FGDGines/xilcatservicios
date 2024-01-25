@@ -90,7 +90,7 @@ const Contact = () => {
           ></textarea>
         </div>
         <div className="text-center justify-center flex md:col-span-2">
-          <button className="bg-[#2C2949] hover:bg-gray-600 text-white py-4 px-8 rounded-xl md:text-[21px] md:rounded-[20px] md:px-12">
+          <button className="bg-cs-purple transition-all hover:bg-cs-purple-light text-white py-4 px-8 rounded-xl md:text-[21px] md:rounded-[20px] md:px-12">
             {t('contact.form.buttonAction' as TranslationKeys)}
           </button>
         </div>
@@ -186,7 +186,7 @@ const Contact = () => {
           ></textarea>
         </div>
         <div className="text-center flex md:col-span-2">
-          <button className="bg-[#2C2949] hover:bg-gray-600 text-white py-4 px-8 rounded rounded-xl" type="submit">
+          <button className="bg-cs-purple transition-all hover:bg-cs-purple-light text-white py-4 px-8 rounded rounded-xl" type="submit">
             {t('contact.form.buttonAction' as TranslationKeys)}
           </button>
         </div>

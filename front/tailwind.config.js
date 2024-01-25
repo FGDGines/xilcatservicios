@@ -11,7 +11,10 @@ module.exports = {
           DEFAULT: '#2C2949',
           'light': '#6C6798'
         },
-        'cs-gray': '#252323'
+        'cs-gray': {
+          DEFAULT: '#252323',
+          'light': '#5F5959'
+        }
       }
     },
   },

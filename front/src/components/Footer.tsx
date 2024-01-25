@@ -82,7 +82,7 @@ const Footer = () => {
           {
             icons.map((icon, idx) => (
               <div className={`${idx !== icons.length - 1 ? "border-r-2 border-white" : ''} ${idx === 0 ? "lg:pl-0" : ''} px-6 text-[16px] md:text-[30px] md:px-10 lg:text-[19px]`}>
-                <a href={icon.url} target="_blank" rel="noopener noreferrer">
+                <a href={icon.url} target="_blank" rel="noopener noreferrer" className="hover:text-cs-purple-light transition-all">
                   {icon.icon}
                 </a>
               </div>
@@ -113,7 +113,7 @@ const Footer = () => {
         }
         {
           options.map(option => (
-            <a href={option.url} className="border-b hover:text-gray-200 pb-1 lg:border-none hover:drop-shadow-[4px_4px_2px_rgba(255,0,0,1)]">{option.text}</a>
+            <a href={option.url} className="border-b hover:text-gray-200 pb-1 lg:border-none hover:drop-shadow-[4px_4px_2px_rgba(108,103,152,1)]">{option.text}</a>
           ))
         }
       </div>

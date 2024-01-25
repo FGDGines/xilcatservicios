@@ -44,7 +44,12 @@ export const Slider = () => {
 
                     <h3 style={{ fontSize: 24, fontWeight: 400, marginBottom: '20px', marginTop: '22px' }}>{t('teams.description' as TranslationKeys)}</h3>
 
-                    <button style={{ width: 202, padding: 17, borderRadius: 17, color: "white", background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)", boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}>{t('teams.buttonAction' as TranslationKeys)}</button>
+                    <button
+                        style={{ width: 202, padding: 17, borderRadius: 17, boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}
+                        className="text-white bg-cs-purple transition-all hover:bg-cs-purple-light hover:border hover:border-cs-gray"
+                    >
+                        {t('teams.buttonAction' as TranslationKeys)}
+                    </button>
                 </div>}
 
                 {asesor.map((item, index) => (
