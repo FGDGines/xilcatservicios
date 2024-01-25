@@ -129,10 +129,8 @@ export const Chat = () => {
                                     });
                                 }} className="flex items-center border-t border-gray-200 p-4">
                                     <input
-
                                         name='message'
                                         placeholder="Escribe tu mensaje aquí"
-
                                         type="text"
                                         className="flex-1 mr-2 py-2 px-4 border border-gray-300 rounded-lg"
                                     />
@@ -152,13 +150,6 @@ export const Chat = () => {
         return (
             <div className="fixed bottom-4 right-4 z-50">
                 <div className="chat bg-white rounded-lg shadow-xl flex flex-col">
-                    {/* {!isOpen ? (
-                        <button className="bg-blue-500 text-white py-2 px-4 rounded-lg" onClick={toggleChat}>
-                            Abrir Chat
-                        </button>
-                    ) : (
-                        <ChatTemplate />
-                    )} */}
                     {
                         isChatOpen && <ChatTemplate />
                     }
@@ -169,8 +160,6 @@ export const Chat = () => {
 
     return (
         <div>
-            <h1>Cliente WebSocket</h1>
-            {online ? <div style={{ color: "green" }}>Conectado {decodedPayloadOrNull?.username}</div> : <div style={{ color: "red" }}>Desconectado</div>}
             {/* Contenido del componente */}
             <div className="col-span-1 h-96 border rounded-md overflow-auto">
                 <h3 className="px-4 py-2 text-lg font-semibold border-b">Lista de Usuarios</h3>
