@@ -151,7 +151,7 @@ export const Chat = () => {
             <div className="fixed bottom-4 right-4 z-50">
                 <div className="chat bg-white rounded-lg shadow-xl flex flex-col">
                     {
-                        isChatOpen && <ChatTemplate />
+                        <ChatTemplate />
                     }
                 </div>
             </div>
@@ -159,18 +159,16 @@ export const Chat = () => {
     };
 
     return (
-        <div>
-            {/* Contenido del componente */}
-            <div className="col-span-1 h-96 border rounded-md overflow-auto">
-                <h3 className="px-4 py-2 text-lg font-semibold border-b">Lista de Usuarios</h3>
-                <ul className="divide-y divide-gray-200">
-                    {users.map(user => <li key={user.username} className="flex items-center px-4 py-2">
-                        <a className="ml-4" href="#">
-                            {user.username ?? null}
-                        </a>
-                    </li>)}
-                </ul>
-            </div>
+        <div className="col-span-1 overflow-auto">
+            <h3 className="px-4 py-2 text-lg font-semibold border-b">Lista de Usuarios</h3>
+            <ul className="divide-y divide-gray-200">
+                {users.map(user => <li key={user.username} className="flex items-center px-4 py-2">
+                    <a className="ml-4" href="#">
+                        {user.username ?? null}
+                    </a>
+                </li>)}
+            </ul>
+            <ChatTemplate />
 
             <ChatLayaout />
         </div>
