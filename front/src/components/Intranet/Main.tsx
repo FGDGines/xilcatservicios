@@ -38,12 +38,12 @@ const Main = () => {
         }}
       />
     </div>
-    <div className={`
+    {/* <div className={`
     bg-white h-full ${side ? 'flex-0 w-0' : 'flex-1 w-full'} transition-all  duration-300 ease-in flex flex-col
     lg:basis-1/4 lg:w-full lg:p-4
     `}>
         <Chat />
-      </div>
+      </div> */}
     </div>
   )
 }

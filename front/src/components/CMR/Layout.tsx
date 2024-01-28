@@ -1,5 +1,5 @@
-import { useReducer} from 'react'
-import { FaUsers, FaBook,  FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome } from "react-icons/fa";
+import { useReducer } from 'react'
+import { FaUsers, FaBook, FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome } from "react-icons/fa";
 import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
 
@@ -15,7 +15,7 @@ type TLinks = {
   text: string,
   Icon: JSX.Element,
   link: string,
-  action? : () => void
+  action?: () => void
 }
 
 const links: TLinks[] = [
@@ -41,7 +41,7 @@ const links: TLinks[] = [
   },
 ]
 
-const Layout = ({Component}: { Component: any}) => {
+const Layout = ({ Component }: { Component: any }) => {
   const location = useLocation()
   const navigate = useNavigate()
   const { isDesktop } = useDeviceSize()
@@ -51,7 +51,7 @@ const Layout = ({Component}: { Component: any}) => {
   const auth = localStorage.getItem('auth_token') && jwtDecode(String(localStorage.getItem('auth_token'))) as any
 
   const setDescriptionName = () => {
-    const nameDescription: { [index: string]: string} = {
+    const nameDescription: { [index: string]: string } = {
       main: 'Principal',
       clients: 'Clientes',
       client: "Cliente",
@@ -76,16 +76,16 @@ const Layout = ({Component}: { Component: any}) => {
     navigate('/intranet/login')
   }
   const handleAuthUserOpenModal = () => {
-    setModal({ type: 'auth_user'})
+    setModal({ type: 'auth_user' })
   }
   const handleBlogOpen = () => {
-    setModal({ type: 'blog'})
+    setModal({ type: 'blog' })
   }
 
   return (
     <div className='h-screen grid grid-cols-1 grid-rows-10 lg:grid-cols-[15%_1fr] text-white'>
-        {/* Header  */}
-        {/* <div className='col-span-2 grid grid-cols-[20%_1fr_20%] lg:row-span-1 bg-cs-purple boder-2 border-red-500'>
+      {/* Header  */}
+      {/* <div className='col-span-2 grid grid-cols-[20%_1fr_20%] lg:row-span-1 bg-cs-purple boder-2 border-red-500'>
           <div className=''>
           </div>
           <div className='flex flex-col items-center gap-2'>
@@ -145,12 +145,39 @@ const Layout = ({Component}: { Component: any}) => {
           </div>
         </div> */}
 
-<header className='col-span-2 row-span-3 lg:row-span-2'>
+<header className='col-span-2 row-span-2'>
   {/* <!-- Navigation bar --> */}
   <nav
     className="relative flex w-full items-center justify-between bg-white py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200 md:flex-wrap md:justify-start"
     data-te-navbar-ref>
     <div className="flex w-full flex-wrap items-center justify-between px-3">
+      <div className="flex items-center">
+        {/* <!-- Hamburger menu button --> */}
+        <button
+          className="border-0 bg-transparent px-2 text-xl leading-none transition-shadow duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:hidden"
+          type="button"
+          data-te-collapse-init
+          data-te-target="#navbarSupportedContentY"
+          aria-controls="navbarSupportedContentY"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          {/* <!-- Hamburger menu icon --> */}
+          <span className="[&>svg]:w-5">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              className="h-7 w-7">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+          </span>
+        </button>
+      </div>
 
       {/* <!-- Navigation links --> */}
       <div
@@ -180,42 +207,43 @@ const Layout = ({Component}: { Component: any}) => {
     </div>
   </nav>
 
-  {/* <!-- Hero section with heading, subheading and button --> */}
-  <div
-    className="bg-cs-purple flex flex-col h-full gap-4 px-6 text-center text-neutral-800 dark:text-neutral-200 lg:flex-row lg:pt-4 lg:justify-center lg:h-[65%]">
-    <h1 className="text-3xl md:text-4xl font-bold mt-2 lg:mt-0">Intranet XilcatServicios</h1>
-    <h3 className="text-xl md:text-2xl font-bold">{setDescriptionName()}</h3>
+        {/* <!-- Hero section with heading, subheading and button --> */}
+        <div
+          className="bg-cs-purple flex flex-col h-full gap-4 px-6 text-center text-neutral-800 dark:text-neutral-200 lg:flex-row lg:pt-4 lg:justify-center lg:h-[65%]">
+          <h1 className="text-3xl md:text-4xl font-bold mt-2 lg:mt-0">Intranet XilcatServicios</h1>
+          <h3 className="text-xl md:text-2xl font-bold">{setDescriptionName()}</h3>
 
-  </div>
-</header>
+        </div>
+      </header>
 
-        {/* SideMenu */}
-        <div className='
+      {/* SideMenu */}
+      <div className='
           bg-cs-gray col-span-2 flex items-center justify-center text-4xl 
           md:text-6xl sm:gap-2
           lg:col-span-1 lg:flex-col lg:items-start lg:justify-start lg:gap-2 lg:pt-8 lg:row-[span_8_/_span_8]
         '
-        >
-          {
-            auth.rol !== 'LAWYER' && (
-              <>
-                <Icon Icon={<FaHome />} text='Principal' url="/intranet/main" isSide />
-                <Icon  Icon={<FaCloud />} text="Iono" url='' isSide/>
-                <Icon Icon={<IoIosMail />} text="Email" url='' isSide/>
-                <Icon Icon={<FaTrello />} text="Trello" url='' isSide/>
-                <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')} isSide/>
-              </>
-            )
-          }
-          <Icon Icon={<FaUsers />} text="Clientes" url='/intranet/clients' isSide/>
-          {
-            auth.rol === 'ADMINISTRATOR' && <Icon Icon={<FaUsersCog />} text="Usuarios" url="" action={handleAuthUserOpenModal} isSide/>
-          }
-          
-        </div>
+      >
+        {
+          auth.rol !== 'LAWYER' && (
+            <>
+              <Icon Icon={<FaHome />} text='Principal' url="/intranet/main" isSide />
+              <Icon Icon={<FaCloud />} text="Iono" url='' isSide />
+              <Icon Icon={<IoIosMail />} text="Email" url='' isSide />
+              <Icon Icon={<FaTrello />} text="Trello" url='' isSide />
+              <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')} isSide />
+              <Icon Icon={<LuMessagesSquare />} text="Chat" url='/intranet/chat' isSide />
+            </>
+          )
+        }
+        <Icon Icon={<FaUsers />} text="Clientes" url='/intranet/clients' isSide />
+        {
+          auth.rol === 'ADMINISTRATOR' && <Icon Icon={<FaUsersCog />} text="Usuarios" url="" action={handleAuthUserOpenModal} isSide />
+        }
+
+      </div>
 
         {/* Principal Component */}
-        <div className='row-[span_7_/_span_7] overflow-auto text-black lg:row-[span_8_/_span_8]'>{<Component />}</div>
+        <div className='row-[span_7_/_span_7] overflow-auto text-black'>{<Component />}</div>
         {/* <div className=' row-span-4 overflow-auto lg:row-span-7 text-black'>{<Component />}</div> */}
     </div>
   )

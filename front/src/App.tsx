@@ -27,6 +27,7 @@ import Client from "./components/Intranet/Client";
 import Account from "./components/Intranet/Account";
 import ProtectedLoader from './pages/Intranet/ProtectedLoader'
 import Register from "./components/Intranet/Register";
+import { Chat } from "./components/Intranet/Chat";
 
 const router = createBrowserRouter([
   {
@@ -51,9 +52,9 @@ const router = createBrowserRouter([
   },
   {
     path: '/intranet',
-    element:<>
+    element: <>
       <Outlet />
-    </> ,
+    </>,
     children: [
       {
         path: 'login',
@@ -82,6 +83,11 @@ const router = createBrowserRouter([
         path: 'account/:id',
         element: <Layout Component={Account} />,
         loader: ProtectedLoader
+      },
+      {
+        path: 'chat',
+        element: <Layout Component={Chat} />,
+        loader: ProtectedLoader
       }
     ]
   }
@@ -95,7 +101,7 @@ function App() {
 
   useEffect(() => {
     const cookies = document.cookie.split(';')
-    
+
     const hasCookies = cookies.some((cookie) => cookie.split('=')[0].trim() === 'areAccepted')
 
     if (hasCookies) return
@@ -115,7 +121,7 @@ function App() {
           <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </I18nextProvider>
-      
+
     </div>
   );
 }
