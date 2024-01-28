@@ -3,6 +3,10 @@ module.exports = {
   content: [ './src/**/*.{js,jsx,ts,tsx}',],
   theme: {
     extend: {
+      boxShadow: {
+        'cs-box': '0px 0px 16px rgba(17,17,26,0.1)',
+        'cs-box-big': '0px 0px 50px rgba(17,17,26,0.1)'
+      },
       gridTemplateRows: {
         '10': 'repeat(10, minmax(0, 1fr))'
       },

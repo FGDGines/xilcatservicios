@@ -4,6 +4,7 @@ import AddClientBtn from '../CMR/AddClientBtn'
 import useClients from '../../hooks/useClients'
 import Loader from '../Common/Loader'
 import Error from '../Common/Error'
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa'
 
 
 const Clients = () => {
@@ -32,10 +33,10 @@ const Clients = () => {
   }
   return (
     <div className='
-      h-full grid grid-cols-2 px-4 py-2 auto-rows-[150px] gap-4
+      h-full grid grid-cols-2 px-4 py-2 gap-4 relative
       md:grid-cols-4
-      lg:grid-cols-6
-      xl:grid-cols-8
+      lg:grid-cols-5 lg:auto-rows-[220px]
+      xl:grid-cols-6 
       '>
       {/* I need to change the any type in client */}
       {
@@ -44,6 +45,15 @@ const Clients = () => {
         ))
       }
     <AddClientBtn />
+    {
+      Number(data?.length) >= 9 && (
+      <div className='fixed z-10 rounded bottom-4 left-0 flex items-center justify-center w-full gap-2 lg:absolute'>
+        <div className='text-4xl hover:cursor-pointer hover:text-cs-purple-light transition-all'><FaArrowAltCircleLeft /></div>
+        <div className='text-4xl hover:cursor-pointer hover:text-cs-purple-light transition-all'><FaArrowAltCircleRight /></div>
+      </div>
+
+      )
+    }
     </div>
   )
 }
