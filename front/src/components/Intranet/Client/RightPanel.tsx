@@ -62,7 +62,7 @@ const RightPanel = ({ side, id, data }: TProps) => {
     `}>
           {
             data?.tramiteType !== 'TYPE1' && (
-        <div className='basis-1/5 flex border rounded shadow items-center my-2'>
+        <div className='basis-1/5 flex border rounded shadow items-center'>
           {/* <div className='flex-1 flex justify-center items-center gap-2 md:text-xl lg:text-2xl'>
             <p>
               Datos Adjuntos
