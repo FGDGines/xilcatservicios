@@ -145,39 +145,12 @@ const Layout = ({ Component }: { Component: any }) => {
           </div>
         </div> */}
 
-<header className='col-span-2 row-span-2'>
+      <header className='col-span-2 row-span-3 lg:row-span-2'>
   {/* <!-- Navigation bar --> */}
   <nav
     className="relative flex w-full items-center justify-between bg-white py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200 md:flex-wrap md:justify-start"
     data-te-navbar-ref>
     <div className="flex w-full flex-wrap items-center justify-between px-3">
-      <div className="flex items-center">
-        {/* <!-- Hamburger menu button --> */}
-        <button
-          className="border-0 bg-transparent px-2 text-xl leading-none transition-shadow duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:hidden"
-          type="button"
-          data-te-collapse-init
-          data-te-target="#navbarSupportedContentY"
-          aria-controls="navbarSupportedContentY"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          {/* <!-- Hamburger menu icon --> */}
-          <span className="[&>svg]:w-5">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              className="h-7 w-7">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-          </span>
-        </button>
-      </div>
 
       {/* <!-- Navigation links --> */}
       <div
@@ -189,7 +162,7 @@ const Layout = ({ Component }: { Component: any }) => {
           data-te-navbar-nav-ref>
             {
               links.map(link => (
-                <li className="mb-4 lg:mb-0 pr-2" data-te-nav-item-ref>
+                <li className="pr-2" data-te-nav-item-ref>
                   <a
                     className="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white p-2 [&.active]:text-black/90"
                     href="#!"
@@ -243,7 +216,7 @@ const Layout = ({ Component }: { Component: any }) => {
       </div>
 
         {/* Principal Component */}
-        <div className='row-[span_7_/_span_7] overflow-auto text-black'>{<Component />}</div>
+        <div className='row-span-6 overflow-auto text-black lg:pt-8 lg:row-[span_8_/_span_8]'>{<Component />}</div>
         {/* <div className=' row-span-4 overflow-auto lg:row-span-7 text-black'>{<Component />}</div> */}
     </div>
   )

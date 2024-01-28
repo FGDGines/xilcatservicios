@@ -25,7 +25,7 @@ const Icon = ({ Icon, text, url, errorMsg, action, isSide }: TIcon) => {
   return (
       <div
         className={`
-        flex flex-col items-center justify-center transition-all text-lg
+        flex flex-col items-center justify-center transition-all text-lg group
         hover:text-cs-purple-light hover:cursor-pointer ${ isSide && 'hover:bg-cs-purple-light hover:h-[90%] lg:hover:justify-start lg:hover:h-min lg:hover:w-[80%] hover:rounded-md hover:text-white '}
         ${isSide && 'lg:flex-row lg:gap-2 lg:ml-6 '} lg:text-xl p-2
         xl:text-3xl
@@ -34,7 +34,7 @@ const Icon = ({ Icon, text, url, errorMsg, action, isSide }: TIcon) => {
         onClick={handleRedirect}
       >
         {Icon}
-        <p className='text-sm'>{text}</p>
+        <p className='text-sm hidden group-hover:block group-hover:px-4 md:block md:group-hover:px-0'>{text}</p>
     </div>
   )
 }
