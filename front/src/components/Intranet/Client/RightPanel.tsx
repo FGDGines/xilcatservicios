@@ -56,7 +56,7 @@ const RightPanel = ({ side, id, data }: TProps) => {
 
   return (
     <div className={`
-    mr-4
+    mr-4 mt-2
     bg-white h-full ${side ? 'flex-0 w-0 opacity-0' : 'flex-1 w-full opacity-100'} transition-all  duration-300 ease-in flex flex-col
     lg:flex-1 lg:w-full lg:opacity-100
     `}>

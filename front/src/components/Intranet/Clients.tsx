@@ -33,9 +33,9 @@ const Clients = () => {
   }
   return (
     <div className='
-      h-full grid grid-cols-2 px-4 py-2 gap-4 relative
+      h-full grid grid-cols-2 px-4 py-2 gap-4 relative  mb-4 
       md:grid-cols-4
-      lg:grid-cols-5 lg:auto-rows-[220px]
+      lg:grid-cols-5 lg:auto-rows-[220px] lg:pt-8
       xl:grid-cols-6 
       '>
       {/* I need to change the any type in client */}
