@@ -27,25 +27,32 @@ export class ChatGateway implements OnModuleInit {
   }
   onModuleInit() {
     this.server.on('connection', async (socket: Socket) => {
-      const { name, token, authId } = socket.handshake.auth;
-      console.log({ name, token, authId });
-      if (!name) {
-        socket.disconnect();
-        return;
+      try {
+        const { authId } = socket.handshake.auth;
+
+        if (!authId) {
+          socket.disconnect();
+          return;
+        }
+        await this.authService.update(authId, { online: true });
+        // this.server.emit('on-auth', await this.authService.findAll());
+
+        // console.log(await this.chatService.findAll(1, 0));
+
+        this.server.emit('on-auth-change', await this.chatService.getAuthAll());
+        this.server.emit('on-message', await this.chatService.findAll(1, 0));
+
+        socket.on('disconnect', async () => {
+          await this.authService.update(authId, { online: false });
+          this.server.emit('on-auth-change', this.chatService.getAuthAll());
+        });
+      } catch (error) {
+        socket.emit('error-message', {
+          message: 'Se ha producido un error.',
+          error,
+        });
+        console.log(error);
       }
-
-      this.chatService.onAuthConnect({
-        username: name,
-      });
-      // console.log(await this.chatService.findAll(1, 0));
-
-      this.server.emit('on-auth-change', this.chatService.getAuthAll());
-      this.server.emit('on-message', await this.chatService.findAll(1, 0));
-
-      socket.on('disconnect', () => {
-        this.chatService.onAuthDisconnect(name);
-        this.server.emit('on-auth-change', this.chatService.getAuthAll());
-      });
     });
   }
 
@@ -62,16 +69,6 @@ export class ChatGateway implements OnModuleInit {
       return error;
     }
   }
-
-  // @SubscribeMessage('createChat')
-  // create(@MessageBody() createChatDto: CreateChatDto) {
-  //   return this.chatService.create(createChatDto);
-  // }
-
-  // @SubscribeMessage('findAllChat')
-  // findAll() {
-  //   return this.chatService.findAll();
-  // }
 
   @SubscribeMessage('findOneChat')
   findOne(@MessageBody() id: number) {

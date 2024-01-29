@@ -1,25 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AuthEntity } from 'src/auth/auth.entity';
 import { ChatEntity } from './chat.entity';
 import { Repository } from 'typeorm';
 import { validate } from 'class-validator';
+import { AuthService } from 'src/auth/auth.service';
 
 @Injectable()
 export class ChatService {
   constructor(
     @InjectRepository(ChatEntity)
     private readonly chatRepository: Repository<ChatEntity>,
+    private readonly authService: AuthService,
   ) {}
-  private authclient: Record<number, Partial<AuthEntity>> = {};
-
-  onAuthConnect(auth: Partial<AuthEntity>) {
-    this.authclient[auth.username] = auth;
-  }
-
-  onAuthDisconnect(username: string) {
-    delete this.authclient[username];
-  }
 
   async createChat(chat: Partial<ChatEntity>) {
     try {
@@ -36,8 +28,9 @@ export class ChatService {
     }
   }
 
-  getAuthAll() {
-    return Object.values(this.authclient);
+  async getAuthAll() {
+    // return Object.values(this.authclient);
+    return await this.authService.findAll(0, 0);
   }
 
   async findAll(page: number, limit: number): Promise<ChatEntity[]> {
