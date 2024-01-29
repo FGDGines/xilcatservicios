@@ -1,4 +1,4 @@
-import { io } from 'socket.io-client'
+import { io, Socket } from 'socket.io-client'
 import { jwtDecode, JwtPayload } from 'jwt-decode'
 
 interface JwtPayloadWithUsername extends JwtPayload {
@@ -23,7 +23,7 @@ if (token) {
 export const decodedPayloadOrNull: JwtPayloadWithUsername | null =
   decodedPayload
 
-export const chat = io('http://localhost:3000', {
+export const chat: Socket = io('http://localhost:3000', {
   auth: { token, name: decodedPayload?.username, authId: decodedPayload?.id },
   withCredentials: true,
   transports: ['websocket', 'polling'],

@@ -1,6 +1,6 @@
-import { SetStateAction, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { chat, decodedPayloadOrNull } from './../../socket';
-import { useAppStore } from '../../store';
+import { toast } from 'react-toastify';
 
 interface Message {
     readonly id: string;
@@ -17,14 +17,35 @@ interface Auth {
     readonly updated_at: string
 }
 
+type KeyUserRole = keyof typeof UserRole;
+enum UserRole {
+    ADMINISTRATOR = 'Administrador',
+    LAWYER = 'Abogado',
+    ADVISER = 'Asesor',
+    CLIENT = 'Cliente'
+}
+
+interface User {
+    id: number;
+    username: string;
+    rol: KeyUserRole;
+    activo: boolean;
+    online: boolean;
+    imagePath: string | null;
+    created_at: string;
+    updated_at: string;
+}
+
+// function ConnectionState({ isConnected }) {
+//     return <p>State: {'' + isConnected}</p>;
+// }
 
 export const Chat = () => {
-    const [users, setUsers] = useState<{ username: string, id: number }[]>([])
-    const [online, setOnline] = useState<boolean>(false)
+    const [users, setUsers] = useState<User[]>([])
     const [isLoading, setIsLoading] = useState(false);
+    const [isLoadingSocket, setIsLoadingSocket] = useState(true);
     const [messages, setMessage] = useState<Message[]>([])
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    const { isChatOpen, handleChatClose } = useAppStore()
 
     const scrollToBottom = () => {
         if (messagesEndRef.current) {
@@ -39,35 +60,30 @@ export const Chat = () => {
     useEffect(() => {
         chat.connect()
 
-        function onConnect() {
-            setOnline(true);
-        }
-
-        function onDisconnect() {
-            setOnline(false);
-        }
-
-        function onAuthChange(data: SetStateAction<{ username: string; id: number; }[]>) {
-            console.log(data)
+        function onAuthChange(data: User[]) {
             setUsers(data)
+            console.log(data)
+            setIsLoadingSocket(false);
         }
 
         function onMessage(data: Message[]) {
-            console.log(data)
             setMessage(data)
+            setIsLoadingSocket(false);
         }
 
-        chat.on('connect', onConnect);
+        function onError(data: unknown) {
+            console.log(data)
+            toast.error("Error Socket")
+        }
+
         chat.on('on-auth-change', onAuthChange);
         chat.on('on-message', onMessage);
-        chat.on('disconnect', onDisconnect);
+        chat.on('error-message', onError);
 
         return () => {
-            chat.off('connect', onConnect);
-            chat.off('disconnect', onDisconnect);
             chat.off('on-auth-change', onAuthChange);
             chat.off('on-message', onMessage);
-            // chat.off('disconnect', onDisconnect);
+            chat.off('error-message', onError);
         };
     }, []);
 
@@ -94,83 +110,82 @@ export const Chat = () => {
         return 'justo ahora';
     };
 
-    const ChatTemplate: React.FC = () => {
-        return (
-            <div className="fixed bottom-4 right-4 z-50 text-xs">
-                <div className="chat bg-white rounded-lg shadow-xl flex flex-col">
-                    <div className="center">
-                        <div className="bottom-right">
-                            <div className="chat bg-white rounded-lg shadow-xl w-64 h-96 flex flex-col">
-                                <div className="contact bar flex items-center p-4 border-b border-gray-200 justify-between">
-                                    <div className={`w-2 h-2 rounded-full  ${online ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                                    <div className="name font-semibold ml-3"> {decodedPayloadOrNull?.username}</div>
-                                    <button className="bg-red-500 text-white z-100 py-2 px-4 rounded-lg" onClick={handleChatClose}>
-                                        Cerrar Chat
-                                    </button>
-                                </div>
-
-                                <div ref={messagesEndRef} className="messages flex-1 p-4 overflow-y-auto">
-                                    {messages.map(data =>
-                                        <div style={{ alignSelf: "flex-end" }} className={`message ${data.auth.id === decodedPayloadOrNull?.id ? " bg-gray-900 w-32 text-white ml-auto" : "incoming bg-white border w-32 "}  text-gray-700 rounded-lg p-3 mb-4  `}>
-                                            <small className='font-bold'>{data.auth.username}</small>
-                                            <p className='font-light'> {data.message}</p>
-                                            <p className='text-gray-500 flex'> {getRelativeTime(data.created_at)}</p>
-                                        </div>)}
-                                </div>
-
-                                <form onSubmit={e => {
-                                    e.preventDefault();
-                                    setIsLoading(true);
-
-                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                    // @ts-ignore
-                                    chat.timeout(2500).emit('send-message', { auth: decodedPayloadOrNull?.id, message: e.target.message.value }, () => {
-                                        setIsLoading(false);
-                                    });
-                                }} className="flex items-center border-t border-gray-200 p-4">
-                                    <input
-                                        name='message'
-                                        placeholder="Escribe tu mensaje aquí"
-                                        type="text"
-                                        className="flex-1 mr-2 py-2 px-4 border border-gray-300 rounded-lg"
-                                    />
-                                    <button type='submit' disabled={isLoading} className={`bg-${isLoading ? "red" : "green"}-500 text-white z-100 py-2 px-4 rounded-lg`} >
-                                        Enviar
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    };
-
-    const ChatLayaout: React.FC = () => {
-        return (
-            <div className="fixed bottom-4 right-4 z-50">
-                <div className="chat bg-white rounded-lg shadow-xl flex flex-col">
-                    {
-                        <ChatTemplate />
-                    }
-                </div>
-            </div>
-        );
-    };
-
     return (
-        <div className="col-span-1 overflow-auto">
-            <h3 className="px-4 py-2 text-lg font-semibold border-b">Lista de Usuarios</h3>
-            <ul className="divide-y divide-gray-200">
-                {users.map(user => <li key={user.username} className="flex items-center px-4 py-2">
-                    <a className="ml-4" href="#">
-                        {user.username ?? null}
-                    </a>
-                </li>)}
-            </ul>
-            <ChatTemplate />
+        <div className="flex h-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+            <main className="w-3/4 flex flex-col">
+                <header className="p-4 flex bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 items-center">
+                    <div className={`w-2 h-2 rounded-full  ${chat.active ? 'bg-green-500' : 'bg-red-500'}`} />
+                    <div className="text-2xl font-bold px-3"> {decodedPayloadOrNull?.username}</div>
+                </header>
+                <div ref={messagesEndRef} className="messages flex-1 p-4 overflow-y-auto">
+                    {messages.map(data =>
+                        <div key={data.id} style={{ alignSelf: "flex-end" }} className={`message ${data.auth.id === decodedPayloadOrNull?.id ? " bg-gray-900 w-32 text-white ml-auto" : "incoming bg-white border w-32 "}  text-gray-700 rounded-lg p-3 mb-4  `}>
+                            <small className='font-bold'>{data.auth.username}</small>
+                            <p className='font-light'> {data.message}</p>
+                            <p className='text-gray-500 flex'> {getRelativeTime(data.created_at)}</p>
+                        </div>)}
+                </div>
+                <form onSubmit={e => {
+                    e.preventDefault();
+                    setIsLoading(true);
 
-            <ChatLayaout />
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
+                    chat.timeout(2500).emit('send-message', { auth: decodedPayloadOrNull?.id, message: e.target.message.value }, () => {
+                        setIsLoading(false);
+                    });
+                }} className="p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+                    <div className="grid w-full gap-1.5">
+                        <input
+                            className="bg-transparent border-2 border-transparent text-white placeholder-gray-300/60 rounded p-2 focus:border-gray-300 hover:border-gray-300"
+                            name='message'
+                            placeholder="Escribe tu mensaje aquí" />
+                        <button type='submit' disabled={isLoading} className={`bg-${isLoading ? "red" : "green"}-500 text-white z-100 py-2 px-4 mt-2 rounded-lg`}>Enviar</button>
+                    </div>
+                </form>
+            </main>
+            <aside className="w-1/4 flex flex-col">
+                <header className="p-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                    <h2 className="text-2xl font-bold">Usuarios Conectados</h2>
+
+                </header>
+                <div className="flex-1 overflow-y-auto p-4 m-4">
+                    <ul className="space-y-2">
+                        {isLoadingSocket ? (
+                            <div className="text-center py-4">
+                                Cargando...
+                            </div>
+                        ) : (
+                            users.length > 0 ? (
+                                <ul>
+                                    {users.map(user => (
+                                        <li key={user.id} className="flex items-center space-x-4">
+                                            {user.imagePath ? (
+                                                <img className="w-10 h-10 rounded-full" src={user.imagePath} alt="User" />
+                                            ) : (
+                                                <div className="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center text-white uppercase">
+                                                    {user.username.charAt(0)}
+                                                </div>
+                                            )}
+                                            <div className="flex flex-col">
+                                                <span className="font-semibold">{user.username}</span>
+                                                <span className="text-sm text-gray-600">{UserRole[user.rol]}</span>
+                                            </div>
+                                            <span className={`ml-auto px-2 py-1 rounded text-white ${user.online ? 'bg-green-500' : 'bg-red-500'}`}>
+                                                {user.online ? 'Online' : 'Offline'}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <div className="text-center py-4">
+                                    No hay usuarios.
+                                </div>
+                            )
+                        )}
+                    </ul>
+                </div>
+            </aside>
         </div>
     );
 };
