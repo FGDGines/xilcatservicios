@@ -1,5 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AppController } from './app.controller';
 import { NewsletterEntity } from './newsletter/newsletter.entity';
 import { NewsletterModule } from './newsletter/newsletter.module';
 import { ConfigModule } from '@nestjs/config';
@@ -83,6 +84,7 @@ import { BlogEntity } from './blog/blog.entity';
     ChatModule,
     BlogModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
