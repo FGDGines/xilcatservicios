@@ -68,7 +68,6 @@ const Footer = () => {
       "reciver": email
     })
 
-    console.log('res', res)
     toast.success("Subcripcion Agregada")
 
     setEmail('')

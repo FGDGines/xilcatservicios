@@ -28,7 +28,6 @@ const RightPanel = ({ side, data }: TProps) => {
     
     if (dues !== null && account.length <= 0)  {
       dues.forEach((due: TAccountEvent)=> {
-        console.log('is Adding')
         addAccountEvent(due)
       });
     }

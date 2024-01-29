@@ -26,8 +26,6 @@ const RightPanel = ({ side, id, data }: TProps) => {
     const navigate = useNavigate()
     const multipleFilesRef = useRef<Array<HTMLInputElement | null>>([])
 
-    console.log('data', data)
-
     const hasFileUploaded = (document: string) => {
       if (typeof data?.pdf === 'string') return false
       if (!data?.pdf) return false

@@ -28,11 +28,14 @@ import Account from "./components/Intranet/Account";
 import ProtectedLoader from './pages/Intranet/ProtectedLoader'
 import Register from "./components/Intranet/Register";
 import { Chat } from "./components/Intranet/Chat";
+import ErrorPage from "./pages/ErrorPage";
+import Users from "./components/Intranet/Users";
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Landing />
+    element: <Landing />,
+    errorElement: <ErrorPage />
   },
   {
     path: '/politics',
@@ -72,6 +75,11 @@ const router = createBrowserRouter([
       {
         path: 'clients',
         element: <Layout Component={Clients} />,
+        loader: ProtectedLoader
+      },
+      {
+        path: 'users',
+        element: <Layout Component={Users} />,
         loader: ProtectedLoader
       },
       {

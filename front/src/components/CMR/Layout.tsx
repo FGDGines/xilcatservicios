@@ -6,8 +6,8 @@ import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
 import { IoIosMail } from "react-icons/io";
 import Icon from './Icon';
 // import { useDeviceSize } from '../../hooks/Responsive';
-import { useLocation } from 'react-router-dom';
-// import { useAuthProvider } from '../../hooks/useAuthProvider';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuthProvider } from '../../hooks/useAuthProvider';
 import { useAppStore } from '../../store';
 import { jwtDecode } from 'jwt-decode';
 
@@ -18,35 +18,12 @@ type TLinks = {
   action?: () => void
 }
 
-const links: TLinks[] = [
-  {
-    link: '',
-    text: 'Chat',
-    Icon: <LuMessagesSquare />
-  },
-  {
-    link: '',
-    text: 'Usuario',
-    Icon: <LuUserCircle />
-  },
-  {
-    link: '',
-    text: 'Blog',
-    Icon: <FaRegStickyNote />
-  },
-  {
-    link: '',
-    text: 'Salir',
-    Icon: <FaSignOutAlt />,
-  },
-]
-
 const Layout = ({ Component }: { Component: any }) => {
   const location = useLocation()
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   // const { isDesktop } = useDeviceSize()
   // const [isOpen, toggleIsOpen] = useReducer((prev) => !prev, false)
-  // const { signout } = useAuthProvider()
+  const { signout } = useAuthProvider()
   const { setModal } = useAppStore()
   const auth = localStorage.getItem('auth_token') && jwtDecode(String(localStorage.getItem('auth_token'))) as any
 
@@ -55,7 +32,8 @@ const Layout = ({ Component }: { Component: any }) => {
       main: 'Principal',
       clients: 'Clientes',
       client: "Cliente",
-      account: "Contabilidad"
+      account: "Contabilidad",
+      users: 'Usuarios'
     }
     const paths = location.pathname.split('/').filter(item => item)
 
@@ -71,16 +49,41 @@ const Layout = ({ Component }: { Component: any }) => {
     }
   }
 
-  // const handleSignOut = () => {
-  //   signout()
-  //   navigate('/intranet/login')
-  // }
-  const handleAuthUserOpenModal = () => {
-    setModal({ type: 'auth_user' })
+  const handleSignOut = () => {
+    signout()
+    navigate('/')
   }
-  // const handleBlogOpen = () => {
-  //   setModal({ type: 'blog' })
+  // const handleAuthUserOpenModal = () => {
+  //   setModal({ type: 'auth_user' })
   // }
+  const handleBlogOpen = () => {
+    setModal({ type: 'blog' })
+  }
+
+  const links: TLinks[] = [
+    {
+      link: '/intranet/chat',
+      text: 'Chat',
+      Icon: <LuMessagesSquare />
+    },
+    {
+      link: '',
+      text: 'Usuario',
+      Icon: <LuUserCircle />
+    },
+    {
+      link: '',
+      text: 'Blog',
+      Icon: <FaRegStickyNote />,
+      action: handleBlogOpen
+    },
+    {
+      link: '',
+      text: 'Salir',
+      Icon: <FaSignOutAlt />,
+      action: handleSignOut
+    },
+  ]
 
   return (
     <div className='h-screen grid grid-cols-1 grid-rows-10 lg:grid-cols-[15%_1fr] text-white'>
@@ -163,15 +166,15 @@ const Layout = ({ Component }: { Component: any }) => {
             {
               links.map(link => (
                 <li className="pr-2" data-te-nav-item-ref>
-                  <a
-                    className="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white p-2 [&.active]:text-black/90"
-                    href="#!"
+                  <p
+                    className="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white p-2 [&.active]:text-black/90 hover:cursor-pointer"
                     data-te-nav-link-ref
                     data-te-ripple-init
                     data-te-ripple-color="light"
+                    onClick={() => {link.action ? link?.action() : navigate(link.link)}}
                     >
                       {link.text}
-                    </a>
+                    </p>
                 </li>
               ))
             }
@@ -204,13 +207,13 @@ const Layout = ({ Component }: { Component: any }) => {
               <Icon Icon={<IoIosMail />} text="Email" url='' isSide />
               <Icon Icon={<FaTrello />} text="Trello" url='' isSide />
               <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')} isSide />
-              <Icon Icon={<LuMessagesSquare />} text="Chat" url='/intranet/chat' isSide />
+              {/* <Icon Icon={<LuMessagesSquare />} text="Chat" url='/intranet/chat' isSide /> */}
             </>
           )
         }
         <Icon Icon={<FaUsers />} text="Clientes" url='/intranet/clients' isSide />
         {
-          auth.rol === 'ADMINISTRATOR' && <Icon Icon={<FaUsersCog />} text="Usuarios" url="" action={handleAuthUserOpenModal} isSide />
+          auth.rol === 'ADMINISTRATOR' && <Icon Icon={<FaUsersCog />} text="Usuarios" url="/intranet/users" isSide />
         }
 
       </div>

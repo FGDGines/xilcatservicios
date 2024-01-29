@@ -25,7 +25,6 @@ export const useAuthProvider= (): AuthProvider  => {
 
     const signin = async ({ username, password }: TSignInProps ) => {
         const res = await axios.post(import.meta.env.VITE_BACKEND_URL + '/auth/login', { username, password })
-        console.log('ressss', res)
         if (res.data.message) {
             toast.error(res.data.message)
             return;
@@ -40,7 +39,6 @@ export const useAuthProvider= (): AuthProvider  => {
     const signup = async ({ username, password, checkPassword }: TSignUpProps ) => {
         if (checkPassword !== password) throw new Error('Las contrasenas no coinciden')
         const res = await axios.post(import.meta.env.VITE_BACKEND_URL + '/auth/register', { username, password })
-        console.log('ressss', res)
         if (res.data.message) {
             toast.error(res.data.message)
             return;

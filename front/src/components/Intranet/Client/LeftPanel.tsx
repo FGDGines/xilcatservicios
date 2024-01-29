@@ -16,7 +16,6 @@ const LeftPanel = ({ data, side }:TProps) => {
   const navigate = useNavigate()
   
   const handleClick = () => {
-    console.log('id in left panel', Number(data?.id))
     erase.mutate(Number(data?.id))
     navigate('/intranet/clients')
     toast.success('Cliente Eliminado Correctamente')

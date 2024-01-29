@@ -62,7 +62,6 @@ export const Chat = () => {
 
         function onAuthChange(data: User[]) {
             setUsers(data)
-            console.log(data)
             setIsLoadingSocket(false);
         }
 
@@ -72,7 +71,6 @@ export const Chat = () => {
         }
 
         function onError(data: unknown) {
-            console.log(data)
             toast.error("Error Socket")
         }
 

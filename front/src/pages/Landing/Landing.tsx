@@ -12,10 +12,13 @@ import { useNavigate } from 'react-router-dom'
 
 const Landing = () => {
   const navigate = useNavigate()
+  const auth = localStorage.getItem('auth_token')
 
   useEffect(() => {
     const keyFunction = (e: KeyboardEvent) => {
-      if (e.key === 'l' && e.ctrlKey) navigate('/intranet/login')
+      if (e.key === 'l' && e.ctrlKey) {
+        auth ? navigate('/intranet/main') : navigate('/intranet/login')
+      }
     }
 
     document.addEventListener('keydown', keyFunction)
