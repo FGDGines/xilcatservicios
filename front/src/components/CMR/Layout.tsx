@@ -1,13 +1,13 @@
-import { useReducer } from 'react'
+// import { useReducer } from 'react'
 import { FaUsers, FaBook, FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome } from "react-icons/fa";
 import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
-import { GiHamburgerMenu } from "react-icons/gi";
+// import { GiHamburgerMenu } from "react-icons/gi";
 
 import { IoIosMail } from "react-icons/io";
 import Icon from './Icon';
-import { useDeviceSize } from '../../hooks/Responsive';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuthProvider } from '../../hooks/useAuthProvider';
+// import { useDeviceSize } from '../../hooks/Responsive';
+import { useLocation } from 'react-router-dom';
+// import { useAuthProvider } from '../../hooks/useAuthProvider';
 import { useAppStore } from '../../store';
 import { jwtDecode } from 'jwt-decode';
 
@@ -43,11 +43,11 @@ const links: TLinks[] = [
 
 const Layout = ({ Component }: { Component: any }) => {
   const location = useLocation()
-  const navigate = useNavigate()
-  const { isDesktop } = useDeviceSize()
-  const [isOpen, toggleIsOpen] = useReducer((prev) => !prev, false)
-  const { signout } = useAuthProvider()
-  const { handleChatOpen, setModal } = useAppStore()
+  // const navigate = useNavigate()
+  // const { isDesktop } = useDeviceSize()
+  // const [isOpen, toggleIsOpen] = useReducer((prev) => !prev, false)
+  // const { signout } = useAuthProvider()
+  const { setModal } = useAppStore()
   const auth = localStorage.getItem('auth_token') && jwtDecode(String(localStorage.getItem('auth_token'))) as any
 
   const setDescriptionName = () => {
@@ -71,16 +71,16 @@ const Layout = ({ Component }: { Component: any }) => {
     }
   }
 
-  const handleSignOut = () => {
-    signout()
-    navigate('/intranet/login')
-  }
+  // const handleSignOut = () => {
+  //   signout()
+  //   navigate('/intranet/login')
+  // }
   const handleAuthUserOpenModal = () => {
     setModal({ type: 'auth_user' })
   }
-  const handleBlogOpen = () => {
-    setModal({ type: 'blog' })
-  }
+  // const handleBlogOpen = () => {
+  //   setModal({ type: 'blog' })
+  // }
 
   return (
     <div className='h-screen grid grid-cols-1 grid-rows-10 lg:grid-cols-[15%_1fr] text-white'>

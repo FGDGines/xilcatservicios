@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import useBlog from "../../hooks/useBlog"
-import { jwtDecode } from "jwt-decode";
-import axios from "axios";
+// import { jwtDecode } from "jwt-decode";
+// import axios from "axios";
 
 type Inputs = {
   title: string;
@@ -10,15 +10,15 @@ type Inputs = {
 }
 
 const Blog = () => {
-  const { post, postImage, list } = useBlog()
+  const { postImage, list } = useBlog()
   const {
     register,
     handleSubmit,
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const auth = jwtDecode(String(localStorage.getItem('auth_token'))) as any
+    // const auth = jwtDecode(String(localStorage.getItem('auth_token'))) as any
     if (list.data === undefined) return
-    const {image, ...rest} = data
+    const {image } = data
     const lastBlog = list.data?.length === 0 ? { id: 1 } : list?.data[list.data?.length -1]
 
     // post.mutate({ ...rest, auth: auth.id})

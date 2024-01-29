@@ -16,24 +16,6 @@ type ArticleAuth = {
 export type TArticle = ArticleRecord & ArticleAuth
 
 
-const articles = [
-  {
-    id: 1,
-    title: 'Getting Started with Tailwind CSS',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-    author: 'John Doe',
-    date: '2023-12-15',
-  },
-  {
-    id: 2,
-    title: 'React Hooks: An Introduction',
-    content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-    author: 'Jane Smith',
-    date: '2023-12-14',
-  },
-  // Add more articles...
-];
-
 const BlogPage: React.FC = () => {
   const {list} = useBlog()
   return (

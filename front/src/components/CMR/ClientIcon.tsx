@@ -1,4 +1,3 @@
-import Client from '../../assets/client.png'
 import { useNavigate } from 'react-router-dom'
 type TClient = {
   id?: number

@@ -2,7 +2,7 @@
 import Logo from '../assets/Logo_white.png'
 import { IoMenu } from "react-icons/io5";
 import { useDeviceSize } from '../hooks/Responsive';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TranslationKeys } from '../language/type-i18n';
 import spanishIcon from '../assets/castellano.png';
