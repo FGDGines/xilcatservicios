@@ -66,17 +66,22 @@ export class ChatGateway implements OnModuleInit {
         return;
       }
     } catch (error) {
+      this.server.emit('error-message', {
+        message: 'Se ha producido un error.',
+        error,
+      });
+      console.log(error);
       return error;
     }
   }
 
-  @SubscribeMessage('findOneChat')
-  findOne(@MessageBody() id: number) {
-    return this.chatService.findOne(id);
-  }
+  // @SubscribeMessage('findOneChat')
+  // findOne(@MessageBody() id: number) {
+  //   return this.chatService.findOne(id);
+  // }
 
-  @SubscribeMessage('removeChat')
-  remove(@MessageBody() id: number) {
-    return this.chatService.remove(id);
-  }
+  // @SubscribeMessage('removeChat')
+  // remove(@MessageBody() id: number) {
+  //   return this.chatService.remove(id);
+  // }
 }

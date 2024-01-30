@@ -20,7 +20,6 @@ export class NewsletterService {
           'newsletter.id',
           'newsletter.title',
           'newsletter.content',
-          'newsletter.imagePath',
           'newsletter.created_at',
           'newsletter.updated_at',
           // Seleccionando todos los campos de 'auth' excepto 'password'
