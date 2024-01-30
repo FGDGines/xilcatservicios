@@ -17,6 +17,16 @@ const useAuthUsers = () => {
             queryClient.invalidateQueries({ queryKey: ['authUsers']})
         }
     })
+    const erase = useMutation<any, any, number>({
+        mutationFn: authUsers.erase,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['authUsers']})
+        },
+        onError: (error) => {
+            const messages = String(error).split('$')
+            messages.forEach((message: string) => toast.error(message))
+        }
+    })
     
     const register = useMutation<any, any,{ data:TRegisterUser }>({
         mutationFn: authUsers.post,
@@ -34,7 +44,8 @@ const useAuthUsers = () => {
     return {
         list,
         update,
-        register
+        register,
+        erase
     }
 }
 

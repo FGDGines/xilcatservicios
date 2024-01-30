@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import useAuthUsers from '../../hooks/useAuthUsers'
 import { useAppStore } from '../../store'
 import { toast } from 'react-toastify';
-import { useEffect } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 
 // const AuthUser = () => {
 //   const { list, update } = useAuthUsers()
@@ -49,8 +49,11 @@ type Inputs = {
 }
 
 const AuthUser = () => {
+  const [isEditing, toggleIsEditin] = useReducer((prev) => !prev, false)
+  const [newRol, setNewRol] = useState('')
   const { modal, closeModal } = useAppStore()
-  const { register: post} = useAuthUsers()
+  const { data } = modal.params
+  const { register: post, update, erase } = useAuthUsers()
   const {
     register,
     handleSubmit,
@@ -60,6 +63,29 @@ const AuthUser = () => {
     if (password !== confirm) return toast.error("Las contrasenas no coinciden")
     post.mutate({ data: { username, password }}, {
       onSuccess: () => {
+        closeModal()
+      }
+    })
+  }
+
+  const handleSaveEdit = () => {
+    toggleIsEditin()
+
+    if (isEditing && newRol !== '') {
+      update.mutate({ data: { rol: newRol }, id: data.id }, {
+        onSuccess: () => {
+          toast.success(`Rol de ${data.username} ha sido actualizado exitosamente`)
+          closeModal()
+        }
+      })
+    }
+  }
+
+  const handelDelete = () => {
+    if(data.rol === 'ADMINISTRATOR') return toast.error('El usuario administrador no puede ser eliminado')
+    erase.mutate(data.id, {
+      onSuccess: () => {
+        toast.success(`El usuario ${data.username} ha sido eliminado exitosamente`)
         closeModal()
       }
     })
@@ -116,6 +142,82 @@ const AuthUser = () => {
             Agregar
           </button>
   </form>
+  )
+
+  if (modal.params.type === 'info') return (
+    <div>
+      <div className='mb-4 flex flex-col'>
+        <div className='flex items-center justify-center'>
+          <div className="relative inline-flex items-center justify-center w-20 h-20 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+            <span className="text-3xl text-gray-600 dark:text-gray-300 uppercase">{data.username.slice(0,1)}</span>
+          </div>
+        </div>
+        <p className='text-center text-2xl'>{data.username}</p>
+        <p className='text-center text-gray-300 italic'>{data.rol}</p>
+        {
+          isEditing && (
+        <div className="w-[80%] mx-auto border rounded-md my-4 shadow-[0_4px_9px_-4px_#252323]">
+          <p className='text-center bg-cs-purple-light text-white rounded py-2'>Selecciona el rol</p>
+          <button
+            onClick={() => setNewRol('LAWYER')}
+            type="button"
+            className="block w-full text-center cursor-pointer p-2 text-left transition duration-500 hover:bg-neutral-100 hover:text-neutral-500 focus:bg-neutral-100 focus:text-neutral-500 focus:ring-0 dark:hover:bg-neutral-600 dark:hover:text-neutral-200 dark:focus:bg-neutral-600 dark:focus:text-neutral-200">
+            LAWYER
+          </button>
+          <button 
+            onClick={() => setNewRol('ADVISER')}
+            type="button"
+            className="block w-full text-center cursor-pointer p-2 text-left transition duration-500 hover:bg-neutral-100 hover:text-neutral-500 focus:bg-neutral-100 focus:text-neutral-500 focus:ring-0 dark:hover:bg-neutral-600 dark:hover:text-neutral-200 dark:focus:bg-neutral-600 dark:focus:text-neutral-200">
+            ADVISER
+          </button>
+          <button
+            onClick={() => setNewRol('CLIENT')}
+            type="button"
+            className="block w-full text-center cursor-pointer p-2 text-left transition duration-500 hover:bg-neutral-100 hover:text-neutral-500 focus:bg-neutral-100 focus:text-neutral-500 focus:ring-0 dark:hover:bg-neutral-600 dark:hover:text-neutral-200 dark:focus:bg-neutral-600 dark:focus:text-neutral-200">
+            CLIENT
+          </button>
+        </div>
+        )
+      }
+      </div>
+      <div className="mb-4 flex items-center justify-center">
+        <div
+          className="inline-flex rounded-md shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+          role="group">
+          <button
+            onClick={handelDelete}
+            type="button"
+            disabled={data.rol === 'ADMINISTRATOR'}
+            className={`
+              inline-block rounded-l bg-red-500 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700
+              hover:bg-red-300 ${data.rol === 'ADMINISTRATOR' && 'cursor-not-allowed'}
+              `}
+            data-te-ripple-init
+            data-te-ripple-color="light">
+            Eliminar
+          </button>
+          <button
+            type="button"
+            onClick={() => isEditing && toggleIsEditin()}
+            className="inline-block  px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700"
+            data-te-ripple-init
+            data-te-ripple-color="light">
+            {isEditing && 'Cancelar'}
+          </button>
+          <button
+            type="button"
+            onClick={handleSaveEdit}
+            className="
+              inline-block rounded-r bg-cs-purple px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-primary-600 focus:bg-primary-600 focus:outline-none focus:ring-0 active:bg-primary-700
+              hover:bg-cs-purple-light
+              "
+            data-te-ripple-init
+            data-te-ripple-color="light">
+            {isEditing ? 'Guardar' : 'Editar'}
+          </button>
+        </div>
+      </div>
+    </div>
   )
   return (
     <div>Default</div>

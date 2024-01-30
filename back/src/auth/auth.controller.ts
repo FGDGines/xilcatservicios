@@ -9,11 +9,13 @@ import {
   ParseFilePipe,
   Post,
   Put,
+  Delete,
   Query,
   UploadedFile,
   UseInterceptors,
   ValidationError,
   ValidationPipe,
+  BadRequestException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import {
@@ -116,6 +118,7 @@ export class AuthController {
     return await this.authService.register(createUserDto);
   }
 
+
   @Put(':id')
   @ApiOperation({ summary: 'OPERATIVO' })
   @ApiParam({ name: 'id', description: 'Auth ID', type: Number })
@@ -126,6 +129,14 @@ export class AuthController {
     @Body() authData: Partial<AuthEntity>,
   ): Promise<AuthEntity | ValidationError[]> {
     return await this.authService.update(id, authData);
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: 'OPERATIVO' })
+  @ApiParam({ name: 'id', description: 'Client ID', type: Number })
+  @ApiResponse({ status: 200, description: 'Delete a auth.' })
+  async deleteClient(@Param('id') id: number): Promise<AuthEntity> {
+    return await this.authService.delete(id);
   }
 
   // ARCHIVOS

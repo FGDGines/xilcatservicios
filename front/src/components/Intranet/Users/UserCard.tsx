@@ -1,7 +1,9 @@
+import { useAppStore } from "../../../store"
 
 const UserCard = ({ data }: { data: any }) => {
+  const { setModal } = useAppStore()
   return (
-    <li v-for="person in people">
+    <li v-for="person in people" onClick={() => setModal({ type: 'auth_user', params: { type: 'info', data }})}>
     <ul role="list" className="mt-3 flex gap-x-3">
       <div className="m-2 space-y-2">
         <div

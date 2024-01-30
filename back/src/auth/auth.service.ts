@@ -81,6 +81,20 @@ export class AuthService {
     return adminCount > 0;
   }
 
+  async delete(id: number): Promise<AuthEntity> {
+    try {
+      const authToRemove = await this.authRepository.findOne({
+        where: { id },
+      });
+
+      return await this.authRepository.remove(authToRemove);
+    } catch (error) {
+      throw new BadRequestException(
+        'El ID de AuthEntity proporcionado no existe',
+      );
+    }
+  }
+
   async findAll(
     page: number,
     limit: number,

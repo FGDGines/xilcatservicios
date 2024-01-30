@@ -70,7 +70,7 @@ export const Chat = () => {
             setIsLoadingSocket(false);
         }
 
-        function onError(data: unknown) {
+        function onError() {
             toast.error("Error Socket")
         }
 
