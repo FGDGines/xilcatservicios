@@ -168,12 +168,18 @@ export class ClientService {
       writeFileSync(filePath, pdf.buffer);
 
       if (client) {
+        console.log('CLIENTEEEEE', client)
         if (!client.pdf) {
           client.pdf = [];
         }
 
-        client.pdf.push({ typePdf: pdfType, path: filePath });
-        await this.clientRepository.update(clientId, { pdf: client.pdf });
+        const newPdf = Array.isArray(client.pdf) ? client.pdf :  JSON.parse(String(client.pdf))
+        newPdf.push(({ typePdf: pdfType, path: filePath }))
+
+
+        // client.pdf.push({ typePdf: pdfType, path: filePath });
+        await this.clientRepository.update(clientId, { pdf: newPdf });
+        // await this.clientRepository.update(clientId, { pdf: client.pdf });
       }
 
       return {

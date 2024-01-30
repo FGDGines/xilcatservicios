@@ -11,6 +11,7 @@ import {
   // OneToMany,
 } from 'typeorm';
 import {
+  IsArray,
   IsEmail,
   IsIn,
   IsNotEmpty,
@@ -20,6 +21,7 @@ import {
   IsString,
   Matches,
   MinLength,
+  ValidateNested,
 } from 'class-validator';
 import { AuthEntity } from 'src/auth/auth.entity';
 import {
@@ -91,7 +93,7 @@ export class ClientEntity {
 
   @Column({ type: 'json', nullable: true })
   // @IsArray({ message: 'No es una lista' })
-  // @ValidateNested({ each: true })
+  @ValidateNested({ each: true })
   @ApiProperty({ type: [PdfDto] })
   @Type(() => PdfDto)
   pdf: PdfDto[];
