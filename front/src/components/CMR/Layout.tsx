@@ -219,7 +219,7 @@ const Layout = ({ Component }: { Component: any }) => {
       </div>
 
         {/* Principal Component */}
-        <div className='row-span-6 overflow-auto text-black lg:row-[span_8_/_span_8]'>{<Component />}</div>
+        <div className='row-span-6 overflow-auto text-black lg:row-[span_8_/_span_8] bg-white'>{<Component />}</div>
         {/* <div className=' row-span-4 overflow-auto lg:row-span-7 text-black'>{<Component />}</div> */}
     </div>
   )

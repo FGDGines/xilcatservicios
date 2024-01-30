@@ -33,7 +33,7 @@ const Clients = () => {
   }
   return (
     <div className='
-      h-full grid grid-cols-2 px-4 py-2 gap-4 relative  mb-4 
+      h-full grid grid-cols-2 px-4 gap-4 relative
       md:grid-cols-4 md:auto-rows-[250px]
       lg:grid-cols-5 lg:auto-rows-[220px] lg:pt-8
       xl:grid-cols-6 
