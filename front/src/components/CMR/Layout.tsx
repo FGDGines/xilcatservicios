@@ -72,6 +72,11 @@ const Layout = ({ Component }: { Component: any }) => {
       Icon: <LuUserCircle />
     },
     {
+      link: '/',
+      text: 'Landing',
+      Icon: <LuUserCircle />
+    },
+    {
       link: '',
       text: 'Blog',
       Icon: <FaRegStickyNote />,

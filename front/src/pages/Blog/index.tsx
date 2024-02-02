@@ -18,6 +18,7 @@ export type TArticle = ArticleRecord & ArticleAuth
 
 const BlogPage: React.FC = () => {
   const {list} = useBlog()
+  console.log("list", list)
   return (
     <>
     <HeaderMenu />

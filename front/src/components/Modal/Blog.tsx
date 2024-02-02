@@ -12,7 +12,7 @@ type Inputs = {
 
 const Blog = () => {
   const { closeModal } = useAppStore()
-  const { list, post } = useBlog()
+  const { list, post, postImage } = useBlog()
   const {
     register,
     handleSubmit,
@@ -21,15 +21,16 @@ const Blog = () => {
     const auth = jwtDecode(String(localStorage.getItem('auth_token'))) as any
     if (list.data === undefined) return
     const {image, ...rest } = data
-    // const lastBlog = list.data?.length === 0 ? { id: 1 } : list?.data[list.data?.length -1]
+    const lastBlog = list.data?.length === 0 ? { id: 1 } : list?.data[list.data?.length -1]
 
-    post.mutate({ ...rest, auth: auth.id}, {
-      onSuccess() {
-        closeModal()
-      },
-    })
+    // post.mutate({ ...rest, auth: auth.id}, {
+    //   onSuccess() {
+    //     closeModal()
+    //   },
+    // })
     // await axios.post(import.meta.env.VITE_BACKEND_URL + '/blog/upload-image/' + (Number(lastBlog.id) + 1), formData )
-    // postImage.mutate({ data: image, id: 16  })
+    console.log('image', image)
+    postImage.mutate({ data: image, id: 30  })
     // postImage.mutate({ data: image, id: lastBlog.id + 1  })
   }
   return (

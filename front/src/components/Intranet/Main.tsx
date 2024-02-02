@@ -46,7 +46,7 @@ const Main = () => {
           </div>
             {
               event.journal.map((item) => (
-                <div className='p-2 border-b '>
+                <div className='p-2 border-b'>
                   <p className='font-bold'>{item.title.slice(0,15)}</p>
                   <p className='text-gray-400'>{item.description}</p>
                 </div>
