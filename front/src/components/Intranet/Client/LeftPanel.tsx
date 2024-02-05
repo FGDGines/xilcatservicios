@@ -24,7 +24,7 @@ const LeftPanel = ({ data, side }:TProps) => {
     <div className={`
     border my-2 mx-4 shadow relative
     bg-white h-full ${side ? 'flex-1 w-full opacity-100' : 'flex-0 w-0 opacity-0'} transition-all duration-300 ease-in flex flex-col
-    lg:flex-1 lg:w-full lg:opacity-100
+    lg:flex-1 lg:w-[30%] lg:opacity-100
     `}>
       <button className='absolute top-4 right-4 w-4 h-4 bg-red hover:text-red-500 transition-all' onClick={handleClick}>
         <FaTrash />

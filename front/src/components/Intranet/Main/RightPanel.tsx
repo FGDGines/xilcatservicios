@@ -29,9 +29,10 @@ const RightPanel = ({ side, data,  }: TProps) => {
   return (
     <div className={`
     bg-white h-full ${side ? 'flex-0 w-0 opacity-0' : 'flex-1 w-full'} transition-all  duration-300 ease-in flex flex-col 
-    lg:basis-1/4 lg:w-full lg:p-4
+    lg:p-4
+    lg:flex-1 lg:w-full lg:opacity-100
     `}>
-    <div className='border h-full overflow-auto'>
+    <div className='border h-full overflow-auto shadow-md'>
     <div className='bg-cs-purple p-2 rounded-t-md text-white'>
       <p>Notas</p>
     </div>

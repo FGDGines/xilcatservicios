@@ -17,7 +17,7 @@ const LeftPanel = ({ side }: TProps) => {
   return (
     <div className={`
     bg-white h-full ${side ? 'flex-1 w-full' : 'flex-0 w-0 opacity-0'} transition-all duration-300 ease-in flex flex-col lg:p-4
-    lg:flex-1 lg:w-full
+    lg:flex-1 lg:w-full lg:opacity-100
     `}>
         <Calendar
           selectable
