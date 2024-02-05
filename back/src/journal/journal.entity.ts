@@ -21,6 +21,12 @@ export class JournalEntity {
   @Column()
   description: string;
 
+  @Column()
+  start: string;
+  
+  @Column()
+  end: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 

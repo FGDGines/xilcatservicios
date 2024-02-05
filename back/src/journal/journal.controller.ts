@@ -55,7 +55,7 @@ export class JournalController {
     description: 'New newsletter object',
     examples: {
       example1: {
-        value: { title: 'Sample Title', content: 'Sample Content', auth: 0 },
+        value: { title: 'Sample Title', description: 'Sample Content', auth: 0 },
         summary: 'Sample Newsletter Object',
       },
       // Agrega más ejemplos según sea necesario

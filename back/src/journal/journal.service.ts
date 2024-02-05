@@ -26,8 +26,8 @@ export class JournalService {
           'journal.id',
           'journal.title',
           'journal.description',
-          'journal.created_at',
-          'journal.updated_at',
+          'journal.start',
+          'journal.end',
           // Seleccionando todos los campos de 'auth' excepto 'password'
           'auth.id',
           'auth.username',

@@ -7,6 +7,8 @@ import  Select, { SingleValue }  from 'react-select'
 import useClients from '../../hooks/useClients'
 import Loader from '../Common/Loader'
 import Error from '../Common/Error'
+import usejournal from '../../hooks/useJournal'
+import { TJournal } from '../../types/journal'
 
 const Event = () => {
   const [amount, setAmount] = useState(0)
@@ -16,6 +18,7 @@ const Event = () => {
   const { addAccountEvent, addJournalEvent, modal, closeModal, event: { account } } = useAppStore()
 
   const { update } = useClients()
+  const { post } = usejournal()
   const startDate = moment(modal.params.start).toDate()
 
   const handleAddEvent = () => {
@@ -37,12 +40,15 @@ const Event = () => {
         return closeModal()
       }
     } else {
-      addJournalEvent({
+      const data: TJournal = {
         start: moment(modal.params.start),
         end: moment(modal.params.end),
         title,
-        description
-      })
+        description,
+        auth: Number(modal.params.id)
+      }
+      addJournalEvent(data)
+      post.mutate({ data })
       toastMessage = 'Nota agregada'
     }
 

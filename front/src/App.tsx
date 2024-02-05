@@ -21,7 +21,7 @@ import Toast from "./components/Toast";
 import Blog from "./pages/Blog";
 import Login from "./components/Intranet/Login";
 import Layout from "./components/CMR/Layout";
-import Main from "./components/Intranet/Main";
+import Main from "./components/Intranet/Main/Main";
 import Clients from "./components/Intranet/Clients";
 import Client from "./components/Intranet/Client";
 import Account from "./components/Intranet/Account";

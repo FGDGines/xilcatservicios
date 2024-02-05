@@ -40,6 +40,7 @@ const LeftPanel = ({side, data }: TProps) => {
         localizer={localizer}
         defaultDate={new Date()}
         defaultView='month'
+        views={['month']}
         events={event.account}
         style={{
           height: '100%',

@@ -1,6 +1,5 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { FaLock, FaLockOpen } from "react-icons/fa";
 import { useAuthProvider } from '../../hooks/useAuthProvider';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -13,10 +12,10 @@ type Inputs = {
 
 const Register = () => {
   const navigate = useNavigate()
-  const [showPass, setShowPass] = useState({
-    pass: false,
-    check: false,
-  })
+  // const [showPass, setShowPass] = useState({
+  //   pass: false,
+  //   check: false,
+  // })
   const {
     register,
     handleSubmit,

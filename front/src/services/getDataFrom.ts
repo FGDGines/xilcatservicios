@@ -1,0 +1,1 @@
+// this is supposed to be a generic function for getter functios
