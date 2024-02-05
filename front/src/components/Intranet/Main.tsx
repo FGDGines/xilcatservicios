@@ -14,7 +14,7 @@ const Main = () => {
   const [side, setSide] = useState(true)
 
   return (
-    <div className='relative h-full flex flex-nowrap'>
+    <div className='relative h-full flex flex-nowrap p-4'>
       <div className='fixed bottom-6 left-6 text-white text-4xl bg-blue-500 rounded-full z-10 lg:w-0 lg:hidden hover:cursor-pointer' onClick={() => setSide(prev => !prev)}>
         {side ? <MdSwitchLeft /> : <MdSwitchRight />}
       </div>
@@ -30,6 +30,7 @@ const Main = () => {
           localizer={localizer}
           defaultDate={new Date()}
           defaultView='month'
+          views={['month']}
           style={{
             height: '100%',
             width: '100%'
@@ -37,13 +38,20 @@ const Main = () => {
         />
       </div>
       <div className={`
-    bg-white h-full ${side ? 'flex-0 w-0 z-1' : 'flex-1 w-full z-10'} transition-all  duration-300 ease-in flex flex-col 
+    bg-white h-full ${side ? 'flex-0 w-0 opacity-0' : 'flex-1 w-full'} transition-all  duration-300 ease-in flex flex-col 
     lg:basis-1/4 lg:w-full lg:p-4
     `}>
         <div className='border h-full overflow-auto'>
           <div className='bg-cs-purple p-2 rounded-t-md text-white'>
             <p>Notes</p>
           </div>
+          {
+              Number(event.journal.length) <= 0 && (
+                <div className='flex items-center justify-center h-full w-full'>
+                  <p className='font-bold'>No hay Notas aun</p>
+                </div>
+              )
+          } 
             {
               event.journal.map((item) => (
                 <div className='p-2 border-b'>

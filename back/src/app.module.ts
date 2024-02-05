@@ -24,6 +24,8 @@ import { ChatModule } from './chat/chat.module';
 import { ChatEntity } from './chat/chat.entity';
 import { BlogModule } from './blog/blog.module';
 import { BlogEntity } from './blog/blog.entity';
+import { JournalEntity } from './journal/journal.entity';
+import { JournalModule } from './journal/journal.module';
 
 @Module({
   imports: [
@@ -49,6 +51,7 @@ import { BlogEntity } from './blog/blog.entity';
         ClientEntity,
         ChatEntity,
         BlogEntity,
+        JournalEntity
       ], // Agrega tus entidades aquí
       synchronize: true, // Opcional: sincroniza automáticamente las entidades con la base de datos (cuidado en producción)
     }),
@@ -83,6 +86,7 @@ import { BlogEntity } from './blog/blog.entity';
     PdfModule,
     ChatModule,
     BlogModule,
+    JournalModule
   ],
   controllers: [AppController],
 })
