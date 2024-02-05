@@ -1,7 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import useBlog from "../../hooks/useBlog"
-import { jwtDecode } from "jwt-decode";
-import { useAppStore } from "../../store";
+// import { jwtDecode } from "jwt-decode";
+// import { useAppStore } from "../../store";
 // import axios from "axios";
 
 type Inputs = {
@@ -11,17 +11,17 @@ type Inputs = {
 }
 
 const Blog = () => {
-  const { closeModal } = useAppStore()
-  const { list, post, postImage } = useBlog()
+  // const { closeModal } = useAppStore()
+  const { list, postImage } = useBlog()
   const {
     register,
     handleSubmit,
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const auth = jwtDecode(String(localStorage.getItem('auth_token'))) as any
+    // const auth = jwtDecode(String(localStorage.getItem('auth_token'))) as any
     if (list.data === undefined) return
-    const {image, ...rest } = data
-    const lastBlog = list.data?.length === 0 ? { id: 1 } : list?.data[list.data?.length -1]
+    const {image } = data
+    // const lastBlog = list.data?.length === 0 ? { id: 1 } : list?.data[list.data?.length -1]
 
     // post.mutate({ ...rest, auth: auth.id}, {
     //   onSuccess() {

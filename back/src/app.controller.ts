@@ -2,7 +2,7 @@ import { Controller, Get, Res, Req, HttpStatus } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { join } from 'path';
 
-@Controller('*') // Captura todas las rutas
+@Controller() // Captura todas las rutas
 export class AppController {
   @Get()
   catchAll(@Req() req: Request, @Res() res: Response) {
