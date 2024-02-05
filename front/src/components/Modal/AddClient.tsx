@@ -99,7 +99,7 @@ const AddClient = () => {
                             <button
                                 type='submit'
                             className="
-                                w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-cs-purple text-base font-medium text-white
+                                w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-cs-purple text-base font-medium text-white transition-all
                                 hover:bg-cs-purple-light
                                 sm:text-sm"
                             >
@@ -108,7 +108,7 @@ const AddClient = () => {
                             <button
                                 type='button'
                             className="
-                                mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700
+                                mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 transition-all
                                 hover:bg-gray-300 md:mt-0
                                 sm:text-sm"
                             >

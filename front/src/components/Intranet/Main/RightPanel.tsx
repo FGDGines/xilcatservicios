@@ -1,6 +1,9 @@
 import { useEffect } from 'react'
 import { TJournal } from '../../../types/journal'
 import { useAppStore } from '../../../store'
+import useJournal from '../../../hooks/useJournal'
+import { toast } from 'react-toastify'
+import { jwtDecode } from 'jwt-decode'
 
 type TProps = {
     side: boolean
@@ -9,6 +12,15 @@ type TProps = {
 
 const RightPanel = ({ side, data,  }: TProps) => {
   const { clearJournal, addJournalEvent } = useAppStore()
+  const {erase} = useJournal()
+
+  const handleDelete = (id: number) => {
+    erase.mutate({ id}, {
+        onSuccess: () => {
+            toast.success('nota eliminada')
+        }
+    })
+  }
 
     useEffect(() => {
         clearJournal()
@@ -32,9 +44,14 @@ const RightPanel = ({ side, data,  }: TProps) => {
     } 
       {
         data.map((item: TJournal) => (
-          <div className='p-2 border-b'>
-            <p className='font-bold'>{item.title.slice(0,15)}</p>
-            <p className='text-gray-400'>{item.description}</p>
+          <div className='px-4 py-2 border-b flex justify-between w-full'>
+            <div>
+                <p className='font-bold'>{item.title.slice(0,15)}</p>
+                <p className='text-gray-400'>{item.description.slice(0,100)}</p>
+            </div>
+            <div onClick={() => handleDelete(Number(item.id))} className='hover:cursor-pointer hover:text-red-500'>
+                <p>x</p>
+            </div>
           </div>
         ))
       }

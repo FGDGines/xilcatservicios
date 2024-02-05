@@ -61,18 +61,6 @@ const RightPanel = ({ side, id, data }: TProps) => {
           {
             data?.tramiteType !== 'TYPE1' && (
         <div className='basis-1/5 flex border rounded shadow items-center'>
-          {/* <div className='flex-1 flex justify-center items-center gap-2 md:text-xl lg:text-2xl'>
-            <p>
-              Datos Adjuntos
-            </p>
-              <FaRegFolderOpen />
-          </div>
-          <div className='flex-1 flex justify-center items-center'>
-              <button type="button"  className="bg-cs-purple hover:bg-cs-purple-light text-white font-bold py-2 px-6 rounded">
-                Examinar
-              </button>
-          </div> */}
-              {/* <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" /> */}
                   <div className='flex-1 flex justify-center items-center gap-2 md:text-xl lg:text-2xl'>
                     <p>Colaboradores: {data?.collaborators || 'Ninguno'}</p>
                   </div>
@@ -93,7 +81,7 @@ const RightPanel = ({ side, id, data }: TProps) => {
             <p className='col-span-2 text-center capitalize md:col-span-3 lg:col-span-2 md:text-xl lg:text-2xl'>documentos a adjuntar</p>
               {
                 documents.map((document, idx) => (
-                  <div className={`flex justify-center items-center gap-2 bg-cs-purple px-4 py-2 rounded text-white w-full hover:bg-cs-purple-light ${(Number(multipleFilesRef.current[idx]?.files?.length) > 0 || hasFileUploaded(document)) ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'}`} key={document} onClick={() =>handleClick(idx)}>
+                  <div className={`flex justify-center items-center gap-2 bg-cs-purple px-4 py-2 rounded text-white w-full transition-all hover:bg-cs-purple-light ${(Number(multipleFilesRef.current[idx]?.files?.length) > 0 || hasFileUploaded(document)) ? 'hover:cursor-not-allowed' : 'hover:cursor-pointer'}`} key={document} onClick={() =>handleClick(idx)}>
                     <p className='truncate'>{document}</p>
                     <FaRegFilePdf />
                     <input type="file" name={document} id="" ref={setRef(idx)} className='hidden' onChange={handleFileChange} />

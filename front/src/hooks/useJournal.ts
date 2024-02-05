@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import journals from "../services/journal";
 import { TJournal } from "../types/journal";
 
-const useBlog = () => {
+const useJournal = () => {
     const queryClient = useQueryClient()
     const list = useQuery('journal', journals.get)
 
@@ -12,12 +12,19 @@ const useBlog = () => {
             queryClient.invalidateQueries({ queryKey: ['journal']})
         }
     })
+    const erase = useMutation<any, any, {id: number}>({
+        mutationFn: journals.erase,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['journal']})
+        }
+    })
 
 
     return {
         list,
         post,
+        erase
     }
 }
 
-export default useBlog;
+export default useJournal;
