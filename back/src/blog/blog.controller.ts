@@ -15,6 +15,9 @@ import {
   FileTypeValidator,
   HttpException,
   HttpStatus,
+  Res,
+  StreamableFile,
+  Header,
 } from '@nestjs/common';
 import { AuthService } from 'src/auth/auth.service';
 import { BlogService } from './blog.service';
@@ -29,6 +32,8 @@ import {
 } from '@nestjs/swagger';
 import { BlogEntity } from './blog.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { join } from 'path';
+import { createReadStream } from 'fs';
 
 @ApiTags('blog')
 @Controller('blog')
@@ -55,6 +60,17 @@ export class BlogController {
   async getById(@Param('id') id: number): Promise<BlogEntity> {
     return await this.blogService.findById(id);
   }
+
+  @Get('/picture/:id/:name')
+  // @Header('Content-Type', 'application/json')
+  async getPicture (@Param('id') id: string, @Param('name') name: string) {
+    console.log('dirname----', process.cwd())
+    const file = createReadStream(join(process.cwd(), 'public', 'blog', id, name))
+    return new StreamableFile(file)
+    // const picturePath = join(__dirname, '..', 'public', 'blog', id, name);
+    // res.(picturePath);
+  }
+  
 
   @Post()
   @ApiOperation({ summary: 'OPERATIVO' })

@@ -5,7 +5,7 @@ import Footer from '../../components/Footer';
 import PoliticsBar from '../../components/PoliticsBar';
 import useBlog from '../../hooks/useBlog';
 
-type ArticleKeys = 'id' | 'title' | 'content'
+type ArticleKeys = 'id' | 'title' | 'content' | 'imagePath'
 type ArticleRecord = Record<ArticleKeys , string | number> 
 type ArticleAuth = {
   auth: {
@@ -18,7 +18,6 @@ export type TArticle = ArticleRecord & ArticleAuth
 
 const BlogPage: React.FC = () => {
   const {list} = useBlog()
-  console.log("list", list)
   return (
     <>
     <HeaderMenu />

@@ -3,13 +3,42 @@ import { FaWhatsapp } from "react-icons/fa";
 import  Logo from '../../assets/Logo_white.png'
 import  profile from '../../assets/imgs/carrusel-img-1.jpeg'
 import moment from 'moment';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const Card = ({ article }: { article: TArticle}) => {
+    const [image, setImage] = useState('')
+    
+    useEffect(() => {
+        const hasImage = article.imagePath !== null
+        const handleGetImage = async (idFile: number, idName:string) => {
+            try {
+                const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/blog/picture/${idFile}/${idName}`, {
+                    responseType: 'blob'
+                })
+
+                setImage(URL.createObjectURL(res.data))
+            } catch(error: any) {
+                console.log('error', error)
+            }
+    
+        }
+    
+         if (hasImage) {
+            const imagePaths = String(article.imagePath).split('/')
+            const idFile = imagePaths.at(-2)
+            const idName = imagePaths.at(-1)
+            handleGetImage(Number(idFile), String(idName))
+            } else {
+            setImage(Logo)
+            }
+    }, [])
+
   return (
     <div className='flex flex-col md:grid md:grid-cols-2 h-[400px] mb-4 md:h-60 xl:h-80 rounded'>
         <div className='bg-cs-gray relative text-white rounded h-[50%] md:h-60 xl:h-full'>
             {/* <img src={Logo} alt="" /> */}
-            <img src={Logo} style={{ width: '100%', height: '100%'}} alt="" />
+            <img src={image} style={{ width: '100%', height: '100%'}} alt="" />
         </div>
         <div className='flex flex-col p-2 h-[50%] md:h-full border'>
             <div className='flex h-[20%] gap-2 mb-4'>
