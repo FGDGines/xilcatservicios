@@ -17,7 +17,6 @@ const Landing = () => {
 
   const setRef = (id: number) => (el: HTMLInputElement) => multipleRef.current[id] = el;
 
-  console.log('reffff', multipleRef)
 
   
 

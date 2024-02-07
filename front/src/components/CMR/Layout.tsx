@@ -171,7 +171,7 @@ const Layout = ({ Component }: { Component: any }) => {
           data-te-navbar-nav-ref>
             {
               links.map(link => (
-                <li className="pr-2" data-te-nav-item-ref>
+                <li className="pr-2" data-te-nav-item-ref key={link.text}>
                   <p
                     className="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white p-2 [&.active]:text-black/90 hover:cursor-pointer"
                     data-te-nav-link-ref

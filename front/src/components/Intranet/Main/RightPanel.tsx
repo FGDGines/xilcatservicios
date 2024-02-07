@@ -44,7 +44,7 @@ const RightPanel = ({ side, data,  }: TProps) => {
     } 
       {
         data.map((item: TJournal) => (
-          <div className='px-4 py-2 border-b flex justify-between w-full'>
+          <div className='px-4 py-2 border-b flex justify-between w-full' key={item.title}>
             <div>
                 <p className='font-bold'>{item.title.slice(0,15)}</p>
                 <p className='text-gray-400'>{item.description.slice(0,100)}</p>

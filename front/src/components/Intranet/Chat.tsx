@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { chat, decodedPayloadOrNull } from './../../socket';
+import { decodedPayloadOrNull } from './../../socket';
 import { toast } from 'react-toastify';
+import { Socket, io } from 'socket.io-client';
+import { JwtPayload, jwtDecode } from 'jwt-decode';
 
 interface Message {
     readonly id: string;
@@ -36,16 +38,45 @@ interface User {
     updated_at: string;
 }
 
+
 // function ConnectionState({ isConnected }) {
 //     return <p>State: {'' + isConnected}</p>;
 // }
+interface JwtPayloadWithUsername extends JwtPayload {
+    readonly username: string
+    readonly id: string
+  }
+  
+  
+  const token: string | null = window.localStorage.getItem('auth_token')
+  
+  let decodedPayload: JwtPayloadWithUsername | null = null
+  
+  if (token) {
+    decodedPayload = jwtDecode<JwtPayloadWithUsername>(token)
+  }
+  
+  
+//   const chat: Socket = io('http://localhost:3000', {
+//     auth: { token, name: decodedPayload?.username, authId: decodedPayload?.id },
+//     withCredentials: true,
+//     transports: ['websocket', 'polling'],
+//     extraHeaders: {
+//       'Access-Control-Allow-Origin': 'http://localhost:5173',
+//     },
+//   })
 
 export const Chat = () => {
+    // const { chat, users, messages, setIsLoading, setIsLoadingSocket, isLoading, isLoadingSocket } = useChatIo()
+    const [chat, setChat] = useState<Socket | null>(null)
+
     const [users, setUsers] = useState<User[]>([])
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingSocket, setIsLoadingSocket] = useState(true);
     const [messages, setMessage] = useState<Message[]>([])
     const messagesEndRef = useRef<HTMLDivElement>(null);
+
+
 
     const scrollToBottom = () => {
         if (messagesEndRef.current) {
@@ -57,8 +88,67 @@ export const Chat = () => {
         scrollToBottom();
     }, [messages]);
 
+    // useEffect(() => {
+    //     chat.connect();
+    //   }, []);
+
+    //   useEffect(() => {
+    //     function onAuthChange(data: User[]) {
+    //       setUsers(data);
+    //       setIsLoadingSocket(false);
+    //     }
+      
+    //     chat.on('on-auth-change', onAuthChange);
+      
+    //     return () => {
+    //       chat.off('on-auth-change', onAuthChange);
+    //     };
+    //   }, []);
+
+    //   useEffect(() => {
+    //     function onMessage(data: Message[]) {
+    //       setMessage(data);
+    //       setIsLoadingSocket(false);
+    //     }
+      
+    //     chat.on('on-message', onMessage);
+      
+    //     return () => {
+    //       chat.off('on-message', onMessage);
+    //     };
+    //   }, []);
+
+    //   useEffect(() => {
+    //     function onError() {
+    //       toast.error("Error Socket");
+    //     }
+      
+    //     chat.on('error-message', onError);
+      
+    //     return () => {
+    //       chat.off('error-message', onError);
+    //     };
+    //   }, []);
+
     useEffect(() => {
-        chat.connect()
+        const socket: Socket = io('http://localhost:3000', {
+            auth: { token, name: decodedPayload?.username, authId: decodedPayload?.id },
+            withCredentials: true,
+            transports: ['websocket', 'polling'],
+            extraHeaders: {
+              'Access-Control-Allow-Origin': 'http://localhost:5173',
+            },
+            autoConnect: false,
+          })
+        
+          setChat(socket)
+          socket.connect()
+          return () => {
+            socket.disconnect();
+          };
+    }, [])
+
+    useEffect(() => {
 
         function onAuthChange(data: User[]) {
             console.log('in auth before')
@@ -80,22 +170,20 @@ export const Chat = () => {
         function onError() {
             toast.error("Error Socket")
         }
+        if (chat) {
+                    chat.on('on-auth-change', onAuthChange);
+                    chat.on('on-message', onMessage);
+                    chat.on('error-message', onError);
+        }
 
-        chat.on('on-auth-change', onAuthChange);
-        chat.on('on-message', onMessage);
-        chat.on('error-message', onError);
-
-        console.log('is in use Effect')
-        console.log('is in use Effect isLoading', isLoading)
-        console.log('is in use Effect isLoadingSocket', isLoadingSocket)
-        console.log('is in use Effect users', users)
-        console.log('is in use Effect messages', messages)
         return () => {
-            chat.off('on-auth-change', onAuthChange);
-            chat.off('on-message', onMessage);
-            chat.off('error-message', onError);
+            if (chat) {
+                chat.off('on-auth-change', onAuthChange);
+                chat.off('on-message', onMessage);
+                chat.off('error-message', onError);
+            }
         };
-    });
+    }, [chat]);
 
     const getRelativeTime = (createdAt: string): string => {
         const date = new Date(createdAt);
@@ -119,14 +207,13 @@ export const Chat = () => {
 
         return 'justo ahora';
     };
-    console.log('is LOadin', isLoading)
-    console.log('is LOadin scoket', isLoadingSocket)
+
 
     return (
         <div className="flex h-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
             <main className="w-3/4 flex flex-col">
                 <header className="p-4 flex bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 items-center">
-                    <div className={`w-2 h-2 rounded-full  ${chat.active ? 'bg-green-500' : 'bg-red-500'}`} />
+                    <div className={`w-2 h-2 rounded-full  ${ chat && chat.active ? 'bg-green-500' : 'bg-red-500'}`} />
                     <div className="text-2xl font-bold px-3"> {decodedPayloadOrNull?.username}</div>
                 </header>
                 <div ref={messagesEndRef} className="messages flex-1 p-4 overflow-y-auto">
@@ -143,8 +230,11 @@ export const Chat = () => {
 
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
+                    
                     chat.timeout(2500).emit('send-message', { auth: decodedPayloadOrNull?.id, message: e.target.message.value }, () => {
                         setIsLoading(false);
+                        console.log(e.currentTarget)
+                        // e.currentTarget.
                     });
                 }} className="p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
                     <div className="grid w-full gap-1.5">
