@@ -25,6 +25,12 @@ import { ChatEntity } from './chat/chat.entity';
 import { BlogModule } from './blog/blog.module';
 import { BlogEntity } from './blog/blog.entity';
 
+import { config } from 'dotenv';
+
+// const env = join('../../.prod_env')
+const env = join(__dirname, '../../', '.dev_env');
+
+config({ path: env });
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -34,9 +40,9 @@ import { BlogEntity } from './blog/blog.entity';
       isGlobal: true, // Hace que las variables de entorno estén disponibles globalmente
     }),
     TypeOrmModule.forRoot({
-      type: process.env.DB_CONNECTION as any,
-      host: process.env.DB_HOST as any,
-      port: process.env.DB_PORT as any,
+      type: 'mysql',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
