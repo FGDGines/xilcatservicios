@@ -35,7 +35,7 @@ const icons = [
   // },
 ]
 
-const Footer = ({ refs  }: { refs: any}) => {
+const Footer = ({ refs  }: { refs?: any}) => {
   const navigate = useNavigate()
   const { t } = useTranslation<TranslationKeys>();
   const { isDesktop } = useDeviceSize()

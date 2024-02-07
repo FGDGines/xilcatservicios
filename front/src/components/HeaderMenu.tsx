@@ -59,7 +59,7 @@ const LanguageSelector = () => {
   );
 };
 
-const HeaderMenu = ({ refs  }: { refs: any}) => {
+const HeaderMenu = ({ refs  }: { refs?: any}) => {
   const { t } = useTranslation<TranslationKeys>();
   const { isDesktop } = useDeviceSize()
   const [isOpen, setIsOpen] = useState(false);
