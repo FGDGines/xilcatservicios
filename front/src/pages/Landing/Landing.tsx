@@ -7,12 +7,19 @@ import Footer from '../../components/Footer'
 import HeaderMenu from '../../components/HeaderMenu'
 import Intro from '../../components/Landing/Intro'
 import PoliticsBar from '../../components/PoliticsBar'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Landing = () => {
   const navigate = useNavigate()
   const auth = localStorage.getItem('auth_token')
+  const multipleRef = useRef<Array<HTMLInputElement | null>>([])
+
+  const setRef = (id: number) => (el: HTMLInputElement) => multipleRef.current[id] = el;
+
+  console.log('reffff', multipleRef)
+
+  
 
   useEffect(() => {
     const keyFunction = (e: KeyboardEvent) => {
@@ -27,16 +34,16 @@ const Landing = () => {
   }, [])
   return (
     <>
-      <HeaderMenu />
+      <HeaderMenu refs={multipleRef} />
       <div className='flex flex-col scroll-smooth text-cs-purple'>
-        <Intro />
-        <AboutUs />
-        <Services />
-        <Offer />
-        <OurTeam />
-        <Contact />
+        <Intro  />
+        <AboutUs setRef={setRef}/>
+        <Services setRef={setRef} />
+        <Offer setRef={setRef}/>
+        <OurTeam setRef={setRef} />
+        <Contact setRef={setRef} />
       </div>
-      <Footer />
+      <Footer refs={multipleRef}/>
       <PoliticsBar />
     </>
   )

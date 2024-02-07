@@ -33,7 +33,8 @@ const Layout = ({ Component }: { Component: any }) => {
       clients: 'Clientes',
       client: "Cliente",
       account: "Contabilidad",
-      users: 'Usuarios'
+      users: 'Usuarios',
+      chat: 'Chat'
     }
     const paths = location.pathname.split('/').filter(item => item)
 

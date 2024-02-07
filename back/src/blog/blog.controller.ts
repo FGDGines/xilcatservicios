@@ -64,11 +64,8 @@ export class BlogController {
   @Get('/picture/:id/:name')
   // @Header('Content-Type', 'application/json')
   async getPicture (@Param('id') id: string, @Param('name') name: string) {
-    console.log('dirname----', process.cwd())
     const file = createReadStream(join(process.cwd(), 'public', 'blog', id, name))
     return new StreamableFile(file)
-    // const picturePath = join(__dirname, '..', 'public', 'blog', id, name);
-    // res.(picturePath);
   }
   
 
@@ -133,7 +130,7 @@ export class BlogController {
   @Post('upload-image/:blogId')
   @ApiOperation({ summary: 'OPERATIVO' })
   @UseInterceptors(FileInterceptor('file'))
-  @ApiConsumes('multipart/form-data')
+  // @ApiConsumes('multipart/form-data')
   @ApiBody({
     description: 'Upload image file',
     type: 'multipart/form-data',
@@ -152,11 +149,12 @@ export class BlogController {
     @Param('blogId') blogId: number,
     @UploadedFile(
       new ParseFilePipe({
-        validators: [new FileTypeValidator({ fileType: 'image/jpeg' })],
+        validators: [new FileTypeValidator({ fileType: 'image/jpeg' }), new FileTypeValidator({ fileType: 'image/png' })],
       }),
     )
     file: Express.Multer.File,
   ) {
+    console.log('GETTING FILEEEEE ', file)
     try {
       const { filePath, fileName } = await this.blogService.handleFileUpload(
         file,

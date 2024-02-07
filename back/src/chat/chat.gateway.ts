@@ -27,6 +27,7 @@ export class ChatGateway implements OnModuleInit {
   }
   onModuleInit() {
     this.server.on('connection', async (socket: Socket) => {
+      console.log('is Conecting')
       try {
         const { authId } = socket.handshake.auth;
 

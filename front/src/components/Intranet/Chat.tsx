@@ -61,13 +61,20 @@ export const Chat = () => {
         chat.connect()
 
         function onAuthChange(data: User[]) {
+            console.log('in auth before')
             setUsers(data)
             setIsLoadingSocket(false);
+            console.log('in auth after')
+
         }
 
         function onMessage(data: Message[]) {
+            console.log('in mssage before')
+
             setMessage(data)
             setIsLoadingSocket(false);
+            console.log('in mssage after')
+
         }
 
         function onError() {
@@ -78,12 +85,17 @@ export const Chat = () => {
         chat.on('on-message', onMessage);
         chat.on('error-message', onError);
 
+        console.log('is in use Effect')
+        console.log('is in use Effect isLoading', isLoading)
+        console.log('is in use Effect isLoadingSocket', isLoadingSocket)
+        console.log('is in use Effect users', users)
+        console.log('is in use Effect messages', messages)
         return () => {
             chat.off('on-auth-change', onAuthChange);
             chat.off('on-message', onMessage);
             chat.off('error-message', onError);
         };
-    }, []);
+    });
 
     const getRelativeTime = (createdAt: string): string => {
         const date = new Date(createdAt);
@@ -107,6 +119,8 @@ export const Chat = () => {
 
         return 'justo ahora';
     };
+    console.log('is LOadin', isLoading)
+    console.log('is LOadin scoket', isLoadingSocket)
 
     return (
         <div className="flex h-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">

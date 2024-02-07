@@ -35,10 +35,10 @@ const Card = ({ article }: { article: TArticle}) => {
     }, [])
 
   return (
-    <div className='flex flex-col md:grid md:grid-cols-2 h-[400px] mb-4 md:h-60 xl:h-80 rounded'>
-        <div className='bg-cs-gray relative text-white rounded h-[50%] md:h-60 xl:h-full'>
+    <div className='flex flex-col shadow-md md:grid md:grid-cols-2 h-[400px] mb-4 md:h-60 xl:h-80 xl:w-full rounded-md'>
+        <div className='bg-cs-gray relative text-white rounded h-[50%] md:h-60 xl:h-80'>
             {/* <img src={Logo} alt="" /> */}
-            <img src={image} style={{ width: '100%', height: '100%'}} alt="" />
+            <img src={image} style={{ width: '100%', height: '100%', objectFit: 'cover'}} alt="" />
         </div>
         <div className='flex flex-col p-2 h-[50%] md:h-full border'>
             <div className='flex h-[20%] gap-2 mb-4'>

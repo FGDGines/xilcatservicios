@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../language/type-i18n";
 import { toast } from 'react-toastify'
 import axios from "axios";
+import { LegacyRef } from "react";
 
 type Inputs = {
   name: string;
@@ -16,7 +17,7 @@ type Inputs = {
   message: string;
 }
 
-const Contact = () => {
+const Contact = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivElement> }) => {
   const { t } = useTranslation<TranslationKeys>();
   const { isDesktop, isMobileOrTablet } = useDeviceSize();
   const {
@@ -38,7 +39,7 @@ const Contact = () => {
     }
   }
 
-  return <section id="Contact">
+  return <section id="Contact" ref={setRef(4)}>
     {isMobileOrTablet && <h1 style={{ fontSize: 40, fontWeight: 700 }} className="text-center my-5">{t('contact.title' as TranslationKeys)}</h1>}
     {isMobileOrTablet && (
       <form className="mx-7 md:grid md:grid-cols-2 md:gap-4" onSubmit={handleSubmit(onSubmit)}>

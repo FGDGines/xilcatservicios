@@ -3,13 +3,14 @@ import worldmap from '../../assets/worldmap.png'
 import { useDeviceSize } from '../../hooks/Responsive'
 import { TranslationKeys } from '../../language/type-i18n';
 import { Chatbot } from '../../pre-components/Chatbot'
+import { LegacyRef } from 'react';
 
-const AboutUs = () => {
+const AboutUs = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivElement> }) => {
   const { t } = useTranslation<TranslationKeys>();
 
   const { isDesktop } = useDeviceSize()
   return (
-    <div className='min-h-[20vh] px-6 py-2 mt-8 xl:mt-[84px] text-cs-purple' id="Us">
+    <div className='min-h-[20vh] px-6 py-2 mt-8 xl:mt-[84px] text-cs-purple' id="Us" ref={setRef(0)}>
       <p className='text-center text-3xl md:text-5xl mb-8 font-bold lg:mb-12 xl:mb-12'>{t('about.title' as TranslationKeys)}</p>
       <div className='flex flex-col lg:flex-row gap-4 xl:grid xl:grid-cols-2'>
         <p className='text-center text-[13px] flex-1 md:text-[21px] md:px-28 lg:px-10 lg:text-xl lg:text-justify xl:pt-12 xl:text-[23px]'>{t('about.description' as TranslationKeys)} </p>

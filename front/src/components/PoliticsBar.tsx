@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom"
+
 const options = [
     {
         text: 'Politica de privacidad',
@@ -14,6 +16,7 @@ const options = [
 ]
 
 const PoliticsBar = () => {
+    const navigate = useNavigate()
   return (
     <div className='min-h-[10vh] flex flex-col bg-cs-gray text-white'>
         <div className='h-[1px] bg-white  w-[80%] self-center'></div>
@@ -23,9 +26,9 @@ const PoliticsBar = () => {
                 {' '}
                 {
                     options.map((option, idx) => (
-                        <a className={`ml-2 pr-2 ${idx === options.length -1 ? '' : 'border-r border-r-white'}`} href={option.url}>
+                        <p onClick={() => navigate(option.url)} className={`inline ml-2 pr-2 ${idx === options.length -1 ? '' : 'border-r border-r-white'}`}>
                             <span className='border-b border-b-white'>{option.text}</span>
-                        </a>
+                        </p>
                     ))
                 }
             </p>

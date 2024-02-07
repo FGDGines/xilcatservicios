@@ -3,7 +3,6 @@ import { TJournal } from '../../../types/journal'
 import { useAppStore } from '../../../store'
 import useJournal from '../../../hooks/useJournal'
 import { toast } from 'react-toastify'
-import { jwtDecode } from 'jwt-decode'
 
 type TProps = {
     side: boolean

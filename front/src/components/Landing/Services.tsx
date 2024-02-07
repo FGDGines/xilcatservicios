@@ -4,6 +4,7 @@ import { IoChevronDown } from "react-icons/io5";
 import Study from '../../assets/panastudy.svg'
 import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../../language/type-i18n";
+import { LegacyRef } from "react";
 
 type TOptions = {
   icon: JSX.Element;
@@ -11,7 +12,7 @@ type TOptions = {
   text: string;
 }
 
-const Services = () => {
+const Services = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivElement> }) => {
   const { t } = useTranslation<TranslationKeys>();
 
   const options: TOptions[] = [
@@ -43,7 +44,7 @@ const Services = () => {
   ]
 
   return (
-    <div className='min-h-[20vh] px-6 py-2 mt-4 md:mt-20 lg:mt-12 text-cs-purple' id="Actions">
+    <div className='min-h-[20vh] px-6 py-2 mt-4 md:mt-20 lg:mt-12 text-cs-purple' id="Actions" ref={setRef(1)}>
       <p className='text-center text-2xl mb-8 font-bold md:text-[40px]'>{t('services.title' as TranslationKeys)}</p>
       <p className='text-center text-[11px] md:px-20 md:text-[20px]'>{t('services.description' as TranslationKeys)}</p>
       <div className='mt-8 md:px-20 lg:grid lg:grid-cols-3 lg:gap-12 lg:px-0'>

@@ -21,8 +21,8 @@ const BlogPage: React.FC = () => {
   return (
     <>
     <HeaderMenu />
-    <div className="container mx-auto py-8 min-h-[50vh] px-2 md:px-6 xl:grid xl:grid-cols-2 xl:gap-10 xl:place-items-center ">
-      <h1 className="text-4xl mb-8 text-center col-span-2 xl:item-center">Xilcat Blog</h1>
+    <div className="container mx-auto py-8 min-h-[50vh] px-8 md:px-12 xl:grid xl:grid-cols-2 xl:gap-10 xl:place-items-center ">
+      <h1 className="text-4xl mb-8 text-center col-span-2 xl:item-center ">Xilcat Blog</h1>
       {list?.data?.map((article) => (
           <Card article={article}/>
           ))}

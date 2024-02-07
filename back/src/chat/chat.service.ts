@@ -30,10 +30,13 @@ export class ChatService {
 
   async getAuthAll() {
     // return Object.values(this.authclient);
+    console.log('getAuthAll -------------------')
     return await this.authService.findAll(0, 0);
   }
 
   async findAll(page: number, limit: number): Promise<ChatEntity[]> {
+    console.log('findAll ----------------------')
+    
     try {
       const chats = await this.chatRepository
         .createQueryBuilder('chat')

@@ -168,7 +168,6 @@ export class ClientService {
       writeFileSync(filePath, pdf.buffer);
 
       if (client) {
-        console.log('CLIENTEEEEE', client)
         if (!client.pdf) {
           client.pdf = [];
         }

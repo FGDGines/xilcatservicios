@@ -8,15 +8,16 @@ type TProps = {
 const postImage = async ({ data, id}: TProps) => {
     try {
         const formData = new FormData()
-        formData.append('File', data)
-        console.log('data POSTIMAGE.ts', data)
-        const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/blog/upload-image/' + id, formData)
-        console.log('response', response)
+        formData.append('file', data)
+        const response = await axios.post(import.meta.env.VITE_BACKEND_URL + '/blog/upload-image/' + id, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
         if (response.statusText !== 'OK') throw new Error("Algo paso")
         return response.data
     } catch (error: any) {
-      console.log('there is an error in postImage.ts', error)
-      // console.log(error)
+      console.log(error)
         return error.response.data
     }
 }

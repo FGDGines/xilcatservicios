@@ -1,9 +1,10 @@
+import { LegacyRef } from "react"
 import { SliderText } from "../../pre-components/SliderText"
 
-const Offer = () => {
+const Offer = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivElement> }) => {
   return (
     <>
-      <SliderText />
+      <SliderText setRef={setRef} />
     </>
   )
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { LegacyRef, useState } from "react";
 import Image from './../assets/imgs/carrusel-img-1.jpeg';
 import Image2 from './../assets/imgs/carrusel-img-2.jpeg';
 import Image3 from './../assets/imgs/carrusel-img-3.jpeg';
@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 import { useTranslation } from "react-i18next";
 import { TranslationKeys } from "../language/type-i18n";
 
-export const Slider = () => {
+export const Slider = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivElement> }) => {
     const { t } = useTranslation<TranslationKeys>();
     const { isDesktop, isMobileOrTablet } = useDeviceSize();
     // NO FUNCIONA CON i18n
@@ -32,7 +32,7 @@ export const Slider = () => {
     }
 
     return (
-        <div id="Team" className="relative w-full px-5 text-center">
+        <div ref={setRef(3)} id="Team" className="relative w-full px-5 text-center">
             {isMobileOrTablet && <div className="flex flex-col justify-center items-center text-center">
                 <h1 style={{ fontSize: 42, fontWeight: 700 }}>{t('teams.title' as TranslationKeys)}</h1>
 

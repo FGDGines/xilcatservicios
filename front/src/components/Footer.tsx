@@ -8,10 +8,12 @@ import { useDeviceSize } from "../hooks/Responsive";
 import { TranslationKeys } from "../language/type-i18n";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 type TOptions = {
   url: string;
   text: string;
+  action?: any;
 }
 
 const icons = [
@@ -33,31 +35,46 @@ const icons = [
   // },
 ]
 
-const Footer = () => {
+const Footer = ({ refs  }: { refs: any}) => {
+  const navigate = useNavigate()
   const { t } = useTranslation<TranslationKeys>();
   const { isDesktop } = useDeviceSize()
   const [email, setEmail] = useState('')
 
+  const handleClick = (option: TOptions) => {
+    if (option.action !== undefined) {
+      navigate('/')
+      option.action()
+    }
+    else navigate(option.url)
+  }
+
+
   const options: TOptions[] = [
     {
-      url: '#Us',
-      text: t('footer.newsletter.links.1' as TranslationKeys)
+      url: '',
+      text: t('footer.newsletter.links.1' as TranslationKeys),
+      action: () => refs.current[0].scrollIntoView({ behavior: 'smooth' })
     },
     {
-      url: '#Actions',
-      text: t('footer.newsletter.links.2' as TranslationKeys)
+      url: '',
+      text: t('footer.newsletter.links.2' as TranslationKeys),
+      action: () => refs.current[1].scrollIntoView({ behavior: 'smooth' })      
     },
     {
-      url: '#Services',
-      text: t('footer.newsletter.links.3' as TranslationKeys)
+      url: '',
+      text: t('footer.newsletter.links.3' as TranslationKeys),
+      action: () => refs.current[2].scrollIntoView({ behavior: 'smooth' })
     },
     {
-      url: '#Contact',
-      text: t('footer.newsletter.links.4' as TranslationKeys)
+      url: '',
+      text: t('footer.newsletter.links.4' as TranslationKeys),
+      action: () => refs.current[4].scrollIntoView({ behavior: 'smooth' })
+
     },
     {
       url: '/blog',
-      text: t('footer.newsletter.links.5' as TranslationKeys)
+      text: t('footer.newsletter.links.5' as TranslationKeys),
     }
   ]
 
@@ -112,7 +129,7 @@ const Footer = () => {
         }
         {
           options.map(option => (
-            <a href={option.url} className="border-b hover:text-gray-200 pb-1 lg:border-none hover:drop-shadow-[4px_4px_2px_rgba(108,103,152,1)]">{option.text}</a>
+            <p onClick={() => handleClick(option)} className="border-b hover:text-gray-200 pb-1 lg:border-none hover:drop-shadow-[4px_4px_2px_rgba(108,103,152,1)]">{option.text}</p>
           ))
         }
       </div>

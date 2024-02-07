@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useBlog from "../../hooks/useBlog"
 import { jwtDecode } from "jwt-decode";
 import { useAppStore } from "../../store";
+import { toast } from "react-toastify";
 // import { jwtDecode } from "jwt-decode";
 // import { useAppStore } from "../../store";
 // import axios from "axios";
@@ -9,7 +10,7 @@ import { useAppStore } from "../../store";
 type Inputs = {
   title: string;
   content: string;
-  image: Blob
+  image: FileList
 }
 
 const Blog = () => {
@@ -23,17 +24,17 @@ const Blog = () => {
     const auth = jwtDecode(String(localStorage.getItem('auth_token'))) as any
     if (list.data === undefined) return
     const {image, ...rest } = data
-    // const lastBlog = list.data?.length === 0 ? { id: 1 } : list?.data[list.data?.length -1]
 
     post.mutate({ ...rest, auth: auth.id}, {
-      onSuccess() {
-        closeModal()
+      onSuccess(data) {
+        postImage.mutate({ data: image[0], id: data.id}, {
+          onSuccess: () => {
+            closeModal()
+            toast.success('Se ha agregado una entrada de Blog')
+          }
+        })
       },
     })
-    // await axios.post(import.meta.env.VITE_BACKEND_URL + '/blog/upload-image/' + (Number(lastBlog.id) + 1), formData )
-    console.log('image', image)
-    postImage.mutate({ data: image, id: 30  })
-    // postImage.mutate({ data: image, id: lastBlog.id + 1  })
   }
   return (
     <form className="" onSubmit={handleSubmit(onSubmit)}>

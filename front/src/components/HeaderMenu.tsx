@@ -8,9 +8,11 @@ import { TranslationKeys } from '../language/type-i18n';
 import spanishIcon from '../assets/castellano.png';
 import catalaIcon from '../assets/catala.png'
 import inglesIcon from '../assets/ingles.png'
+import { useNavigate } from 'react-router-dom';
 
 
 type TOptions = {
+  action?: any
   [idx: string]: string
 }
 
@@ -57,27 +59,42 @@ const LanguageSelector = () => {
   );
 };
 
-const HeaderMenu = () => {
+const HeaderMenu = ({ refs  }: { refs: any}) => {
   const { t } = useTranslation<TranslationKeys>();
   const { isDesktop } = useDeviceSize()
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate()
+
+  const handleClick = (option: any) => {
+    console.log('click on option', option)
+    if (option.action !== undefined) {
+      navigate('/')
+      option.action()
+    }
+    else navigate(option.link)
+  }
 
   const links = [
     {
       text: t('footer.newsletter.links.1' as TranslationKeys),
-      link: '/#Us'
+      link: '/#Us',
+      action: () => refs.current[0].scrollIntoView({ behavior: 'smooth' })
     },
     {
       text: t('footer.newsletter.links.2' as TranslationKeys),
-      link: '/#Actions'
+      link: '/#Actions',
+      action: () => refs.current[1].scrollIntoView({ behavior: 'smooth' })
     },
     {
       text: t('footer.newsletter.links.3' as TranslationKeys),
-      link: '/#Services'
+      link: '/#Services',
+      action: () => refs.current[2].scrollIntoView({ behavior: 'smooth' })
+
     },
     {
       text: t('footer.newsletter.links.4' as TranslationKeys),
-      link: '/#Contact'
+      link: '/#Contact',
+      action: () => refs.current[3].scrollIntoView({ behavior: 'smooth' })
     },
     {
       text: t('footer.newsletter.links.5' as TranslationKeys),
@@ -126,13 +143,12 @@ const HeaderMenu = () => {
         <div className="absolute z-10 right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
           {
             links.map(link => (
-              <a
-              href={link.link}
+              <p
+              onClick={() => {handleClick(link); toggleMenu()}}
               className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-              onClick={() => toggleMenu()}
             >
               {link.text}
-            </a>
+            </p>
             ))
           }
         </div>

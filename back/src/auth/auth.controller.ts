@@ -168,7 +168,6 @@ export class AuthController {
     file: Express.Multer.File,
   ) {
     try {
-      console.log(authId);
       const { filePath, fileName } = await this.authService.handleFileUpload(
         file,
         authId,

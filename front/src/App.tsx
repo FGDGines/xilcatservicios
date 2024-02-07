@@ -3,7 +3,7 @@ import Modal from "./components/Modal";
 import Landing from "./pages/Landing/Landing";
 import { useAppStore } from "./store";
 import {
-  createBrowserRouter,
+  createHashRouter,
   Outlet,
   RouterProvider,
 } from 'react-router-dom';
@@ -31,7 +31,7 @@ import { Chat } from "./components/Intranet/Chat";
 import ErrorPage from "./pages/ErrorPage";
 import Users from "./components/Intranet/Users";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: '/',
     element: <Landing />,
