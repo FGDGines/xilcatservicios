@@ -2,7 +2,7 @@
 import Logo from '../assets/Logo_white.png'
 import { IoMenu } from "react-icons/io5";
 import { useDeviceSize } from '../hooks/Responsive';
-import { useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TranslationKeys } from '../language/type-i18n';
 import spanishIcon from '../assets/castellano.png';
@@ -61,12 +61,13 @@ const LanguageSelector = () => {
 
 const HeaderMenu = ({ refs  }: { refs?: any}) => {
   const { t } = useTranslation<TranslationKeys>();
-  const { isDesktop } = useDeviceSize()
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate()
+  const { isDesktop } = useDeviceSize()
+  const [isOpen, toggleIsOpen] = useReducer((prev) => !prev, false);
+  const auth = localStorage.getItem('auth_token')
+
 
   const handleClick = (option: any) => {
-    console.log('click on option', option)
     if (option.action !== undefined) {
       navigate('/')
       option.action()
@@ -100,15 +101,19 @@ const HeaderMenu = ({ refs  }: { refs?: any}) => {
       text: t('footer.newsletter.links.5' as TranslationKeys),
       link: '/blog'
     },
-    // {
-    //   text: t('footer.newsletter.links.6' as TranslationKeys),
-    //   link: '/intranet/main'
-    // }
   ]
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  useEffect(() => {
+    const keyFunction = (e: KeyboardEvent) => {
+      if (e.key === 'l' && e.ctrlKey) {
+        auth ? navigate('/intranet/main') : navigate('/intranet/login')
+      }
+    }
+
+    document.addEventListener('keydown', keyFunction)
+
+    return () => document.removeEventListener('keydown', keyFunction)
+  }, [])
 
     return (
       <div className='w-full h-[150px] bg-cs-purple flex justify-between items-center px-8 pt-12 pb-2 z-50 lg:px-20 lg:pt-[24px] xl:px-32'>
@@ -120,9 +125,9 @@ const HeaderMenu = ({ refs  }: { refs?: any}) => {
             <div className='flex gap-4 justify-around basis-2/3 text-white text-[18px] lg:basis-4/6 items-center text-center'>
             {
               links.map(link => (
-                <a href={link.link} className='hover:drop-shadow-[4px_4px_2px_rgba(108,103,152,1)]'>
+                <p onClick={() => handleClick(link)} className='hover:drop-shadow-[4px_4px_2px_rgba(108,103,152,1)]'>
                   {link.text}
-                </a>
+                </p>
               ))
             }
           <LanguageSelector />
@@ -131,11 +136,10 @@ const HeaderMenu = ({ refs  }: { refs?: any}) => {
         }
         {
           !isDesktop && (
-            // <IoMenu className="text-6xl text-white" />
             <div className="relative">
       <button
         className="text-gray-800 hover:text-gray-900 focus:outline-none focus:text-gray-900"
-        onClick={toggleMenu}
+        onClick={toggleIsOpen}
       >
         <IoMenu className="text-5xl text-white md:text-6xl" />
       </button>
@@ -144,7 +148,7 @@ const HeaderMenu = ({ refs  }: { refs?: any}) => {
           {
             links.map(link => (
               <p
-              onClick={() => {handleClick(link); toggleMenu()}}
+              onClick={() => {handleClick(link); toggleIsOpen()}}
               className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
             >
               {link.text}

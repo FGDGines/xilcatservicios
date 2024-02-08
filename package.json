@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "turbo dev",
+    "prod": "turbo dev",
     "build": "turbo build",
     "start": "node back/dist/main.js",
     "front": "pnpm run dev --workspaces=front",
