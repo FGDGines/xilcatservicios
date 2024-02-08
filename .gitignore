@@ -12,7 +12,6 @@ package-lock.json
 pnpm-lock.yaml
 dist-ssr
 *.local
-/back/dist
 public
 
 # Editor directories and files

@@ -29,10 +29,11 @@ import { JournalModule } from './journal/journal.module';
 
 import { config } from 'dotenv';
 
-// const env = join('../../.prod_env')
-const env = join(__dirname, '../../', '.dev_env');
+const env = join(__dirname, '../../', '.prod_env');
+// const env = join(__dirname, '../../', '.dev_env');
 
 config({ path: env });
+
 @Module({
   imports: [
     ServeStaticModule.forRoot({
@@ -57,7 +58,7 @@ config({ path: env });
         ClientEntity,
         ChatEntity,
         BlogEntity,
-        JournalEntity
+        JournalEntity,
       ], // Agrega tus entidades aquí
       synchronize: true, // Opcional: sincroniza automáticamente las entidades con la base de datos (cuidado en producción)
     }),
@@ -92,7 +93,7 @@ config({ path: env });
     PdfModule,
     ChatModule,
     BlogModule,
-    JournalModule
+    JournalModule,
   ],
   controllers: [AppController],
 })
