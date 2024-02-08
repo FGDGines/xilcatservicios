@@ -52,6 +52,7 @@ const Layout = ({ Component }: { Component: any }) => {
 
   const handleSignOut = () => {
     signout()
+    localStorage.removeItem('chat-loaded')
     navigate('/')
   }
   // const handleAuthUserOpenModal = () => {

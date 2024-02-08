@@ -21,6 +21,9 @@ module.exports = {
         'cs-gray': {
           DEFAULT: '#252323',
           'light': '#5F5959'
+        },
+        'cs-blue': {
+          DEFAULT: "#00A8E8"
         }
       }
     },
