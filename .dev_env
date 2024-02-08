@@ -1,9 +1,9 @@
 DB_CONNECTION="mysql"
-DB_HOST="https://dc54214.online-server.cloud/"
+DB_HOST="localhost"
 DB_PORT="3306"
-DB_DATABASE="xilicat_"
-DB_USERNAME="xilicat"
-DB_PASSWORD="qRU6Aj62p~gkps~l"
+DB_DATABASE="xilicat"
+DB_USERNAME="root"
+DB_PASSWORD=""
 
 # SMTP_HOST=smtp.ethereal.email
 # SMTP_PORT=587
@@ -17,5 +17,5 @@ SMTP_SECURE=false
 SMTP_USER=pedro@fgddesarrolloweb.es
 SMTP_PASS="FGD*pedro/11/112023*"
 
-MAIL_RECIBER="xd@123.com"
+MAIL_RECIBER="deivistm@gmail.com"
 API_MAIL="https://fgddesarrolloweb.es/cloud/server.php"
