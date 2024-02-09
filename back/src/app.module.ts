@@ -45,10 +45,10 @@ config({ path: env });
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'dc54214.online-server.cloud',
-      port: Number(process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      port: Number(3306),
+      username: 'xilicat',
+      password: 'qRU6Aj62p~gkps~l',
+      database: 'xilicat_',
       entities: [
         NewsletterEntity,
         SubscriptionEntity,
