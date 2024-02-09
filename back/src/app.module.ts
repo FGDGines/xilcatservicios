@@ -44,7 +44,7 @@ config({ path: env });
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'dc54214.online-server.cloud',
+      host: 'DTM',
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
