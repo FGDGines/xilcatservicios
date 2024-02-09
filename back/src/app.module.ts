@@ -43,7 +43,7 @@ config({ path: env });
       isGlobal: true, // Hace que las variables de entorno estén disponibles globalmente
     }),
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type: 'mariadb',
       host: 'dc54214.online-server.cloud',
       port: Number(3306),
       username: 'xilicat',

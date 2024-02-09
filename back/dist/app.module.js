@@ -54,7 +54,7 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
+                type: 'mariadb',
                 host: 'dc54214.online-server.cloud',
                 port: Number(3306),
                 username: 'xilicat',
