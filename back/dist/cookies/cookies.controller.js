@@ -44,8 +44,10 @@ let CookiesController = class CookiesController {
                 });
                 res.status(200).json({ message: 'Cookies aceptadas correctamente' });
             }
-            this.cookiesService.setCookie(res, 'accept-cookies', 'false', {});
-            res.status(200).json({ message: 'Cookies no fueron aceptadas' });
+            else {
+                this.cookiesService.setCookie(res, 'accept-cookies', 'false', {});
+                res.status(200).json({ message: 'Cookies no fueron aceptadas' });
+            }
         }
         catch (error) {
             return res

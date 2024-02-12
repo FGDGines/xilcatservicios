@@ -42,9 +42,10 @@ export class CookiesController {
           maxAge: 30 * 24 * 60 * 60 * 1000, // 30 dias
         });
         res.status(200).json({ message: 'Cookies aceptadas correctamente' });
+      } else {
+        this.cookiesService.setCookie(res, 'accept-cookies', 'false', {});
+        res.status(200).json({ message: 'Cookies no fueron aceptadas' });
       }
-      this.cookiesService.setCookie(res, 'accept-cookies', 'false', {});
-      res.status(200).json({ message: 'Cookies no fueron aceptadas' });
     } catch (error) {
       return res
         .status(500)

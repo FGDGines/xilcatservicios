@@ -109,8 +109,11 @@ function App() {
 
   useEffect(() => {
     const cookies = document.cookie.split(';')
+    console.log('cookies', cookies)
 
-    const hasCookies = cookies.some((cookie) => cookie.split('=')[0].trim() === 'areAccepted')
+    const hasCookies = cookies.some((cookie) => cookie.split('=')[0].trim() === 'accept-cookies')
+    console.log('hasCookies', hasCookies)
+
 
     if (hasCookies) return
     setModal({ type: 'cookie' })

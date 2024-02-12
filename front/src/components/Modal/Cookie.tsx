@@ -23,10 +23,7 @@ export const Cookie = () => {
 
             if (response.ok) {
                 // Si la respuesta es exitosa, marca las cookies como aceptadas en tu aplicación
-                //this is just a test
-                document.cookie = "areAccepted=yes"
                 closeModal()
-                // alert('Cookies aceptadas correctamente');
             } else {
                 // Si la respuesta no es exitosa, maneja el error o la respuesta del servidor
                 alert('Hubo un error al aceptar las cookies');
