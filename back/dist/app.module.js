@@ -54,12 +54,12 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
-                host: process.env.DB_HOST,
-                port: Number(process.env.DB_PORT),
-                username: process.env.DB_USERNAME,
-                password: process.env.DB_PASSWORD,
-                database: process.env.DB_DATABASE,
+                type: 'mariadb',
+                host: 'dc54214.online-server.cloud',
+                port: Number(3306),
+                username: 'xilicat',
+                password: 'qRU6Aj62p~gkps~l',
+                database: 'xilicat_',
                 entities: [
                     newsletter_entity_1.NewsletterEntity,
                     subscription_entity_1.SubscriptionEntity,

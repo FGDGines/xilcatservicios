@@ -11,8 +11,8 @@
     "prod": "turbo dev",
     "build": "turbo build",
     "start": "node back/dist/main.js",
-    "front": "pnpm run dev --workspaces=front",
-    "back": "pnpm run dev --workspaces=back"
+    "front": "npm run dev --workspaces=front",
+    "back": "npm run dev --workspaces=back"
   },
   "repository": {
     "type": "git",

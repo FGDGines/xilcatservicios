@@ -25,22 +25,18 @@ async function bootstrap() {
         },
         validationError: { target: false },
     }));
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-        const config = new swagger_1.DocumentBuilder()
-            .setTitle('Xilcat servicios API')
-            .setDescription('Descripción de tu API')
-            .setVersion('1.0')
-            .build();
-        const document = swagger_1.SwaggerModule.createDocument(app, config);
-        swagger_1.SwaggerModule.setup('doc', app, document);
-    }
+    const config = new swagger_1.DocumentBuilder()
+        .setTitle('Xilcat servicios API')
+        .setDescription('Descripción de tu API')
+        .setVersion('1.0')
+        .build();
+    const document = swagger_1.SwaggerModule.createDocument(app, config);
+    swagger_1.SwaggerModule.setup('doc', app, document);
     app.enableCors(corsOptions);
     app.use(cookieParser());
     await app.listen(3000);
     console.log(`Puerto Backend: ${await app.getUrl()}`);
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-        console.log(`Puerto Swagger: ${(await app.getUrl()) + '/doc'}`);
-    }
+    console.log(`Puerto Swagger: ${(await app.getUrl()) + '/doc'}`);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
