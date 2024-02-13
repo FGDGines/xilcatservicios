@@ -5,6 +5,8 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { FaLock, FaLockOpen } from 'react-icons/fa';
 import { useState } from 'react';
+import  Logo from '../../assets/logo_login.png'
+
 
 type Inputs = {
   username: string;
@@ -35,34 +37,21 @@ const Register = () => {
     }
   }
   return (
-    <div className='bg-cs-purple h-screen flex justify-center items-center'>
-        {/* <form className='h-[60%] w-[80%] bg-white text-cs-gray rounded grid grid-cols-1 place-items-center gap-4 shadow-xl shadow-gray-500/80 md:w-[60%] lg:h-[70%] lg:w-[40%] lg:py-8'
-        onSubmit={handleSubmit(onSubmit)}
-        >
-            <div className='flex flex-col justify-center w-[90%] h-full gap-2'>
-                <label htmlFor="" className='text-xl text-cs-purple font-semibold'>Usuario </label>
-                <input type="text" className='border border-cs-purple px-4 py-4 outline-none rounded-md focus:border-blue-500 text-lg' {...register('username')} />
+    <div className='bg-cs-purple h-screen flex flex-col gap-12 sm:justify-center sm:items-center sm:flex-row sm:gap-0'>
+          <div className='
+            w-full h-full bg-white basis-[30%] shadow-[inset_-0px_0px_80px_#2C2949] flex justify-center items-center
+            sm:order-2
+            xl:basis-[25%]
+            '
+          >
+            <div className='w-60 h-60'>
+              <img src={Logo} alt=""  style={{ width: "100%", height: '100%' }}/>
+
             </div>
-            <div className='relative flex flex-col w-[90%] gap-2'>
-                <label htmlFor="" className='text-xl text-cs-purple font-semibold'>Contraseña</label>
-                <input className='border border-cs-purple px-2 py-4 outline-none rounded-md focus:border-blue-500' type={showPass.pass ? 'text': 'password'} {...register('password')}/>
-                <div className='absolute top-12 right-4 h-8 w-8 text-3xl' onClick={() => setShowPass(prev => ({ ...prev, pass: !prev.pass }))}>
-                  {showPass.pass ? <FaLockOpen /> : <FaLock />}
-                </div>
-            </div>
-            <div className='relative flex flex-col w-[90%] gap-2'>
-                <label htmlFor="" className='text-xl text-cs-purple font-semibold'>Confirmar Contraseña</label>
-                <input className='border border-cs-purple px-2 py-4 outline-none rounded-md focus:border-blue-500' type={showPass.check ? 'text': 'password'} {...register('checkPassword')}/>
-                <div className='absolute top-12 right-4 h-8 w-8 text-3xl' onClick={() => setShowPass(prev => ({ ...prev, check: !prev.check }))}>
-                  {showPass.check ? <FaLockOpen /> : <FaLock />}
-                </div>
-            </div>
-            <div className='flex flex-col item-center justify-center0 w-[90%] min-h-[25%]'>
-                <button className='bg-cs-gray py-2  text-white  hover:bg-cs-purple rounded'>Entrar</button>
-                <a className='text-sm text-center mt-2 hover:text-cs-purple-light' href='/intranet/login'>Ya posees una cuenta?</a>
-            </div>
-        </form> */}
-              <form className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border" onSubmit={handleSubmit(onSubmit)}>
+          </div>
+
+      <div className='sm:flex-1 flex justify-center sm:order-1'>
+        <form className="relative flex flex-col text-gray-700 bg-white shadow-md w-96 rounded-xl bg-clip-border" onSubmit={handleSubmit(onSubmit)}>
         <div
           className="relative grid mx-4 mb-4 -mt-6 overflow-hidden text-white shadow-lg h-28 place-items-center rounded-xl bg-gradient-to-tr from-gray-900 to-gray-800 bg-clip-border shadow-gray-900/20">
           <h3 className="block font-sans text-3xl antialiased font-semibold leading-snug tracking-normal text-white">
@@ -130,7 +119,9 @@ const Register = () => {
             </p>
           </p>
         </div>
-      </form>
+        </form>
+      </div>
+
     </div>
   )
 }

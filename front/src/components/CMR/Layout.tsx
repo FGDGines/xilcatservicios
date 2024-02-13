@@ -73,11 +73,11 @@ const Layout = ({ Component }: { Component: any }) => {
       text: 'Usuario',
       Icon: <LuUserCircle />
     },
-    {
-      link: '/',
-      text: 'Landing',
-      Icon: <LuUserCircle />
-    },
+    // {
+    //   link: '/',
+    //   text: 'Landing',
+    //   Icon: <LuUserCircle />
+    // },
     {
       link: '',
       text: 'Blog',
@@ -158,7 +158,7 @@ const Layout = ({ Component }: { Component: any }) => {
       <header className='col-span-2 row-span-3 lg:row-span-2'>
   {/* <!-- Navigation bar --> */}
   <nav
-    className="relative flex w-full items-center justify-between bg-white py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 dark:bg-neutral-600 dark:text-neutral-200 md:flex-wrap md:justify-start"
+    className="relative flex w-full items-center justify-between py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 bg-neutral-600 text-neutral-200 md:flex-wrap md:justify-start"
     data-te-navbar-ref>
     <div className="flex w-full flex-wrap items-center justify-between px-3">
 
@@ -174,7 +174,7 @@ const Layout = ({ Component }: { Component: any }) => {
               links.map(link => (
                 <li className="pr-2" data-te-nav-item-ref key={link.text}>
                   <p
-                    className="block transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white dark:focus:text-white p-2 [&.active]:text-black/90 hover:cursor-pointer"
+                    className="block transition duration-150 ease-in-out  focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white focus:text-white p-2 [&.active]:text-black/90 hover:cursor-pointer"
                     data-te-nav-link-ref
                     data-te-ripple-init
                     data-te-ripple-color="light"
@@ -192,7 +192,7 @@ const Layout = ({ Component }: { Component: any }) => {
 
         {/* <!-- Hero section with heading, subheading and button --> */}
         <div
-          className="bg-cs-purple flex flex-col h-full gap-4 px-6 text-center text-neutral-800 dark:text-neutral-200 lg:flex-row lg:pt-4 lg:justify-center lg:h-[65%]">
+          className="bg-cs-purple flex flex-col h-full gap-4 px-6 text-center text-neutral-200 lg:flex-row lg:pt-4 lg:justify-center lg:h-[65%]">
           <h1 className="text-3xl md:text-4xl font-bold mt-2 lg:mt-0">Intranet XilcatServicios</h1>
           <h3 className="text-xl md:text-2xl font-bold">{setDescriptionName()}</h3>
 
