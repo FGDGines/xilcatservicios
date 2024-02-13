@@ -74,10 +74,10 @@ const Login = () => {
             Number(list.data?.length) <= 0 && (
                 <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
                 No tienes una cuenta?
-                <a href="/intranet/register"
+                <p onClick={() => navigate("/intranet/register")}
                   className="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
                   Registrate
-                </a>
+                </p>
               </p>
             )
           }
