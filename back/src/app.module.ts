@@ -31,6 +31,7 @@ import { config } from 'dotenv';
 
 const env = join(__dirname, '../../', '.prod_env');
 // const env = join(__dirname, '../../', '.dev_env');
+console.log('ENV TYPE', process.env.NODE_ENV)
 
 config({ path: env });
 
@@ -43,12 +44,18 @@ config({ path: env });
       isGlobal: true, // Hace que las variables de entorno estén disponibles globalmente
     }),
     TypeOrmModule.forRoot({
-      type: 'mariadb',
-      host: 'dc54214.online-server.cloud',
-      port: Number(3306),
-      username: 'xilicat',
-      password: 'qRU6Aj62p~gkps~l',
-      database: 'xilicat_',
+      // type: 'mariadb',
+      // host: 'dc54214.online-server.cloud',
+      // port: Number(3306),
+      // username: 'xilicat',
+      // password: 'qRU6Aj62p~gkps~l',
+      // database: 'xilicat_',      
+      type: 'mysql',
+      host: process.env.DB_HOST,
+      port: Number(process.env.DB_PORT),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       entities: [
         NewsletterEntity,
         SubscriptionEntity,

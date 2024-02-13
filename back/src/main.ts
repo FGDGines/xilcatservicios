@@ -42,7 +42,7 @@ async function bootstrap() {
 
   app.enableCors(corsOptions); // Habilitar CORS con las opciones especificadas
   app.use(cookieParser());
-  await app.listen(8745);
+  await app.listen(Number(process.env.SERVER_PORT));
   console.log(`Puerto Backend: ${await app.getUrl()}`);
   // Mostrar la URL de Swagger solo en modo de desarrollo
 

@@ -66,7 +66,11 @@ const Login = () => {
         </div>
         <div className="p-6 pt-0">
           <button
-            className="block w-full select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            className="
+              block w-full select-none rounded-lg bg-gradient-to-tr from-gray-900 to-gray-800 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all 
+              hover:shadow-lg hover:shadow-gray-900 hover:-translate-x-px
+              active:opacity-[0.85] 
+              disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="submit">
             Entra
           </button>
@@ -75,7 +79,7 @@ const Login = () => {
                 <p className="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
                 No tienes una cuenta?
                 <p onClick={() => navigate("/intranet/register")}
-                  className="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900">
+                  className="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-blue-gray-900 hover:cursor-pointer">
                   Registrate
                 </p>
               </p>
