@@ -76,12 +76,12 @@ export const Chat = () => {
     }, [])
 
     useEffect(() => {
-        const socket: Socket = io('http://localhost:3000', {
+        const socket: Socket = io(import.meta.env.VITE_CHAT_URL + ':' + import.meta.env.VITE_CHAT_PORT, {
             auth: { token, name: decodedPayload?.username, authId: decodedPayload?.id },
             withCredentials: true,
             transports: ['websocket', 'polling'],
             extraHeaders: {
-              'Access-Control-Allow-Origin': 'http://localhost:5173',
+              'Access-Control-Allow-Origin': import.meta.env.VITE_CHAT_URL + ':' + import.meta.env.VITE_CHAT_PORT_ORIGIN,
             },
             autoConnect: false,
           })
