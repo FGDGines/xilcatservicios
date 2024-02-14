@@ -1,5 +1,5 @@
 // import { useReducer } from 'react'
-import { FaUsers, FaBook, FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome, FaPowerOff } from "react-icons/fa";
+import { FaUsers, FaBook, FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome} from "react-icons/fa";
 import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
 // import { GiHamburgerMenu } from "react-icons/gi";
 
