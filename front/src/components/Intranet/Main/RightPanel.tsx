@@ -10,12 +10,13 @@ type TProps = {
 }
 
 const RightPanel = ({ side, data,  }: TProps) => {
-  const { clearJournal, addJournalEvent } = useAppStore()
+  const { clearJournal, addJournalEvent, deleteJournalById } = useAppStore()
   const {erase} = useJournal()
 
   const handleDelete = (id: number) => {
     erase.mutate({ id}, {
         onSuccess: () => {
+            deleteJournalById(id)
             toast.success('nota eliminada')
         }
     })

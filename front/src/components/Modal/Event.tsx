@@ -40,32 +40,16 @@ const Event = () => {
           },
         })
       
-      // try {
-      //   const eventToAdd = {
-      //     start: moment(modal.params.start),
-      //     end: moment(modal.params.end),
-      //     title: `Pago ${amount}€`,
-      //     amount
-      //   }
-      //   addAccountEvent(eventToAdd)
-      //   toastMessage = 'Pago agregado'
-      //   update.mutate({ data: { dues: JSON.stringify(account.concat(eventToAdd)) }, id: Number(modal.params.id) })
-      // } catch (err: any) {
-      //   //put something that delete the event recently added
-      //   toast.error("No se puedo Agregar el pago")
-      //   return closeModal()
-      // }
     } else {
-      const data: TJournal = {
+      const dataToSend: TJournal = {
         start: moment(modal.params.start),
         end: moment(modal.params.end),
         title,
         description,
         auth: Number(modal.params.id)
       }
-      addJournalEvent(data)
-      post.mutate({ data }, {
-        onSuccess: () => {
+      post.mutate({ data: dataToSend }, {
+        onSuccess: (data) => {
           addJournalEvent(data)
           toast.success('Nota agregada')
           closeModal()

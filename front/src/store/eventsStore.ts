@@ -7,6 +7,7 @@ export type TAccountEvent = {
     end: Moment,
     title: string,
     amount: number
+    id?: number 
 }
 
 export type TJournalEvent = Omit<TAccountEvent, 'amount'> & { description: string }
@@ -24,6 +25,7 @@ export type EventState = {
     addJournalEvent: (event: TJournalEvent) => void
     clearAccounts: () => void
     clearJournal: () => void
+    deleteJournalById: (id: number) => void
 }
 
 export const eventSlice: StateCreator<EventState>  = ((set,) => ({
@@ -31,5 +33,11 @@ export const eventSlice: StateCreator<EventState>  = ((set,) => ({
     addAccountEvent: (event) => set((state) => ({ event:  ({ ...state.event, account: state.event.account.concat(event) }) })),
     addJournalEvent: (event) => set((state) => ({ event:  ({ ...state.event, journal: state.event.journal.concat(event) }) })),
     clearAccounts: () => set((state) => ({ event: { account: [], journal: state.event.journal }})),
-    clearJournal: () => set((state) => ({ event: { account: state.event.account, journal: [] }}))
+    clearJournal: () => set((state) => ({ event: { account: state.event.account, journal: [] }})),
+    deleteJournalById: (id) => set((state) => {
+        const journals = state.event.journal
+        const filteredJournal = journals.filter(item => item.id !== id)
+
+        return ({ event: { account: state.event.account, journal: filteredJournal}})
+    }),
 }))
