@@ -22,23 +22,39 @@ const Event = () => {
   const startDate = moment(modal.params.start).toDate()
 
   const handleAddEvent = () => {
-    let toastMessage;
     if (modal.params.type === 'account'){
-      try {
         const eventToAdd = {
           start: moment(modal.params.start),
           end: moment(modal.params.end),
           title: `Pago ${amount}€`,
           amount
         }
-        addAccountEvent(eventToAdd)
-        toastMessage = 'Pago agregado'
-        update.mutate({ data: { dues: JSON.stringify(account.concat(eventToAdd)) }, id: Number(modal.params.id) })
-      } catch (err: any) {
-        //put something that delete the event recently added
-        toast.error("No se puedo Agregar el pago")
-        return closeModal()
-      }
+        update.mutate({ data: { dues: JSON.stringify(account.concat(eventToAdd)) }, id: Number(modal.params.id) }, {
+          onSuccess() {
+            addAccountEvent(eventToAdd)
+            toast.success('Pago Agregado')
+          },
+          onError() {
+            toast.error("No se puedo Agregar el pago")
+            closeModal()
+          },
+        })
+      
+      // try {
+      //   const eventToAdd = {
+      //     start: moment(modal.params.start),
+      //     end: moment(modal.params.end),
+      //     title: `Pago ${amount}€`,
+      //     amount
+      //   }
+      //   addAccountEvent(eventToAdd)
+      //   toastMessage = 'Pago agregado'
+      //   update.mutate({ data: { dues: JSON.stringify(account.concat(eventToAdd)) }, id: Number(modal.params.id) })
+      // } catch (err: any) {
+      //   //put something that delete the event recently added
+      //   toast.error("No se puedo Agregar el pago")
+      //   return closeModal()
+      // }
     } else {
       const data: TJournal = {
         start: moment(modal.params.start),
