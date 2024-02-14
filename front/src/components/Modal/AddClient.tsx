@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useAppStore } from '../../store';
 import useClients from '../../hooks/useClients';
+import { jwtDecode } from 'jwt-decode';
 
 type Inputs = {
     name: string;
@@ -10,7 +11,9 @@ type Inputs = {
     address: string;
   }
 
-const AddClient = () => {
+const AddClient = () => { 
+  const auth = jwtDecode(String(localStorage.getItem('auth_token'))) as any
+  
   const { add } = useClients()
     const {closeModal} = useAppStore()
     const {
@@ -23,24 +26,29 @@ const AddClient = () => {
             ...data,
             priceQuote: 0,
             price: 0,
-            auth: 1,
+            auth: auth.id,
             pdf: JSON.stringify([{}]),
             tramiteType: 'TYPE1',
             paymentStatus: 'NONE',
             collaborators: ''
         }
-        try {
-            add.mutate(bodyToSend)
-            toast.success('Cliente Agregado Exitosamente')
-            closeModal()
-        } catch (error: any) {
-            console.log('error', error.response)
-            const messages = error.response.data.message
+        add.mutate(bodyToSend, {
+          onSuccess: () => {
+                toast.success('Cliente Agregado Exitosamente')
+                closeModal()
+          },
+          onError(error) {
+                console.log('error', error)
+                const messages = error.response.data.message || error.message
 
-            messages.forEach((item: any) => {
-                toast.error(item)
-              })
-        }
+                if (Array.isArray(messages)) {
+                  messages.forEach((item: any) => {
+                      toast.error(item)
+                    })
+                } else if (typeof messages === 'string') toast.error(messages)
+          },
+        })
+
       }
 
   return (

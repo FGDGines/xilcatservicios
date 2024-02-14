@@ -48,13 +48,21 @@ const Event = () => {
         auth: Number(modal.params.id)
       }
       addJournalEvent(data)
-      post.mutate({ data })
-      toastMessage = 'Nota agregada'
+      post.mutate({ data }, {
+        onSuccess: () => {
+          addJournalEvent(data)
+          toast.success('Nota agregada')
+          closeModal()
+        },
+        onError: (error) => {
+          if (Array.isArray(error)) {
+            error.forEach((e: any) => {
+              toast.error(e)
+            })
+          } else toast.error(error)
+        }
+      })
     }
-
-
-    toast.success(toastMessage)
-    closeModal()
   }
   const handleChange = (
     newValue: SingleValue<{ label: string, value: string }>,

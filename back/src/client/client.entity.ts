@@ -93,7 +93,7 @@ export class ClientEntity {
 
   @Column({ type: 'json', nullable: true })
   // @IsArray({ message: 'No es una lista' })
-  @ValidateNested({ each: true })
+  // @ValidateNested({ each: true })
   @ApiProperty({ type: [PdfDto] })
   @Type(() => PdfDto)
   pdf: PdfDto[];

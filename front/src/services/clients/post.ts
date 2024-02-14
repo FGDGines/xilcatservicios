@@ -6,8 +6,7 @@ const post = async (data: any) => {
         if (response.statusText !== 'Created') throw new Error("Algo paso")
         return response.data
     } catch (error: any) {
-        console.log(error)
-        return error.response.data
+        throw error
     }
 }
 

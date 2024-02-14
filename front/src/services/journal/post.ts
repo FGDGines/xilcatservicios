@@ -7,8 +7,10 @@ const post = async (data: { data: TJournal}) => {
         if (response.statusText !== 'Created') throw new Error("Algo paso")
         return response.data
     } catch (error: any) {
-        console.log(error)
-        return error.response.data
+        let errToReturn;
+        if (error.response.data.message) errToReturn = error.response.data.message
+        else error.message
+        throw errToReturn
     }
 }
 

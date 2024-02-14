@@ -13,7 +13,7 @@ export class JournalEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @IsNotEmpty({ message: 'El título no puede estar vacío' })
+  @IsNotEmpty({ message: 'Debe seleccionar un cliente' })
   @Column()
   title: string;
 
