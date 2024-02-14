@@ -115,8 +115,8 @@ const Layout = ({ Component }: { Component: any }) => {
                 <li className="pr-2" data-te-nav-item-ref key={link.text}>
                   <p
                     className="
-                    block transition duration-150 ease-in-out flex gap-2 items-center
-                    focus:text-neutral-700 disabled:text-black/30 hover:text-white focus:text-white p-2 [&.active]:text-black/90 hover:cursor-pointer"
+                    block transition duration-150 ease-in-out flex gap-2 items-center text-white
+                    disabled:text-black/30 hover:text-cs-blue p-2 [&.active]:text-black/90 hover:cursor-pointer"
                     data-te-nav-link-ref
                     data-te-ripple-init
                     data-te-ripple-color="light"
