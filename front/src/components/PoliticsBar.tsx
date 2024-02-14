@@ -26,7 +26,7 @@ const PoliticsBar = () => {
                 {' '}
                 {
                     options.map((option, idx) => (
-                        <p onClick={() => navigate(option.url)} className={`inline ml-2 pr-2 ${idx === options.length -1 ? '' : 'border-r border-r-white'}`}>
+                        <p onClick={() => navigate(option.url)} className={`inline ml-2 pr-2 hover:drop-shadow-[2px_2px_1px_rgba(0,_168,_232,_1)] ${idx === options.length -1 ? '' : 'border-r border-r-white'}`}>
                             <span className='border-b border-b-white'>{option.text}</span>
                         </p>
                     ))

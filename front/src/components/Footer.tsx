@@ -129,7 +129,7 @@ const Footer = ({ refs  }: { refs?: any}) => {
         }
         {
           options.map(option => (
-            <p onClick={() => handleClick(option)} className="border-b hover:text-gray-200 pb-1 lg:border-none hover:drop-shadow-[4px_4px_2px_rgba(108,103,152,1)]">{option.text}</p>
+            <p onClick={() => handleClick(option)} className="border-b hover:text-gray-200 pb-1 lg:border-none hover:drop-shadow-[2px_2px_1px_rgba(0,_168,_232,_1)]">{option.text}</p>
           ))
         }
       </div>

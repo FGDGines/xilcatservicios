@@ -125,7 +125,7 @@ const HeaderMenu = ({ refs  }: { refs?: any}) => {
             <div className='flex gap-4 justify-around basis-2/3 text-white text-[18px] lg:basis-4/6 items-center text-center'>
             {
               links.map(link => (
-                <p onClick={() => handleClick(link)} className='hover:drop-shadow-[4px_4px_2px_rgba(108,103,152,1)]'>
+                <p onClick={() => handleClick(link)} className='hover:drop-shadow-[2px_2px_1px_rgba(0,_168,_232,_1)]'>
                   {link.text}
                 </p>
               ))
