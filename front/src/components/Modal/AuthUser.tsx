@@ -12,6 +12,12 @@ type Inputs = {
   [idx: string]: string
 }
 
+const rolAlSpanol: { [idx: string] : string} = {
+  'LAWYER': 'ABOGADO',
+  'ADVISER': 'CONSEJERO',
+  'CLIENT': 'CLIENTE'
+}
+
 const AuthUser = () => {
   const [isEditing, toggleIsEditin] = useReducer((prev) => !prev, false)
   const [showPass, setShowPass] = useState({
@@ -127,7 +133,7 @@ const AuthUser = () => {
           </div>
         </div>
         <p className='text-center text-2xl'>{data.username}</p>
-        <p className='text-center text-gray-300 italic'>{data.rol}</p>
+        <p className='text-center text-gray-300 italic'>{rolAlSpanol[data.rol]}</p>
         {
           isEditing && (
         <div className="w-[80%] mx-auto border rounded-md my-4 shadow-[0_4px_9px_-4px_#252323]">
@@ -136,19 +142,19 @@ const AuthUser = () => {
             onClick={() => setNewRol('LAWYER')}
             type="button"
             className="block w-full text-center cursor-pointer p-2 text-left transition duration-500 hover:bg-neutral-100 hover:text-neutral-500 focus:bg-neutral-100 focus:text-neutral-500 focus:ring-0 dark:hover:bg-neutral-600 dark:hover:text-neutral-200 dark:focus:bg-neutral-600 dark:focus:text-neutral-200">
-            LAWYER
+            ABOGADO
           </button>
           <button 
             onClick={() => setNewRol('ADVISER')}
             type="button"
             className="block w-full text-center cursor-pointer p-2 text-left transition duration-500 hover:bg-neutral-100 hover:text-neutral-500 focus:bg-neutral-100 focus:text-neutral-500 focus:ring-0 dark:hover:bg-neutral-600 dark:hover:text-neutral-200 dark:focus:bg-neutral-600 dark:focus:text-neutral-200">
-            ADVISER
+            CONSEJERO
           </button>
           <button
             onClick={() => setNewRol('CLIENT')}
             type="button"
             className="block w-full text-center cursor-pointer p-2 text-left transition duration-500 hover:bg-neutral-100 hover:text-neutral-500 focus:bg-neutral-100 focus:text-neutral-500 focus:ring-0 dark:hover:bg-neutral-600 dark:hover:text-neutral-200 dark:focus:bg-neutral-600 dark:focus:text-neutral-200">
-            CLIENT
+            CLIENTE
           </button>
         </div>
         )

@@ -1,5 +1,5 @@
 // import { useReducer } from 'react'
-import { FaUsers, FaBook, FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome } from "react-icons/fa";
+import { FaUsers, FaBook, FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome, FaPowerOff } from "react-icons/fa";
 import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
 // import { GiHamburgerMenu } from "react-icons/gi";
 
@@ -95,66 +95,6 @@ const Layout = ({ Component }: { Component: any }) => {
   return (
     <div className='h-screen grid grid-cols-1 grid-rows-10 lg:grid-cols-[15%_1fr] text-white'>
       {/* Header  */}
-      {/* <div className='col-span-2 grid grid-cols-[20%_1fr_20%] lg:row-span-1 bg-cs-purple boder-2 border-red-500'>
-          <div className=''>
-          </div>
-          <div className='flex flex-col items-center gap-2'>
-            <a className='text-xl md:text-3xl lg:text-6xl mt-4 lg:mt-2' href='/intranet/main'>Intranet XilcatServicios</a>
-            <p className='text-xl mt-8 md:text-2xl lg:text-4xl lg:mt-0'>{setDescriptionName()}</p>
-          </div>
-          <div className='flex flex-col justify-center items-center text-5xl lg:flex-row lg:text-4xl'>
-            {
-              !isDesktop && (
-                  <>
-                    <div className="relative">
-                    <button
-                      className="focus:outline-none"
-                      onClick={toggleIsOpen}
-                    >
-                      <GiHamburgerMenu />
-                    </button>
-                    {isOpen && (
-                      <div className="absolute z-10 right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-lg">
-                        {
-                          links.map(link => (
-                            <p
-                            key={link.text}
-                            className="block px-4 py-2 text-gray-800 hover:bg-gray-100 text-lg flex gap-2"
-                            onClick={() => {
-                              toggleIsOpen()
-                              if (link.link !== '') {
-                                console.log('navigating')
-                                navigate(link.link)
-                              }
-                              if (link.text === 'Salir') handleSignOut()
-                              if (link.text === 'Chat') handleChatOpen()
-                              if (link.text === 'Blog') handleBlogOpen()
-                            }}
-                          >
-                            {link.Icon}
-                            {link.text}
-                          </p>
-                          ))
-                        }
-                      </div>
-                    )}
-                  </div>
-                </>
-              )
-            }
-            {
-              isDesktop && (
-                <>
-                <Icon Icon={<LuMessagesSquare />} text="Chat" url='' action={handleChatOpen} />
-                <Icon  Icon={<LuUserCircle />} text="Usuario" url='' />
-                <Icon  Icon={<FaRegStickyNote />} text="Blog" url='' action={handleBlogOpen} />
-                <Icon Icon={<FaSignOutAlt />} text="Salir" url='' action={handleSignOut}/>
-                </>
-              )
-            }
-          </div>
-        </div> */}
-
       <header className='col-span-2 row-span-3 lg:row-span-2'>
   {/* <!-- Navigation bar --> */}
   <nav
@@ -174,12 +114,15 @@ const Layout = ({ Component }: { Component: any }) => {
               links.map(link => (
                 <li className="pr-2" data-te-nav-item-ref key={link.text}>
                   <p
-                    className="block transition duration-150 ease-in-out  focus:text-neutral-700 disabled:text-black/30 dark:hover:text-white focus:text-white p-2 [&.active]:text-black/90 hover:cursor-pointer"
+                    className="
+                    block transition duration-150 ease-in-out flex gap-2 items-center
+                    focus:text-neutral-700 disabled:text-black/30 hover:text-white focus:text-white p-2 [&.active]:text-black/90 hover:cursor-pointer"
                     data-te-nav-link-ref
                     data-te-ripple-init
                     data-te-ripple-color="light"
                     onClick={() => {link.action ? link?.action() : navigate(link.link)}}
                     >
+                      {link.Icon}
                       {link.text}
                     </p>
                 </li>

@@ -1,4 +1,10 @@
 import { useAppStore } from "../../../store"
+const rolAlSpanol: { [idx: string] : string} = {
+  'LAWYER': 'ABOGADO',
+  'ADVISER': 'CONSEJERO',
+  'CLIENT': 'CLIENTE',
+  'ADMINISTRATOR': 'ADMINISTRADOR'
+}
 
 const UserCard = ({ data }: { data: any }) => {
   const { setModal } = useAppStore()
@@ -15,7 +21,7 @@ const UserCard = ({ data }: { data: any }) => {
         </div>
         <div className="p-3 w-[70%] bg-gray-500 rounded-xl opacity-60 absolute bottom-0 z-20 m-0 pb-4 ps-4 transition duration-300 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-3 group-hover:scale-110 group-hover:opacity-100">
             <h1 className="text-lg font-bold text-white ">{data.username}</h1>
-            <h2 className="text-m font-light text-gray-200 capitalize">{data.rol}</h2>
+            <h2 className="text-m font-light text-gray-200 capitalize">{rolAlSpanol[data.rol]}</h2>
         </div>
       
       </div>
