@@ -135,7 +135,7 @@ const Layout = ({ Component }: { Component: any }) => {
 
         {/* <!-- Hero section with heading, subheading and button --> */}
         <div
-          className="bg-cs-purple flex flex-col h-full gap-4 px-6 text-center text-neutral-200 lg:flex-row lg:pt-4 lg:justify-center lg:h-[65%]">
+          className="bg-cs-purple flex flex-col h-full gap-4 px-6 text-center text-neutral-200 lg:flex-row lg:pt-4 lg:justify-center lg:h-[65%] xl:h-full">
           <h1 className="text-3xl md:text-4xl font-bold mt-2 lg:mt-0">Intranet XilcatServicios</h1>
           <h3 className="text-xl md:text-2xl font-bold">{setDescriptionName()}</h3>
 
@@ -150,14 +150,13 @@ const Layout = ({ Component }: { Component: any }) => {
         '
       >
         {
-          auth.rol !== 'LAWYER' && (
+          (auth.rol !== 'LAWYER' && auth.rol !== 'CLIENT') && (
             <>
               <Icon Icon={<FaHome />} text='Principal' url="/intranet/main" isSide />
-              <Icon Icon={<FaCloud />} text="Iono" url='' isSide />
-              <Icon Icon={<IoIosMail />} text="Email" url='' isSide />
-              <Icon Icon={<FaTrello />} text="Trello" url='' isSide />
+              <Icon Icon={<FaCloud />} text="Iono" url='' externalUrl="https://login.ionos.es/?shoplogin=enabled&linkId=button-hd-nav-login" isSide />
+              <Icon Icon={<IoIosMail />} text="Email" url='' isSide externalUrl="https://login.ionos.es/" />
+              <Icon Icon={<FaTrello />} text="Trello" url='' isSide externalUrl="https://trello.com/es" />
               <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')} isSide />
-              {/* <Icon Icon={<LuMessagesSquare />} text="Chat" url='/intranet/chat' isSide /> */}
             </>
           )
         }

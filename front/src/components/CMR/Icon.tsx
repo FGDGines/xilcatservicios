@@ -5,17 +5,19 @@ type TIcon = {
   Icon: JSX.Element
   text: string
   url: string
+  externalUrl?: string
   errorMsg?: string
   action?: any
   isSide?: boolean
 }
 
-const Icon = ({ Icon, text, url, errorMsg, action, isSide }: TIcon) => {
+const Icon = ({ Icon, text, url, errorMsg, action, isSide, externalUrl }: TIcon) => {
   const navigate = useNavigate()
   const location = useLocation()
   const handleRedirect = () => {
     if (errorMsg) return toast.error(errorMsg)
     if (action) return action()
+    if (externalUrl) window.open(externalUrl)
     navigate(url)
   }
   const isActive = (direction: string) => {
