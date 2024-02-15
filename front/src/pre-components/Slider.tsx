@@ -11,13 +11,6 @@ import { TranslationKeys } from "../language/type-i18n";
 export const Slider = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivElement> }) => {
     const { t } = useTranslation<TranslationKeys>();
     const { isDesktop, isMobileOrTablet } = useDeviceSize();
-    // NO FUNCIONA CON i18n
-    // const [asesor,] = useState<Adviser[]>([
-    //     // {},
-    //     { nombre: 'Maria Torres', profesion: "Especialista en Juridicción", imagen: Image },
-    //     { nombre: 'Bella Fuentes', profesion: "Especialista en Juridicción", imagen: Image2 },
-    //     { nombre: 'Martha Ventanilla', profesion: "Especialista en Juridicción", imagen: Image3 }
-    // ])
 
     const asesor: Adviser[] = [
         { nombre: t('teams.team.a.name' as TranslationKeys), profesion: t('teams.team.a.profession' as TranslationKeys), imagen: Image },
@@ -29,6 +22,10 @@ export const Slider = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivE
     const getWidth = (idx: number) => {
         if (isDesktop) return idx === currentSlide ? 650 : 250
         else return idx === currentSlide ? 585 : 192
+    }
+
+    const handleOpenLink = () => {
+        window.open("https://booking.setmore.com/scheduleappointment/1c90759b-74db-40e5-a7e6-dbb7a9d8ceb3")
     }
 
     return (
@@ -45,6 +42,7 @@ export const Slider = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivE
                     <h3 style={{ fontSize: 24, fontWeight: 400, marginBottom: '20px', marginTop: '22px' }}>{t('teams.description' as TranslationKeys)}</h3>
 
                     <button
+                        onClick={handleOpenLink}
                         style={{ width: 202, padding: 17, borderRadius: 17, boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}
                         className="text-white bg-cs-purple transition-all hover:bg-cs-purple-light hover:border hover:border-cs-gray"
                     >
@@ -98,7 +96,7 @@ export const Slider = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivE
                 ))}
             </div>
             {isMobileOrTablet &&
-                <button className="my-10 md:text-[20px]" style={{ width: 202, padding: 17, borderRadius: 17, color: "white", background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)", boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}>
+                <button onClick={handleOpenLink} className="my-10 md:text-[20px]" style={{ width: 202, padding: 17, borderRadius: 17, color: "white", background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)", boxShadow: "0px 8px 24px 0px rgba(209, 69, 47, 0.25)" }}>
                     <a></a>
                     {t('teams.buttonAction' as TranslationKeys)}
                 </button>

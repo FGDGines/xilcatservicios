@@ -19,7 +19,7 @@ const Landing = () => {
       <div className='flex flex-col scroll-smooth text-cs-purple'>
         <Intro  />
         <AboutUs setRef={setRef}/>
-        <Services setRef={setRef} />
+        <Services setRef={setRef} contactRef={multipleRef.current[3]} />
         <Offer setRef={setRef}/>
         <OurTeam setRef={setRef} />
         <Contact setRef={setRef} />
