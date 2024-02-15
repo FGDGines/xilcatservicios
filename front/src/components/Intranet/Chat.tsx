@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { Socket, io } from 'socket.io-client';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import getRelativeTime from '../../utils/getRelativeTime';
 
 interface Message {
     readonly id: string;
@@ -46,6 +47,7 @@ interface JwtPayloadWithUsername extends JwtPayload {
   
 export const Chat = () => {
     const [chat, setChat] = useState<Socket | null>(null)
+    const [currentMsg, setCurrentMsg] = useState('')
     const navigate = useNavigate()
     const isChatLoaded = localStorage.getItem('chat-loaded')
     const [users, setUsers] = useState<User[]>([])
@@ -104,11 +106,8 @@ export const Chat = () => {
         }
 
         function onMessage(data: Message[]) {
-            console.log('in mssage before')
-
             setMessage(data)
             setIsLoadingSocket(false);
-            console.log('in mssage after')
 
         }
 
@@ -130,34 +129,10 @@ export const Chat = () => {
         };
     }, [chat]);
 
-    const getRelativeTime = (createdAt: string): string => {
-        const date = new Date(createdAt);
-        const now = new Date();
-
-        const diff = now.getTime() - date.getTime();
-
-        const seconds = Math.floor(diff / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
-        const months = Math.floor(days / 30);
-        const years = Math.floor(months / 12);
-
-        if (years > 0) return `hace ${years} año${years !== 1 ? 's' : ''}`;
-        if (months > 0) return `hace ${months} mes${months !== 1 ? 'es' : ''}`;
-        if (days > 0) return `hace ${days} día${days !== 1 ? 's' : ''}`;
-        if (hours > 0) return `hace ${hours} hora${hours !== 1 ? 's' : ''}`;
-        if (minutes > 0) return `hace ${minutes} minuto${minutes !== 1 ? 's' : ''}`;
-        if (seconds > 0) return `hace ${seconds} segundo${seconds !== 1 ? 's' : ''}`;
-
-        return 'justo ahora';
-    };
-
-
     return (
-        <div className="flex flex-col h-full overflow-auto bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 md:flex-row">
+        <div className="flex flex-col h-full overflow-auto bg-gray-900 text-gray-100 md:flex-row">
             <main className="md:w-3/4 flex flex-col order-2 md:order-1">
-                <header className="p-4 flex bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 items-center">
+                <header className="p-4 flex bg-gray-800 border-b border-gray-700 items-center">
                     <div className={`w-2 h-2 rounded-full  ${ chat && chat.active ? 'bg-green-500' : 'bg-red-500'}`} />
                     <div className="text-2xl font-bold px-3"> {decodedPayloadOrNull?.username}</div>
                 </header>
@@ -180,23 +155,26 @@ export const Chat = () => {
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
                     
-                    chat.timeout(2500).emit('send-message', { auth: decodedPayloadOrNull?.id, message: e.target.message.value }, () => {
+                    chat.timeout(100).emit('send-message', { auth: decodedPayloadOrNull?.id, message: currentMsg }, () => {
                         setIsLoading(false);
-                        console.log(e.currentTarget)
+                        setCurrentMsg('')
                         // e.currentTarget.
                     });
-                }} className="p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+                }} className="p-4 bg-gray-800 border-t border-gray-700">
                     <div className="grid w-full gap-1.5">
                         <input
                             className="bg-transparent border-2 border-transparent text-white placeholder-gray-300/60 rounded p-2 focus:border-gray-300 hover:border-gray-300"
                             name='message'
-                            placeholder="Escribe tu mensaje aquí" />
+                            placeholder="Escribe tu mensaje aquí"
+                            value={currentMsg}
+                            onChange={(e) => setCurrentMsg(e.target.value)}
+                        />
                         <button type='submit' disabled={isLoading} className={`bg-${isLoading ? "red" : "green"}-500 text-white z-100 py-2 px-4 mt-2 rounded-lg`}>Enviar</button>
                     </div>
                 </form>
             </main>
             <aside className="md:w-1/4 flex flex-col order-1 md:order-2">
-                <header className="p-4 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+                <header className="p-4 bg-gray-800 border-b border-gray-700">
                     <h2 className="text-2xl font-bold">Usuarios Conectados</h2>
 
                 </header>
