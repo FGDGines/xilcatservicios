@@ -3,15 +3,43 @@ import useBlog from "../../hooks/useBlog"
 import { jwtDecode } from "jwt-decode";
 import { useAppStore } from "../../store";
 import { toast } from "react-toastify";
+import errorHandler from "../../utils/errorHandler";
 // import { jwtDecode } from "jwt-decode";
 // import { useAppStore } from "../../store";
 // import axios from "axios";
 
+type TCategory = 'SELLING' | 'RENT' | 'NEWS' | 'COMMUNITY'
+
+type TCategoryList = {
+  value: TCategory,
+  text: string
+}
+
 type Inputs = {
   title: string;
   content: string;
-  image: FileList
+  image: FileList;
+  category: TCategory
 }
+
+const categories: TCategoryList[] = [
+  {
+    value: 'SELLING',
+    text: 'Venta'
+  },
+  {
+    value: 'RENT',
+    text: 'Renta'
+  },
+  {
+    value: 'COMMUNITY',
+    text: 'Comunidad'
+  },
+  {
+    value: 'NEWS',
+    text: 'Noticias'
+  },
+]
 
 const Blog = () => {
   const { closeModal } = useAppStore()
@@ -19,6 +47,7 @@ const Blog = () => {
   const {
     register,
     handleSubmit,
+    setValue
   } = useForm<Inputs>()
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     const auth = jwtDecode(String(localStorage.getItem('auth_token'))) as any
@@ -27,26 +56,19 @@ const Blog = () => {
 
     post.mutate({ ...rest, auth: auth.id}, {
       onSuccess(data) {
-        postImage.mutate({ data: image[0], id: data.id}, {
+        postImage.mutate({ data: image[0], id: data?.id}, {
           onSuccess: () => {
             closeModal()
             toast.success('Se ha agregado una entrada de Blog')
           },
           onError: (error) => {
-            console.log("error in blog postimage", error)
-            const messages = error?.response?.data?.message || error.message
-            console.log('messages', messages)
-
-            if (Array.isArray(messages)) {
-              messages.forEach((item: any) => {
-                  toast.error(item)
-                })
-            } else if (typeof messages === 'string') toast.error(messages)
-
-            console.log('new error', error)
+            errorHandler(error)
             erase.mutate(data.id)
           }
         })
+      },
+      onError(error) {
+        errorHandler(error)
       },
     })
   }
@@ -57,20 +79,47 @@ const Blog = () => {
         <label htmlFor="" className="absolute top-2 left-2">Titulo</label>
         <input type="text" className="w-full py-2 pr-2 pl-20" {...register('title')} />
       </div>
-      <div className="border mb-2 relative">
+      <div className="border relative">
         <label htmlFor="" className="absolute top-2 left-2">Contenido</label>
         <textarea className="w-full py-2 pr-2 pl-24" {...register('content')}/>
+      </div>
+      <div className="my-4 relative">
+        <div className="flex gap-2 flex-col">
+          {/* <p className="border-b border-cs-purple">Categoria</p> */}
+          <div className="flex gap-2 items-center justify-evenly">
+
+          {
+            categories.map(category => (
+              <button
+              onClick={() => setValue('category', category.value)}
+              type="button"
+              className="
+              text-white bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800
+              hover:bg-gradient-to-br
+              focus:ring-4 focus:outline-none focus:ring-fuchsia-300
+              font-xs rounded-lg text-sm px-2 py-1 text-center
+              w-full
+              "
+              >
+                  {category.text}
+              </button>
+              
+              ))
+            }
+            </div>
+          
+        </div>
       </div>
       <div className="border mb-2 w-full">
         <label
           htmlFor="image"
           className=" block w-full px-6 py-2 bg-cs-purple rounded text-center text-white hover:cursor-pointer hover:bg-cs-purple-light"
         >
-          Eligen una imagen
+          Elige una imagen
         </label>
         <input type="file" className="hidden" id="image" {...register('image')}/>
       </div>
-      <div className="border mt-4 w-full">
+      <div className="border w-full">
           <button
             type="submit"
             className=" block w-full px-6 py-2 bg-blue-300 rounded text-center text-white hover:cursor-pointer hover:bg-cs-purple-light"

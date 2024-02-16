@@ -14,10 +14,9 @@ const postImage = async ({ data, id}: TProps) => {
                 'Content-Type': 'multipart/form-data'
             }
         })
-        if (response.statusText !== 'OK') throw new Error("Algo paso")
+        if (response.statusText !== 'Created') throw new Error("Algo paso")
         return response.data
     } catch (error: any) {
-      console.log(error)
         throw error.response.data
     }
 }

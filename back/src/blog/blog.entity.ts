@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
+import { IsIn, IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 import { AuthEntity } from 'src/auth/auth.entity';
 import {
   Entity,
@@ -7,6 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import { TCategory } from './blog.dto';
 
 @Entity()
 export class BlogEntity {
@@ -16,6 +17,13 @@ export class BlogEntity {
   @IsNotEmpty({ message: 'El título no puede estar vacío' })
   @Column()
   title: string;
+
+  @IsNotEmpty({ message: 'La categoria no puede estar vacío' })
+  @Column()
+  @IsIn(['SELLING', 'RENT', 'NEWS', 'COMMUNITY'] as TCategory[], {
+    message: 'La categoria es invalida - VENTA - RENTA | NOTICIAS | COMUNIDAD',
+  })
+  category: TCategory;
 
   @IsNotEmpty({ message: 'El contenido no puede estar vacío' })
   @Column()

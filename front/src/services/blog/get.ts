@@ -6,7 +6,7 @@ const get = async () => {
         if (response.statusText !== 'OK') throw new Error("Algo paso")
         return response.data
     } catch (error: any) {
-        return 'something wrong'
+        throw error.response.data
     }
 }
 
