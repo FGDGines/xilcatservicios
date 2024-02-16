@@ -18,10 +18,18 @@ const useBlog = () => {
         }
     })
 
+    const erase = useMutation<any, any, number>({
+        mutationFn: blogs.erase,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['blog']})
+        }
+    })
+
     return {
         list,
         post,
-        postImage
+        postImage,
+        erase
     }
 }
 

@@ -18,7 +18,7 @@ const postImage = async ({ data, id}: TProps) => {
         return response.data
     } catch (error: any) {
       console.log(error)
-        return error.response.data
+        throw error.response.data
     }
 }
 

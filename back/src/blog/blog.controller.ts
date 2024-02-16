@@ -149,7 +149,9 @@ export class BlogController {
     @Param('blogId') blogId: number,
     @UploadedFile(
       new ParseFilePipe({
-        validators: [new FileTypeValidator({ fileType: 'image/jpeg' }), new FileTypeValidator({ fileType: 'image/png' })],
+        validators: [
+          // new FileTypeValidator({ fileType: 'image/jpeg' || 'image/png'  }), 
+          new FileTypeValidator({ fileType: 'image/png' })],
       }),
     )
     file: Express.Multer.File,

@@ -15,7 +15,7 @@ type Inputs = {
 
 const Blog = () => {
   const { closeModal } = useAppStore()
-  const { list, postImage, post } = useBlog()
+  const { list, postImage, post, erase } = useBlog()
   const {
     register,
     handleSubmit,
@@ -31,6 +31,20 @@ const Blog = () => {
           onSuccess: () => {
             closeModal()
             toast.success('Se ha agregado una entrada de Blog')
+          },
+          onError: (error) => {
+            console.log("error in blog postimage", error)
+            const messages = error?.response?.data?.message || error.message
+            console.log('messages', messages)
+
+            if (Array.isArray(messages)) {
+              messages.forEach((item: any) => {
+                  toast.error(item)
+                })
+            } else if (typeof messages === 'string') toast.error(messages)
+
+            console.log('new error', error)
+            erase.mutate(data.id)
           }
         })
       },
