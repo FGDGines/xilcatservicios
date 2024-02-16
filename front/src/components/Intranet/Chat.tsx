@@ -160,8 +160,8 @@ export const Chat = () => {
                         setCurrentMsg('')
                         // e.currentTarget.
                     });
-                }} className="p-4 bg-gray-800 border-t border-gray-700">
-                    <div className="grid w-full gap-1.5">
+                }} className="p-4 bg-gray-800 border-t border-gray-700 ">
+                    <div className=" grid w-full gap-1.5">
                         <input
                             className="bg-transparent border-2 border-transparent text-white placeholder-gray-300/60 rounded p-2 focus:border-gray-300 hover:border-gray-300"
                             name='message'

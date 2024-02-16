@@ -3,6 +3,7 @@ import { TJournal } from '../../../types/journal'
 import { useAppStore } from '../../../store'
 import useJournal from '../../../hooks/useJournal'
 import { toast } from 'react-toastify'
+import { FaRegTrashAlt } from 'react-icons/fa'
 
 type TProps = {
     side: boolean
@@ -10,7 +11,7 @@ type TProps = {
 }
 
 const RightPanel = ({ side, data,  }: TProps) => {
-  const { clearJournal, addJournalEvent, deleteJournalById } = useAppStore()
+  const { clearJournal, addJournalEvent, deleteJournalById, setModal } = useAppStore()
   const {erase} = useJournal()
 
   const handleDelete = (id: number) => {
@@ -46,12 +47,12 @@ const RightPanel = ({ side, data,  }: TProps) => {
       {
         data.map((item: TJournal) => (
           <div className='px-4 py-2 border-b flex justify-between w-full' key={item.title}>
-            <div>
+            <div onClick={() => setModal({ type: 'description', params: { text: item.description, title: item.title } })} className='hover:cursor-pointer flex-1'>
                 <p className='font-bold'>{item.title.slice(0,15)}</p>
                 <p className='text-gray-400'>{item.description.slice(0,100)}</p>
             </div>
-            <div onClick={() => handleDelete(Number(item.id))} className='hover:cursor-pointer hover:text-red-500'>
-                <p>x</p>
+            <div onClick={() => handleDelete(Number(item.id))} className='hover:cursor-pointer hover:text-red-500 basis-1/4 flex justify-center items-center text-xl'>
+              <FaRegTrashAlt />
             </div>
           </div>
         ))

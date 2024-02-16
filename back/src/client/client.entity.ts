@@ -61,20 +61,20 @@ export class ClientEntity {
   @ApiProperty()
   @Column()
   @IsNotEmpty({ message: 'El teléfono principal es obligatorio' })
-  @Matches(/^(\+(34)\s?)?\d{9}$|^(\+(1)\s?)?\d{10}$/, {
-    message:
-      'Por favor, introduce un número de teléfono válido de España (+34XXXXXXXXX) o Estados Unidos (+1XXXXXXXXXX)',
-    context: '',
-  })
+  // @Matches(/^(\+(34)\s?)?\d{9}$|^(\+(1)\s?)?\d{10}$/, {
+  //   message:
+  //     'Por favor, introduce un número de teléfono válido de España (+34XXXXXXXXX) o Estados Unidos (+1XXXXXXXXXX)',
+  //   context: '',
+  // })
   mainPhone: string;
 
   @ApiProperty()
   @Column({ nullable: true })
   @IsOptional()
-  @Matches(/^(\+(34)\s?)?\d{9}$|^(\+(1)\s?)?\d{10}$/, {
-    message:
-      'Por favor, introduce un número de teléfono válido de España (+34XXXXXXXXX) o Estados Unidos (+1XXXXXXXXXX)',
-  })
+  // @Matches(/^(\+(34)\s?)?\d{9}$|^(\+(1)\s?)?\d{10}$/, {
+  //   message:
+  //     'Por favor, introduce un número de teléfono válido de España (+34XXXXXXXXX) o Estados Unidos (+1XXXXXXXXXX)',
+  // })
   secondaryPhone: string;
 
   @ApiProperty()
