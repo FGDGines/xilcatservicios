@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 const CloseProcedure = () => {
 
   const { modal, closeModal, clearAccounts } = useAppStore()
-  const { update } = useClients()
+  const { update } = useClients('all')
   const handleClick = () => {
     update.mutate({
       data: {

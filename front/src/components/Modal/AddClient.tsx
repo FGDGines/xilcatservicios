@@ -14,7 +14,7 @@ type Inputs = {
 const AddClient = () => { 
   const auth = jwtDecode(String(localStorage.getItem('auth_token'))) as any
   
-  const { add } = useClients()
+  const { add } = useClients('all')
     const {closeModal} = useAppStore()
     const {
         register,
@@ -30,7 +30,8 @@ const AddClient = () => {
             pdf: JSON.stringify([{}]),
             tramiteType: 'TYPE1',
             paymentStatus: 'NONE',
-            collaborators: ''
+            collaborators: '',
+            category: 'active'
         }
         add.mutate(bodyToSend, {
           onSuccess: () => {

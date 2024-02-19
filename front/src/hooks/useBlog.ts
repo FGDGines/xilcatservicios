@@ -13,6 +13,12 @@ const useBlog = ({ page = 1, category= 'ALL', limit = 10, showApproved = "false"
             queryClient.invalidateQueries({ queryKey: ['blog', page, category, limit, showApproved]})
         }
     })
+    const update = useMutation<any, any, { data:any, id: number }>({
+        mutationFn: blogs.update,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['blog', page, category, limit, showApproved]})
+        }
+    })
     const postImage = useMutation<any, any,{ data:any, id: number }>({
         mutationFn: blogs.postImage,
         onSuccess: () => {
@@ -31,7 +37,8 @@ const useBlog = ({ page = 1, category= 'ALL', limit = 10, showApproved = "false"
         list,
         post,
         postImage,
-        erase
+        erase,
+        update
     }
 }
 

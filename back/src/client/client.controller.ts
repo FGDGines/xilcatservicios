@@ -47,10 +47,11 @@ export class ClientController {
   @ApiOperation({ summary: 'OPERATIVO' })
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'limit', required: false, type: Number })
+  @ApiQuery({ name: 'category', required: false, type: String })
   @ApiResponse({ status: 200, description: 'Return all clients.' })
   async getAllClients(@Query() queryParams): Promise<ClientEntity[]> {
-    const { page = 1, limit = 10 } = queryParams;
-    return await this.clientService.findAll(page, limit);
+    const { page = 1, limit = 10, category = 'all' } = queryParams;
+    return await this.clientService.findAll(page, limit, category);
   }
 
   @Get(':id')

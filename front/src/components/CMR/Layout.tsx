@@ -10,6 +10,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthProvider } from '../../hooks/useAuthProvider';
 import { useAppStore } from '../../store';
 import { jwtDecode } from 'jwt-decode';
+import { MdSpeakerNotesOff } from "react-icons/md";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 type TLinks = {
   text: string,
@@ -26,6 +29,16 @@ const Layout = ({ Component }: { Component: any }) => {
   const { signout } = useAuthProvider()
   const { setModal } = useAppStore()
   const auth = localStorage.getItem('auth_token') && jwtDecode(String(localStorage.getItem('auth_token'))) as any
+
+  const [totalCount, setTotalCount] = useState(0)
+
+  useEffect(() => {
+      const getPendingBlogCount = async () => {
+          const count = await axios.get('/api/blog/total')
+          setTotalCount(count.data)
+      }
+      getPendingBlogCount()
+  }, [])
 
   const setDescriptionName = () => {
     const nameDescription: { [index: string]: string } = {
@@ -55,9 +68,7 @@ const Layout = ({ Component }: { Component: any }) => {
     localStorage.removeItem('chat-loaded')
     navigate('/')
   }
-  // const handleAuthUserOpenModal = () => {
-  //   setModal({ type: 'auth_user' })
-  // }
+
   const handleBlogOpen = () => {
     setModal({ type: 'blog' })
   }
@@ -73,11 +84,6 @@ const Layout = ({ Component }: { Component: any }) => {
       text: 'Usuario',
       Icon: <LuUserCircle />
     },
-    // {
-    //   link: '/',
-    //   text: 'Landing',
-    //   Icon: <LuUserCircle />
-    // },
     {
       link: '',
       text: 'Blog',
@@ -128,6 +134,27 @@ const Layout = ({ Component }: { Component: any }) => {
                 </li>
               ))
             }
+            {
+              auth.rol === "ADMINISTRATOR" && (
+                <li className="pr-2" data-te-nav-item-ref key="approved">
+                      <p
+                        className="
+                        block transition duration-150 ease-in-out flex gap-2 items-center text-white relative
+                        disabled:text-black/30 hover:text-cs-blue p-2 [&.active]:text-black/90 hover:cursor-pointer"
+                        data-te-nav-link-ref
+                        data-te-ripple-init
+                        data-te-ripple-color="light"
+                        onClick={() => setModal({type: 'pending'})}
+                        >
+                          <MdSpeakerNotesOff />
+                          Pendientes
+                          <div className="text-sm w-6 h-6 rounded-full absolute -top-1 -right-1 bg-red-500 text-white text-center">
+                            {totalCount}
+                          </div>
+                        </p>
+                    </li>
+              )
+            }
         </ul>
       </div>
     </div>
@@ -168,7 +195,7 @@ const Layout = ({ Component }: { Component: any }) => {
       </div>
 
         {/* Principal Component */}
-        <div className='row-span-6 overflow-auto text-black lg:row-[span_8_/_span_8] bg-white'>{<Component />}</div>
+        <div className='row-span-6 overflow-auto text-black lg:row-[span_8_/_span_8] bg-white relative'>{<Component />}</div>
         {/* <div className=' row-span-4 overflow-auto lg:row-span-7 text-black'>{<Component />}</div> */}
     </div>
   )

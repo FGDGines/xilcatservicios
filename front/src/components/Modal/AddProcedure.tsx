@@ -35,7 +35,7 @@ const AddProcedure = () => {
     const [lawyerOpt, setLawyerOpt] = useState<TLawyersOption>({ value: '', label: ''})
     const [price, setPrice] = useState(0)
     const { modal, closeModal } = useAppStore()
-    const { update } = useClients()
+    const { update } = useClients('all')
     const { list } = useAuthUsers()
     const lawyers = list?.data?.filter((item:any) => item.rol === 'LAWYER').map((item: any) => ({ value: item.id, label: item.username})) || []
     const handleChange = (

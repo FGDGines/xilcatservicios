@@ -13,7 +13,7 @@ import RightPanel from './RightPanel'
 const Account = () => {
   const [side, setSide] = useState(true)
   const {id} = useParams()
-  const {  getClient} = useClients()
+  const {  getClient} = useClients('all')
   const { data, isLoading, isError } = getClient(Number(id))
 
   if (isLoading) return <Loader />

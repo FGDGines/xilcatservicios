@@ -8,7 +8,7 @@ import Loader from '../../Common/Loader';
 import Error from '../../Common/Error';
 
 const Client = () => {
-  const { getClient } = useClients()
+  const { getClient } = useClients('all')
   const [side, toggleSide] = useReducer((prev: boolean) => !prev , true)
   const { id } = useParams()
   const { data, isLoading, isError } = getClient(Number(id))

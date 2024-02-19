@@ -19,7 +19,7 @@ const Main = () => {
       <div className='fixed bottom-6 left-6 text-white text-4xl bg-blue-500 rounded-full z-10 lg:w-0 lg:hidden hover:cursor-pointer' onClick={() => setSide(prev => !prev)}>
         {side ? <MdSwitchLeft /> : <MdSwitchRight />}
       </div>
-      <LeftPanel side={side} />
+      <LeftPanel side={side} data={list.data !== undefined ? list.data : []} />
       <RightPanel side={side} data={list.data !== undefined ? list.data : []}/>
     </div>
   )

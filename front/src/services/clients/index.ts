@@ -9,7 +9,7 @@ import addPdf from './addPdf'
 
 type TClientServices = {
     getById: (ctx: QueryFunctionContext) => Promise<TClient>
-    get: () => Promise<TClient[]>
+    get: ({ queryKey }: { queryKey: any}) => Promise<TClient[]>
     erase: any
     post: any
     update: any,

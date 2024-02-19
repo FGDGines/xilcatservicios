@@ -57,13 +57,21 @@ export class BlogController {
     return await this.blogService.findAll(page, limit, showApproved, category);
   }
 
+  @Get('/total')
+  @ApiOperation({ summary: 'OPERATIVO' })
+  @ApiParam({ name: 'type', required: false , type: 'string', description: 'It indicates if it should count every blog or only those that arent approved yet' })
+  @ApiResponse({ status: 200, description: 'Return the total blogs saved' })
+  async getTotal(@Param('type') type:string): Promise<number> {
+    return await this.blogService.findNumber(type);
+  }
   @Get(':id')
   @ApiOperation({ summary: 'OPERATIVO' })
-  @ApiParam({ name: 'id', type: 'number', description: 'Newsletter ID' })
+  @ApiParam({ name: 'id', type: 'number', description: 'Newsletter ID'})
   @ApiResponse({ status: 200, description: 'Return a newsletter by ID.' })
   async getById(@Param('id') id: number): Promise<BlogEntity> {
     return await this.blogService.findById(id);
   }
+
 
   @Get('/picture/:id/:name')
   // @Header('Content-Type', 'application/json')

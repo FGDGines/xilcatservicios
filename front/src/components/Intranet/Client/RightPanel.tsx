@@ -22,7 +22,7 @@ const documents = [
   ]
 
 const RightPanel = ({ side, id, data }: TProps) => {
-  const { addPdf } = useClients()
+  const { addPdf } = useClients('all')
     const navigate = useNavigate()
     const multipleFilesRef = useRef<Array<HTMLInputElement | null>>([])
 

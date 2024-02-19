@@ -23,6 +23,7 @@ export class BlogService {
       const query = this.blogRepository.createQueryBuilder('blog')
 
       if (showApproved && showApproved === 'true') query.where({ isApproved: true})
+      if (showApproved && showApproved === 'false') query.where({ isApproved: false})
       if (category && category !== 'ALL') query.andWhere({ category })
       
       clients = await query.leftJoin('blog.auth', 'auth')
@@ -51,6 +52,11 @@ export class BlogService {
     } catch (error) {
       throw error;
     }
+  }
+
+  async findNumber(type: string) {
+    if (type && type === 'all') return await this.blogRepository.count()
+    return await this.blogRepository.count({ where: { isApproved: false }})
   }
 
   async findById(id: number): Promise<BlogEntity | undefined> {

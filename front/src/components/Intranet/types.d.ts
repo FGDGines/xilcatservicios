@@ -1,0 +1,1 @@
+export type TClientsCategory = 'all' | 'active' | 'archived'

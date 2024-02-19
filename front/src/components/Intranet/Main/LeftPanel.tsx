@@ -2,17 +2,24 @@ import { useAppStore } from '../../../store'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import { jwtDecode } from 'jwt-decode'
 import moment from 'moment'
+import { TJournal } from '../../../types/journal'
 const localizer = momentLocalizer(moment)
 
 
 type TProps = {
     side: boolean
+    data: TJournal[]
+
 }
 
-const LeftPanel = ({ side }: TProps) => {
+const LeftPanel = ({ side, data }: TProps) => {
   const { setModal, event } = useAppStore()
   const auth = jwtDecode(localStorage.getItem('auth_token') as any) as any
   const id = auth.id
+  const getJournalId = (e: any) => {
+    const ID = data.filter((item) => item?.title === e?.title && item?.description === e?.description)[0]
+    return ID.id
+  }
 
   return (
     <div className={`
@@ -22,7 +29,7 @@ const LeftPanel = ({ side }: TProps) => {
         <Calendar
           selectable
           onSelectSlot={(e) => setModal({ type: 'event', params: { start: e.start, end: e.end, type: 'journal', id } })}
-          onSelectEvent={(e) => setModal({ type: 'description', params: { text: e.description, title: e.title } })}
+          onSelectEvent={(e) => {setModal({ type: 'description', params: { text: e.description, title: e.title }, id: getJournalId(e) }); console.log('e', e)}}
           events={event.journal}
           localizer={localizer}
           defaultDate={new Date()}

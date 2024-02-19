@@ -1,4 +1,4 @@
-import { FaEdit, FaIdCard, FaMailBulk, FaMapMarkerAlt, FaPhoneAlt, FaTrash } from 'react-icons/fa'
+import { FaArchive, FaEdit, FaIdCard, FaMailBulk, FaMapMarkerAlt, FaPhoneAlt, FaTrash } from 'react-icons/fa'
 import { FaDeleteLeft } from "react-icons/fa6";
 import { TClient } from '../../../types/client'
 import useClients from '../../../hooks/useClients'
@@ -8,13 +8,14 @@ import { useAppStore } from '../../../store'
 import { useEffect, useReducer, useState } from 'react'
 import InputItem from './InputItem';
 import Button from './Button';
+import { MdOnlinePrediction } from 'react-icons/md';
 
 type TProps = {
     data: TClient | undefined
     side: boolean
 }
 
-export type TClientServer = Pick<TClient, 'name' | 'address' | 'email' | 'mainPhone' | 'secondaryPhone'>
+export type TClientServer = Pick<TClient, 'name' | 'address' | 'email' | 'mainPhone' | 'secondaryPhone' | 'category'>
 
 const LeftPanel = ({ data, side }:TProps) => {
   const [isEditing, toggleIsEditing] = useReducer((prev) => !prev,false)
@@ -23,9 +24,10 @@ const LeftPanel = ({ data, side }:TProps) => {
     email: '',
     address: '',
     mainPhone: '',
-    secondaryPhone: ''
+    secondaryPhone: '',
+    category: ''
   })
-  const { erase, update } = useClients()
+  const { erase, update } = useClients('all')
   const { setModal } = useAppStore()
   const navigate = useNavigate()
   
@@ -43,6 +45,15 @@ const LeftPanel = ({ data, side }:TProps) => {
       }
     })
   }
+
+  const handleToggleClientCategory = () => {
+    update.mutate({ data: { category: data?.category === 'active' ? 'archived': 'active'}, id: Number(data?.id)}, {
+      onSuccess() {
+        toast.success('El cliente ha sido ' + data?.category === 'active' ? 'archivado': 'activado' + 'exitosamente')
+        navigate('/intranet/clients')
+      }
+    })
+  }
   const checkNullity = (prop: any) => {
     if (prop === null || prop === 'null') return 'N/A'
   }
@@ -54,7 +65,8 @@ const LeftPanel = ({ data, side }:TProps) => {
         email: String(data?.email),
         address: String(data?.address),
         mainPhone: String(data?.mainPhone),
-        secondaryPhone: String(data?.secondaryPhone)
+        secondaryPhone: String(data?.secondaryPhone),
+        category: String(data?.category)
       })
     } else {
       setUserData({
@@ -62,7 +74,8 @@ const LeftPanel = ({ data, side }:TProps) => {
         email: '',
         address: '',
         mainPhone: '',
-        secondaryPhone: ''
+        secondaryPhone: '',
+        category: ''
       })
     }
   }, [isEditing])
@@ -77,6 +90,9 @@ const LeftPanel = ({ data, side }:TProps) => {
             </button>
             <button className='absolute top-4 right-12 w-4 h-4 bg-red hover:text-red-500 transition-all' onClick={toggleIsEditing}>
               {isEditing ? <FaDeleteLeft /> :<FaEdit />}
+            </button>
+            <button className='absolute top-4 right-20 w-4 h-4 bg-red hover:text-red-500 transition-all' onClick={handleToggleClientCategory}>
+              {data?.category === 'active' ? <FaArchive /> : <MdOnlinePrediction />}
             </button>
       <div className='text-center flex flex-col gap-2 mt-4'>
         <h1>Tramite Solicitado por {data?.auth?.username}</h1>

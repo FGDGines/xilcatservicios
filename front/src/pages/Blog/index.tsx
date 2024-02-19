@@ -10,7 +10,7 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 
 type ArticleKeys = 'id' | 'title' | 'content' | 'imagePath' | 'contact'
 type ArticleRecord = Record<ArticleKeys , string | number> 
-type ArticleCategory = 'SELLING' | 'RENT' | 'COMMUNITY' | 'NEWS' | 'ALL'
+export type ArticleCategory = 'SELLING' | 'RENT' | 'COMMUNITY' | 'NEWS' | 'ALL'
 type ArticleAuth = {
   auth: {
     username: string,

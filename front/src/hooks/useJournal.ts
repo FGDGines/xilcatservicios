@@ -19,11 +19,19 @@ const useJournal = () => {
         }
     })
 
+    const update = useMutation<any, any, {data: Partial<TJournal>, id: number}>({
+        mutationFn: journals.update,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['journal']})
+        }
+    })
+
 
     return {
         list,
         post,
-        erase
+        erase,
+        update
     }
 }
 

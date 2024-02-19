@@ -19,10 +19,13 @@ export class ClientService {
     private readonly clientRepository: Repository<ClientEntity>,
   ) {}
 
-  async findAll(page: number, limit: number): Promise<ClientEntity[]> {
+  async findAll(page: number, limit: number, category: string): Promise<ClientEntity[]> {
     try {
-      const clients = await this.clientRepository
-        .createQueryBuilder('client')
+      const query = this.clientRepository.createQueryBuilder('client')
+
+      if (category && (category === 'active' || category === 'archived')) query.where({ category})
+
+      const clients = await query
         .leftJoin('client.auth', 'auth')
         .select([
           'client.id',
@@ -39,6 +42,7 @@ export class ClientService {
           'client.created_at',
           'client.updated_at',
           'client.dues',
+          'client.category',
           // Seleccionando todos los campos de 'auth' excepto 'password'
           'auth.id',
           'auth.username',
@@ -76,6 +80,7 @@ export class ClientService {
           'client.updated_at',
           'client.dues',
           'client.collaborators',
+          'client.category',
 
           'auth.id',
           'auth.username',

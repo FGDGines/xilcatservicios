@@ -8,6 +8,7 @@ import CloseProcedure from './CloseProcedure';
 import Description from './Description';
 import AuthUser from './AuthUser';
 import Blog from './Blog';
+import PendingBlogs from './PendingBlogs';
 
 type TComponents = Record<TEvents, JSX.Element> 
 
@@ -19,7 +20,8 @@ const Components: TComponents = {
   closeProcedure: <CloseProcedure />,
   description: <Description />,
   auth_user: <AuthUser />,
-  blog: <Blog />
+  blog: <Blog />,
+  pending: <PendingBlogs />
 }
 
 

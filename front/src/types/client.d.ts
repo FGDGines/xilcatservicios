@@ -22,4 +22,5 @@ export type TClient = {
     id?: number
     dues: string
     collaborators: string
+    category: string
 }

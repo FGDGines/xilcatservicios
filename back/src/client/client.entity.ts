@@ -79,6 +79,11 @@ export class ClientEntity {
 
   @ApiProperty()
   @Column({ nullable: true })
+  @IsOptional()
+  category: string;
+
+  @ApiProperty()
+  @Column({ nullable: true })
   @IsNumber()
   // @IsPositive({ message: 'El precio cotizado debe ser un número positivo' })
   // @Min(100, { message: 'El precio cotizado debe ser mayor que 100' })
@@ -102,6 +107,8 @@ export class ClientEntity {
   @ApiProperty({ type: DuesDto })
   @Type(() => DuesDto)
   dues: string = 'null';
+
+  
 
   @Column({ type: 'json' })
   @ApiProperty({ type: CollaboratorsDto })
