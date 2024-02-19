@@ -3,17 +3,17 @@ import { useAppStore } from '../../store'
 import useJournal from '../../hooks/useJournal'
 import { toast } from 'react-toastify'
 import { useEffect, useReducer, useState } from 'react'
-import { jwtDecode } from 'jwt-decode'
-import moment from 'moment'
+// import { jwtDecode } from 'jwt-decode'
+// import moment from 'moment'
 
 const Description = () => {
   const [isEditing, toggleIsEditing] = useReducer((prev) => !prev, false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const { modal, deleteJournalById, closeModal, addJournalEvent } = useAppStore()
-  const { erase, update } = useJournal()
-  const auth = jwtDecode(localStorage.getItem('auth_token') as any) as any
-  const id = auth.id
+  const { modal, deleteJournalById, closeModal } = useAppStore()
+  const { erase } = useJournal()
+  // const auth = jwtDecode(localStorage.getItem('auth_token') as any) as any
+  // const id = auth.id
 
   const handleDelete = (id: number) => {
     erase.mutate({ id}, {
@@ -25,17 +25,17 @@ const Description = () => {
     })
   }
 
-  const handleUpdate = (id: number) => {
-    update.mutate({ data: { title, description, auth: id}, id},
-      {
-        onSuccess: (variables) => {
-            deleteJournalById(id)
-            addJournalEvent(variables)
-            toast.success('nota actualizada')
-            closeModal()
-        }
-    })
-  }
+  // const handleUpdate = (id: number) => {
+  //   update.mutate({ data: { title, description, auth: id}, id},
+  //     {
+  //       onSuccess: (variables) => {
+  //           deleteJournalById(id)
+  //           addJournalEvent(variables)
+  //           toast.success('nota actualizada')
+  //           closeModal()
+  //       }
+  //   })
+  // }
 
   useEffect(() => {
       setTitle(modal.params.title)

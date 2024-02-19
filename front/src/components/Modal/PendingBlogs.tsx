@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ArticleCategory, TArticle } from "../../pages/Blog"
+import {  TArticle } from "../../pages/Blog"
 import useBlog from "../../hooks/useBlog"
 import truncateText from "../../utils/truncateText"
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight, FaCheckCircle, FaTrash } from "react-icons/fa"
@@ -17,8 +17,7 @@ const PendingBlogs = () => {
         data: {}
     })
     const [page, setPage] = useState(1)
-    const [category, setCategory] = useState<ArticleCategory>('ALL')
-    const {list, erase, update} = useBlog({ page, limit: 10, category, showApproved: 'false'})
+    const {list, erase, update} = useBlog({ page, limit: 10, category: 'ALL', showApproved: 'false'})
     console.log('list', list)
 
     const handleSelect = (data: any) => {
