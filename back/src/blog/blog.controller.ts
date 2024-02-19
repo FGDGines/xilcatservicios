@@ -35,6 +35,8 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { join } from 'path';
 import { createReadStream } from 'fs';
 
+type TPartialBLog = Partial<BlogEntity>
+
 @ApiTags('blog')
 @Controller('blog')
 export class BlogController {
@@ -47,10 +49,12 @@ export class BlogController {
   @ApiOperation({ summary: 'OPERATIVO' })
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'limit', required: false, type: Number })
+  @ApiQuery({ name: 'showApproved', required: true, type: String })
+  @ApiQuery({ name: 'category', required: false, type: String })
   @ApiResponse({ status: 200, description: 'Return all clients.' })
   async getAllClients(@Query() queryParams): Promise<BlogEntity[]> {
-    const { page = 1, limit = 10 } = queryParams;
-    return await this.blogService.findAll(page, limit);
+    const { page = 1, limit = 10,category = 'ALL', showApproved,  } = queryParams;
+    return await this.blogService.findAll(page, limit, showApproved, category);
   }
 
   @Get(':id')
@@ -102,16 +106,16 @@ export class BlogController {
 
   @Put(':id')
   @ApiOperation({ summary: 'OPERATIVO' })
-  @ApiParam({ name: 'id', type: 'number', description: 'Newsletter ID' })
-  @ApiBody({ type: BlogEntity, description: 'Updated newsletter object' })
+  @ApiParam({ name: 'id', type: 'number', description: 'Blog ID' })
+  @ApiBody({ type: BlogEntity, description: 'Updated Blog object' })
   @ApiResponse({
     status: 200,
-    description: 'The newsletter has been successfully updated.',
+    description: 'The Blog has been successfully updated.',
   })
   async update(
     @Param('id') id: number,
-    @Body() updatedNewsletter: BlogEntity,
-  ): Promise<BlogEntity> {
+    @Body() updatedNewsletter: Partial<BlogEntity>,
+  ): Promise<Partial<BlogEntity>> {
     return await this.blogService.update(id, updatedNewsletter);
   }
 

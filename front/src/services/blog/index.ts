@@ -5,7 +5,7 @@ import  postImage  from './postImage'
 
 
 type TBlogServices = {
-    get: () => Promise<any[]>
+    get: ({ queryKey }: {queryKey: any[]}) => Promise<any[]>
     post: any
     postImage: any,
     erase: any
@@ -16,7 +16,7 @@ const blogs: TBlogServices = {
     get,
     post,
     postImage,
-    erase
+    erase,
 }
 
 export default blogs

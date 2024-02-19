@@ -19,7 +19,8 @@ type Inputs = {
   title: string;
   content: string;
   image: FileList;
-  category: TCategory
+  category: TCategory;
+  contact: string
 }
 
 const categories: TCategoryList[] = [
@@ -43,7 +44,7 @@ const categories: TCategoryList[] = [
 
 const Blog = () => {
   const { closeModal } = useAppStore()
-  const { list, postImage, post, erase } = useBlog()
+  const { list, postImage, post, erase } = useBlog({ page: 1, category: 'ALL', limit: 10, showApproved: 'false'})
   const {
     register,
     handleSubmit,
@@ -79,7 +80,11 @@ const Blog = () => {
         <label htmlFor="" className="absolute top-2 left-2">Titulo</label>
         <input type="text" className="w-full py-2 pr-2 pl-20" {...register('title')} />
       </div>
-      <div className="border relative">
+      <div className="border mb-2 relative">
+        <label htmlFor="" className="absolute top-2 left-2">Telf. de contacto</label>
+        <input  className="w-full py-2 pr-2 pl-32" {...register('contact')} maxLength={9}/>
+      </div>
+      <div className="border mb-2 relative">
         <label htmlFor="" className="absolute top-2 left-2">Contenido</label>
         <textarea className="w-full py-2 pr-2 pl-24" {...register('content')}/>
       </div>

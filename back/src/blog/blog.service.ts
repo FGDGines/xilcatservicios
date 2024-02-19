@@ -17,15 +17,22 @@ export class BlogService {
     private readonly blogRepository: Repository<BlogEntity>,
   ) {}
 
-  async findAll(page: number, limit: number): Promise<BlogEntity[]> {
+  async findAll(page: number, limit: number, showApproved: string, category: string): Promise<BlogEntity[]> {
     try {
-      const clients = await this.blogRepository
-        .createQueryBuilder('blog')
-        .leftJoin('blog.auth', 'auth')
+      let clients;
+      const query = this.blogRepository.createQueryBuilder('blog')
+
+      if (showApproved && showApproved === 'true') query.where({ isApproved: true})
+      if (category && category !== 'ALL') query.andWhere({ category })
+      
+      clients = await query.leftJoin('blog.auth', 'auth')
         .select([
           'blog.id',
           'blog.title',
           'blog.content',
+          'blog.category',
+          'blog.contact',
+          'blog.isApproved',
           'blog.imagePath',
           'blog.created_at',
           'blog.updated_at',
@@ -68,7 +75,7 @@ export class BlogService {
     }
   }
 
-  async update(id: number, updatedNewsletter: BlogEntity): Promise<BlogEntity> {
+  async update(id: number, updatedNewsletter: Partial<BlogEntity>): Promise<BlogEntity> {
     await this.blogRepository.update(id, updatedNewsletter);
     return await this.findById(id);
   }

@@ -6,7 +6,20 @@ import moment from 'moment';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
-const Card = ({ article }: { article: TArticle}) => {
+const bgAccordingCategory: { [idx: string]: string} = {
+    RENT: 'bg-blue-100 text-blue-800',
+    SELLING: 'bg-indigo-100 text-indigo-800',
+    COMMUNITY: 'bg-purple-100 text-purple-800',
+    NEWS: 'bg-green-100 text-green-800'
+}
+const categoryToSpanish: { [idx: string]: string} = {
+    RENT: 'ALQUILER',
+    SELLING: 'VENTA',
+    COMMUNITY: 'COMUNIDAD',
+    NEWS: 'NOTICIAS'
+}
+
+const Card = ({ article, current }: { article: TArticle, current: string}) => {
     const [image, setImage] = useState('')
     
     useEffect(() => {
@@ -34,8 +47,14 @@ const Card = ({ article }: { article: TArticle}) => {
             }
     }, [])
 
+    const dataFiltered = () => {
+        if (current === '') return 'opacity-100 flex';
+        if (article.category === current) return 'opacity-100 flex'
+        return 'opacity-0 !hidden'
+    }
+
   return (
-    <div className='flex flex-col shadow-md md:grid md:grid-cols-2 h-[400px] mb-4 md:h-60 xl:h-80 xl:w-full rounded-md'>
+    <div className={`${dataFiltered()} transition-all flex-col shadow-md md:grid md:grid-cols-2 h-[400px] mb-4 md:h-60 xl:h-80 xl:w-full rounded-md `}>
         <div className='bg-cs-gray relative text-white rounded h-[50%] md:h-60 xl:h-80'>
             {/* <img src={Logo} alt="" /> */}
             <img src={image} style={{ width: '100%', height: '100%', objectFit: 'cover'}} alt="" />
@@ -55,11 +74,22 @@ const Card = ({ article }: { article: TArticle}) => {
             </div>
             <h2 className='text-xl mb-2'>{article.title}</h2>
             <p className='flex-1 text-sm overflow-hidden'>{article.content}</p>
-            <div className='flex gap-2 self-end items-center text-sm'>
-                <div>
-                    <FaWhatsapp />
+            <div className='flex gap-2 items-center justify-between text-sm' >
+                <div className={bgAccordingCategory[article.category] + 'text-xs font-medium me-2 px-2.5 py-0.5 rounded'}>
+                    <div>
+                        {categoryToSpanish[article.category]}
+                    </div>
                 </div>
-                <div>Contactanos</div>
+                {
+                    article?.contact && (
+                        <div className='flex items-center gap-1 hover:text-cs-blue hover:cursor-pointer' onClick={() => window.open(`https://wa.me/34${article.contact}?text=Estoy%20interesado%20en%20su%20oferta`)}>
+                            <div>
+                                <FaWhatsapp />
+                            </div>
+                            <div>Contactanos</div>
+                        </div>
+                    )
+                }
             </div>
         </div>
     </div>

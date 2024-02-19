@@ -32,6 +32,12 @@ export class BlogEntity {
   @Column({ type: 'varchar', length: 255, nullable: true })
   imagePath: string;
 
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  contact: string;
+
+  @Column({ default: false })
+  isApproved: boolean;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 

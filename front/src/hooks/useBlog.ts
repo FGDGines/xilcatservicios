@@ -1,27 +1,29 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import blogs from "../services/blog";
 
-const useBlog = () => {
-    const list = useQuery('blog', blogs.get)
+
+const useBlog = ({ page = 1, category= 'ALL', limit = 10, showApproved = "false"}: TBlogParams) => {
+    // const listOnlyApproved = useQuery(['blogApproved', page, category, limit], blogs.getApproved)
+    const list = useQuery(['blog', page, category, limit, showApproved], blogs.get)
     const queryClient = useQueryClient()
 
     const post = useMutation<any, any, any>({
         mutationFn: blogs.post,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['blog']})
+            queryClient.invalidateQueries({ queryKey: ['blog', page, category, limit, showApproved]})
         }
     })
     const postImage = useMutation<any, any,{ data:any, id: number }>({
         mutationFn: blogs.postImage,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['blog']})
+            queryClient.invalidateQueries({ queryKey: ['blog', page, category, limit, showApproved]})
         }
     })
 
     const erase = useMutation<any, any, number>({
         mutationFn: blogs.erase,
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['blog']})
+            queryClient.invalidateQueries({ queryKey: ['blog', page, category, limit, showApproved]})
         }
     })
 
