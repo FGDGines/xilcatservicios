@@ -64,7 +64,6 @@ const PendingBlogs = () => {
                     <div className="flex gap-2 text-xl">
                         <button className="shadow-lg hover:text-cs-purple-light" onClick={() => handleDelete(item)}><FaTrash /></button>
                         <button className="shadow-lg hover:text-cs-purple-light" onClick={() => handleApprove(item)}><FaCheckCircle /></button>
-                        {/* {item.isApproved ? 'Aprobado' : 'Por Aprobar'} */}
                     </div>
                 </div>
                 </>

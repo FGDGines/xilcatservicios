@@ -3,7 +3,6 @@ import blogs from "../services/blog";
 
 
 const useBlog = ({ page = 1, category= 'ALL', limit = 10, showApproved = "false"}: TBlogParams) => {
-    // const listOnlyApproved = useQuery(['blogApproved', page, category, limit], blogs.getApproved)
     const list = useQuery(['blog', page, category, limit, showApproved], blogs.get)
     const getBlogCount = () => useQuery(['blog', 'count'], blogs.getCount)
     const queryClient = useQueryClient()

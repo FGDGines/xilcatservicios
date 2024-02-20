@@ -1,18 +1,14 @@
-// import { useReducer } from 'react'
 import { FaUsers, FaBook, FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome} from "react-icons/fa";
-import { LuMessagesSquare, LuUserCircle } from "react-icons/lu";
-// import { GiHamburgerMenu } from "react-icons/gi";
+import { LuMessagesSquare } from "react-icons/lu";
 
 import { IoIosMail } from "react-icons/io";
 import Icon from './Icon';
-// import { useDeviceSize } from '../../hooks/Responsive';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuthProvider } from '../../hooks/useAuthProvider';
 import { useAppStore } from '../../store';
 import { jwtDecode } from 'jwt-decode';
 import { MdSpeakerNotesOff } from "react-icons/md";
-import { useEffect, useState } from "react";
-import axios from "axios";
+
 import useBlog from "../../hooks/useBlog";
 
 type TLinks = {
@@ -27,8 +23,6 @@ const Layout = ({ Component }: { Component: any }) => {
   const navigate = useNavigate()
   const { getBlogCount } = useBlog({})
   const { data } = getBlogCount()
-  // const { isDesktop } = useDeviceSize()
-  // const [isOpen, toggleIsOpen] = useReducer((prev) => !prev, false)
   const { signout } = useAuthProvider()
   const { setModal } = useAppStore()
   const auth = localStorage.getItem('auth_token') && jwtDecode(String(localStorage.getItem('auth_token'))) as any
@@ -72,11 +66,11 @@ const Layout = ({ Component }: { Component: any }) => {
       text: 'Chat',
       Icon: <LuMessagesSquare />
     },
-    {
-      link: '',
-      text: 'Usuario',
-      Icon: <LuUserCircle />
-    },
+    // {
+    //   link: '',
+    //   text: 'Usuario',
+    //   Icon: <LuUserCircle />
+    // },
     {
       link: '',
       text: 'Blog',
@@ -189,7 +183,6 @@ const Layout = ({ Component }: { Component: any }) => {
 
         {/* Principal Component */}
         <div className='row-span-6 overflow-auto text-black lg:row-[span_8_/_span_8] bg-white relative'>{<Component />}</div>
-        {/* <div className=' row-span-4 overflow-auto lg:row-span-7 text-black'>{<Component />}</div> */}
     </div>
   )
 }
