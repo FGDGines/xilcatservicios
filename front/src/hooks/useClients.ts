@@ -6,7 +6,7 @@ import { TClientsCategory } from '../components/Intranet/types'
 const useClients = (category: TClientsCategory) => {
     const queryClient = useQueryClient()
     
-    const getList = useQuery<TClient[], any>(['clients', category], clients.get)
+    const list = useQuery<TClient[], any>(['clients', category], clients.get)
 
     const getClient = (id:number) => useQuery<TClient, any>(['clients', id], clients.getById)
 
@@ -40,7 +40,7 @@ const useClients = (category: TClientsCategory) => {
     })
 
     return {
-        getList,
+        list,
         add,
         erase,
         update,
