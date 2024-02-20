@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const get = async ({ queryKey }: { queryKey: any}) => {
+export const get = async ({ queryKey}: {queryKey: any}) => {
     const [_, category] = queryKey
     try {
         const response = await axios.get(import.meta.env.VITE_BACKEND_URL + '/client?category=' + category)

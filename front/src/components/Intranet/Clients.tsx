@@ -11,7 +11,8 @@ import { TClientsCategory } from './types'
 
 const Clients = () => {
   const [category, setCategory] = useState<TClientsCategory>('active')
-  const { list: { isLoading, data, isError }} = useClients(category)
+  const { getList: { isLoading, data, isError }} = useClients(category)
+  // const  = getList(category)
   const { setModal } = useAppStore()
 
   if (isLoading) return <Loader />
