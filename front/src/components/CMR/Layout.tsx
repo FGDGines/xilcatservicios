@@ -13,6 +13,7 @@ import { jwtDecode } from 'jwt-decode';
 import { MdSpeakerNotesOff } from "react-icons/md";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useBlog from "../../hooks/useBlog";
 
 type TLinks = {
   text: string,
@@ -24,21 +25,13 @@ type TLinks = {
 const Layout = ({ Component }: { Component: any }) => {
   const location = useLocation()
   const navigate = useNavigate()
+  const { getBlogCount } = useBlog({})
+  const { data } = getBlogCount()
   // const { isDesktop } = useDeviceSize()
   // const [isOpen, toggleIsOpen] = useReducer((prev) => !prev, false)
   const { signout } = useAuthProvider()
   const { setModal } = useAppStore()
   const auth = localStorage.getItem('auth_token') && jwtDecode(String(localStorage.getItem('auth_token'))) as any
-
-  const [totalCount, setTotalCount] = useState(0)
-
-  useEffect(() => {
-      const getPendingBlogCount = async () => {
-          const count = await axios.get('/api/blog/total')
-          setTotalCount(count.data)
-      }
-      getPendingBlogCount()
-  }, [])
 
   const setDescriptionName = () => {
     const nameDescription: { [index: string]: string } = {
@@ -149,7 +142,7 @@ const Layout = ({ Component }: { Component: any }) => {
                           <MdSpeakerNotesOff />
                           Pendientes
                           <div className="text-sm w-6 h-6 rounded-full absolute -top-1 -right-1 bg-red-500 text-white text-center">
-                            {totalCount}
+                            {data}
                           </div>
                         </p>
                     </li>

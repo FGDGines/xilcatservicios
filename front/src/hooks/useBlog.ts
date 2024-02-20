@@ -5,19 +5,18 @@ import blogs from "../services/blog";
 const useBlog = ({ page = 1, category= 'ALL', limit = 10, showApproved = "false"}: TBlogParams) => {
     // const listOnlyApproved = useQuery(['blogApproved', page, category, limit], blogs.getApproved)
     const list = useQuery(['blog', page, category, limit, showApproved], blogs.get)
+    const getBlogCount = () => useQuery(['blog', 'count'], blogs.getCount)
     const queryClient = useQueryClient()
 
     const post = useMutation<any, any, any>({
         mutationFn: blogs.post,
         onSuccess: () => {
             queryClient.invalidateQueries('blog')
-            // queryClient.invalidateQueries({ queryKey: ['blog', page, category, limit, showApproved]})
         }
     })
     const update = useMutation<any, any, { data:any, id: number }>({
         mutationFn: blogs.update,
         onSuccess: () => {
-            // queryClient.invalidateQueries({ queryKey: ['blog', page, category, limit, showApproved]})
             queryClient.invalidateQueries('blog')
 
         }
@@ -26,7 +25,6 @@ const useBlog = ({ page = 1, category= 'ALL', limit = 10, showApproved = "false"
         mutationFn: blogs.postImage,
         onSuccess: () => {
             queryClient.invalidateQueries('blog')
-            // queryClient.invalidateQueries({ queryKey: ['blog', page, category, limit, showApproved]})
         }
     })
 
@@ -34,12 +32,12 @@ const useBlog = ({ page = 1, category= 'ALL', limit = 10, showApproved = "false"
         mutationFn: blogs.erase,
         onSuccess: () => {
             queryClient.invalidateQueries('blog')
-            // queryClient.invalidateQueries({ queryKey: ['blog', page, category, limit, showApproved]})
         }
     })
 
     return {
         list,
+        getBlogCount,
         post,
         postImage,
         erase,
