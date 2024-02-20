@@ -48,7 +48,7 @@ const Card = ({ article, current }: { article: TArticle, current: string}) => {
     }, [])
 
     const dataFiltered = () => {
-        if (current === '') return 'opacity-100 flex';
+        if (current === 'ALL') return 'opacity-100 flex';
         if (article.category === current) return 'opacity-100 flex'
         return 'opacity-0 !hidden'
     }

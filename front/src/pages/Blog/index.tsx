@@ -27,7 +27,7 @@ const BlogPage: React.FC = () => {
 
   const handleCategorySelection = (categoryServer: ArticleCategory) => {
     setCurrentCategory(categoryServer)
-    setCategory(category)
+    setCategory(categoryServer)
   }
 
   if (list.isLoading) return (
@@ -41,25 +41,6 @@ const BlogPage: React.FC = () => {
     </>
   )
 
-  if (Number(list.data?.length) <= 0 && page === 1) return (
-    <>
-
-    <HeaderMenu />
-    <div className='flex items-center justify-center h-[50vh] mt-12'>
-      <div className='border rounded-md shadow-lg h-full flex justify-center items-center mx-8 bg-cs-gray text-white'>
-        <div className='px-8'>
-          <p className='text-center font-bold text-3xl'>Ningun Blog ha sido agregado aun</p>
-          <div className='relative h-40 w-40 mx-auto mt-8'>
-            <img src={Logo} alt="" style={{width: '100%', height: '100%', objectFit: 'contain'}} />
-          </div>
-        </div>
-      </div>
-    </div>
-    <Footer />
-    <PoliticsBar />
-    </>
-  )
-
   return (
     <>
     <HeaderMenu />
@@ -68,7 +49,7 @@ const BlogPage: React.FC = () => {
         text-4xl mb-8 col-span-2 bg-cs-purple text-white px-2 uppercase relative
         md:text-end
         lg:text-6xl
-        xl:item-center xl:place-self-end  xl:self-center xl:mb-0 xl:h-full xl:w-[50%]
+        xl:item-center xl:place-self-end  xl:self-center xl:mb-0  xl:w-[50%]
         ">
           Xilcat 
             <span className='text-cs-blue'>
@@ -82,9 +63,32 @@ const BlogPage: React.FC = () => {
           <button className={`${currentCategory === 'NEWS' ? 'bg-cs-purple':'bg-cs-blue'} px-1 sm:px-2 md:px-4 rounded`} onClick={() => handleCategorySelection('NEWS')}>Noticias</button>
       </div>
       </h1>
-      {list?.data?.map((article) => (
-          <Card article={article} current={currentCategory}/>
-          ))}
+      {
+          (Number(list.data?.length) <= 0 && page === 1) && (
+            <>
+            <div className='flex items-center justify-center h-[50vh] mt-12'>
+              <div className='border rounded-md shadow-lg h-full flex justify-center items-center mx-8 bg-cs-gray text-white'>
+                <div className='px-8'>
+                  <p className='text-center font-bold text-3xl'>Ningun Blog ha sido agregado aun</p>
+                  <div className='relative h-40 w-40 mx-auto mt-8'>
+                    <img src={Logo} alt="" style={{width: '100%', height: '100%', objectFit: 'contain'}} />
+                  </div>
+                </div>
+              </div>
+            </div>
+            </>
+          )
+      }
+      {
+        (Number(list.data?.length)  >= 1) && (
+          <>
+          {list?.data?.map((article) => (
+            <Card article={article} current={currentCategory}/>
+            ))}
+
+          </>
+        )
+      }
     </div>
         <div className='flex justify-center items-center text-xl gap-2'>
           <button
