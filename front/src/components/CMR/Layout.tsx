@@ -176,10 +176,10 @@ const Layout = ({ Component }: { Component: any }) => {
           lg:col-span-1 lg:flex-col lg:items-start lg:justify-start lg:gap-2 lg:pt-8 lg:row-[span_8_/_span_8]
         '
       >
+        <Icon Icon={<FaHome />} text='Principal' url="/intranet/main" isSide />
         {
           (auth.rol !== 'LAWYER' && auth.rol !== 'CLIENT') && (
             <>
-              <Icon Icon={<FaHome />} text='Principal' url="/intranet/main" isSide />
               <Icon Icon={<FaCloud />} text="Iono" url='' externalUrl="https://login.ionos.es/?shoplogin=enabled&linkId=button-hd-nav-login" isSide />
               <Icon Icon={<IoIosMail />} text="Email" url='' isSide externalUrl="https://login.ionos.es/" />
               <Icon Icon={<FaTrello />} text="Trello" url='' isSide externalUrl="https://trello.com/es" />
