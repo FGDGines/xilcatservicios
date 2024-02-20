@@ -11,7 +11,7 @@ const Description = () => {
   const [isEditing, toggleIsEditing] = useReducer((prev) => !prev, false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const { modal, deleteJournalById, closeModal, addJournalEvent, deleteJournalByParams } = useAppStore()
+  const { modal, closeModal, addJournalEvent, deleteJournalByParams } = useAppStore()
   const { erase, update } = useJournal()
   const auth = jwtDecode(localStorage.getItem('auth_token') as any) as any
   const authId = auth.id
