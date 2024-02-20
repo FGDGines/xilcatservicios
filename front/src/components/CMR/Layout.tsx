@@ -169,7 +169,7 @@ const Layout = ({ Component }: { Component: any }) => {
           (auth.rol !== 'LAWYER' && auth.rol !== 'CLIENT') && (
             <>
               <Icon Icon={<FaCloud />} text="Iono" url='' externalUrl="https://login.ionos.es/?shoplogin=enabled&linkId=button-hd-nav-login" isSide />
-              <Icon Icon={<IoIosMail />} text="Email" url='' isSide externalUrl="https://login.ionos.es/" />
+              <Icon Icon={<IoIosMail />} text="Email" url='' isSide externalUrl="https://id.ionos.es/identifier" />
               <Icon Icon={<FaTrello />} text="Trello" url='' isSide externalUrl="https://trello.com/es" />
               <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')} isSide />
             </>
