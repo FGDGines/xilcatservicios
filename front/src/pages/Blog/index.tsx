@@ -66,7 +66,7 @@ const BlogPage: React.FC = () => {
       {
           (Number(list.data?.length) <= 0 && page === 1) && (
             <>
-            <div className='flex items-center justify-center h-[50vh] mt-12'>
+            <div className='flex items-center justify-center h-[50vh] mt-12 col-span-2'>
               <div className='border rounded-md shadow-lg h-full flex justify-center items-center mx-8 bg-cs-gray text-white'>
                 <div className='px-8'>
                   <p className='text-center font-bold text-3xl'>Ningun Blog ha sido agregado aun</p>

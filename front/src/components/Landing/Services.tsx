@@ -74,7 +74,7 @@ const Services = ({ setRef, contactRef } : TParams ) => {
         >
           <p
             
-            className="text-[14px] text-center px-6 py-4 rounded-[20px] text-white shadow flex items-center gap-2 md:text-[22px] hover:-translate-y-1 hover:-translate-x-1 transition-all" style={{
+            className="text-[14px] text-center px-6 py-4 rounded-[20px] text-white shadow flex items-center gap-2 md:text-[22px] hover:-translate-y-1 hover:-translate-x-1 hover:cursor-pointer transition-all" style={{
               // justifyContent: "center",
               background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)",
               // padding: 11,
