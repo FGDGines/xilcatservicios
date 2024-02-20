@@ -3,6 +3,7 @@ import { useAppStore } from '../../store'
 import useJournal from '../../hooks/useJournal'
 import { toast } from 'react-toastify'
 import { useEffect, useReducer, useState } from 'react'
+import { jwtDecode } from 'jwt-decode'
 // import { jwtDecode } from 'jwt-decode'
 // import moment from 'moment'
 
@@ -10,32 +11,32 @@ const Description = () => {
   const [isEditing, toggleIsEditing] = useReducer((prev) => !prev, false)
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const { modal, deleteJournalById, closeModal } = useAppStore()
-  const { erase } = useJournal()
-  // const auth = jwtDecode(localStorage.getItem('auth_token') as any) as any
-  // const id = auth.id
+  const { modal, deleteJournalById, closeModal, addJournalEvent, deleteJournalByParams } = useAppStore()
+  const { erase, update } = useJournal()
+  const auth = jwtDecode(localStorage.getItem('auth_token') as any) as any
+  const authId = auth.id
 
   const handleDelete = (id: number) => {
     erase.mutate({ id}, {
         onSuccess: () => {
-            deleteJournalById(id)
+            deleteJournalByParams(modal.params.title, modal.params.text)
             toast.success('nota eliminada')
             closeModal()
         }
     })
   }
 
-  // const handleUpdate = (id: number) => {
-  //   update.mutate({ data: { title, description, auth: id}, id},
-  //     {
-  //       onSuccess: (variables) => {
-  //           deleteJournalById(id)
-  //           addJournalEvent(variables)
-  //           toast.success('nota actualizada')
-  //           closeModal()
-  //       }
-  //   })
-  // }
+  const handleUpdate = (id: number) => {
+    update.mutate({ data: { title, description, auth:authId }, id},
+      {
+        onSuccess: (variables) => {
+            deleteJournalByParams(modal.params.title, modal.params.text)
+            addJournalEvent(variables)
+            toast.success('nota actualizada')
+            closeModal()
+        }
+    })
+  }
 
   useEffect(() => {
       setTitle(modal.params.title)
@@ -88,7 +89,7 @@ const Description = () => {
               </div>
               <div className='flex justify-end items-center'>
                 <button
-                // onClick={() => handleUpdate(Number(modal?.id))}
+                onClick={() => handleUpdate(Number(modal?.id))}
                   className='px-4 py-2 bg-cs-purple text-white transition-all rounded shadow-lg hover:-translate-y-1 hover:bg-cs-purple-light'
                   >
                     Guardar

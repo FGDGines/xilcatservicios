@@ -26,6 +26,7 @@ export type EventState = {
     clearAccounts: () => void
     clearJournal: () => void
     deleteJournalById: (id: number) => void
+    deleteJournalByParams: (title: string, description: string) => void
 }
 
 export const eventSlice: StateCreator<EventState>  = ((set,) => ({
@@ -40,4 +41,12 @@ export const eventSlice: StateCreator<EventState>  = ((set,) => ({
 
         return ({ event: { account: state.event.account, journal: filteredJournal}})
     }),
+    deleteJournalByParams(title, description) {
+        set((state) => {
+            const journals = state.event.journal
+            const filteredJournal = journals.filter(item => item.title !== title && item.description !== description)
+
+            return ({ event: { account: state.event.account, journal: filteredJournal}})
+        })
+    },
 }))
