@@ -18,7 +18,7 @@ const Landing = () => {
       <HeaderMenu refs={multipleRef} />
       <div className='flex flex-col scroll-smooth text-cs-purple'>
         <Intro  />
-        <AboutUs setRef={setRef}/>
+        <AboutUs setRef={setRef} refs={multipleRef}/>
         <Services setRef={setRef} contactRef={multipleRef.current[3]} />
         <Offer setRef={setRef}/>
         <OurTeam setRef={setRef} />

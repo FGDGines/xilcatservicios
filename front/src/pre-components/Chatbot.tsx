@@ -5,7 +5,7 @@ import { Ask } from "../pre-types/Ask";
 import { TranslationKeys } from "../language/type-i18n";
 import { useTranslation } from "react-i18next";
 
-export const Chatbot = () => {
+export const Chatbot = ({ refs }: { refs: any}) => {
     const { t } = useTranslation<TranslationKeys>();
     // NO FUNCIONA CON STATE i18n
     // const [ask,] = useState<Ask[]>([
@@ -14,9 +14,9 @@ export const Chatbot = () => {
     //     { question: "Como te contactas con nosotros?", redirect: "Contact" },
     // ])
     const ask: Ask[] = [
-        { question: t("bot.question.1" as TranslationKeys), redirect: "Team" },
-        { question: t("bot.question.2" as TranslationKeys), redirect: "Services" },
-        { question: t("bot.question.3" as TranslationKeys), redirect: "Contact" },
+        { question: t("bot.question.1" as TranslationKeys), redirect: () => refs.current[3].scrollIntoView({ behavior: 'smooth' }) },
+        { question: t("bot.question.2" as TranslationKeys), redirect: () => refs.current[2].scrollIntoView({ behavior: 'smooth' }) },
+        { question: t("bot.question.3" as TranslationKeys), redirect: () => refs.current[4].scrollIntoView({ behavior: 'smooth' }) },
     ]
 
     const [mostrarPreguntas, setMostrarPreguntas] = useState<boolean>(false);
@@ -34,8 +34,9 @@ export const Chatbot = () => {
                         // position: "absolute",
                         bottom: "calc(25%)",
                         right: "10%", // Ajusta la posición izquierda según tu diseño
-                    }}> {ask.map(_ => <motion.a
-                        href={"#" + _.redirect}
+                    }}> {ask.map(_ => <motion.p
+                        className="hover:cursor-pointer"
+                        onClick={() => {_.redirect && _.redirect()}}
                         initial={{
                             fontSize: 23,
                             fontWeight: 400,
@@ -53,7 +54,7 @@ export const Chatbot = () => {
                             // width: '260px'
                         }}>
                         {_.question}
-                    </motion.a>)}
+                    </motion.p>)}
                 </motion.div>
             ) : <motion.div
                 className="flex flex-col gap-3"

@@ -5,7 +5,7 @@ import { TranslationKeys } from '../../language/type-i18n';
 import { Chatbot } from '../../pre-components/Chatbot'
 import { LegacyRef } from 'react';
 
-const AboutUs = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivElement> }) => {
+const AboutUs = ({ setRef, refs } : { setRef: (id: number) => LegacyRef<HTMLDivElement>, refs: any }) => {
   const { t } = useTranslation<TranslationKeys>();
 
   const { isDesktop } = useDeviceSize()
@@ -19,7 +19,7 @@ const AboutUs = ({ setRef } : { setRef: (id: number) => LegacyRef<HTMLDivElement
         </div>
       </div>
       {
-        isDesktop && <Chatbot />
+        isDesktop && <Chatbot refs={refs} />
       }
     </div>
   )
