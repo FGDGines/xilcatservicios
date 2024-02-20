@@ -12,7 +12,7 @@ import { TJournal } from '../../types/journal'
 
 const Event = () => {
   const [isClientRegistered, setIsClientRegistered] = useState(true)
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState('0')
   const { list: { data, isLoading, isError}, update } = useClients('all')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -23,16 +23,19 @@ const Event = () => {
 
   const handleAddEvent = () => {
     if (modal.params.type === 'account'){
+        if (amount === '0' || amount === '' || amount.includes('-')) return toast.error('No puedes poner un monto negativo o 0')
         const eventToAdd = {
           start: moment(modal.params.start),
           end: moment(modal.params.end),
           title: `Pago ${amount}€`,
-          amount
+          amount,
+          id: Math.floor(Math.random() * 999999999999)
         }
         update.mutate({ data: { dues: JSON.stringify(account.concat(eventToAdd)) }, id: Number(modal.params.id) }, {
           onSuccess() {
             addAccountEvent(eventToAdd)
             toast.success('Pago Agregado')
+            closeModal()
           },
           onError() {
             toast.error("No se puedo Agregar el pago")
@@ -81,7 +84,7 @@ const Event = () => {
         modal.params.type === 'account' && (
         <div className='flex gap-2 justify-evenly'>
           <label htmlFor="payment">Ingrese monto del pago</label>
-          <input type="number" id="payment" min={0} className='border' value={amount} onChange={(e) => setAmount(Number(e.target.value))} />
+          <input type="number" id="payment" min={0} className='border' value={amount} onChange={(e) => setAmount(String(e.target.value))} />
         </div>
         )
       }

@@ -18,8 +18,6 @@ const InputItem = (props: TParams) => {
         "secondaryPhone": 'Telefono 2'
     }
 
-    console.log('type', props.type)
-    console.log('typeToSpanish', typeToSpanish[props.type])
   return (
     <>
       {

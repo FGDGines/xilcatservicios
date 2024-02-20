@@ -152,7 +152,7 @@ const Layout = ({ Component }: { Component: any }) => {
         <div
           className="bg-cs-purple flex flex-col h-full gap-4 px-6 text-center text-neutral-200 lg:flex-row lg:pt-4 lg:justify-center lg:h-[65%] xl:h-full">
           <h1 className="text-3xl md:text-4xl font-bold mt-2 lg:mt-0">Intranet XilcatServicios</h1>
-          <h3 className="text-xl md:text-2xl font-bold">{setDescriptionName()}</h3>
+          <h3 className="text-cs-blue text-xl md:text-2xl font-bold">{setDescriptionName()}</h3>
 
         </div>
       </header>
