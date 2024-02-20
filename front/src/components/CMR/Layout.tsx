@@ -103,25 +103,7 @@ const Layout = ({ Component }: { Component: any }) => {
         <ul
           className="mr-auto flex items-center"
           data-te-navbar-nav-ref>
-            {
-              links.map(link => (
-                <li className="pr-2" data-te-nav-item-ref key={link.text}>
-                  <p
-                    className="
-                    block transition duration-150 ease-in-out flex gap-2 items-center text-white
-                    disabled:text-black/30 hover:text-cs-blue p-2 [&.active]:text-black/90 hover:cursor-pointer"
-                    data-te-nav-link-ref
-                    data-te-ripple-init
-                    data-te-ripple-color="light"
-                    onClick={() => {link.action ? link?.action() : navigate(link.link)}}
-                    >
-                      {link.Icon}
-                      {link.text}
-                    </p>
-                </li>
-              ))
-            }
-            {
+                        {
               auth.rol === "ADMINISTRATOR" && (
                 <li className="pr-2" data-te-nav-item-ref key="approved">
                       <p
@@ -142,6 +124,25 @@ const Layout = ({ Component }: { Component: any }) => {
                     </li>
               )
             }
+            {
+              links.map(link => (
+                <li className="pr-2" data-te-nav-item-ref key={link.text}>
+                  <p
+                    className="
+                    block transition duration-150 ease-in-out flex gap-2 items-center text-white
+                    disabled:text-black/30 hover:text-cs-blue p-2 [&.active]:text-black/90 hover:cursor-pointer"
+                    data-te-nav-link-ref
+                    data-te-ripple-init
+                    data-te-ripple-color="light"
+                    onClick={() => {link.action ? link?.action() : navigate(link.link)}}
+                    >
+                      {link.Icon}
+                      {link.text}
+                    </p>
+                </li>
+              ))
+            }
+
         </ul>
       </div>
     </div>
