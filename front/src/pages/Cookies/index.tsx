@@ -15,17 +15,17 @@ const Cookies = () => {
                 <div className='1px border border-cs-purple w-[5%] m-auto'></div>
             </header>
 
-            <p>
+            <p className='text-justify'>
               {t('cookies.description')}
             </p>
           <h3 className='text-3xl mb-4 mt-8'>{t('cookies.subtitle1')}</h3>
-          <p>{t('cookies.subdescription1')}</p>
+          <p className='text-justify'>{t('cookies.subdescription1')}</p>
           <h3 className='text-3xl mb-4 mt-8'>{t('cookies.subtitle2')}</h3>
-          <p>
+          <p className='text-justify'>
           {t('cookies.subdescription2')}
           </p>
           <h3 className='text-3xl mb-4 mt-8'>{t('cookies.subtitle3')}</h3>
-          <p>{t('cookies.subdescription3')}</p>
+          <p className='text-justify'>{t('cookies.subdescription3')}</p>
             <ul className='list-disc my-6 ml-8'>
               <li className='my-2'>Facebook:&nbsp;<span>https://www.facebook.com/policies/cookies/</span> </li>
               <li className='my-2'>Twitter:&nbsp;<span>https://twitter.com/es/privacy</span></li>
@@ -35,7 +35,7 @@ const Cookies = () => {
               <li className='my-2'>LinkedIn:&nbsp;<span>https://www.linkedin.com/legal/cookie-policy?trk=hp-cookies</span></li>
             </ul>
           <h3 className='text-3xl mb-4 mt-8'>{t('cookies.subtitle4')}</h3>
-          <p>{t('cookies.subdescription4')}</p>
+          <p className='text-justify'>{t('cookies.subdescription4')}</p>
           <div className='mt-12'><a href="mailto:#">gestion@xilcatservicios.com</a></div>
       </section>
         <Footer />

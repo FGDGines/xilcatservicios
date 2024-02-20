@@ -3,8 +3,13 @@ import GroupImg from '../../assets/rafiki.png'
 import { FaPhoneAlt } from "react-icons/fa";
 import { TranslationKeys } from '../../language/type-i18n';
 
-const Intro = () => {
+const Intro = ({ contactRef }: { contactRef: any}) => {
     const { t } = useTranslation<TranslationKeys>();
+  
+    const handleNavigate = () => contactRef?.scrollIntoView({ behavior: 'smooth' })
+    const handleOpenLink = () => {
+        window.open("https://booking.setmore.com/scheduleappointment/1c90759b-74db-40e5-a7e6-dbb7a9d8ceb3")
+    }
 
     return (
         <div className='lg:grid lg:grid-cols-[60%_1fr] xl:grid-cols-[40%_1fr]'>
@@ -15,11 +20,17 @@ const Intro = () => {
                     <p className='text-3xl font-semibold mb-6 md:text-5xl md:leading-normal lg:text-[40px] lg:text-start lg:leading-[47px] lg:mb-[12px]'>{t('title' as TranslationKeys)}</p>
                     <p className='text-sm md:text-3xl lg:text-start lg:text-[20px] lg:w-[70%] lg:self-start lg:leading-[24px]'>{t('description' as TranslationKeys)}</p>
                     <div className='flex gap-2 mt-4 md:gap-6 md:mt-8 lg:mt-[48px]'>
-                        <button className='px-8 py-4 bg-cs-gray rounded-[20px] flex gap-2 items-center font-semibold md:text-xl hover:bg-cs-gray-light hover:border hover:border-white transition-all'>
+                        <button
+                            onClick={handleOpenLink}
+                            className='px-8 py-4 bg-cs-gray rounded-[20px] flex gap-2 items-center font-semibold md:text-xl hover:bg-cs-gray-light hover:border hover:border-white transition-all'>
                             <FaPhoneAlt />
                             {t('buttonAction' as TranslationKeys)}
                         </button>
-                        <button className='px-8 py-4 bg-transparent border rounded-[20px] font-semibold md:text-xl hover:bg-cs-purple-light transition-all'>{t('buttonAction2' as TranslationKeys)}</button>
+                        <button
+                            onClick={handleNavigate}
+                            className='px-8 py-4 bg-transparent border rounded-[20px] font-semibold md:text-xl hover:bg-cs-purple-light transition-all'>
+                                {t('buttonAction2' as TranslationKeys)}
+                            </button>
                     </div>
                 </div>
             </div>
