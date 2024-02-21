@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
-import pdfFile from '../../../../back/public/clients/1/1708489013989-Pasapporte.pdf'
-import axios from 'axios'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import Loader from '../Common/Loader'
 const PDF = () => {
     const location = useLocation()
@@ -16,7 +14,6 @@ const PDF = () => {
             const param = location.search.split('/');
             const filename = param.at(-1)?.replace('.pdf', '')
             const clientid = param.at(-2)
-            const path = `../../../../back/public/clients/${clientid}/${filename}.pdf`
 
             try {
             const item = (await import(`../../../../back/public/clients/${clientid}/${filename}.pdf`))
