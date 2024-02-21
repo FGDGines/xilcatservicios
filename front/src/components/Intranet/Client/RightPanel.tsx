@@ -37,6 +37,14 @@ const RightPanel = ({ side, id, data }: TProps) => {
       if ((currentRef && Number(currentRef.files?.length) <= 0) && !hasFileUploaded(String(currentRef?.name))) {
         currentRef?.click();
       } else {
+        const fileType = currentRef?.name
+        let filePath;
+        if (Array.isArray(data?.pdf)) {
+          const file = data.pdf.find(item => item.typePdf === fileType)?.path
+          filePath = file?.replace('./', '')
+        }
+        
+        navigate(`/intranet/pdf?path=${filePath}`)
         toast.warning('file already uploaded');
       }
     };
