@@ -12,6 +12,7 @@ import {
   Post,
   Put,
   Query,
+  StreamableFile,
   UploadedFile,
   // UploadedFiles,
   UseInterceptors,
@@ -34,6 +35,8 @@ import {
   FileInterceptor,
 } from '@nestjs/platform-express';
 import { AuthService } from 'src/auth/auth.service';
+import { createReadStream } from 'fs';
+import { join } from 'path';
 
 @ApiTags('client')
 @Controller('client')

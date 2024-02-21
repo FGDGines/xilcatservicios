@@ -160,7 +160,7 @@ export class ClientService {
       }
 
       const folderPath = `./public/clients/${clientId}`;
-      const uniqueSuffix = `${Date.now()}-${pdfType}`;
+      const uniqueSuffix = `${Date.now()}-${pdfType.replace(" ", '')}`;
       const extension = extname(pdf.originalname);
 
       if (!existsSync(folderPath)) {
