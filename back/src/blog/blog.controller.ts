@@ -112,6 +112,29 @@ export class BlogController {
     return await this.blogService.create(newsletter);
   }
 
+  @Post('guest')
+  @ApiOperation({ summary: 'OPERATIVO' })
+  @ApiBody({
+    type: BlogEntity,
+    description: 'New blog object',
+    examples: {
+      example1: {
+        value: { title: 'Sample Title', content: 'Sample Content', auth: 0 },
+        summary: 'Sample Newsletter Object',
+      },
+      // Agrega más ejemplos según sea necesario
+    },
+  })
+  @ApiResponse({
+    status: 201,
+    description: 'The blog has been successfully created.',
+  })
+  async createFromGuest(
+    @Body() newsletter: BlogEntity,
+  ): Promise<BlogEntity | ValidationError[]> {
+    return await this.blogService.create(newsletter);
+  }
+
   @Put(':id')
   @ApiOperation({ summary: 'OPERATIVO' })
   @ApiParam({ name: 'id', type: 'number', description: 'Blog ID' })

@@ -3,7 +3,9 @@ const rolAlSpanol: { [idx: string] : string} = {
   'LAWYER': 'ABOGADO',
   'ADVISER': 'CONSEJERO',
   'CLIENT': 'CLIENTE',
-  'ADMINISTRATOR': 'ADMINISTRADOR'
+  'ADMINISTRATOR': 'ADMINISTRADOR',
+  'COMMUNITY': 'COMUNICADORA',
+  'CONTABILITY': 'CONTABILIDAD'
 }
 
 const UserCard = ({ data }: { data: any }) => {

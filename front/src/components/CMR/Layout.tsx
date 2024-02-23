@@ -104,7 +104,7 @@ const Layout = ({ Component }: { Component: any }) => {
           className="mr-auto flex items-center"
           data-te-navbar-nav-ref>
                         {
-              auth.rol === "ADMINISTRATOR" && (
+             ( auth.rol === "ADMINISTRATOR" || auth.rol === 'COMMUNITY')&& (
                 <li className="pr-2" data-te-nav-item-ref key="approved">
                       <p
                         className="

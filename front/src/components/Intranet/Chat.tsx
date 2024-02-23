@@ -26,7 +26,9 @@ enum UserRole {
     ADMINISTRATOR = 'Administrador',
     LAWYER = 'Abogado',
     ADVISER = 'Asesor',
-    CLIENT = 'Cliente'
+    CLIENT = 'Cliente',
+    COMMUNITY = 'Comunicadora',
+    CONTABILITY = 'Contabilidad'
 }
 
 interface User {

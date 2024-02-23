@@ -42,8 +42,8 @@ export class AuthEntity {
   password: string;
 
   @Column({ default: 'CLIENT' as Rol })
-  @IsIn(['ABOGADO', 'ADMINISTRADOR', 'ASESOR', 'CLIENT'] as Rol[], {
-    message: 'El rol es invalido - ABOGADO, ADMINISTRADOR, ASESOR, CLIENT',
+  @IsIn(['ABOGADO', 'ADMINISTRADOR', 'CONTABILIDAD', 'CLIENT', 'COMMUNITY'] as Rol[], {
+    message: 'El rol es invalido - ABOGADO, ADMINISTRADOR, CONTAVILITY, CLIENT COMMUNITY',
   })
   rol: Rol;
 

@@ -15,17 +15,17 @@ export class BlogService {
   constructor(
     @InjectRepository(BlogEntity)
     private readonly blogRepository: Repository<BlogEntity>,
-  ) {}
+  ) { }
 
   async findAll(page: number, limit: number, showApproved: string, category: string): Promise<BlogEntity[]> {
     try {
       let clients;
       const query = this.blogRepository.createQueryBuilder('blog')
 
-      if (showApproved && showApproved === 'true') query.where({ isApproved: true})
-      if (showApproved && showApproved === 'false') query.where({ isApproved: false})
+      if (showApproved && showApproved === 'true') query.where({ isApproved: true })
+      if (showApproved && showApproved === 'false') query.where({ isApproved: false })
       if (category && category !== 'ALL') query.andWhere({ category })
-      
+
       clients = await query.leftJoin('blog.auth', 'auth')
         .select([
           'blog.id',
@@ -33,6 +33,7 @@ export class BlogService {
           'blog.content',
           'blog.category',
           'blog.contact',
+          'blog.name',
           'blog.isApproved',
           'blog.imagePath',
           'blog.created_at',
@@ -56,7 +57,7 @@ export class BlogService {
 
   async findNumber(type: string) {
     if (type && type === 'all') return await this.blogRepository.count()
-    return await this.blogRepository.count({ where: { isApproved: false }})
+    return await this.blogRepository.count({ where: { isApproved: false } })
   }
 
   async findById(id: number): Promise<BlogEntity | undefined> {

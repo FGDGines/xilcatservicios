@@ -15,7 +15,9 @@ type Inputs = {
 const rolAlSpanol: { [idx: string] : string} = {
   'LAWYER': 'ABOGADO',
   'ADVISER': 'CONSEJERO',
-  'CLIENT': 'CLIENTE'
+  'CLIENT': 'CLIENTE',
+  'COMMUNITY': 'COMMUNITY',
+  'CONTABILITY': 'CONTABILIDAD'
 }
 
 const AuthUser = () => {

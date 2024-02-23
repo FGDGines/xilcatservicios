@@ -20,8 +20,8 @@ export class BlogEntity {
 
   @IsNotEmpty({ message: 'La categoria no puede estar vacío' })
   @Column()
-  @IsIn(['SELLING', 'RENT', 'NEWS', 'COMMUNITY'] as TCategory[], {
-    message: 'La categoria es invalida - VENTA - RENTA | NOTICIAS | COMUNIDAD',
+  @IsIn(['SELLING', 'RENT', 'NEWS', 'COMMUNITY', 'FORMATION'] as TCategory[], {
+    message: 'La categoria es invalida - VENTA - RENTA | NOTICIAS | COMUNIDAD | FORMATION',
   })
   category: TCategory;
 
@@ -34,6 +34,9 @@ export class BlogEntity {
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   contact: string;
+
+  @Column({ type: 'varchar', length: 255, nullable: true })
+  name: string;
 
   @Column({ default: false })
   isApproved: boolean;
@@ -52,7 +55,7 @@ export class BlogEntity {
   @ManyToOne(() => AuthEntity, (auth) => auth.newsletters)
   @JoinColumn()
   @IsNumber({}, { message: 'El ID de AuthEntity debe ser un número' })
-  @IsPositive({ message: 'El ID de AuthEntity debe ser un número positivo' })
+  // @IsPositive({ message: 'El ID de AuthEntity debe ser un número positivo' })
   @IsNotEmpty({ message: 'El ID de AuthEntity es requerido' })
   auth: AuthEntity;
 }
