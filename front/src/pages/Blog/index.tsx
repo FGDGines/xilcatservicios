@@ -43,7 +43,7 @@ const BlogPage: React.FC = () => {
         text-4xl my-8 bg-cs-purple text-white px-2 uppercase relative rounded flex justify-end items-between
         md:text-end w-[60%]
         lg:text-6xl
-        xl:items-end  xl:mb-0  xl:w-[80%]
+        xl:items-end  xl:mb-0  xl:w-[90%]
         ">
           <p>
             Xilcat
