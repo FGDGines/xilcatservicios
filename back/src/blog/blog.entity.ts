@@ -14,9 +14,15 @@ export class BlogEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @IsNotEmpty({ message: 'El título no puede estar vacío' })
+  @IsNotEmpty({ message: 'El título en ingles no puede estar vacío' })
   @Column()
-  title: string;
+  en_title: string;
+  @IsNotEmpty({ message: 'El título en espanol no puede estar vacío' })
+  @Column()
+  es_title: string;
+  @IsNotEmpty({ message: 'El título en catalan no puede estar vacío' })
+  @Column()
+  ca_title: string;
 
   @IsNotEmpty({ message: 'La categoria no puede estar vacío' })
   @Column()
@@ -25,9 +31,15 @@ export class BlogEntity {
   })
   category: TCategory;
 
-  @IsNotEmpty({ message: 'El contenido no puede estar vacío' })
+  @IsNotEmpty({ message: 'El contenido en ingles no puede estar vacío' })
   @Column()
-  content: string;
+  en_content: string;
+  @IsNotEmpty({ message: 'El contenido en espanol no puede estar vacío' })
+  @Column()
+  es_content: string;
+  @IsNotEmpty({ message: 'El contenido en catalan no puede estar vacío' })
+  @Column()
+  ca_content: string;
 
   @Column({ type: 'varchar', length: 255, nullable: true })
   imagePath: string;

@@ -29,11 +29,11 @@ const Carrousel = ({ items, action }: { items: any[], action: any }) => {
   const nextImage = () => setCurrentIndex((prevIndex) => (prevIndex === items.length - 1 ? 0 : prevIndex + 1));
   return (
     <div className="flex items-center justify-center h-full max-w-[400px] mx-auto">
-      <button className={`mx-2 ${currentIndex === 1 && 'hover:cursor-not-allowed text-gray-300'}`} onClick={prevImage} disabled={currentIndex === 1}>
+      <button type="button" className={`mx-2 ${currentIndex === 1 && 'hover:cursor-not-allowed text-gray-300'}`} onClick={prevImage} disabled={currentIndex === 1}>
         <FaArrowAltCircleLeft />
       </button>
       <div className="flex w-full justify-around h-full gap-2">{renderItems(currentIndex, items, action)}</div>
-      <button className={`mx-2 ${currentIndex === items.length - 2 && 'hover:cursor-not-allowed text-gray-300'}`} onClick={nextImage} disabled={currentIndex === items.length - 2}>
+      <button type="button" className={`mx-2 ${currentIndex === items.length - 2 && 'hover:cursor-not-allowed text-gray-300'}`} onClick={nextImage} disabled={currentIndex === items.length - 2}>
         <FaArrowAltCircleRight />
       </button>
     </div>

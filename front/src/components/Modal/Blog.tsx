@@ -4,56 +4,46 @@ import { jwtDecode } from "jwt-decode";
 import { useAppStore } from "../../store";
 import { toast } from "react-toastify";
 import errorHandler from "../../utils/errorHandler";
-import { ArticleCategory } from "../../pages/Blog/types";
 import Carrousel from "../Common/Carrousel";
+import { CATEGORIES } from "./Constants";
+import { BlogInputs } from "./types";
 
-type TCategoryList = {
-  value: ArticleCategory,
-  text: string
-}
+import spanishIcon from '../../assets/castellano.png';
+import { useReducer } from "react";
+import catalaIcon from '../../assets/catala.png'
+import inglesIcon from '../../assets/ingles.png'
 
-type Inputs = {
-  title: string;
-  content: string;
-  image: FileList;
-  category: ArticleCategory;
-  contact: string
-  email?: string
-  name?: string
-}
-
-const categories: TCategoryList[] = [
+const languages = [
   {
-    value: 'SELLING',
-    text: 'Motor'
+    value: 'es',
+    icon: spanishIcon
   },
   {
-    value: 'RENT',
-    text: 'Alquiler'
+    value: 'ca',
+    icon: catalaIcon
   },
   {
-    value: 'COMMUNITY',
-    text: 'Comunidad'
-  },
-  {
-    value: 'NEWS',
-    text: 'Noticias'
-  },
-  {
-    value: 'FORMATION',
-    text: 'Formacion'
-  },
+    value: 'en',
+    icon: inglesIcon
+  }
 ]
 
 const Blog = () => {
+  const [language, setLanguage] = useReducer((prev) => {
+    const idx = languages.findIndex(item => item.value === prev.value)
+    const isLast = idx + 1 === languages.length
+
+    if (isLast) return languages[0]
+    else return languages[idx + 1]
+  }, languages[0])
   const { closeModal, modal } = useAppStore()
   const { list, postImage, post, erase, postGuest } = useBlog({ page: 1, category: 'ALL', limit: 10, showApproved: 'false' })
   const {
     register,
     handleSubmit,
     setValue
-  } = useForm<Inputs>()
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+  } = useForm<BlogInputs>()
+  const onSubmit: SubmitHandler<BlogInputs> = async (data) => {
     const { image, ...rest } = data
 
     if (modal.params?.type === "no_registered") {
@@ -101,10 +91,19 @@ const Blog = () => {
   }
   return (
     <form className="" onSubmit={handleSubmit(onSubmit)}>
-      <p className="text-center text-xl font-bold mb-4 uppercase">{modal.params?.type === "no_registered" ? "Quieres publicar con nosotros?" : 'Agregar entrada de Blog'}</p>
+      <p className="text-center text-xl font-bold mb-2 uppercase">{modal.params?.type === "no_registered" ? "Quieres publicar con nosotros?" : 'Agregar entrada de Blog'}</p>
+      <p className="text-sm italic text-center mb-4">Por favor no olvides de escribir tu titulo y contenido en INGLES - CATALAN - ESPANOL</p>
       <div className="border mb-2 relative">
-        <label htmlFor="" className="absolute top-2 left-2">Titulo</label>
-        <input type="text" className="w-full py-2 pr-2 pl-20" {...register('title')} />
+        <label htmlFor="" className="absolute top-2 left-2 flex gap-1">
+          <button type="button" onClick={setLanguage}>
+            <img src={language.icon} alt="" className="w-4 h-4" />
+          </button>
+          <p>Titulo</p>
+        </label>
+        {
+          languages.map(lang => <input type="text" className={`w-full py-2 pr-2 pl-20 ${lang.value === language.value ? 'inline-flex' : 'hidden'}`} id={`${lang.value}_title`} key={`${lang.value}_title`} {...register(`${lang.value}_title` as any)} />)
+        }
+
       </div>
       {
         modal?.params?.type === 'no_registered' && (
@@ -125,37 +124,24 @@ const Blog = () => {
         <input className="w-full py-2 pr-2 pl-32" {...register('contact')} maxLength={9} />
       </div>
       <div className="border mb-2 relative">
-        <label htmlFor="" className="absolute top-2 left-2">Contenido</label>
-        <textarea className="w-full py-2 pr-2 pl-24" {...register('content')} />
+        <label htmlFor="" className="absolute top-2 left-2 flex gap-1">
+          <button type="button" onClick={setLanguage}>
+            <img src={language.icon} alt="" className="w-4 h-4" />
+          </button>
+          <p>Contenido</p>
+        </label>
+        {
+          languages.map(lang => <textarea className={`w-full py-2 pr-2 pl-28 ${lang.value === language.value ? 'block' : 'hidden'}`} id={`${lang.value}_title`} key={`${lang.value}_title`} {...register(`${lang.value}_content` as any)} />)
+        }
       </div>
       <div className="my-4 relative">
         <div className="flex gap-2 flex-col">
-          {/* <p className="border-b border-cs-purple">Categoria</p> */}
           <div className="flex gap-2 items-center justify-evenly">
             <Carrousel
-              items={categories}
+              items={CATEGORIES}
               action={setValue}
             />
-            {/* {
-              categories.map(category => (
-                <button
-                  onClick={() => setValue('category', category.value)}
-                  type="button"
-                  className="
-              text-white bg-gradient-to-r from-purple-600 via-purple-700 to-purple-800
-              hover:bg-gradient-to-br
-              focus:ring-4 focus:outline-none focus:ring-fuchsia-300
-              font-xs rounded-lg text-sm px-2 py-1 text-center
-              w-full
-              "
-                >
-                  {category.text}
-                </button>
-
-              ))
-            } */}
           </div>
-
         </div>
       </div>
       <div className="border mb-2 w-full">

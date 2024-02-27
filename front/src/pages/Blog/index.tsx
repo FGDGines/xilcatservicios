@@ -10,6 +10,9 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 import { useAppStore } from '../../store';
 import Carousel from './Carousel';
 import { ArticleCategory } from './types';
+import { categoryNames } from './Constants';
+
+
 
 const BlogPage: React.FC = () => {
   const [page, setPage] = useState(1)
@@ -43,12 +46,12 @@ const BlogPage: React.FC = () => {
         text-4xl my-8 bg-cs-purple text-white px-2 uppercase relative rounded flex justify-end items-between
         md:text-end w-[60%]
         lg:text-6xl
-        xl:items-end  xl:mb-0  xl:w-[90%]
+        xl:items-end  xl:mb-0  xl:w-full xl:mx-12
         ">
           <p>
             Xilcat
-            <span className='text-cs-blue'>
-              Blog
+            <span className='text-cs-blue ml-1'>
+              {categoryNames[category]}
             </span>
           </p>
         </div>

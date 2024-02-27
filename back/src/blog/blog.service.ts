@@ -29,8 +29,12 @@ export class BlogService {
       clients = await query.leftJoin('blog.auth', 'auth')
         .select([
           'blog.id',
-          'blog.title',
-          'blog.content',
+          'blog.en_title',
+          'blog.es_title',
+          'blog.ca_title',
+          'blog.en_content',
+          'blog.es_content',
+          'blog.ca_content',
           'blog.category',
           'blog.contact',
           'blog.name',

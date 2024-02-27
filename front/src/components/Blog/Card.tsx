@@ -5,6 +5,8 @@ import moment from 'moment';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { TArticle } from "../../pages/Blog/types";
+import { useTranslation } from "react-i18next";
+
 
 const bgAccordingCategory: { [idx: string]: string } = {
     RENT: 'bg-blue-100 text-blue-800',
@@ -20,6 +22,7 @@ const categoryToSpanish: { [idx: string]: string } = {
 }
 
 const Card = ({ article, current }: { article: TArticle, current: string }) => {
+    const { i18n } = useTranslation()
     const [image, setImage] = useState('')
 
     useEffect(() => {
@@ -52,6 +55,7 @@ const Card = ({ article, current }: { article: TArticle, current: string }) => {
         if (article.category === current) return 'opacity-100 flex'
         return 'opacity-0 !hidden'
     }
+    console.log('car language', i18n.language)
 
     return (
         <div className={`${dataFiltered()} transition-all flex-col shadow-md md:grid md:grid-cols-2 h-[400px] mb-4 md:h-60 xl:h-80 xl:w-full rounded-md `}>
@@ -72,8 +76,9 @@ const Card = ({ article, current }: { article: TArticle, current: string }) => {
                     </div>
                     <div className='basis-1/4'></div>
                 </div>
-                <h2 className='text-xl mb-2'>{article.title}</h2>
-                <p className='flex-1 text-sm overflow-hidden'>{article.content}</p>
+                <h2 className='text-xl mb-2'>{article[`${i18n.language}_title`]}</h2>
+                {/* <h2 className='text-xl mb-2'>{article.es_title}</h2> */}
+                <p className='flex-1 text-sm overflow-hidden'>{article[`${i18n.language}_content`]}</p>
                 <div className='flex gap-2 items-center justify-between text-sm' >
                     <div className={bgAccordingCategory[article.category] + 'text-xs font-medium me-2 px-2.5 py-0.5 rounded'}>
                         <div>

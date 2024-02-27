@@ -7,7 +7,7 @@ import {
 } from 'class-validator';
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
-export type Rol = 'ADMINISTRATOR' | 'LAWYER' | 'CONTABILITY' | 'CLIENT' | 'COMMUNITY';
+export type Rol = 'ADMINISTRATOR' | 'LAWYER' | 'CONTABILITY' | 'CLIENT' | 'COMMUNITY' | 'GUEST';
 
 export class AuthCredentialsDto {
   @PrimaryGeneratedColumn()
