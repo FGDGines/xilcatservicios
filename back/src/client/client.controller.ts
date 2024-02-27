@@ -5,6 +5,7 @@ import {
   Delete,
   FileTypeValidator,
   Get,
+  Header,
   HttpException,
   HttpStatus,
   Param,
@@ -12,6 +13,7 @@ import {
   Post,
   Put,
   Query,
+  Res,
   StreamableFile,
   UploadedFile,
   // UploadedFiles,
@@ -29,6 +31,7 @@ import {
   ApiResponse,
   ApiTags,
   ApiOperation,
+  ApiHeader,
 } from '@nestjs/swagger';
 import {
   // FileFieldsInterceptor,
@@ -44,7 +47,7 @@ export class ClientController {
   constructor(
     private readonly clientService: ClientService,
     private readonly authService: AuthService,
-  ) {}
+  ) { }
 
   @Get()
   @ApiOperation({ summary: 'OPERATIVO' })
@@ -55,6 +58,21 @@ export class ClientController {
   async getAllClients(@Query() queryParams): Promise<ClientEntity[]> {
     const { page = 1, limit = 10, category = 'all' } = queryParams;
     return await this.clientService.findAll(page, limit, category);
+  }
+
+  @Get('pdf')
+  @ApiOperation({ summary: 'OPERATIVO' })
+  @ApiResponse({ status: 200, description: 'Return a specific pdf.' })
+  @ApiQuery({ name: 'path', required: false, type: String })
+  @Header('content-type', 'application/pdf')
+  @Header('Content-Disposition', `inline`)
+  async getPdf(@Query() queryParams): Promise<StreamableFile> {
+    const { path } = queryParams
+    const pathSplitted = path.split('/')
+
+    const file = createReadStream(join(process.cwd(), ...pathSplitted))
+
+    return new StreamableFile(file, { disposition: 'inline' });
   }
 
   @Get(':id')
