@@ -186,7 +186,8 @@ export class BlogController {
       new ParseFilePipe({
         validators: [
           // new FileTypeValidator({ fileType: 'image/jpeg' || 'image/png'  }), 
-          new FileTypeValidator({ fileType: 'image/png' })],
+          // new FileTypeValidator({ fileType: 'image/png' })
+        ],
       }),
     )
     file: Express.Multer.File,

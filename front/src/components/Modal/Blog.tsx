@@ -151,7 +151,7 @@ const Blog = () => {
         >
           Elige una imagen
         </label>
-        <input type="file" className="hidden" id="image" {...register('image')} />
+        <input type="file" className="hidden" id="image" {...register('image')} accept="image/*" />
       </div>
       <div className="border w-full">
         <button
