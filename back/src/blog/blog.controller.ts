@@ -43,30 +43,30 @@ export class BlogController {
   constructor(
     private readonly blogService: BlogService,
     private readonly authService: AuthService,
-  ) {}
+  ) { }
 
   @Get()
   @ApiOperation({ summary: 'OPERATIVO' })
   @ApiQuery({ name: 'page', required: false, type: Number })
   @ApiQuery({ name: 'limit', required: false, type: Number })
-  @ApiQuery({ name: 'showApproved', required: true, type: String })
+  @ApiQuery({ name: 'showApproved', required: false, type: String })
   @ApiQuery({ name: 'category', required: false, type: String })
   @ApiResponse({ status: 200, description: 'Return all clients.' })
   async getAllClients(@Query() queryParams): Promise<BlogEntity[]> {
-    const { page = 1, limit = 10,category = 'ALL', showApproved,  } = queryParams;
+    const { page = 1, limit = 10, category = 'ALL', showApproved, } = queryParams;
     return await this.blogService.findAll(page, limit, showApproved, category);
   }
 
   @Get('/total')
   @ApiOperation({ summary: 'OPERATIVO' })
-  @ApiParam({ name: 'type', required: false , type: 'string', description: 'It indicates if it should count every blog or only those that arent approved yet' })
+  @ApiParam({ name: 'type', required: false, type: 'string', description: 'It indicates if it should count every blog or only those that arent approved yet' })
   @ApiResponse({ status: 200, description: 'Return the total blogs saved' })
-  async getTotal(@Param('type') type:string): Promise<number> {
+  async getTotal(@Param('type') type: string): Promise<number> {
     return await this.blogService.findNumber(type);
   }
   @Get(':id')
   @ApiOperation({ summary: 'OPERATIVO' })
-  @ApiParam({ name: 'id', type: 'number', description: 'Newsletter ID'})
+  @ApiParam({ name: 'id', type: 'number', description: 'Newsletter ID' })
   @ApiResponse({ status: 200, description: 'Return a newsletter by ID.' })
   async getById(@Param('id') id: number): Promise<BlogEntity> {
     return await this.blogService.findById(id);
@@ -75,11 +75,11 @@ export class BlogController {
 
   @Get('/picture/:id/:name')
   // @Header('Content-Type', 'application/json')
-  async getPicture (@Param('id') id: string, @Param('name') name: string) {
+  async getPicture(@Param('id') id: string, @Param('name') name: string) {
     const file = createReadStream(join(process.cwd(), 'public', 'blog', id, name))
     return new StreamableFile(file)
   }
-  
+
 
   @Post()
   @ApiOperation({ summary: 'OPERATIVO' })

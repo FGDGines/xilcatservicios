@@ -59,7 +59,7 @@ const PendingBlogs = () => {
                         <div className="flex items-center justify-between border rounded-md mb-2 shadow-md px-4 py-2">
                             <div className="flex items-center justify-between gap-2 hover:cursor-pointer" onClick={() => handleSelect(item)}>
                                 <p className="font-bold">{item.title}</p>
-                                <p>{truncateText(item.es_content)}</p>
+                                <p>{truncateText(String(item.es_content))}</p>
                             </div>
                             <div className="flex gap-2 text-xl">
                                 <button className="shadow-lg hover:text-cs-purple-light" onClick={() => handleDelete(item)}><FaTrash /></button>

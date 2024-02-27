@@ -1,4 +1,4 @@
-import { FaUsers, FaBook, FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome} from "react-icons/fa";
+import { FaUsers, FaBook, FaTrello, FaCloud, FaSignOutAlt, FaUsersCog, FaRegStickyNote, FaHome } from "react-icons/fa";
 import { LuMessagesSquare } from "react-icons/lu";
 
 import { IoIosMail } from "react-icons/io";
@@ -8,6 +8,7 @@ import { useAuthProvider } from '../../hooks/useAuthProvider';
 import { useAppStore } from '../../store';
 import { jwtDecode } from 'jwt-decode';
 import { MdSpeakerNotesOff } from "react-icons/md";
+import { GrNotes } from "react-icons/gr";
 
 import useBlog from "../../hooks/useBlog";
 
@@ -73,7 +74,7 @@ const Layout = ({ Component }: { Component: any }) => {
     // },
     {
       link: '',
-      text: 'Blog',
+      text: 'Publicar',
       Icon: <FaRegStickyNote />,
       action: handleBlogOpen
     },
@@ -89,23 +90,23 @@ const Layout = ({ Component }: { Component: any }) => {
     <div className='h-screen grid grid-cols-1 grid-rows-10 lg:grid-cols-[15%_1fr] text-white'>
       {/* Header  */}
       <header className='col-span-2 row-span-3 lg:row-span-2'>
-  {/* <!-- Navigation bar --> */}
-  <nav
-    className="relative flex w-full items-center justify-between py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 bg-neutral-600 text-neutral-200 md:flex-wrap md:justify-start"
-    data-te-navbar-ref>
-    <div className="flex w-full flex-wrap items-center justify-between px-3">
+        {/* <!-- Navigation bar --> */}
+        <nav
+          className="relative flex w-full items-center justify-between py-2 text-neutral-600 shadow-lg hover:text-neutral-700 focus:text-neutral-700 bg-neutral-600 text-neutral-200 md:flex-wrap md:justify-start"
+          data-te-navbar-ref>
+          <div className="flex w-full flex-wrap items-center justify-between px-3">
 
-      {/* <!-- Navigation links --> */}
-      <div
-        className="flex grow basis-[100%] items-center lg:basis-auto"
-        id="navbarSupportedContentY"
-        data-te-collapse-item>
-        <ul
-          className="mr-auto flex items-center"
-          data-te-navbar-nav-ref>
-                        {
-             ( auth.rol === "ADMINISTRATOR" || auth.rol === 'COMMUNITY')&& (
-                <li className="pr-2" data-te-nav-item-ref key="approved">
+            {/* <!-- Navigation links --> */}
+            <div
+              className="flex grow basis-[100%] items-center lg:basis-auto"
+              id="navbarSupportedContentY"
+              data-te-collapse-item>
+              <ul
+                className="mr-auto flex items-center"
+                data-te-navbar-nav-ref>
+                {
+                  (auth.rol === "ADMINISTRATOR" || auth.rol === 'COMMUNITY') && (
+                    <li className="pr-2" data-te-nav-item-ref key="approved">
                       <p
                         className="
                         block transition duration-150 ease-in-out flex gap-2 items-center text-white relative
@@ -113,40 +114,40 @@ const Layout = ({ Component }: { Component: any }) => {
                         data-te-nav-link-ref
                         data-te-ripple-init
                         data-te-ripple-color="light"
-                        onClick={() => setModal({type: 'pending'})}
-                        >
-                          <MdSpeakerNotesOff />
-                          Pendientes
-                          <div className="text-sm w-6 h-6 rounded-full absolute -top-1 -right-1 bg-red-500 text-white text-center">
-                            {data}
-                          </div>
-                        </p>
+                        onClick={() => setModal({ type: 'pending' })}
+                      >
+                        <MdSpeakerNotesOff />
+                        Pendientes
+                        <div className="text-sm w-6 h-6 rounded-full absolute -top-1 -right-1 bg-red-500 text-white text-center">
+                          {data}
+                        </div>
+                      </p>
                     </li>
-              )
-            }
-            {
-              links.map(link => (
-                <li className="pr-2" data-te-nav-item-ref key={link.text}>
-                  <p
-                    className="
+                  )
+                }
+                {
+                  links.map(link => (
+                    <li className="pr-2" data-te-nav-item-ref key={link.text}>
+                      <p
+                        className="
                     block transition duration-150 ease-in-out flex gap-2 items-center text-white
                     disabled:text-black/30 hover:text-cs-blue p-2 [&.active]:text-black/90 hover:cursor-pointer"
-                    data-te-nav-link-ref
-                    data-te-ripple-init
-                    data-te-ripple-color="light"
-                    onClick={() => {link.action ? link?.action() : navigate(link.link)}}
-                    >
-                      {link.Icon}
-                      {link.text}
-                    </p>
-                </li>
-              ))
-            }
+                        data-te-nav-link-ref
+                        data-te-ripple-init
+                        data-te-ripple-color="light"
+                        onClick={() => { link.action ? link?.action() : navigate(link.link) }}
+                      >
+                        {link.Icon}
+                        {link.text}
+                      </p>
+                    </li>
+                  ))
+                }
 
-        </ul>
-      </div>
-    </div>
-  </nav>
+              </ul>
+            </div>
+          </div>
+        </nav>
 
         {/* <!-- Hero section with heading, subheading and button --> */}
         <div
@@ -172,6 +173,8 @@ const Layout = ({ Component }: { Component: any }) => {
               <Icon Icon={<IoIosMail />} text="Email" url='' isSide externalUrl="https://id.ionos.es/identifier" />
               <Icon Icon={<FaTrello />} text="Trello" url='' isSide externalUrl="https://trello.com/es" />
               <Icon Icon={<FaBook />} text="Contabilidad" url={setUrl('url')} errorMsg={setUrl('errorMsg')} isSide />
+              <Icon Icon={<GrNotes />} text="Blog" url="/intranet/blog" isSide />
+
             </>
           )
         }
@@ -182,8 +185,8 @@ const Layout = ({ Component }: { Component: any }) => {
 
       </div>
 
-        {/* Principal Component */}
-        <div className='row-span-6 overflow-auto text-black lg:row-[span_8_/_span_8] bg-white relative'>{<Component />}</div>
+      {/* Principal Component */}
+      <div className='row-span-6 overflow-auto text-black lg:row-[span_8_/_span_8] bg-white relative'>{<Component />}</div>
     </div>
   )
 }

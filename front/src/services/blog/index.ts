@@ -5,10 +5,11 @@ import postGuest from './postGuest'
 import update from './update'
 import erase from './erase'
 import postImage from './postImage'
+import { TArticle } from "../../pages/Blog/types";
 
 
 type TBlogServices = {
-    get: ({ queryKey }: { queryKey: any[] }) => Promise<any[]>
+    get: ({ queryKey }: { queryKey: any[] }) => Promise<TArticle[]>
     getCount: () => Promise<number>
     post: any
     postGuest: any

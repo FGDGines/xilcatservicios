@@ -31,6 +31,7 @@ import { Chat } from "./components/Intranet/Chat";
 import ErrorPage from "./pages/ErrorPage";
 import Users from "./components/Intranet/Users";
 import PDF from "./components/Modal/PDF";
+import IntranetBlog from "./pages/IntranetBlog";
 
 const router = createHashRouter([
   {
@@ -101,6 +102,11 @@ const router = createHashRouter([
       {
         path: 'pdf',
         element: <Layout Component={PDF} />,
+        loader: ProtectedLoader
+      },
+      {
+        path: 'blog',
+        element: <Layout Component={IntranetBlog} />,
         loader: ProtectedLoader
       }
     ]
