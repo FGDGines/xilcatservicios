@@ -35,7 +35,7 @@ const icons = [
   // },
 ]
 
-const Footer = ({ refs  }: { refs?: any}) => {
+const Footer = ({ refs }: { refs?: any }) => {
   const navigate = useNavigate()
   const { t } = useTranslation<TranslationKeys>();
   const { isDesktop } = useDeviceSize()
@@ -59,7 +59,7 @@ const Footer = ({ refs  }: { refs?: any}) => {
     {
       url: '',
       text: t('footer.newsletter.links.2' as TranslationKeys),
-      action: () => refs.current[1].scrollIntoView({ behavior: 'smooth' })      
+      action: () => refs.current[1].scrollIntoView({ behavior: 'smooth' })
     },
     {
       url: '',

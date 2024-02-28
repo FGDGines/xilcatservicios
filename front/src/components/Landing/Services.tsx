@@ -14,10 +14,10 @@ type TOptions = {
 
 type TParams = {
   setRef: (id: number) => LegacyRef<HTMLDivElement>
-  contactRef: HTMLInputElement | null
+  contactRef: any
 }
 
-const Services = ({ setRef, contactRef } : TParams ) => {
+const Services = ({ setRef, contactRef }: TParams) => {
   const { t } = useTranslation<TranslationKeys>();
 
   const options: TOptions[] = [
@@ -48,8 +48,8 @@ const Services = ({ setRef, contactRef } : TParams ) => {
     },
   ]
 
-  const handleNavigate = () => contactRef?.scrollIntoView({ behavior: 'smooth' })
-  
+  const handleNavigate = () => contactRef?.current[3].scrollIntoView({ behavior: 'smooth' })
+
 
   return (
     <div className='min-h-[20vh] px-6 py-2 mt-4 md:mt-20 lg:mt-12 text-cs-purple' id="Actions" ref={setRef(1)}>
@@ -73,7 +73,7 @@ const Services = ({ setRef, contactRef } : TParams ) => {
           className='col-span-2 w-full h-20 flex justify-center items-center  mt-20 mb-8 md:my-20 lg:col-span-3 lg:mt-0 lg:mb-16'
         >
           <p
-            
+
             className="text-[14px] text-center px-6 py-4 rounded-[20px] text-white shadow flex items-center gap-2 md:text-[22px] hover:-translate-y-1 hover:-translate-x-1 hover:cursor-pointer transition-all" style={{
               // justifyContent: "center",
               background: "linear-gradient(145deg, #2C2949 -7.9%, #201E34 120.55%)",

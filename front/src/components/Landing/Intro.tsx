@@ -3,13 +3,11 @@ import GroupImg from '../../assets/rafiki.png'
 import { FaPhoneAlt } from "react-icons/fa";
 import { TranslationKeys } from '../../language/type-i18n';
 
-const Intro = ({ contactRef }: { contactRef: any}) => {
+const Intro = ({ contactRef }: { contactRef: any }) => {
     const { t } = useTranslation<TranslationKeys>();
-  
-    const handleNavigate = () => contactRef?.scrollIntoView({ behavior: 'smooth' })
-    const handleOpenLink = () => {
-        window.open("https://booking.setmore.com/scheduleappointment/1c90759b-74db-40e5-a7e6-dbb7a9d8ceb3")
-    }
+
+    const handleNavigate = () => contactRef.current[4]?.scrollIntoView({ behavior: 'smooth' })
+    const handleOpenLink = () => window.open("https://booking.setmore.com/scheduleappointment/1c90759b-74db-40e5-a7e6-dbb7a9d8ceb3")
 
     return (
         <div className='lg:grid lg:grid-cols-[60%_1fr] xl:grid-cols-[40%_1fr]'>
@@ -29,24 +27,24 @@ const Intro = ({ contactRef }: { contactRef: any}) => {
                         <button
                             onClick={handleNavigate}
                             className='px-8 py-4 bg-transparent border rounded-[20px] font-semibold md:text-xl hover:bg-cs-purple-light transition-all'>
-                                {t('buttonAction2' as TranslationKeys)}
-                            </button>
+                            {t('buttonAction2' as TranslationKeys)}
+                        </button>
                     </div>
                 </div>
             </div>
             <div
                 className=' relative flex items-center justify-center mb-6 lg:mb-0 py-5'
             >
-            {/* <GroupSVG /> */}
-            <div className='z-10 md:w-[60%] lg:w-full lg:h-full xl:w-[60%]'>
-                <img src={GroupImg} className='min-h-[80%] min-w-full' />
+                {/* <GroupSVG /> */}
+                <div className='z-10 md:w-[60%] lg:w-full lg:h-full xl:w-[60%]'>
+                    <img src={GroupImg} className='min-h-[80%] min-w-full' />
 
+                </div>
+
+                {/* <img src={GroupImg} className='z-10 md:w-[60%] lg:w-full xl:w-[50%]' /> */}
+                <div className='absolute -top-6 left-0 bg-[#2C2949] h-[90%] md:h-[35%] lg:h-full w-full -z-1 clip-bg md:clip-bg-md lg:clip-bg-lg lg:top-0 xl:clip-bg-xl' ></div>
             </div>
-
-            {/* <img src={GroupImg} className='z-10 md:w-[60%] lg:w-full xl:w-[50%]' /> */}
-            <div className='absolute -top-6 left-0 bg-[#2C2949] h-[90%] md:h-[35%] lg:h-full w-full -z-1 clip-bg md:clip-bg-md lg:clip-bg-lg lg:top-0 xl:clip-bg-xl' ></div>
         </div>
-    </div>
 
     )
 }

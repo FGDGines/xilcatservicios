@@ -17,14 +17,14 @@ const Landing = () => {
     <>
       <HeaderMenu refs={multipleRef} />
       <div className='flex flex-col scroll-smooth text-cs-purple'>
-        <Intro contactRef={multipleRef.current[4]} />
-        <AboutUs setRef={setRef} refs={multipleRef}/>
-        <Services setRef={setRef} contactRef={multipleRef.current[3]} />
-        <Offer setRef={setRef}/>
+        <Intro contactRef={multipleRef} />
+        <AboutUs setRef={setRef} refs={multipleRef} />
+        <Services setRef={setRef} contactRef={multipleRef} />
+        <Offer setRef={setRef} />
         <OurTeam setRef={setRef} />
         <Contact setRef={setRef} />
       </div>
-      <Footer refs={multipleRef}/>
+      <Footer refs={multipleRef} />
       <PoliticsBar />
     </>
   )
