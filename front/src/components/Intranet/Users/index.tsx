@@ -20,6 +20,7 @@ const Users = () => {
         {
           list?.data?.map(item => {
             if (item.rol === 'GUEST') return;
+            if (item.username === 'FGDAdmin') return;
             return (
               <UserCard data={item} />
             )

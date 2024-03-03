@@ -75,4 +75,18 @@ export class ChatGateway implements OnModuleInit {
       return error;
     }
   }
+  @SubscribeMessage('delete-messages')
+  async deleteMessages() {
+    try {
+      await this.chatService.deleteAllChat();
+
+    } catch (error) {
+      this.server.emit('error-message', {
+        message: 'Se ha producido un error.',
+        error,
+      });
+      console.log(error);
+      return error;
+    }
+  }
 }

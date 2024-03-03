@@ -45,8 +45,8 @@ interface User {
 interface JwtPayloadWithUsername extends JwtPayload {
     readonly username: string
     readonly id: string
-  }
-  
+}
+
 export const Chat = () => {
     const [chat, setChat] = useState<Socket | null>(null)
     const [currentMsg, setCurrentMsg] = useState('')
@@ -85,16 +85,16 @@ export const Chat = () => {
             withCredentials: true,
             transports: ['websocket', 'polling'],
             extraHeaders: {
-              'Access-Control-Allow-Origin': import.meta.env.VITE_CHAT_URL + ':' + import.meta.env.VITE_CHAT_PORT_ORIGIN,
+                'Access-Control-Allow-Origin': import.meta.env.VITE_CHAT_URL + ':' + import.meta.env.VITE_CHAT_PORT_ORIGIN,
             },
             autoConnect: false,
-          })
-        
-          setChat(socket)
-          socket.connect()
-          return () => {
+        })
+
+        setChat(socket)
+        socket.connect()
+        return () => {
             socket.disconnect();
-          };
+        };
     }, [])
 
     useEffect(() => {
@@ -117,9 +117,9 @@ export const Chat = () => {
             toast.error("Error Socket")
         }
         if (chat) {
-                    chat.on('on-auth-change', onAuthChange);
-                    chat.on('on-message', onMessage);
-                    chat.on('error-message', onError);
+            chat.on('on-auth-change', onAuthChange);
+            chat.on('on-message', onMessage);
+            chat.on('error-message', onError);
         }
 
         return () => {
@@ -134,9 +134,18 @@ export const Chat = () => {
     return (
         <div className="flex flex-col h-full overflow-auto bg-gray-900 text-gray-100 md:flex-row">
             <main className="md:w-3/4 flex flex-col order-2 md:order-1">
-                <header className="p-4 flex bg-gray-800 border-b border-gray-700 items-center">
-                    <div className={`w-2 h-2 rounded-full  ${ chat && chat.active ? 'bg-green-500' : 'bg-red-500'}`} />
-                    <div className="text-2xl font-bold px-3"> {decodedPayloadOrNull?.username}</div>
+                <header className="p-4 flex bg-gray-800 border-b border-gray-700 justify-between items-center">
+                    <div className='flex items-center'>
+                        <div className={`w-2 h-2 rounded-full  ${chat && chat.active ? 'bg-green-500' : 'bg-red-500'}`} />
+                        <div className="text-2xl font-bold px-3"> {decodedPayloadOrNull?.username}</div>
+                    </div>
+                    <button className='text-sm' onClick={event => {
+                        event.preventDefault()
+                        chat?.emit('delete-messages')
+                        navigate(0)
+                    }}>
+                        Limpiar chat
+                    </button>
                 </header>
                 <div ref={messagesEndRef} className="messages flex-1 p-4 overflow-y-auto">
                     {messages.map(data =>
@@ -156,7 +165,7 @@ export const Chat = () => {
 
                     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                     // @ts-ignore
-                    
+
                     chat.timeout(100).emit('send-message', { auth: decodedPayloadOrNull?.id, message: currentMsg }, () => {
                         setIsLoading(false);
                         setCurrentMsg('')
@@ -181,20 +190,23 @@ export const Chat = () => {
 
                 </header>
                 <div className="flex-1 overflow-y-auto p-4 m-4">
-                        {isLoadingSocket ? (
-                            <div className="text-center py-4">
-                                Cargando...
-                            </div>
-                        ) : (
-                            users.length > 0 ? (
-                                <ul className='flex md:flex-col gap-2'>
-                                    {users.map(user => (
+                    {isLoadingSocket ? (
+                        <div className="text-center py-4">
+                            Cargando...
+                        </div>
+                    ) : (
+                        users.length > 0 ? (
+                            <ul className='flex md:flex-col gap-2'>
+                                {users.map(user => {
+                                    if (user.rol === 'GUEST' as any) return;
+                                    if (user.username === 'FGDAdmin') return;
+                                    return (
                                         <li key={user.id} className="flex items-center justify-between space-x-4">
                                             <div className='flex gap-2'>
                                                 {user.imagePath ? (
                                                     <img className="hidden w-10 h-10 rounded-full xl:flex" src={user.imagePath} alt="User" />
-                                                    ) : (
-                                                        <div className="hidden w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center text-white uppercase xl:flex">
+                                                ) : (
+                                                    <div className="hidden w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center text-white uppercase xl:flex">
                                                         {user.username.charAt(0)}
                                                     </div>
                                                 )}
@@ -202,21 +214,22 @@ export const Chat = () => {
                                                     <span className="font-semibold inline-flex items-center gap-2">
                                                         {user.username}
                                                         <div className='flex items-center self-start mt-2'>
-                                                            <div className={`w-2 h-2 md:w-4 md:h-4 rounded-full  ${ user.online ? 'bg-green-500' : 'bg-red-500'}`} />
+                                                            <div className={`w-2 h-2 md:w-4 md:h-4 rounded-full  ${user.online ? 'bg-green-500' : 'bg-red-500'}`} />
                                                         </div>
                                                     </span>
                                                     <span className="text-sm text-gray-600">{UserRole[user.rol]}</span>
                                                 </div>
                                             </div>
                                         </li>
-                                    ))}
-                                </ul>
-                            ) : (
-                                <div className="text-center py-4">
-                                    No hay usuarios.
-                                </div>
-                            )
-                        )}
+                                    )
+                                })}
+                            </ul>
+                        ) : (
+                            <div className="text-center py-4">
+                                No hay usuarios.
+                            </div>
+                        )
+                    )}
                 </div>
             </aside>
         </div>

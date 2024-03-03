@@ -11,7 +11,7 @@ export class ChatService {
     @InjectRepository(ChatEntity)
     private readonly chatRepository: Repository<ChatEntity>,
     private readonly authService: AuthService,
-  ) {}
+  ) { }
 
   async createChat(chat: Partial<ChatEntity>) {
     try {
@@ -36,7 +36,7 @@ export class ChatService {
 
   async findAll(page: number, limit: number): Promise<ChatEntity[]> {
     console.log('findAll ----------------------')
-    
+
     try {
       const chats = await this.chatRepository
         .createQueryBuilder('chat')
@@ -61,6 +61,10 @@ export class ChatService {
     } catch (error) {
       throw error;
     }
+  }
+  async deleteAllChat() {
+    await this.chatRepository.clear()
+    return "Chat eliminado"
   }
 
   findOne(id: number) {
