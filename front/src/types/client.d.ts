@@ -1,4 +1,4 @@
-export type TramiteType = 'TYPE1' | 'TYPE2' | 'TYPE3' | 'TYPE4';
+// export type TramiteType = 'TYPE1' | 'TYPE2' | 'TYPE3' | 'TYPE4';
 export type PaymentStatus = 'PENDING' | 'PAID' | 'NONE';
 
 type TPdf = {
@@ -16,7 +16,8 @@ export type TClient = {
     priceQuote: number
     price: number
     pdf: string | TPdf[]
-    tramiteType: TramiteType
+    tramiteType: string
+    // tramiteType: TramiteType
     paymentStatus: PaymentStatus
     auth: any
     id?: number

@@ -1,7 +1,7 @@
 import { Controller } from '@nestjs/common';
 
 @Controller('client')
-export class ClientController {}
+export class ClientController { }
 import {
   Entity,
   Column,
@@ -108,7 +108,7 @@ export class ClientEntity {
   @Type(() => DuesDto)
   dues: string = 'null';
 
-  
+
 
   @Column({ type: 'json' })
   @ApiProperty({ type: CollaboratorsDto })
@@ -116,11 +116,12 @@ export class ClientEntity {
   collaborators: string;
 
   @ApiProperty()
-  @Column({ default: 'TYPE1' })
-  @IsIn(['TYPE1', 'TYPE2', 'TYPE3', 'TYPE4'] as TramiteType[], {
-    message: `El tipo de trámite es inválido - 'TYPE1', 'TYPE2', 'TYPE3', 'TYPE4'`,
-  })
-  tramiteType: TramiteType;
+  @Column({ default: '' })
+  // @IsIn(['TYPE1', 'TYPE2', 'TYPE3', 'TYPE4'] as TramiteType[], {
+  //   message: `El tipo de trámite es inválido - 'TYPE1', 'TYPE2', 'TYPE3', 'TYPE4'`,
+  // })
+  tramiteType: string;
+  // tramiteType: TramiteType;/
 
   @ApiProperty()
   @Column({ default: 'PENDING' })
