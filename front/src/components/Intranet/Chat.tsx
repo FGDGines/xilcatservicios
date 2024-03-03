@@ -45,6 +45,7 @@ interface User {
 interface JwtPayloadWithUsername extends JwtPayload {
     readonly username: string
     readonly id: string
+    readonly rol: string
 }
 
 export const Chat = () => {
@@ -61,6 +62,7 @@ export const Chat = () => {
     let decodedPayload: JwtPayloadWithUsername | null = null
 
     if (token) decodedPayload = jwtDecode<JwtPayloadWithUsername>(token)
+    console.log("DECODED", decodedPayload)
 
     const scrollToBottom = () => {
         if (messagesEndRef.current) {
@@ -139,13 +141,17 @@ export const Chat = () => {
                         <div className={`w-2 h-2 rounded-full  ${chat && chat.active ? 'bg-green-500' : 'bg-red-500'}`} />
                         <div className="text-2xl font-bold px-3"> {decodedPayloadOrNull?.username}</div>
                     </div>
-                    <button className='text-sm' onClick={event => {
-                        event.preventDefault()
-                        chat?.emit('delete-messages')
-                        navigate(0)
-                    }}>
-                        Limpiar chat
-                    </button>
+                    {
+                        decodedPayload?.rol === 'ADMINISTRATOR' && (
+                            <button className='text-sm' onClick={event => {
+                                event.preventDefault()
+                                chat?.emit('delete-messages')
+                                navigate(0)
+                            }}>
+                                Limpiar chat
+                            </button>
+                        )
+                    }
                 </header>
                 <div ref={messagesEndRef} className="messages flex-1 p-4 overflow-y-auto">
                     {messages.map(data =>

@@ -16,7 +16,7 @@ export class AuthService {
   constructor(
     @InjectRepository(AuthEntity)
     private readonly authRepository: Repository<AuthEntity>,
-  ) {}
+  ) { }
 
   async update(
     id: number,
@@ -89,6 +89,7 @@ export class AuthService {
 
       return await this.authRepository.remove(authToRemove);
     } catch (error) {
+      if (error.sql) throw new BadRequestException("El usuario posee algun chat/blog/cliente, por favor elimine la informacion relacionada al usuario antes de eliminarlo")
       throw new BadRequestException(
         'El ID de AuthEntity proporcionado no existe',
       );
