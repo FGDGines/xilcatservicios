@@ -102,15 +102,15 @@ const resources: Resource = {
         team: {
           a: {
             name: 'Maria Torres',
-            profession: 'Jurisdiction Specialist',
+            profession: 'Civil Specialist',
           },
           b: {
             name: 'Bella Fuentes',
-            profession: 'Jurisdiction Specialist',
+            profession: 'International Specialist',
           },
           c: {
             name: 'Martha Ventanilla',
-            profession: 'Jurisdiction Specialist',
+            profession: 'Laboral Specialist',
           },
         },
       },
@@ -152,7 +152,7 @@ const resources: Resource = {
         subdescription1: `They are those cookies that are sent to the User's computer or device and managed exclusively by Gestoria xilcat services for the best functioning of the Website. The information collected is used to improve the quality of the Website and its Content and your experience as a User. These cookies allow us to recognize the User as a recurring visitor to the Website and adapt the content to offer content that fits their preferences.`,
         subtitle2: 'Social media cookies',
         subdescription2: `Gestoria xilcat services incorporates social network plugins, which allow access to them from the Website. For this reason, social network cookies may be stored in the User's browser. The owners of these social networks have their own data protection and cookie policies, being themselves, in each case, responsible for their own files and their own privacy practices. The User must refer to them to find out about these cookies and, where applicable, the processing of their personal data. For information purposes only, the links where you can consult these privacy and/or cookie policies are indicated below:`,
-        
+
         subtitle3: 'Registration of Personal Data',
         subdescription3: `In compliance with the provisions of the RGPD and the LOPD-GDD, we inform you that the personal data collected by Gestoria xilcat services, through the forms extended on its pages, will be incorporated and processed in our file in order to facilitate, expedite and fulfill the commitments established between Gestoría xilcat services and the User or maintain the relationship established in the forms that the user fills out, or to respond to a request or query from the same. Likewise, in accordance with the provisions of the RGPD and the LOPD-GDD, unless the exception provided for in article 30.5 of the RGPD applies, a record of processing activities is maintained that specifies, according to its purposes, the processing activities. carried out and the other circumstances established in the RGPD.`,
 
@@ -184,13 +184,13 @@ const resources: Resource = {
         section5: {
           title: 'Principles applicable to the processing of personal data',
           description: `The processing of the User's personal data will be subject to the following principles included in article 5 of the RGPD and in article 4 and following of Organic Law 3/2018, of December 5, on the Protection of Personal Data and guarantee of the digital rights:`,
-          item1:`Principle of legality, loyalty and transparency: the User's consent will be required at all times following completely transparent information about the purposes for which personal data is collected.`,
-          item2:`Purpose limitation principle: personal data will be collected for specific, explicit and legitimate purposes`,
-          item3:`Data minimization principle: the personal data collected will only be strictly necessary in relation to the purposes for which they are processed.`,
-          item4:`Accuracy principle: personal data must be accurate and always up to date.`,
-          item5:`Principle of limitation of the conservation period: personal data will only be maintained in a way that allows the identification of the User for the time necessary for the purposes of its processing.`,
-          item6:`Principle of integrity and confidentiality: personal data will be treated in a way that guarantees its security and confidentiality.`,
-          item7:`Principle of proactive responsibility: the data controller will be responsible for ensuring that the above principles are met.`,
+          item1: `Principle of legality, loyalty and transparency: the User's consent will be required at all times following completely transparent information about the purposes for which personal data is collected.`,
+          item2: `Purpose limitation principle: personal data will be collected for specific, explicit and legitimate purposes`,
+          item3: `Data minimization principle: the personal data collected will only be strictly necessary in relation to the purposes for which they are processed.`,
+          item4: `Accuracy principle: personal data must be accurate and always up to date.`,
+          item5: `Principle of limitation of the conservation period: personal data will only be maintained in a way that allows the identification of the User for the time necessary for the purposes of its processing.`,
+          item6: `Principle of integrity and confidentiality: personal data will be treated in a way that guarantees its security and confidentiality.`,
+          item7: `Principle of proactive responsibility: the data controller will be responsible for ensuring that the above principles are met.`,
         },
         section6: {
           title: 'Categories of personal data',
@@ -235,8 +235,8 @@ const resources: Resource = {
           item6: `Right to data portability: In the event that the processing is carried out by automated means, the User will have the right to receive their personal data from the Data Controller in a structured, commonly used and machine-readable format, and to transmit them to another controller. of the treatment. Whenever technically possible, the Data Controller will directly transmit the data to that other controller.`,
           item7: `right of opposition: It is the User's right not to have their personal data processed or to cease their processing by Gestoria xilcat services.`,
           item8: `Right not to be subject to a decision based solely on automated processing, including profiling: This is the User's right not to be subject to an individualized decision based solely on the automated processing of their personal data, including profiling. , existing unless current legislation establishes otherwise.`,
-    
-          description2:  'Thus, the User may exercise their rights by written communication addressed to the Data Controller with the reference "RGPD-www.xilcatservicios.com", specifying:',
+
+          description2: 'Thus, the User may exercise their rights by written communication addressed to the Data Controller with the reference "RGPD-www.xilcatservicios.com", specifying:',
           item9: 'Name, surname of the User and copy of the DNI. In cases where representation is admitted, identification by the same means of the person representing the User will also be necessary, as well as the document accrediting the representation. The photocopy of the DNI may be replaced by any other legally valid means that proves identity.',
           item10: 'Request with the specific reasons for the request or information you want to access.',
           item11: 'Address for notification purposes.',
@@ -314,7 +314,7 @@ const resources: Resource = {
       },
     } as TranslationSchema,
   },
-//
+  //
   es: {
     translation: {
       title: 'Asesoría experta para tus gestiones de nacionalidad en Barcelona',
@@ -414,15 +414,15 @@ const resources: Resource = {
         team: {
           a: {
             name: 'Maria Torres',
-            profession: 'Especialista en Jurisdicción',
+            profession: 'Especialista Civil',
           },
           b: {
             name: 'Bella Fuentes',
-            profession: 'Especialista en Jurisdicción',
+            profession: 'Especialista Internacional',
           },
           c: {
             name: 'Martha Ventanilla',
-            profession: 'Especialista en Jurisdicción',
+            profession: 'Especialista Laboral',
           },
         },
       },
@@ -465,7 +465,7 @@ const resources: Resource = {
         subdescription1: `Son aquellas cookies que son enviadas al ordenador o dispositivo del Usuario y gestionadas exclusivamente por Gestoria xilcat servicios para el mejor funcionamiento del Sitio Web. La información que se recaba se emplea para mejorar la calidad del Sitio Web y su Contenido y su experiencia como Usuario. Estas cookies permiten reconocer al Usuario como visitante recurrente del Sitio Web y adaptar el contenido para ofrecerle contenidos que se ajusten a sus preferencias.`,
         subtitle2: 'Cookies de redes sociales',
         subdescription2: `Gestoria xilcat servicios incorpora plugins de redes sociales, que permiten acceder a las mismas a partir del Sitio Web. Por esta razón, las cookies de redes sociales pueden almacenarse en el navegador del Usuario. Los titulares de dichas redes sociales disponen de sus propias políticas de protección de datos y de cookies, siendo ellos mismos, en cada caso, responsables de sus propios ficheros y de sus propias prácticas de privacidad. El Usuario debe referirse a las mismas para informarse acerca de dichas cookies y, en su caso, del tratamiento de sus datos personales. Únicamente a título informativo se indican a continuación los enlaces en los que se pueden consultar dichas políticas de privacidad y/o de cookies:`,
-        
+
         subtitle3: 'Registro de Datos de Carácter Personal',
         subdescription3: `En cumplimiento de lo establecido en el RGPD y la LOPD-GDD, le informamos que los datos personales recabados por Gestoria xilcat servicios, mediante los formularios extendidos en sus páginas quedarán incorporados y serán tratados en nuestro fichero con el fin de poder facilitar, agilizar y cumplir los compromisos establecidos entre Gestoría xilcat servicios y el Usuario o el mantenimiento de la relación que se establezca en los formularios que este rellene, o para atender una solicitud o consulta del mismo. Asimismo, de conformidad con lo previsto en el RGPD y la LOPD-GDD, salvo que sea de aplicación la excepción prevista en el artículo 30.5 del RGPD, se mantiene un registro de actividades de tratamiento que especifica, según sus finalidades, las actividades de tratamiento llevadas a cabo y las demás circunstancias establecidas en el RGPD.`,
 
@@ -497,13 +497,13 @@ const resources: Resource = {
         section5: {
           title: 'Principios aplicables al tratamiento de los datos personales',
           description: `El tratamiento de los datos personales del Usuario se someterá a los siguientes principios recogidos en el artículo 5 del RGPD y en el artículo 4 y siguientes de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales:`,
-          item1:`Principio de licitud, lealtad y transparencia: se requerirá en todo momento el consentimiento del Usuario previa información completamente transparente de los fines para los cuales se recogen los datos personales.`,
-          item2:`Principio de limitación de la finalidad: los datos personales serán recogidos con fines determinados, explícitos y legítimos`,
-          item3:`Principio de minimización de datos: los datos personales recogidos serán únicamente los estrictamente necesarios en relación con los fines para los que son tratados.`,
-          item4:`Principio de exactitud: los datos personales deben ser exactos y estar siempre actualizados.`,
-          item5:`Principio de limitación del plazo de conservación: los datos personales solo serán mantenidos de forma que se permita la identificación del Usuario durante el tiempo necesario para los fines de su tratamiento.`,
-          item6:`Principio de integridad y confidencialidad: los datos personales serán tratados de manera que se garantice su seguridad y confidencialidad.`,
-          item7:`Principio de responsabilidad proactiva: el responsable del tratamiento será responsable de asegurar que los principios anteriores se cumplen.`,
+          item1: `Principio de licitud, lealtad y transparencia: se requerirá en todo momento el consentimiento del Usuario previa información completamente transparente de los fines para los cuales se recogen los datos personales.`,
+          item2: `Principio de limitación de la finalidad: los datos personales serán recogidos con fines determinados, explícitos y legítimos`,
+          item3: `Principio de minimización de datos: los datos personales recogidos serán únicamente los estrictamente necesarios en relación con los fines para los que son tratados.`,
+          item4: `Principio de exactitud: los datos personales deben ser exactos y estar siempre actualizados.`,
+          item5: `Principio de limitación del plazo de conservación: los datos personales solo serán mantenidos de forma que se permita la identificación del Usuario durante el tiempo necesario para los fines de su tratamiento.`,
+          item6: `Principio de integridad y confidencialidad: los datos personales serán tratados de manera que se garantice su seguridad y confidencialidad.`,
+          item7: `Principio de responsabilidad proactiva: el responsable del tratamiento será responsable de asegurar que los principios anteriores se cumplen.`,
         },
         section6: {
           title: 'Categorías de datos personales',
@@ -548,8 +548,8 @@ const resources: Resource = {
           item6: `Derecho a la portabilidad de los datos: En caso de que el tratamiento se efectúe por medios automatizados, el Usuario tendrá derecho a recibir del Responsable del tratamiento sus datos personales en un formato estructurado, de uso común y lectura mecánica, y a transmitirlos a otro responsable del tratamiento. Siempre que sea técnicamente posible, el Responsable del tratamiento transmitirá directamente los datos a ese otro responsable.`,
           item7: 'Derecho de oposición: Es el derecho del Usuario a que no se lleve a cabo el tratamiento de sus datos de carácter personal o se cese el tratamiento de los mismos por parte de Gestoria xilcat servicios.',
           item8: 'Derecho a no ser objeto de una decisión basada únicamente en el tratamiento automatizado, incluida la elaboración de perfiles: Es el derecho del Usuario a no ser objeto de una decisión individualizada basada únicamente en el tratamiento automatizado de sus datos personales, incluida la elaboración de perfiles, existente salvo que la legislación vigente establezca lo contrario.',
-    
-          description2:  'Así pues, el Usuario podrá ejercitar sus derechos mediante comunicación escrita dirigida al Responsable del tratamiento con la referencia "RGPD-www.xilcatservicios.com", especificando:',
+
+          description2: 'Así pues, el Usuario podrá ejercitar sus derechos mediante comunicación escrita dirigida al Responsable del tratamiento con la referencia "RGPD-www.xilcatservicios.com", especificando:',
           item9: 'Nombre, apellidos del Usuario y copia del DNI. En los casos en que se admita la representación, será también necesaria la identificación por el mismo medio de la persona que representa al Usuario, así como el documento acreditativo de la representación. La fotocopia del DNI podrá ser sustituida, por cualquier otro medio válido en derecho que acredite la identidad.',
           item10: 'Petición con los motivos específicos de la solicitud o información a la que se quiere acceder.',
           item11: 'Domicilio a efecto de notificaciones.',
@@ -627,7 +627,7 @@ const resources: Resource = {
       },
     } as TranslationSchema,
   },
-//
+  //
   ca: {
     translation: {
       title: `Consell Expert per als teus Procediments de Nacionalitat a Barcelona`,
@@ -718,15 +718,15 @@ const resources: Resource = {
         team: {
           a: {
             name: `Maria Torres`,
-            profession: `Especialista en Jurisdicció`,
+            profession: `Especialista Civil`,
           },
           b: {
             name: `Bella Fuentes`,
-            profession: `Especialista en Jurisdicció`,
+            profession: `Especialista Internacional`,
           },
           c: {
             name: `Martha Ventanilla`,
-            profession: `Especialista en Jurisdicció`,
+            profession: `Especialista Laboral`,
           },
         },
       },
@@ -767,7 +767,7 @@ const resources: Resource = {
         subdescription1: `Són aquelles galetes que són enviades a l'ordinador o dispositiu de l'Usuari i gestionades exclusivament per Gestoria xilcat serveis per al millor funcionament del Lloc Web. La informació que es recull s'empra per millorar la qualitat del Lloc Web i el seu Contingut i la seva experiència com a Usuari. Aquestes cookies permeten reconèixer l'Usuari com a visitant recurrent del Lloc Web i adaptar el contingut per oferir continguts que s'ajustin a les seves preferències.`,
         subtitle2: 'Cookies de xarxes socials',
         subdescription2: `Gestoria xilcat serveis incorpora plugins de xarxes socials, que permeten accedir-hi a partir del Lloc Web. Per aquesta raó, les galetes de xarxes socials es poden emmagatzemar al navegador de l'Usuari. Els titulars de les xarxes socials esmentades disposen de les seves pròpies polítiques de protecció de dades i de cookies, sent ells mateixos, en cada cas, responsables dels seus propis fitxers i de les seves pròpies pràctiques de privadesa. L'Usuari ha de referir-s'hi per informar-se sobre aquestes galetes i, si escau, del tractament de les seves dades personals. Únicament a títol informatiu s'indiquen a continuació els enllaços en què es poden consultar aquestes polítiques de privadesa i/o de cookies:`,
-        
+
         subtitle3: 'Registre de Dades de Caràcter Personal',
         subdescription3: `En compliment del que estableix el RGPD i la LOPD-GDD, us informem que les dades personals demanades per Gestoria xilcat serveis, mitjançant els formularis estesos a les vostres pàgines quedaran incorporats i seran tractats al nostre fitxer per tal de poder facilitar, agilitzar i complir els compromisos establerts entre Gestoria xilcat serveis i l'Usuari o el manteniment de la relació que s'estableixi als formularis que aquest empleni, o per atendre'n una sol·licitud o consulta. Així mateix, de conformitat amb el que preveu el RGPD i la LOPD-GDD, llevat que sigui aplicable l'excepció prevista a l'article 30.5 del RGPD, es manté un registre d'activitats de tractament que especifica, segons les seves finalitats, les activitats de tractament dutes a terme i les altres circumstàncies establertes al RGPD.`,
 
@@ -799,13 +799,13 @@ const resources: Resource = {
         section5: {
           title: 'Principis aplicables al tractament de les dades personals',
           description: `El tractament de les dades personals de l'Usuari se sotmetrà als següents principis recollits a l'article 5 del RGPD ia l'article 4 i següents de la Llei Orgànica 3/2018, de 5 de desembre, de Protecció de Dades Personals i garantia dels drets digitals:`,
-          item1:`Principi de licitud, lleialtat i transparència: es requerirà en tot moment el consentiment de l'Usuari prèvia informació completament transparent de les finalitats per a les quals es recullen les dades personals.`,
-          item2:`Principi de limitació de la finalitat: les dades personals seran recollides amb fins determinats, explícits i legítims`,
-          item3:`Principi de minimització de dades: les dades personals recollides seran únicament les estrictament necessàries en relació amb les finalitats per a les quals són tractades.`,
-          item4:`Principi d'exactitud: les dades personals han de ser exactes i estar sempre actualitzades.`,
-          item5:`Principi de limitació del termini de conservació: les dades personals només seran mantingudes de manera que es permeti la identificació de l'Usuari durant el temps necessari per als fins del tractament.`,
-          item6:`Principi d'integritat i confidencialitat: les dades personals seran tractades de manera que se'n garanteixi la seguretat i la confidencialitat.`,
-          item7:`Principi de responsabilitat proactiva: el responsable del tractament serà responsable dassegurar que els principis anteriors es compleixen.`,
+          item1: `Principi de licitud, lleialtat i transparència: es requerirà en tot moment el consentiment de l'Usuari prèvia informació completament transparent de les finalitats per a les quals es recullen les dades personals.`,
+          item2: `Principi de limitació de la finalitat: les dades personals seran recollides amb fins determinats, explícits i legítims`,
+          item3: `Principi de minimització de dades: les dades personals recollides seran únicament les estrictament necessàries en relació amb les finalitats per a les quals són tractades.`,
+          item4: `Principi d'exactitud: les dades personals han de ser exactes i estar sempre actualitzades.`,
+          item5: `Principi de limitació del termini de conservació: les dades personals només seran mantingudes de manera que es permeti la identificació de l'Usuari durant el temps necessari per als fins del tractament.`,
+          item6: `Principi d'integritat i confidencialitat: les dades personals seran tractades de manera que se'n garanteixi la seguretat i la confidencialitat.`,
+          item7: `Principi de responsabilitat proactiva: el responsable del tractament serà responsable dassegurar que els principis anteriors es compleixen.`,
         },
         section6: {
           title: 'Categories de dades personals',
@@ -850,8 +850,8 @@ const resources: Resource = {
           item6: `Dret a la portabilitat de les dades: En cas que el tractament s'efectuï per mitjans automatitzats, l'Usuari tindrà dret a rebre del Responsable del tractament les dades personals en un format estructurat, d'ús comú i lectura mecànica, ia transmetre'ls a un altre responsable del tractament. Sempre que sigui tècnicament possible, el responsable del tractament transmetrà directament les dades a aquest altre responsable.`,
           item7: `Dret d'oposició: És el dret de l'Usuari que no es dugui a terme el tractament de les seves dades de caràcter personal o se'n cessi el tractament per part de Gestoria xilcat serveis.`,
           item8: `Dret a no ser objecte d'una decisió basada únicament en el tractament automatitzat, inclosa l'elaboració de perfils: És el dret de l'Usuari a no ser objecte d'una decisió individualitzada basada únicament en el tractament automatitzat de les vostres dades personals, inclosa l'elaboració de perfils , existent llevat que la legislació vigent estableixi el contrari.`,
-    
-          description2:  `Així, doncs, l'Usuari podrà exercitar els seus drets mitjançant comunicació escrita dirigida al Responsable del tractament amb la referència "RGPD-www.xilcatservicios.com", especificant:`,
+
+          description2: `Així, doncs, l'Usuari podrà exercitar els seus drets mitjançant comunicació escrita dirigida al Responsable del tractament amb la referència "RGPD-www.xilcatservicios.com", especificant:`,
           item9: `Nom, cognoms de l'usuari i còpia del DNI. En els casos en què s'admeti la representació, també serà necessària la identificació pel mateix mitjà de la persona que representa l'Usuari, així com el document acreditatiu de la representació. La fotocòpia del DNI podrà ser substituïda per qualsevol altre mitjà vàlid en dret que acrediti la identitat.`,
           item10: `Petició amb els motius específics de la sol·licitud o informació a què es vol accedir.`,
           item11: `Domicili a efectes de notificacions.`,
@@ -887,7 +887,7 @@ const resources: Resource = {
           item1: `Un ús de la informació, Continguts i/o Serveis i dades ofertes per Gestoria xilcat serveis sense que sigui contrari al que disposen aquestes Condicions, la Llei, la moral o l'ordre públic, o que de qualsevol altra manera puguin suposar lesió de els drets de tercers o del mateix funcionament del Lloc Web.`,
           item2: `La veracitat i licitud de les informacions aportades per l'Usuari als formularis estesos per Gestoria xilcat serveis per a l'accés a certs Continguts o Serveis oferts pel Lloc Web. En tot cas, l'Usuari notificarà de forma immediata a Gestoria xilcat serveis sobre qualsevol fet que permeti l'ús indegut de la informació registrada en aquests formularis, com ara, però no només, el robatori, la pèrdua, o l'accés no autoritzat a identificadors i/o contrasenyes, a fi de procedir a la seva immediata cancel·lació.`,
           description3: `Gestoria xilcat serveis es reserva el dret de retirar tots aquells comentaris i aportacions que vulnerin la llei, el respecte a la dignitat de la persona, que siguin discriminatoris, xenòfobs, racistes, pornogràfics, spamming, que atemptin contra la joventut o la infància, el ordre o la seguretat pública o que, a parer seu, no resultessin adequats per a la seva publicació. En qualsevol cas, Gestoria xilcat serveis no serà responsable de les opinions abocades pels Usuaris a través de comentaris o altres eines de blogging o de participació que hi pugui haver. El mer accés a aquest Lloc Web no suposa entaular cap mena de relació de caràcter comercial entre Gestoria xilcat serveis i l'Usuari. L'Usuari declara que és més gran i disposar de la capacitat jurídica suficient per vincular-se per aquestes Condicions. Per tant, aquest Lloc Web de Gestoria xilcat serveis no sadreça a menors dedat.`,
-          description4:  `Gestoria xilcat serveis declina qualsevol responsabilitat per l´incompliment d´aquest requisit. El Lloc Web està dirigit principalment a Usuaris residents a Espanya. Gestoria xilcat serveis no assegura que el Lloc Web compleixi amb legislacions d'altres països, ja sigui totalment o parcialment. Si l'Usuari resideix o té el seu domiciliat en un altre lloc i decideix accedir i/o navegar al Lloc Web ho farà sota la seva pròpia responsabilitat, assegureu-vos que aquest accés i navegació compleix amb la legislació local que us és aplicable, no assumint Gestòria xilcat serveis cap responsabilitat que es pugui derivar del dit accés.`,
+          description4: `Gestoria xilcat serveis declina qualsevol responsabilitat per l´incompliment d´aquest requisit. El Lloc Web està dirigit principalment a Usuaris residents a Espanya. Gestoria xilcat serveis no assegura que el Lloc Web compleixi amb legislacions d'altres països, ja sigui totalment o parcialment. Si l'Usuari resideix o té el seu domiciliat en un altre lloc i decideix accedir i/o navegar al Lloc Web ho farà sota la seva pròpia responsabilitat, assegureu-vos que aquest accés i navegació compleix amb la legislació local que us és aplicable, no assumint Gestòria xilcat serveis cap responsabilitat que es pugui derivar del dit accés.`,
         },
         section3: {
           title: 'ACCÉS I NAVEGACIÓ AL LLOC WEB: EXCLUSIÓ DE GARANTIES I RESPONSABILITAT',

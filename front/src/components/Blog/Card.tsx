@@ -66,8 +66,8 @@ const Card = ({ article, current }: { article: TArticle, current: string }) => {
             <div className='flex flex-col p-2 h-[50%] md:h-full border'>
                 <div className='flex h-[20%] gap-2 mb-4'>
                     <div className='basis-1/4 relative rounded-full overflow-hidden flex justify-center items-center'>
-                        <div className='bg-red-500 h-8 w-8 md:h-10 md:w-10 lg:h-14 lg:w-14 rounded-full'>
-                            <img src={profile} alt="" className='rounded-full' style={{ width: '100%', height: '100%' }} />
+                        <div className='bg-cs-purple h-8 w-8 md:h-10 md:w-10 lg:h-14 lg:w-14 rounded-full'>
+                            <img src={Logo} alt="" className='rounded-full' style={{ width: '100%', height: '100%' }} />
                         </div>
                     </div>
                     <div className='basis-2/4 flex- flex-col'>
