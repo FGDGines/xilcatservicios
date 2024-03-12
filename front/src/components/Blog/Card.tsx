@@ -1,6 +1,6 @@
 import { FaWhatsapp } from "react-icons/fa";
 import Logo from '../../assets/Logo_white.png'
-import profile from '../../assets/imgs/carrusel-img-1.jpeg'
+// import profile from '../../assets/imgs/carrusel-img-1.jpeg'
 import moment from 'moment';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
